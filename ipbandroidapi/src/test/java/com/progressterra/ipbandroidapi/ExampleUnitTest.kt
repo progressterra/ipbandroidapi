@@ -1,4 +1,4 @@
-package com.progressterra.android.ipbandroidapi
+package com.progressterra.ipbandroidapi
 
 import org.junit.Test
 

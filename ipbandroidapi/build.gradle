@@ -1,21 +1,28 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+
+        def majorVersion = 0
+        versionCode commitsCount()
+        versionName "$majorVersion.${generateMinorVersionCode()}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "API_URL", "\"https://mp1.iprobonus.com/\"")
+        buildConfigField("String", "ACCESS_KEY", "\"891cf53c-01fc-4d74-a14c-592668b7a03c\"")
     }
+
+
 
     buildTypes {
         release {
@@ -38,7 +45,20 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // Dagger
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    api  "com.google.dagger:dagger:$dagger_version"
+    kapt("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.2.0")
+
+    // Network
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    api "com.squareup.okhttp3:okhttp:$okhttp_version"
+
+    // Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 }

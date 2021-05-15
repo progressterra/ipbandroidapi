@@ -1,4 +1,4 @@
-package com.progressterra.android.ipbandroidapi
+package com.progressterra.ipbandroidapi
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.progressterra.android.ipbandroidapi.test", appContext.packageName)
+        assertEquals("com.progressterra.ipbandroidapi.test", appContext.packageName)
     }
 }
