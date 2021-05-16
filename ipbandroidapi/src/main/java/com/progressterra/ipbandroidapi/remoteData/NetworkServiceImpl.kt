@@ -14,10 +14,10 @@ internal class NetworkServiceImpl : NetworkService {
 
 
     private val clientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-        .callTimeout(timeout, TimeUnit.MINUTES)
-        .connectTimeout(timeout, TimeUnit.MINUTES)
-        .readTimeout(timeout, TimeUnit.MINUTES)
-        .writeTimeout(timeout, TimeUnit.MINUTES)
+        .callTimeout(TIMEOUT, TimeUnit.MINUTES)
+        .connectTimeout(TIMEOUT, TimeUnit.MINUTES)
+        .readTimeout(TIMEOUT, TimeUnit.MINUTES)
+        .writeTimeout(TIMEOUT, TimeUnit.MINUTES)
         .addInterceptor {
             val request = it.request().newBuilder()
                 .addHeader("AccessKey", accessKey)
@@ -37,7 +37,7 @@ internal class NetworkServiceImpl : NetworkService {
 
     companion object {
         // Таймаут запроса в минутах
-        private const val timeout = 1L
+        private const val TIMEOUT = 1L
 
     }
 }
