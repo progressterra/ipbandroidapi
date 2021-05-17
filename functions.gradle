@@ -1,0 +1,18 @@
+static def commitsCount() {
+    def result = "git rev-list HEAD --count".execute().text.trim() //unix systems
+    if (result.empty)
+        result = "PowerShell -Command git rev-list HEAD --count".execute().text.trim() // windows
+    if (result.empty)
+        throw new RuntimeException("Coult not generate versioncode on this platform. Cmd output: ${result.text}")
+    return result.toInteger()
+}
+
+static def generateMinorVersionCode() {
+    def commitsCount = commitsCount()
+    return "${(commitsCount / 100).toInteger()}.${commitsCount % 100}"
+}
+
+ext {
+    commitsCount = this.&commitsCount
+    generateMinorVersionCode = this.&generateMinorVersionCode
+}
