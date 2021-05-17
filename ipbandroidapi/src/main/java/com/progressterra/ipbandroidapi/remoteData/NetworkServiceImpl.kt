@@ -34,8 +34,8 @@ internal class NetworkServiceImpl : NetworkService {
 
     override fun <T> createService(apiClass: Class<T>): T = retrofit.create(apiClass)
 
-
     companion object {
+
         // Таймаут запроса в минутах
         private const val TIMEOUT = 1L
 
