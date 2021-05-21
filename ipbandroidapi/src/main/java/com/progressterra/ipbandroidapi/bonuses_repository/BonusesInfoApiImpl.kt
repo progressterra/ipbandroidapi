@@ -1,22 +1,16 @@
 package com.progressterra.ipbandroidapi.bonuses_repository
 
-import com.progressterra.ipbandroidapi.di.DaggerRepositoryComponent
 import com.progressterra.ipbandroidapi.interfaces.internal.baseRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmRepository
 import com.progressterra.ipbandroidapi.repository.RepositoryImpl
 import com.progressterra.ipbandroidapi.repository.models.access_token.AccessTokenRequest
 import com.progressterra.ipbandroidapi.repository.models.access_token.AccessTokenResponse
 import com.progressterra.ipbandroidapi.repository.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.repository.models.bonuses_info.GeneralInfoResponse
-import javax.inject.Inject
 
-class BonusesInfoRepositoryImpl : BonusesInfoRepository {
+internal class BonusesInfoApiImpl : BonusesInfoApi {
 
-    @Inject
-    internal lateinit var repositoryImpl: RepositoryImpl
-
-    init {
-        DaggerRepositoryComponent.create().injectBonusesBannerRepository(this)
-    }
+    internal val repository: ScrmRepository = RepositoryImpl()
 
     // временное решение, после будет глобальная инициализация где будут эти параметры получать
     private val accessTokenRequest = AccessTokenRequest(
@@ -30,11 +24,11 @@ class BonusesInfoRepositoryImpl : BonusesInfoRepository {
     )
 
     override suspend fun getAccessToken(): ResponseWrapper<AccessTokenResponse> {
-        return baseRequest { repositoryImpl.getAccessToken(accessTokenRequest) }
+        return baseRequest { repository.getAccessToken(accessTokenRequest) }
     }
 
     override suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<GeneralInfoResponse> {
-        return baseRequest { repositoryImpl.getGeneralInfo(accessToken) }
+        return baseRequest { repository.getGeneralInfo(accessToken) }
     }
 
 }

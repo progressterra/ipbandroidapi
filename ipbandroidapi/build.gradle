@@ -61,7 +61,7 @@ dependencies {
     api "com.squareup.okhttp3:okhttp:$okhttp_version"
 
     // Logging
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    api("com.squareup.okhttp3:logging-interceptor:4.9.1")
 
     // Coroutines
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
