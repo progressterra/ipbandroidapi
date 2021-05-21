@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.remoteData
 import com.progressterra.ipbandroidapi.BuildConfig
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -18,6 +19,7 @@ internal class NetworkServiceImpl : NetworkService {
         .connectTimeout(TIMEOUT, TimeUnit.MINUTES)
         .readTimeout(TIMEOUT, TimeUnit.MINUTES)
         .writeTimeout(TIMEOUT, TimeUnit.MINUTES)
+        .addInterceptor(HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) })
         .addInterceptor {
             val request = it.request().newBuilder()
                 .addHeader("AccessKey", accessKey)

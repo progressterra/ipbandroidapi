@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.di
 
-import com.progressterra.ipbandroidapi.interactors.BonusesInfoRepositoryImpl
+import com.progressterra.ipbandroidapi.bonuses_repository.BonusesInfoRepositoryImpl
 import com.progressterra.ipbandroidapi.repository.RepositoryImpl
 import dagger.Component
 
