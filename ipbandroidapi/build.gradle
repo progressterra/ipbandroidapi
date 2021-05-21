@@ -18,9 +18,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
-        buildConfigField("String", "API_URL", "\"https://mp1.iprobonus.com/\"")
-        buildConfigField("String", "ACCESS_KEY", "\"891cf53c-01fc-4d74-a14c-592668b7a03c\"")
     }
 
 
