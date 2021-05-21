@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.repository.models.bonuses_info.GeneralInf
 import retrofit2.Response
 import retrofit2.http.*
 
-internal interface ScrmRepository {
+internal interface ScrmApi {
     /**
      * Получение accesstoken
      */

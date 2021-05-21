@@ -4,13 +4,13 @@ import com.progressterra.ipbandroidapi.repository.models.access_token.AccessToke
 import com.progressterra.ipbandroidapi.repository.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.repository.models.bonuses_info.GeneralInfoResponse
 
-interface BonusesInfoApi {
+interface BonusesRepository {
     suspend fun getAccessToken(): ResponseWrapper<AccessTokenResponse>
     suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<GeneralInfoResponse>
 
     companion object {
-        fun getInstance(): BonusesInfoApi {
-            return BonusesInfoApiImpl()
+        fun getInstance(): BonusesRepository {
+            return BonusesInfoRepositoryImpl()
         }
     }
 }

@@ -2,14 +2,14 @@ package com.progressterra.ipbandroidapi.repository
 
 import com.progressterra.ipbandroidapi.di.DaggerRepositoryComponent
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmRepository
+import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmApi
 import com.progressterra.ipbandroidapi.repository.models.access_token.AccessTokenRequest
 import com.progressterra.ipbandroidapi.repository.models.access_token.AccessTokenResponse
 import com.progressterra.ipbandroidapi.repository.models.bonuses_info.GeneralInfoResponse
 import retrofit2.Response
 import javax.inject.Inject
 
-internal class RepositoryImpl : ScrmRepository {
+internal class RepositoryImpl : ScrmApi {
 
     @Inject
     lateinit var networkService: NetworkService
@@ -19,13 +19,14 @@ internal class RepositoryImpl : ScrmRepository {
             .build()
             .inject(this)
     }
+    private val scrmAPI = networkService.createService(ScrmApi::class.java)
 
     override suspend fun getAccessToken(accessToken: AccessTokenRequest): Response<AccessTokenResponse> {
-        return networkService.createService(ScrmRepository::class.java).getAccessToken(accessToken)
+        return scrmAPI.getAccessToken(accessToken)
     }
 
     override suspend fun getGeneralInfo(accessToken: String): Response<GeneralInfoResponse> {
-        return networkService.createService(ScrmRepository::class.java).getGeneralInfo(accessToken)
+        return scrmAPI.getGeneralInfo(accessToken)
     }
 
     // TODO: 14.05.2021 private val bonusApi  = networkService.createService(bonusapimodel)
