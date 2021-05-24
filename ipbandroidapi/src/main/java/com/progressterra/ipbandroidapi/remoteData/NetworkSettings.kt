@@ -29,19 +29,19 @@ object NetworkSettings {
     /**
      * Ключ доступа
      */
-    var ACCESS_KEY = ""
+    var ACCESS_KEY = "5400d184-6753-440d-819c-1034ce7042ed"
 
     /**
      * Стандартная базовая ссылка (возможно потом поменяем на var)
      */
-    const val LIKEDISLIKE_ROOT_URL = "http://ibonus.1c-work.net/"
+    const val LIKEDISLIKE_ROOT_URL = "https://mp1.iprobonus.com/"
 
     /**
      * Доп адреса для IBONUS
      */
     val LIKEDISLIKE_ADDITIONAL_URL = listOf<String>()
 
-    const val SCRM_ROOT_URL = "http://scrm.1c-work.net"
+    const val SCRM_ROOT_URL = "https://mp1.iprobonus.com"
 
     /**
      * Доп адреса для SCRM

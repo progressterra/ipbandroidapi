@@ -1,14 +1,19 @@
 package com.progressterra.ipbandroidapi.interfaces.internal
 
+import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
+import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
+import retrofit2.Response
+
 internal interface NetworkService {
 
     fun <T> createService(apiClass: Class<T>): T
-}
 
-internal inline fun <T> NetworkService.safeApiCall(responseFunction: () -> T): T? =
-    try {
-        responseFunction.invoke()
-    } catch (e: Exception) {
-        e.printStackTrace()
-        null
+    suspend fun <T : BaseResponse> baseRequest(request: suspend () -> Response<T>): ResponseWrapper<T>
+
+    companion object {
+        fun getInstance(): NetworkService {
+            return NetworkServiceImpl()
+        }
     }
+}
