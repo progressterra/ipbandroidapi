@@ -4,15 +4,15 @@ import com.google.gson.annotations.SerializedName
 
 data class ResultResponse(
     @SerializedName("codeResult")
-    val codeResult: Int?,
+    val codeResult: Int? = null,
     @SerializedName("duration")
-    val duration: Double?,
+    val duration: Double? = null,
     @SerializedName("idLog")
-    val idLog: String?,
+    val idLog: String? = null,
     @SerializedName("message")
-    val message: String?,
+    val message: String? = null,
     @SerializedName("messageDev")
-    val messageDev: Any?,
+    val messageDev: Any? = null,
     @SerializedName("status")
-    val status: Int?
+    val status: Int? = null
 )

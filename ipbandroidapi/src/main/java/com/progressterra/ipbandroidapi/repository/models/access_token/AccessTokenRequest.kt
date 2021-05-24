@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.repository.models.access_token
 
 import com.google.gson.annotations.SerializedName
 
-data class AccessTokenRequest(
+internal data class AccessTokenRequest(
     @SerializedName("accessToken")
     val accessToken: String,
     @SerializedName("idClient")

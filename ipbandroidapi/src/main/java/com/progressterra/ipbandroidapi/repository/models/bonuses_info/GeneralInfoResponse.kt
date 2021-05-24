@@ -6,16 +6,16 @@ import com.progressterra.ipbandroidapi.repository.models.base.BaseResponse
 
 data class GeneralInfoResponse(
     @SerializedName("data")
-    val `data`: Data?,
+    val `data`: Data? = null,
 ) : BaseResponse()
 
 data class Data(
     @SerializedName("currentQuantity")
-    val currentQuantity: Double?,
+    val currentQuantity: Double? = null,
     @SerializedName("dateBurning")
-    val dateBurning: String?,
+    val dateBurning: String? = null,
     @SerializedName("forBurningQuantity")
-    val forBurningQuantity: Double?,
+    val forBurningQuantity: Double? = null,
     @SerializedName("typeBonusName")
-    val typeBonusName: String?
+    val typeBonusName: String? = null
 )

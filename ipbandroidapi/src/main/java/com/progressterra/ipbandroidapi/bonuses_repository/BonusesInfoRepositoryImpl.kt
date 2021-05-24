@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.bonuses_repository
 
-import com.progressterra.ipbandroidapi.interfaces.internal.baseRequest
+import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmApi
 import com.progressterra.ipbandroidapi.repository.RepositoryImpl
 import com.progressterra.ipbandroidapi.repository.models.access_token.AccessTokenRequest
@@ -10,7 +10,8 @@ import com.progressterra.ipbandroidapi.repository.models.bonuses_info.GeneralInf
 
 internal class BonusesInfoRepositoryImpl : BonusesRepository {
 
-    internal val repository: ScrmApi = RepositoryImpl()
+    private val repository: ScrmApi = RepositoryImpl()
+    private val networkServiceImpl = NetworkServiceImpl()
 
     // временное решение, после будет глобальная инициализация где будут эти параметры получать
     private val accessTokenRequest = AccessTokenRequest(
@@ -24,11 +25,11 @@ internal class BonusesInfoRepositoryImpl : BonusesRepository {
     )
 
     override suspend fun getAccessToken(): ResponseWrapper<AccessTokenResponse> {
-        return baseRequest { repository.getAccessToken(accessTokenRequest) }
+        return networkServiceImpl.baseRequest { repository.getAccessToken(accessTokenRequest) }
     }
 
     override suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<GeneralInfoResponse> {
-        return baseRequest { repository.getGeneralInfo(accessToken) }
+        return networkServiceImpl.baseRequest { repository.getGeneralInfo(accessToken) }
     }
 
 }

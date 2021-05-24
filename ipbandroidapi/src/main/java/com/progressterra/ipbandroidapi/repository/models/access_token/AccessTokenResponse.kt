@@ -6,6 +6,6 @@ import com.progressterra.ipbandroidapi.repository.models.base.BaseResponse
 
 class AccessTokenResponse(
     @SerializedName("accessToken")
-    val accessToken: String?,
+    val accessToken: String? = null,
 ) : BaseResponse()
 
