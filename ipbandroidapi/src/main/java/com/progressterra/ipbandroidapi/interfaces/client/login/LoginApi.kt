@@ -1,12 +1,12 @@
 package com.progressterra.ipbandroidapi.interfaces.client.login
 
-interface LoginAPI {
+interface LoginApi {
 
     suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse
 
     companion object {
-        fun newInstance(): LoginAPI {
-            return LoginAPIImpl()
+        fun newInstance(): LoginApi {
+            return LoginApiImpl()
         }
     }
 }
