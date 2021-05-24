@@ -1,9 +1,11 @@
 package com.progressterra.ipbandroidapi.remoteData.scrm
 
-<<<<<<< HEAD
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.body.VerificationRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.VerificationResponse
+import com.progressterra.ipbandroidapi.repository.models.access_token.AccessTokenRequest
+import com.progressterra.ipbandroidapi.repository.models.access_token.AccessTokenResponse
+import com.progressterra.ipbandroidapi.repository.models.bonuses_info.GeneralInfoResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -35,9 +37,7 @@ internal interface ScrmApi {
      */
     @POST("api/v3/clients/accesstoken")
     @Headers("Content-Type: application/json")
-    suspend fun getAccessToken(
-        @Body accessToken: AccessTokenRequest
-    ): Response<AccessTokenResponse>
+    suspend fun getAccessToken(@Body accessToken: AccessTokenRequest): Response<AccessTokenResponse>
 
     /**
      * Получение информации о бонусах клиента
