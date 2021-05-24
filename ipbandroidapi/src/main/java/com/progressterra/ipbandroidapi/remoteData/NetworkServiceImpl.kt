@@ -1,32 +1,34 @@
 package com.progressterra.ipbandroidapi.remoteData
 
-import com.progressterra.ipbandroidapi.BuildConfig
+import android.util.Log
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
+import com.progressterra.ipbandroidapi.repository.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.repository.models.base.GlobalResponseStatus
+import com.progressterra.ipbandroidapi.repository.models.base.ResponseWrapper
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 internal class NetworkServiceImpl : NetworkService {
 
-    private val accessKey: String = BuildConfig.ACCESS_KEY
-    private val baseUrl: String = BuildConfig.API_URL
-
-
     private val clientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-        .callTimeout(TIMEOUT, TimeUnit.MINUTES)
-        .connectTimeout(TIMEOUT, TimeUnit.MINUTES)
-        .readTimeout(TIMEOUT, TimeUnit.MINUTES)
-        .writeTimeout(TIMEOUT, TimeUnit.MINUTES)
+        .callTimeout(NetworkSettings.NETWORK_CALL_TIMEOUT, TimeUnit.MILLISECONDS)
+        .connectTimeout(NetworkSettings.NETWORK_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
+        .readTimeout(NetworkSettings.NETWORK_READ_TIMEOUT, TimeUnit.MILLISECONDS)
+        .writeTimeout(NetworkSettings.NETWORK_WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
+        .addInterceptor(HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) })
         .addInterceptor {
             val request = it.request().newBuilder()
-                .addHeader("AccessKey", accessKey)
+                .addHeader("AccessKey", NetworkSettings.ACCESS_KEY)
                 .build()
             it.proceed(request)
         }
 
     private val retrofitBuilder = Retrofit.Builder()
-        .baseUrl(baseUrl)
+        .baseUrl(NetworkSettings.LIKEDISLIKE_ROOT_URL)
         .client(clientBuilder.build())
         .addConverterFactory(GsonConverterFactory.create())
 
@@ -34,10 +36,38 @@ internal class NetworkServiceImpl : NetworkService {
 
     override fun <T> createService(apiClass: Class<T>): T = retrofit.create(apiClass)
 
-    companion object {
+    override suspend fun <T : BaseResponse> baseRequest(request: suspend () -> Response<T>): ResponseWrapper<T> {
+        // инициализируем обертку
+        val responseWrapper = ResponseWrapper<T>()
 
-        // Таймаут запроса в минутах
-        private const val TIMEOUT = 1L
+        // по умолчанию устанавливаем состояние ошибки
+        responseWrapper.globalResponseStatus = GlobalResponseStatus.ERROR
+        try {
+            val rawResponse = request.invoke()
 
+            // проверяем код ответа
+            if (rawResponse.isSuccessful && rawResponse.body() != null) {
+                rawResponse.body().let {
+
+                    // проверяем внутренний код успеха
+                    return if (it?.result?.status != 0) {
+                        responseWrapper.responseBody = it
+                        responseWrapper.globalResponseStatus = GlobalResponseStatus.ERROR
+                        responseWrapper
+                    } else {
+                        responseWrapper.responseBody = it
+                        responseWrapper.globalResponseStatus = GlobalResponseStatus.SUCCESS
+                        responseWrapper
+                    }
+                }
+            } else {
+                // возвращаем обертку с состоянием ошибки
+                return responseWrapper
+            }
+        } catch (e: Exception) {
+            // возвращаем обертку с состоянием ошибки
+            Log.d("network_logging", e.toString())
+            return responseWrapper
+        }
     }
 }

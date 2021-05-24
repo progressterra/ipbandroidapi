@@ -11,5 +11,4 @@ internal class RepositoryModule() {
     @Provides
     fun provideNetworkService(): NetworkService =
         NetworkServiceImpl()
-
 }

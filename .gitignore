@@ -337,3 +337,5 @@ $RECYCLE.BIN/
 app
 /app
 /app/
+.idea/jarRepositories.xml
+.idea/runConfigurations.xml
