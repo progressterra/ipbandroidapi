@@ -6,6 +6,8 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,6 +20,7 @@ internal class NetworkServiceImpl : NetworkService {
         .connectTimeout(NetworkSettings.NETWORK_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
         .readTimeout(NetworkSettings.NETWORK_READ_TIMEOUT, TimeUnit.MILLISECONDS)
         .writeTimeout(NetworkSettings.NETWORK_WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
+        .addInterceptor(HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) })
         .addInterceptor {
             val request = it.request().newBuilder()
                 .addHeader("AccessKey", NetworkSettings.ACCESS_KEY)
@@ -37,13 +40,16 @@ internal class NetworkServiceImpl : NetworkService {
     override suspend fun <T : BaseResponse> baseRequest(request: suspend () -> Response<T>): ResponseWrapper<T> {
         // инициализируем обертку
         val responseWrapper = ResponseWrapper<T>()
+
         // по умолчанию устанавливаем состояние ошибки
         responseWrapper.globalResponseStatus = GlobalResponseStatus.ERROR
         try {
             val rawResponse = request.invoke()
+
             // проверяем код ответа
             if (rawResponse.isSuccessful && rawResponse.body() != null) {
                 rawResponse.body().let {
+
                     // проверяем внутренний код успеха
                     return if (it?.result?.status != 0) {
                         responseWrapper.responseBody = it

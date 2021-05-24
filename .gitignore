@@ -340,3 +340,5 @@ app
 testapp
 /testapp
 /testapp/
+.idea/jarRepositories.xml
+.idea/runConfigurations.xml

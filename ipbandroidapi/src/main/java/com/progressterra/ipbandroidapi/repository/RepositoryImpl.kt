@@ -38,4 +38,12 @@ internal class RepositoryImpl : LoginRepository {
             errorMessage = errorMessage
         )
     }
+
+    override suspend fun getAccessToken(accessToken: AccessTokenRequest): Response<AccessTokenResponse> {
+        return scrmAPI.getAccessToken(accessToken)
+    }
+
+    override suspend fun getGeneralInfo(accessToken: String): Response<GeneralInfoResponse> {
+        return scrmAPI.getGeneralInfo(accessToken)
+    }
 }
