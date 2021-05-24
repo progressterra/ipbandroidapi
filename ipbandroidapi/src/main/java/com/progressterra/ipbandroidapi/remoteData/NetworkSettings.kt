@@ -34,7 +34,7 @@ object NetworkSettings {
     /**
      * Стандартная базовая ссылка (возможно потом поменяем на var)
      */
-    const val LIKEDISLIKE_ROOT_URL = "http://ibonus.1c-work.net/"
+    const val LIKEDISLIKE_ROOT_URL = "https://mp1.iprobonus.com/"
 
     /**
      * Доп адреса для IBONUS
