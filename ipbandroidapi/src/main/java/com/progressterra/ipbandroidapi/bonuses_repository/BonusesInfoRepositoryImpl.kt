@@ -6,7 +6,6 @@ import com.progressterra.ipbandroidapi.repository.RepositoryImpl
 import com.progressterra.ipbandroidapi.repository.models.access_token.AccessTokenRequest
 import com.progressterra.ipbandroidapi.repository.models.access_token.AccessTokenResponse
 import com.progressterra.ipbandroidapi.repository.models.base.ResponseWrapper
-import com.progressterra.ipbandroidapi.repository.models.bonuses_info.GeneralInfoResponse
 
 internal class BonusesInfoRepositoryImpl : BonusesRepository {
 
@@ -28,8 +27,9 @@ internal class BonusesInfoRepositoryImpl : BonusesRepository {
         return networkServiceImpl.baseRequest { repository.getAccessToken(accessTokenRequest) }
     }
 
-    override suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<GeneralInfoResponse> {
-        return networkServiceImpl.baseRequest { repository.getGeneralInfo(accessToken) }
+    override suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<BonusesInfo> {
+        val response = networkServiceImpl.baseRequest { repository.getGeneralInfo(accessToken) }
+        return response.convertation { GeneralInfoResponseConverter.convert(it?.data) }
     }
 
 }
