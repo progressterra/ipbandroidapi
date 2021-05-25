@@ -1,6 +1,7 @@
 package com.progressterra.ipbandroidapi.repository
 
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
+import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
 import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
@@ -37,6 +38,21 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         val message = response?.message ?: ""
 
         return LoginResponse(status, message)
+    }
+
+    override suspend fun verificationChannelEnd(
+        phoneNumber: String,
+        code: String
+    ): CodeVerificationModel {
+        val response = coroutineScope {
+            networkService.baseRequest {
+                scrmAPI.verificationChannelEnd(VerificationRequest(phoneNumber, code))
+            }
+        }
+        return CodeVerificationModel(
+            status = response.globalResponseStatus,
+            accessKey = response.responseBody?.accessToken ?: ""
+        )
     }
 
     override suspend fun getAccessToken(): ResponseWrapper<AccessTokenResponse> {
