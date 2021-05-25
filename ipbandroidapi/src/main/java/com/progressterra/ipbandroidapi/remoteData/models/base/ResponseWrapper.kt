@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.repository.models.base
+package com.progressterra.ipbandroidapi.remoteData.models.base
 
 class ResponseWrapper<T> {
     lateinit var globalResponseStatus: GlobalResponseStatus

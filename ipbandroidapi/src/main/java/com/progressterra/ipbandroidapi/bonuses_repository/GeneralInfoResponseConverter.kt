@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.bonuses_repository
 
 import android.util.Log
-import com.progressterra.ipbandroidapi.repository.models.bonuses_info.Data
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.Data
 import java.text.SimpleDateFormat
 import java.util.*
 

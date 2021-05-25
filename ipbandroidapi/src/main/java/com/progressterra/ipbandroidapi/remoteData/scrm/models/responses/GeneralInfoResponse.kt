@@ -1,8 +1,8 @@
-package com.progressterra.ipbandroidapi.repository.models.bonuses_info
+package com.progressterra.ipbandroidapi.remoteData.scrm.models.responses
 
 
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.repository.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class GeneralInfoResponse(
     @SerializedName("data")
