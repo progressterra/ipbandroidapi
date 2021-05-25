@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.remoteData
 
-object NetworkSettings {
+internal object NetworkSettings {
     /**
      * Задержка между событиями кнопки выход, мс
      */

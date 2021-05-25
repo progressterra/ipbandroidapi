@@ -5,6 +5,8 @@ import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -48,7 +50,6 @@ internal class NetworkServiceImpl : NetworkService {
             // проверяем код ответа
             if (rawResponse.isSuccessful && rawResponse.body() != null) {
                 rawResponse.body().let {
-
                     // проверяем внутренний код успеха
                     return if (it?.result?.status != 0) {
                         responseWrapper.responseBody = it
@@ -70,4 +71,15 @@ internal class NetworkServiceImpl : NetworkService {
             return responseWrapper
         }
     }
+
+
+    override suspend fun <T> safeApiCall(responseFunction: suspend () -> T): T? =
+        withContext(Dispatchers.IO) {
+            try {
+                responseFunction.invoke()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null
+            }
+        }
 }

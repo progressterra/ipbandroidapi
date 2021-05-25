@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.remoteData.scrm.models.requests
 
 import com.google.gson.annotations.SerializedName
 
-class VerificationRequest(
+internal class VerificationRequest(
     /**
      * Данные канала верификации
      */

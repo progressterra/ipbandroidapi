@@ -19,7 +19,7 @@ internal interface ScrmApi {
      */
     @POST("/api/v3/clients/verificationchannelbegin")
     @Headers("Content-Type: text/json")
-    suspend fun verificationChannelBegin(@Body verificationRequest: VerificationRequest): Response<ResultResponse>
+    suspend fun verificationChannelBegin(@Body verificationRequest: VerificationRequest): ResultResponse
 
     /**
      * Окончание верификации канала

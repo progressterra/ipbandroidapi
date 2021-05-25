@@ -10,4 +10,5 @@ internal interface NetworkService {
 
     suspend fun <T : BaseResponse> baseRequest(request: suspend () -> Response<T>): ResponseWrapper<T>
 
+    suspend fun <T> safeApiCall(responseFunction: suspend () -> T): T?
 }

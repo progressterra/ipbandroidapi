@@ -12,8 +12,7 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTok
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.VerificationRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.coroutineScope
 
 internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
@@ -23,8 +22,8 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
     private val scrmAPI = networkService.createService(ScrmApi::class.java)
 
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse {
-        val response = withContext(Dispatchers.IO) {
-            networkService.baseRequest {
+        val response = coroutineScope {
+            networkService.safeApiCall {
                 scrmAPI.verificationChannelBegin(
                     VerificationRequest(
                         phoneNumber
@@ -33,16 +32,11 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
             }
         }
 
-        val errorMessage: String =
-            if (response.globalResponseStatus == GlobalResponseStatus.ERROR)
-                response.responseBody?.message ?: ""
-            else
-                ""
+        val status =
+            if (response?.status == 0) GlobalResponseStatus.SUCCESS else GlobalResponseStatus.ERROR
+        val message = response?.message ?: ""
 
-        return LoginResponse(
-            status = response.globalResponseStatus,
-            errorMessage = errorMessage
-        )
+        return LoginResponse(status, message)
     }
 
     override suspend fun getAccessToken(): ResponseWrapper<AccessTokenResponse> {
