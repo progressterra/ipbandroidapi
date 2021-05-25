@@ -29,7 +29,7 @@ internal interface ScrmApi {
      */
 //    Не используется, так что не смотри пока что, это в следующем ПРе
     @POST("/api/v3/clients/verificationchannelend")
-    @Headers("Content-Type : application/json")
+    @Headers("Content-Type: text/json")
     fun verificationChannelEnd(@Body verificationRequest: VerificationRequest): Response<VerificationResponse>
 
     /**
