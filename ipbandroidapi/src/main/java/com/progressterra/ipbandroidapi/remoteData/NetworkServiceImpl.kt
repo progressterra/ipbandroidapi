@@ -68,6 +68,7 @@ internal class NetworkServiceImpl : NetworkService {
         } catch (e: Exception) {
             // возвращаем обертку с состоянием ошибки
             Log.d("network_logging", e.toString())
+            responseWrapper.errorString = e.toString()
             return responseWrapper
         }
     }

@@ -6,15 +6,20 @@ import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
+import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditionalInfo
+import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmApi
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTokenRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.ParamRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.VerificationRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
+import com.progressterra.ipbandroidapi.utils.Debug
 import kotlinx.coroutines.coroutineScope
 
 internal class RepositoryImpl : LoginRepository, BonusesRepository {
@@ -53,13 +58,15 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         }
 
         val responseBody = response.responseBody
-        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null)
-            UserData.accessKey = responseBody.accessToken ?: ""
-        saveUserData(phoneNumber)
+        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null) {
+            UserData.accessToken = responseBody.accessToken ?: ""
+            getUserData(phoneNumber)
+        }
 
         return CodeVerificationModel(
             status = response.globalResponseStatus,
-            accessKey = response.responseBody?.accessToken ?: ""
+            userExist = UserData.clientExist,
+            error = response.errorString
         )
     }
 
@@ -81,14 +88,100 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         return networkService.baseRequest { scrmAPI.getGeneralInfo(accessToken) }
     }
 
-    private suspend fun saveUserData(phoneNumber: String) {
+    private suspend fun getUserData(phoneNumber: String) {
+        // Получение имеющегося клиента
+        if (!getExistingClient(phoneNumber)) {
+            // Если клиента не существует, создаем нового
+            createNewClient()
+        }
+        // Получаем девайс (idDevice)
+        addDevice()
+        addPhone(phoneNumber)
+    }
+
+    private suspend fun getExistingClient(phoneNumber: String): Boolean {
         val response = networkService.baseRequest {
             scrmAPI.getClientByParams(
-                UserData.accessKey,
+                UserData.accessToken,
                 ParamName.PHONE.value,
                 phoneNumber
             )
         }
-        UserData.clientInfo = response.responseBody?.client?.convertToClientInfo()
+        val responseBody: ClientInfoResponse? = response.responseBody
+        return if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null) {
+            saveUserData(
+                responseBody.client?.convertToClientInfo(),
+                responseBody.clientAdditionalInfo?.convertToClientAdditionalInfo()
+            )
+
+            UserData.clientExist = true
+            true
+        } else {
+            false
+        }
+    }
+
+    private suspend fun createNewClient() {
+        val response = networkService.baseRequest {
+            scrmAPI.createNewClient(
+                ParamRequest(
+                    idClient = null,
+                    accessToken = UserData.accessToken,
+                    paramName = ParamName.CREATE_NEW_CLIENT,
+                    paramValue = "",
+                    latitude = null,
+                    longitude = null
+                )
+            )
+        }
+        val responseBody = response.responseBody
+        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null) {
+            saveUserData(
+                responseBody.client?.convertToClientInfo(),
+                responseBody.clientAdditionalInfo?.convertToClientAdditionalInfo()
+            )
+            UserData.clientExist = false
+        }
+    }
+
+    private fun saveUserData(clientInfo: ClientInfo?, clientAdditionalInfo: ClientAdditionalInfo?) {
+        if (clientInfo != null)
+            UserData.clientInfo = clientInfo
+        if (clientAdditionalInfo != null)
+            UserData.clientAdditionalInfo = clientAdditionalInfo
+    }
+
+    private suspend fun addDevice() {
+        val response = networkService.baseRequest {
+            scrmAPI.addDevice(
+                ParamRequest(
+                    idClient = UserData.clientInfo.idUnique,
+                    accessToken = UserData.accessToken,
+                    paramName = ParamName.ADD_DEVICE,
+                    paramValue = UserData.androidId
+                )
+            )
+        }
+        val rawDeviceId = response.responseBody?.idDevice
+        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && rawDeviceId != null)
+            UserData.deviceId = rawDeviceId
+    }
+
+    private suspend fun addPhone(phoneNumber: String) {
+        val response = networkService.baseRequest {
+            scrmAPI.addPhone(
+                ParamRequest(
+                    idClient = UserData.clientInfo.idUnique,
+                    accessToken = UserData.accessToken,
+                    paramName = ParamName.ADD_PHONE,
+                    paramValue = phoneNumber
+                )
+            )
+        }
+        if (response.globalResponseStatus == GlobalResponseStatus.ERROR) {
+            //Такой телефон у клиента уже есть
+            Debug.printDebug(response.responseBody!!, "Phone exist")
+        }
+        UserData.phone = phoneNumber
     }
 }

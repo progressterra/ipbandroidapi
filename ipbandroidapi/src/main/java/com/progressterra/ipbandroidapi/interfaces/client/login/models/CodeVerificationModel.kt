@@ -4,5 +4,6 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStat
 
 data class CodeVerificationModel(
     val status: GlobalResponseStatus,
-    val accessKey: String
+    val userExist: Boolean,
+    val error: String = ""
 )

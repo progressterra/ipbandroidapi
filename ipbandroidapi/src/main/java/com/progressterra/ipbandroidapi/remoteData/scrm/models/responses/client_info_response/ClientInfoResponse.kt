@@ -1,7 +1,6 @@
 package com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response
 
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 internal data class ClientInfoResponse(
@@ -14,5 +13,5 @@ internal data class ClientInfoResponse(
     /**
      * Дополнительные данные клиента
      */
-    val clientAdditionalInfo: ClientAdditionalInfo? = null
+    val clientAdditionalInfo: ClientAdditionalModel? = null
 ) : BaseResponse()

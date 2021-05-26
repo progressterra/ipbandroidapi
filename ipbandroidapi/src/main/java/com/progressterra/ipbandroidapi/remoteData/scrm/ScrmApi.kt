@@ -2,11 +2,13 @@ package com.progressterra.ipbandroidapi.remoteData.scrm
 
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTokenRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.ParamRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.VerificationRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.DeviceResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.VerificationResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -49,6 +51,35 @@ internal interface ScrmApi {
         @Path("ParamValue") ParamValue: String
     ): Response<ClientInfoResponse>
 
+    /**
+     * Создает нового клиента и возвращает объект клиента, который был создан
+     *
+     * @param paramRequest параметры
+     * @return ответ сервера
+     */
+    @POST("/api/v3/clients")
+    @Headers("Content-Type: application/json")
+    suspend fun createNewClient(@Body paramRequest: ParamRequest): Response<ClientInfoResponse>
+
+    /**
+     * Добавляет новое устройство для клиента
+     *
+     * @param paramRequest параметры
+     * @return ответ сервера
+     */
+    @POST("/api/v3/clients/device")
+    @Headers("Content-Type: application/json")
+    suspend fun addDevice(@Body paramRequest: ParamRequest): Response<DeviceResponse>
+
+    /**
+     * Добавляет номер телефона в связку с клиентом
+     *
+     * @param paramRequest параметры
+     * @return ответ сервера
+     */
+    @POST("/api/v3/clients/phone")
+    @Headers("Content-Type: application/json")
+    suspend fun addPhone(@Body paramRequest: ParamRequest): Response<ClientInfoResponse>
 
     /**
      * Получение accesstoken

@@ -20,6 +20,6 @@ internal class LoginApiImpl : LoginApi {
         repository.verificationChannelEnd(phoneNumber, code)
 
     override fun getKey(): String =
-        UserData.accessKey
+        UserData.accessToken
 
 }

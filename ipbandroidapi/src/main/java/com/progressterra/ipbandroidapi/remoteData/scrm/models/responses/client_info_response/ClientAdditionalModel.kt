@@ -1,8 +1,9 @@
 package com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response
 
 import com.google.gson.annotations.SerializedName
+import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditionalInfo
 
-internal data class ClientAdditionalInfo(
+internal data class ClientAdditionalModel(
     @SerializedName("additionalInfo")
     val additionalInfo: String? = "",
     @SerializedName("statusCompletion")
@@ -11,4 +12,11 @@ internal data class ClientAdditionalInfo(
     val eMailGeneral: String? = "",
     @SerializedName("phoneGeneral")
     val phoneGeneral: String? = ""
-)
+) {
+    fun convertToClientAdditionalInfo(): ClientAdditionalInfo = ClientAdditionalInfo(
+        additionalInfo = additionalInfo ?: "",
+        statusCompletion = statusCompletion ?: -1,
+        emailGeneral = eMailGeneral ?: "",
+        phoneGeneral = phoneGeneral ?: ""
+    )
+}

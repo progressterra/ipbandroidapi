@@ -6,5 +6,5 @@ import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerifi
 internal interface LoginRepository {
 
     suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse
-    suspend fun verificationChannelEnd(phoneNumber: String, code:String) : CodeVerificationModel
+    suspend fun verificationChannelEnd(phoneNumber: String, code: String): CodeVerificationModel
 }

@@ -55,6 +55,6 @@ dependencies {
     // KotPref
     api "com.chibatching.kotpref:kotpref:2.13.1"
     api "com.chibatching.kotpref:initializer:2.13.1"
-    api 'com.chibatching.kotpref:gson-support:2.13.1'
-    api 'com.google.code.gson:gson:2.8.6'
+    api "com.chibatching.kotpref:gson-support:2.13.1"
+    api "com.google.code.gson:gson:2.8.6"
 }
