@@ -11,8 +11,6 @@ data class ResultResponse(
     val messageDev: String? = null,
     @SerializedName("codeResult")
     val codeResult: Int? = null,
-    @SerializedName("duration")
-    val duration: Int? = null,
     @SerializedName("idLog")
     val idLog: String? = null
 ) : BaseResponse()
