@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.bonuses_repository
+package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
 import android.util.Log
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.Data
@@ -13,7 +13,7 @@ internal object GeneralInfoResponseConverter {
         if (dateString == null) {
             return ""
         }
-        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         try {
             val parsedDate = simpleDateFormat.parse(dateString)
             val calendar = GregorianCalendar()
@@ -28,17 +28,11 @@ internal object GeneralInfoResponseConverter {
         return ""
     }
 
-    internal fun convert(data: Data?): BonusesInfo {
-        return if (data != null) {
-            BonusesInfo(
-                currentQuantity = (data.currentQuantity?.toInt()).toString(),
-                dateBurning = convertDate(data.dateBurning),
-                forBurningQuantity = (data.forBurningQuantity?.toInt()).toString(),
-                typeBonusName = data.typeBonusName ?: ""
-            )
-        } else {
-            BonusesInfo("0", "", "0", "")
-        }
-    }
-
+    fun convert(data: Data?) =
+        BonusesInfo(
+            currentQuantity = data?.currentQuantity?.toInt() ?: 0,
+            dateBurning = convertDate(data?.dateBurning),
+            forBurningQuantity = data?.forBurningQuantity?.toInt() ?: 0,
+            typeBonusName = data?.typeBonusName ?: ""
+        )
 }
