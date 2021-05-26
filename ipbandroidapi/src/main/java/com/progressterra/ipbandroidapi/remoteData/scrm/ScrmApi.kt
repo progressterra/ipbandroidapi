@@ -1,10 +1,10 @@
 package com.progressterra.ipbandroidapi.remoteData.scrm
 
+import android.view.SurfaceControl
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTokenRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.VerificationRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.VerificationResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -45,4 +45,16 @@ internal interface ScrmApi {
     @GET("api/v3/ibonus/generalinfo/{AccessToken}")
     @Headers("Content-Type: application/json")
     suspend fun getGeneralInfo(@Path("AccessToken") accessToken: String): Response<GeneralInfoResponse>
+
+    /**
+     * Предоставляет данные по всем транзакциям бонусов
+     */
+    @GET("/api/v3/ibonus/alltransaction/{AccessToken}")
+    suspend fun getTransactionsList(@Path("AccessToken") accessToken: String): Response<TransactionListResponse>
+
+    /**
+     * Получение списка покупок
+     */
+    @GET("/api/v1/clientpurchase/{AccessToken}")
+    suspend fun getShopList(@Path("AccessToken") accessToken: String): Response<ShopListResponse>
 }
