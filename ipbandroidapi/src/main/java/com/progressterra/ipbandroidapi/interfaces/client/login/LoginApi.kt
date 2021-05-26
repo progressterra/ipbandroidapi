@@ -6,6 +6,7 @@ interface LoginApi {
 
     suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse
     suspend fun verificationChannelEnd(phoneNumber: String, code: String): CodeVerificationModel
+    fun getKey(): String
 
     companion object {
         fun newInstance(): LoginApi {

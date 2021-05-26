@@ -5,10 +5,12 @@ import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerifi
 import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
+import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmApi
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTokenRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.VerificationRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
@@ -49,6 +51,12 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
                 scrmAPI.verificationChannelEnd(VerificationRequest(phoneNumber, code))
             }
         }
+
+        val responseBody = response.responseBody
+        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null)
+            UserData.accessKey = responseBody.accessToken ?: ""
+        saveUserData(phoneNumber)
+
         return CodeVerificationModel(
             status = response.globalResponseStatus,
             accessKey = response.responseBody?.accessToken ?: ""
@@ -71,5 +79,16 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     override suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<GeneralInfoResponse> {
         return networkService.baseRequest { scrmAPI.getGeneralInfo(accessToken) }
+    }
+
+    private suspend fun saveUserData(phoneNumber: String) {
+        val response = networkService.baseRequest {
+            scrmAPI.getClientByParams(
+                UserData.accessKey,
+                ParamName.PHONE.value,
+                phoneNumber
+            )
+        }
+        UserData.clientInfo = response.responseBody?.client?.convertToClientInfo()
     }
 }

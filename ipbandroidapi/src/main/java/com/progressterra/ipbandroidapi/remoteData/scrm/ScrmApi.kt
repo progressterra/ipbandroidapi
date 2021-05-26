@@ -4,6 +4,7 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTokenRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.VerificationRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.VerificationResponse
 import retrofit2.Response
@@ -27,10 +28,27 @@ internal interface ScrmApi {
      * @param verificationRequest данные верификации
      * @return ответ сервера
      */
-//    Не используется, так что не смотри пока что, это в следующем ПРе
     @POST("/api/v3/clients/verificationchannelend")
-    @Headers("Content-Type: text/json")
+    @Headers("Content-Type: application/json")
     suspend fun verificationChannelEnd(@Body verificationRequest: VerificationRequest): Response<VerificationResponse>
+
+    /**
+     * Возвращает клиента по 2-м параметрам Наименованию параметра и Значению параметра
+     * phone/79999990000, email/name@mail.org
+     *
+     * @param AccessToken Токен доступа клиента
+     * @param ParamName Наименование параметра
+     * @param ParamValue Значение параметра
+     * @return ответ сервера
+     */
+    @GET("/api/v3/clients/{AccessToken}/{ParamName}/{ParamValue}")
+    @Headers("Content-Type: application/json")
+    fun getClientByParams(
+        @Path("AccessToken") AccessToken: String,
+        @Path("ParamName") ParamName: String,
+        @Path("ParamValue") ParamValue: String
+    ): Response<ClientInfoResponse>
+
 
     /**
      * Получение accesstoken
