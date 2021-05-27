@@ -39,7 +39,7 @@ internal object BonusesConverters {
     }
 
 
-    fun convertToTransactionList(transactionListResponse: TransactionListResponse?): TransactionList {
+    fun convertToTransactionList(transactionListResponse: TransactionListResponse?): MutableList<Transaction> {
         val convertedTransactions = mutableListOf<Transaction>()
 
         transactionListResponse?.dataList?.map {
@@ -52,12 +52,24 @@ internal object BonusesConverters {
                 )
             )
         }
-        return TransactionList().apply { transactions = convertedTransactions }
+        return convertedTransactions
     }
 
-    fun convertToOrderList(shopListResponse: ShopListResponse) {
-        val convertedShops = mutableListOf<Purchase>()
+    fun convertToOrderList(shopListResponse: ShopListResponse?): MutableList<Purchase> {
+        val convertedPurchases = mutableListOf<Purchase>()
+        shopListResponse?.listdata?.map {
+            convertedPurchases.add(
+                Purchase(
+                    addedBonusesSum = it.addedBonusesSum ?: 0,
+                    purchaseDate = convertDate(it.purchaseDate),
+                    purchaseId = it.purchaseId ?: "",
+                    purchaseSum = it.purchaseSum ?: 0,
+                    shopName = it.shopName ?: "",
+                    spentBonusesSum = it.spentBonusesSum?.toInt() ?: 0
+                )
+            )
+        }
+        return convertedPurchases
 
-        shopListResponse?.data.productsInfo
     }
 }
