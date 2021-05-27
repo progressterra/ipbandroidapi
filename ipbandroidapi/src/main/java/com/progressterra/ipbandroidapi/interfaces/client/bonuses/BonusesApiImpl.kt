@@ -3,7 +3,6 @@ package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.ShopListResponse
 import com.progressterra.ipbandroidapi.repository.RepositoryImpl
 
 internal class BonusesApiImpl : BonusesApi {
@@ -23,7 +22,7 @@ internal class BonusesApiImpl : BonusesApi {
 
 
     override suspend fun getPurchasesList(accessToken: String): ResponseWrapper<List<Purchase>> {
-        return ResponseWrapper<ShopListResponse>().convertation {
+        return repository.getPurchasesList(accessToken).convertation {
             BonusesConverters.convertToOrderList(
                 it
             )

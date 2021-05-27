@@ -1,6 +1,5 @@
 package com.progressterra.ipbandroidapi.remoteData.scrm
 
-import android.view.SurfaceControl
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTokenRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.VerificationRequest
@@ -56,5 +55,5 @@ internal interface ScrmApi {
      * Получение списка покупок
      */
     @GET("/api/v1/clientpurchase/{AccessToken}")
-    suspend fun getShopList(@Path("AccessToken") accessToken: String): Response<ShopListResponse>
+    suspend fun getShopList(@Path("AccessToken") accessToken: String): Response<PurchasesListResponse>
 }

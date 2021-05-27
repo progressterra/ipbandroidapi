@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.Data
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.ShopListResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.PurchasesListResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.TransactionListResponse
 import com.progressterra.ipbandroidapi.utils.extentions.parseToDate
 import java.text.SimpleDateFormat
@@ -44,9 +44,9 @@ internal object BonusesConverters {
         return convertedTransactions
     }
 
-    fun convertToOrderList(shopListResponse: ShopListResponse?): MutableList<Purchase> {
+    fun convertToOrderList(purchasesListResponse: PurchasesListResponse?): MutableList<Purchase> {
         val convertedPurchases = mutableListOf<Purchase>()
-        shopListResponse?.listdata?.map {
+        purchasesListResponse?.listdata?.map {
             convertedPurchases.add(
                 Purchase(
                     addedBonusesSum = it.addedBonusesSum ?: 0,
