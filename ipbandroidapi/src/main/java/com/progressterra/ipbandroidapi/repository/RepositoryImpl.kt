@@ -10,10 +10,7 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmApi
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTokenRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.VerificationRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.PurchasesListResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.TransactionListResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
 import kotlinx.coroutines.coroutineScope
 
 internal class RepositoryImpl : LoginRepository, BonusesRepository {
@@ -64,5 +61,9 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     override suspend fun getPurchasesList(accessToken: String): ResponseWrapper<PurchasesListResponse> =
         networkService.baseRequest { scrmAPI.getShopList(accessToken) }
+
+    override suspend fun getBonusMessagesList(accessToken: String): ResponseWrapper<BonusesMessagesResponse> =
+        networkService.baseRequest { scrmAPI.getBonusMessagesList(accessToken) }
+    
 
 }

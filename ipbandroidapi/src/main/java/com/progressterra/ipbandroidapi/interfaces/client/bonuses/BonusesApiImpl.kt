@@ -14,7 +14,7 @@ internal class BonusesApiImpl : BonusesApi {
 
     override suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<BonusesInfo> =
         repository.getBonusesInfo(accessToken)
-            .convertation { BonusesConverters.convertToBonusesInfo(it?.data) }
+            .convertation { BonusesConverters.convertToBonusesInfo(it) }
 
     override suspend fun getTransactionsList(accessToken: String): ResponseWrapper<List<Transaction>> =
         repository.getTransactionsList(accessToken)
@@ -26,6 +26,12 @@ internal class BonusesApiImpl : BonusesApi {
             BonusesConverters.convertToOrderList(
                 it
             )
+        }
+    }
+
+    override suspend fun getBonusMessageList(accessToken: String): ResponseWrapper<List<BonusMessage>> {
+        return repository.getBonusMessagesList(accessToken).convertation {
+            BonusesConverters.convertToBonusMessagesList(it)
         }
     }
 }

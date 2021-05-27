@@ -1,6 +1,7 @@
 package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.Data
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.BonusesMessagesResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.PurchasesListResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.TransactionListResponse
 import com.progressterra.ipbandroidapi.utils.extentions.parseToDate
@@ -20,13 +21,19 @@ internal object BonusesConverters {
         return sdf.format(date)
     }
 
-    fun convertToBonusesInfo(data: Data?) =
-        BonusesInfo(
-            currentQuantity = data?.currentQuantity?.toInt() ?: 0,
-            dateBurning = convertDate(data?.dateBurning),
-            forBurningQuantity = data?.forBurningQuantity?.toInt() ?: 0,
-            typeBonusName = data?.typeBonusName ?: ""
-        )
+    fun convertToBonusesInfo(generalInfoResponse: GeneralInfoResponse?): BonusesInfo {
+        return if (generalInfoResponse?.data != null) {
+            BonusesInfo(
+                currentQuantity = generalInfoResponse.data.currentQuantity?.toInt() ?: 0,
+                dateBurning = convertDate(generalInfoResponse.data.dateBurning),
+                forBurningQuantity = generalInfoResponse.data.forBurningQuantity?.toInt() ?: 0,
+                typeBonusName = generalInfoResponse.data.typeBonusName ?: ""
+            )
+        } else {
+            BonusesInfo(0, "", 0, "")
+        }
+
+    }
 
     fun convertToTransactionList(transactionListResponse: TransactionListResponse?): MutableList<Transaction> {
         val convertedTransactions = mutableListOf<Transaction>()
@@ -59,6 +66,20 @@ internal object BonusesConverters {
             )
         }
         return convertedPurchases
+    }
 
+    fun convertToBonusMessagesList(bonusMessagesResponse: BonusesMessagesResponse?): MutableList<BonusMessage> {
+        val convertedBonusMessages = mutableListOf<BonusMessage>()
+        bonusMessagesResponse?.dataList?.map {
+            convertedBonusMessages.add(
+                BonusMessage(
+                    currentQuantity = it.currentQuantity?.toInt() ?: 0,
+                    dateBurning = convertDate(it.dateBurning),
+                    forBurningQuantity = it.forBurningQuantity?.toInt() ?: 0,
+                    typeBonusName = it.typeBonusName ?: ""
+                )
+            )
+        }
+        return convertedBonusMessages
     }
 }

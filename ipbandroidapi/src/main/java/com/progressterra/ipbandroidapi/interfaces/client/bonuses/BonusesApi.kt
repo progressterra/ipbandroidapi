@@ -9,6 +9,7 @@ interface BonusesApi {
     suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<BonusesInfo>
     suspend fun getTransactionsList(accessToken: String): ResponseWrapper<List<Transaction>>
     suspend fun getPurchasesList(accessToken: String): ResponseWrapper<List<Purchase>>
+    suspend fun getBonusMessageList(accessToken: String): ResponseWrapper<List<BonusMessage>>
 
     companion object {
         fun getInstance(): BonusesApi {
