@@ -20,24 +20,13 @@ internal object BonusesConverters {
         return sdf.format(date)
     }
 
-    fun convertToBonusesInfo(data: Data?): BonusesInfo {
-        return if (data?.currentQuantity?.toInt() == 0) {
-            BonusesInfo(
-                currentQuantity = data.currentQuantity.toInt(),
-                dateBurning = "---",
-                forBurningQuantity = "---",
-                typeBonusName = data.typeBonusName ?: ""
-            )
-        } else {
-            BonusesInfo(
-                currentQuantity = data?.currentQuantity?.toInt() ?: 0,
-                dateBurning = convertDate(data?.dateBurning),
-                forBurningQuantity = data?.forBurningQuantity?.toInt()?.toString() ?: "",
-                typeBonusName = data?.typeBonusName ?: ""
-            )
-        }
-    }
-
+    fun convertToBonusesInfo(data: Data?) =
+        BonusesInfo(
+            currentQuantity = data?.currentQuantity?.toInt() ?: 0,
+            dateBurning = convertDate(data?.dateBurning),
+            forBurningQuantity = data?.forBurningQuantity?.toInt() ?: 0,
+            typeBonusName = data?.typeBonusName ?: ""
+        )
 
     fun convertToTransactionList(transactionListResponse: TransactionListResponse?): MutableList<Transaction> {
         val convertedTransactions = mutableListOf<Transaction>()
