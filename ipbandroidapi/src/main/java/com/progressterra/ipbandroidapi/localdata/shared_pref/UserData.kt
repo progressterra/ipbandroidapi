@@ -6,6 +6,7 @@ import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditi
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
 
 internal object UserData : KotprefModel() {
+    var registerAccessToken by stringPref("")
     var accessToken by stringPref("")
     var androidId by stringPref("")
     var deviceId by stringPref("")
