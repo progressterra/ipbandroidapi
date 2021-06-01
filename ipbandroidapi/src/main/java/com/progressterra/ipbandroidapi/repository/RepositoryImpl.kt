@@ -20,13 +20,9 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmApi
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.*
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
 import com.progressterra.ipbandroidapi.utils.Debug
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTokenRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.VerificationRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
 import kotlinx.coroutines.coroutineScope
 
 internal class RepositoryImpl : LoginRepository, BonusesRepository {
@@ -77,7 +73,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         )
     }
 
-    override suspend fun addPersonalInfo(personalInfo: PersonalInfo) {
+    override suspend fun addPersonalInfo(personalInfo: PersonalInfo): ResponseWrapper<BaseResponse> {
         val clientData = ClientData(
             personalInfo.birthdate!!,
             personalInfo.name!!,
@@ -105,6 +101,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
             response.responseBody?.client?.convertToClientInfo(),
             response.responseBody?.clientAdditionalInfo?.convertToClientAdditionalInfo()
         )
+        return response as ResponseWrapper<BaseResponse>
     }
 
     override suspend fun addEmail(email: String): ResponseWrapper<BaseResponse> {

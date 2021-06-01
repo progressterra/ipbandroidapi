@@ -16,13 +16,11 @@ class PersonalInfo {
             lastNameIsValid = !field.isNullOrBlank()
         }
 
-
     var email: String? = null
         set(value) {
             field = value
             emailIsValid = !field.isNullOrBlank() && (Regex(".+@.+\\..+")).matches(field ?: "")
         }
-
 
     var birthdate: String? = null
         set(value) {

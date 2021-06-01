@@ -51,7 +51,7 @@ internal interface ScrmApi {
      */
     @GET("/api/v3/clients/{AccessToken}/{ParamName}/{ParamValue}")
     @Headers("Content-Type: application/json")
-    fun getClientByParams(
+    suspend fun getClientByParams(
         @Path("AccessToken") AccessToken: String,
         @Path("ParamName") ParamName: String,
         @Path("ParamValue") ParamValue: String

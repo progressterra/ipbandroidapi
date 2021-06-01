@@ -16,8 +16,8 @@ internal class LoginApiImpl : LoginApi {
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse =
         repository.verificationChannelBegin(phoneNumber)
 
-    override suspend fun addClientInfo(personalInfo: PersonalInfo) {
-        repository.addPersonalInfo(personalInfo)
+    override suspend fun addClientInfo(personalInfo: PersonalInfo):ResponseWrapper<BaseResponse> {
+        return repository.addPersonalInfo(personalInfo)
     }
 
     override suspend fun addEmail(email: String): ResponseWrapper<BaseResponse> {

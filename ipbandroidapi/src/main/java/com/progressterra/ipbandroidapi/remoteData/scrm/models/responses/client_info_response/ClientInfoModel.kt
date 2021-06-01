@@ -29,11 +29,19 @@ internal data class ClientInfoModel(
 ) {
     fun convertToClientInfo(): ClientInfo = ClientInfo(
         idUnique = idUnique ?: "",
-        sex = SexType.valueOf((sex ?: SexType.NONE).toString()),
+        sex = convertSex(sex),
         soname = soname ?: "",
         name = name ?: "",
         patronymic = patronymic ?: "",
         dateOfBirth = dateOfBirth?.parseToDate(),
         dateOfRegister = dateOfRegister ?: ""
     )
+
+    private fun convertSex(intSex: Int?): SexType {
+        return when (intSex) {
+            1 -> SexType.MALE
+            2 -> SexType.FEMALE
+            else -> SexType.NONE
+        }
+    }
 }

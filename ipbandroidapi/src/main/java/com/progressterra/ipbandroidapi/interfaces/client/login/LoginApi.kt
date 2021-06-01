@@ -9,7 +9,7 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 interface LoginApi {
 
     suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse
-    suspend fun addClientInfo(personalInfo: PersonalInfo)
+    suspend fun addClientInfo(personalInfo: PersonalInfo):ResponseWrapper<BaseResponse>
     suspend fun addEmail(email: String): ResponseWrapper<BaseResponse>
     suspend fun confirmEmail(email: String): ResponseWrapper<BaseResponse>
     suspend fun addCity(city: CitiesListResponse.City): ResponseWrapper<BaseResponse>
