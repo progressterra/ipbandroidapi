@@ -24,6 +24,9 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTo
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
 import com.progressterra.ipbandroidapi.utils.Debug
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTokenRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.VerificationRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
 import kotlinx.coroutines.coroutineScope
 
 internal class RepositoryImpl : LoginRepository, BonusesRepository {
@@ -156,6 +159,17 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
     override suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<GeneralInfoResponse> {
         return networkService.baseRequest { scrmAPI.getGeneralInfo(accessToken) }
     }
+
+    override suspend fun getTransactionsList(accessToken: String): ResponseWrapper<TransactionListResponse> =
+        networkService.baseRequest { scrmAPI.getTransactionsList(accessToken) }
+
+    override suspend fun getPurchasesList(accessToken: String): ResponseWrapper<PurchasesListResponse> =
+        networkService.baseRequest { scrmAPI.getShopList(accessToken) }
+
+    override suspend fun getBonusMessagesList(accessToken: String): ResponseWrapper<BonusesMessagesResponse> =
+        networkService.baseRequest { scrmAPI.getBonusMessagesList(accessToken) }
+
+
 
     private suspend fun getUserData(phoneNumber: String) {
         // Получение имеющегося клиента
