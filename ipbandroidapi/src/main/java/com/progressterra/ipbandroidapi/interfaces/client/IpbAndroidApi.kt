@@ -14,6 +14,8 @@ interface IpbAndroidApi {
             UserData.androidId = IdentUtils.getAndroidId(context)
             Kotpref.gson = Gson()
         }
+
+        fun getUserData() = UserData
     }
 }
 
