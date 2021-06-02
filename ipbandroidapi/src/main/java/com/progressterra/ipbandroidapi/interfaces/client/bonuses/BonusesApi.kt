@@ -1,5 +1,9 @@
 package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusMessage
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusesInfo
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Purchase
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Transaction
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
 

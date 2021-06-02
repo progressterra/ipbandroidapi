@@ -1,6 +1,6 @@
-package com.progressterra.ipbandroidapi.interfaces.client.bonuses
+package com.progressterra.ipbandroidapi.interfaces.client.bonuses.models
 
-class BonusMessage(
+data class BonusMessage(
     val currentQuantity: Int,
     val dateBurning: String,
     val forBurningQuantity: Int,

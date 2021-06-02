@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.interfaces.client.login
 
-import com.progressterra.android.api.a.remoteData.scrm.models.responses.CitiesListResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository

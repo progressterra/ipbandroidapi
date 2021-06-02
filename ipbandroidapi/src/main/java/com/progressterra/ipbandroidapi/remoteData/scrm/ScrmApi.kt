@@ -1,8 +1,8 @@
 package com.progressterra.ipbandroidapi.remoteData.scrm
 
-import com.progressterra.android.api.a.remoteData.scrm.models.requests.AddCitiRequest
-import com.progressterra.android.api.a.remoteData.scrm.models.requests.ConfirmEmailRequest
-import com.progressterra.android.api.a.remoteData.scrm.models.responses.CitiesListResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AddCitiRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.ConfirmEmailRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTokenRequest
@@ -102,21 +102,31 @@ internal interface ScrmApi {
     suspend fun getGeneralInfo(@Path("AccessToken") accessToken: String): Response<GeneralInfoResponse>
 
 
+    /**
+     * Установка персональных данных клиента, в ответ приходит обновленная модель
+     */
     @POST("/api/v3/clients/personalinfo")
     @Headers("Content-Type: application/json")
     suspend fun addPersonalInfo(@Body personalInfoResponse: ClientInfoRequest): Response<ClientInfoResponse>
 
-
+    /**
+     * Установка почты клиента
+     */
     @POST("/api/v3/clients/email")
     @Headers("Content-Type: application/json")
     suspend fun addEmail(@Body paramRequest: ParamRequest): Response<BaseResponse>
 
+    /**
+     * Отправка подтверждения на почту клиента
+     */
     @POST("/api/v3/gamification/emailconfirm/sendlink")
     suspend fun confirmEmail(
         @Body confirmEmailRequest: ConfirmEmailRequest
     ): Response<BaseResponse>
 
-
+    /**
+     * Установка города клиента
+     */
     @POST("/api/v1/clientcity/{AccessToken}")
     @Headers("Content-Type: application/json")
     suspend fun setCity(
@@ -124,6 +134,9 @@ internal interface ScrmApi {
         @Body cityEntity: AddCitiRequest
     ): Response<BaseResponse>
 
+    /**
+     * Получение списка городов доступных для выбора
+     */
     @GET("referencedata/api/v1/cities")
     @Headers("Content-Type: application/json")
     suspend fun getCities(): Response<CitiesListResponse>

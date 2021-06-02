@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.interfaces.client.login.models
 
-import com.progressterra.android.api.a.remoteData.scrm.models.responses.CitiesListResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.SexType
 
 class PersonalInfo {

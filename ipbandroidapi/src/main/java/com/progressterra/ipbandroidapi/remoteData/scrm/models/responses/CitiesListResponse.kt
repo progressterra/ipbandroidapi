@@ -1,4 +1,4 @@
-package com.progressterra.android.api.a.remoteData.scrm.models.responses
+package com.progressterra.ipbandroidapi.remoteData.scrm.models.responses
 
 
 import com.google.gson.annotations.SerializedName

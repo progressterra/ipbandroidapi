@@ -22,15 +22,3 @@ data class ClientInfoRequest(
     val sourceQuery: Int
 )
 
-data class ClientData(
-    @SerializedName("DateOfBirth")
-    val dateOfBirth: String,
-    @SerializedName("Name")
-    val name: String,
-    @SerializedName("Patronymic")
-    val patronymic: Any?,
-    @SerializedName("Sex")
-    val sex: String,
-    @SerializedName("Soname")
-    val soname: String
-)

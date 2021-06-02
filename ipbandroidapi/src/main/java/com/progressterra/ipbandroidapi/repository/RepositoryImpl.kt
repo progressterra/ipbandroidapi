@@ -1,8 +1,8 @@
 package com.progressterra.ipbandroidapi.repository
 
-import com.progressterra.android.api.a.remoteData.scrm.models.requests.AddCitiRequest
-import com.progressterra.android.api.a.remoteData.scrm.models.requests.ConfirmEmailRequest
-import com.progressterra.android.api.a.remoteData.scrm.models.responses.CitiesListResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AddCitiRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.ConfirmEmailRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
@@ -12,7 +12,6 @@ import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditionalInfo
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
-import com.progressterra.ipbandroidapi.localdata.shared_pref.models.SexType
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
@@ -75,10 +74,10 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     override suspend fun addPersonalInfo(personalInfo: PersonalInfo): ResponseWrapper<BaseResponse> {
         val clientData = ClientData(
-            personalInfo.birthdate!!,
-            personalInfo.name!!,
+            personalInfo.birthdate?:"",
+            personalInfo.name ?:"",
             null,
-            sex = if (personalInfo.sexType == SexType.MALE) "1" else "2",
+            sex = personalInfo.sexType?.value?.toString() ?: "0",
             soname = personalInfo.lastname!!
         )
 

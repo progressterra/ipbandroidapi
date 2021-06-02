@@ -1,5 +1,9 @@
 package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusMessage
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusesInfo
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Purchase
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Transaction
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.BonusesMessagesResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.PurchasesListResponse
@@ -12,7 +16,7 @@ import java.util.*
 internal object BonusesConverters {
 
     // ковертируем дату в нужный нам формат для отображения
-    private fun convertDate(dateString: String?): String {
+    fun convertDate(dateString: String?): String {
         if (dateString == null) {
             return ""
         }

@@ -13,5 +13,6 @@ internal data class ClientInfoResponse(
     /**
      * Дополнительные данные клиента
      */
+    @SerializedName("clientAdditionalInfo")
     val clientAdditionalInfo: ClientAdditionalModel? = null
 ) : BaseResponse()

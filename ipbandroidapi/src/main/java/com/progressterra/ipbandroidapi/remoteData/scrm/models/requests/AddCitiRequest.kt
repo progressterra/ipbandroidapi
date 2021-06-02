@@ -1,9 +1,9 @@
-package com.progressterra.android.api.a.remoteData.scrm.models.requests
+package com.progressterra.ipbandroidapi.remoteData.scrm.models.requests
 
 
 import com.google.gson.annotations.SerializedName
 
-data class AddCitiRequest(
+internal data class AddCitiRequest(
     @SerializedName("city_fias_idc")
     val cityFiasIdc: String,
     @SerializedName("city_kladr_id")
