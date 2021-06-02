@@ -5,7 +5,7 @@ import com.chibatching.kotpref.gsonpref.gsonPref
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditionalInfo
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
 
-object UserData : KotprefModel() {
+internal object UserData : KotprefModel() {
     var registerAccessToken by stringPref("")
     var accessToken by stringPref("")
     var androidId by stringPref("")

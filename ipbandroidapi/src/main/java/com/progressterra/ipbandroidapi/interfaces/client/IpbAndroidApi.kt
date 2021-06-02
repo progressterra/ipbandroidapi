@@ -15,7 +15,7 @@ interface IpbAndroidApi {
             Kotpref.gson = Gson()
         }
 
-        fun getUserData() = UserData
+        fun getSavedAccessToken() = UserData.accessToken
     }
 }
 
