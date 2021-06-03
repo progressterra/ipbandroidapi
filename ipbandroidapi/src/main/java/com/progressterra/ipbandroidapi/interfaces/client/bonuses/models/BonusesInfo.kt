@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.interfaces.client.bonuses
+package com.progressterra.ipbandroidapi.interfaces.client.bonuses.models
 
 data class BonusesInfo(
     val currentQuantity: Int,

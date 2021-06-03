@@ -1,5 +1,9 @@
 package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusMessage
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusesInfo
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Purchase
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Transaction
 import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
@@ -14,5 +18,22 @@ internal class BonusesApiImpl : BonusesApi {
 
     override suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<BonusesInfo> =
         repository.getBonusesInfo(accessToken)
-            .convertation { GeneralInfoResponseConverter.convert(it?.data) }
+            .convertation { BonusesConverters.convertToBonusesInfo(it) }
+
+    override suspend fun getTransactionsList(accessToken: String): ResponseWrapper<List<Transaction>> =
+        repository.getTransactionsList(accessToken)
+            .convertation { BonusesConverters.convertToTransactionList(it) }
+
+
+    override suspend fun getPurchasesList(accessToken: String): ResponseWrapper<List<Purchase>> {
+        return repository.getPurchasesList(accessToken).convertation {
+            BonusesConverters.convertToOrderList(it)
+        }
+    }
+
+    override suspend fun getBonusMessageList(accessToken: String): ResponseWrapper<List<BonusMessage>> {
+        return repository.getBonusMessagesList(accessToken).convertation {
+            BonusesConverters.convertToBonusMessagesList(it)
+        }
+    }
 }

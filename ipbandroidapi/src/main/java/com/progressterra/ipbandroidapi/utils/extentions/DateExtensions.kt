@@ -9,3 +9,6 @@ fun String?.parseToDate(): Date {
     }
     return sdf.parse(this).orIfNull { Date() }
 }
+
+fun Date?.orNow() = this.orIfNull { Date() }
+
