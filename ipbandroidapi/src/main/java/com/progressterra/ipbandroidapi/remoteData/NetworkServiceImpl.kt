@@ -51,7 +51,7 @@ internal class NetworkServiceImpl : NetworkService {
             if (rawResponse.isSuccessful && rawResponse.body() != null) {
                 rawResponse.body().let {
                     // проверяем внутренний код успеха
-                    return if (it?.result?.status != 0 || it.status !=0) {
+                    return if (it?.result?.status != 0 || it.statusBody !=0) {
                         responseWrapper.responseBody = it
                         responseWrapper
                     } else {

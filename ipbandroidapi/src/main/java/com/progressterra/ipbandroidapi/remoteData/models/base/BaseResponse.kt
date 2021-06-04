@@ -7,8 +7,8 @@ open class BaseResponse {
     val result: ResultResponse? = null
 
     @SerializedName("status")
-    val status: Int? = null
+    val statusBody: Int? = null
 
     @SerializedName("message")
-    val message: String? = null
+    val messageBody: String? = null
 }
