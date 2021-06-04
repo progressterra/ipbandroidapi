@@ -51,9 +51,8 @@ internal class NetworkServiceImpl : NetworkService {
             if (rawResponse.isSuccessful && rawResponse.body() != null) {
                 rawResponse.body().let {
                     // проверяем внутренний код успеха
-                    return if (it?.result?.status != 0) {
+                    return if (it?.result?.status != 0 || it.status !=0) {
                         responseWrapper.responseBody = it
-                        responseWrapper.globalResponseStatus = GlobalResponseStatus.ERROR
                         responseWrapper
                     } else {
                         responseWrapper.responseBody = it
@@ -68,7 +67,6 @@ internal class NetworkServiceImpl : NetworkService {
         } catch (e: Exception) {
             // возвращаем обертку с состоянием ошибки
             Log.d("network_logging", e.toString())
-            responseWrapper.errorString = e.toString()
             return responseWrapper
         }
     }
