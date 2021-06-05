@@ -38,11 +38,16 @@ internal class NetworkServiceImpl : NetworkService {
 
     override fun <T> createService(apiClass: Class<T>): T = retrofit.create(apiClass)
 
+
+    /**
+        Метод предназначен для совершения запросов в сеть. Благодаря ему основываясь на коде ответа Http,
+        внутреннем статусе запроса, формируется обертка со статусом успеха, данным получеными в запросе,
+        и сообщением об ошибке, при его наличии
+     */
     override suspend fun <T : BaseResponse> baseRequest(request: suspend () -> Response<T>): ResponseWrapper<T> {
-        // инициализируем обертку
         val responseWrapper = ResponseWrapper<T>()
 
-        // по умолчанию устанавливаем состояние ошибки
+        // по умолчанию устанавливаем состояние ошибки, в дальнейшем при успехе оно измениться
         responseWrapper.globalResponseStatus = GlobalResponseStatus.ERROR
         try {
             val rawResponse = request.invoke()
@@ -50,12 +55,21 @@ internal class NetworkServiceImpl : NetworkService {
             // проверяем код ответа
             if (rawResponse.isSuccessful && rawResponse.body() != null) {
                 rawResponse.body().let {
-                    // проверяем внутренний код успеха
+                    // проверяем внутренний код успеха ( есть два базовых типов ответа: где данные об успехе в теле или в объекте result)
+                    // следовательно либо result либо данные в теле будут null
+                    // поэтому проверяем в двух местах
                     return if (it?.result?.status == 0 || it?.status == 0) {
                         responseWrapper.responseBody = it
                         responseWrapper.globalResponseStatus = GlobalResponseStatus.SUCCESS
                         responseWrapper
                     } else {
+                        // текст сообщения об ошибке по логике описанной выше смотрим также в двух местах
+                        if (it?.message!=null){
+                            responseWrapper.errorString = it.message
+                        } else if (it?.result?.message!=null){
+                            responseWrapper.errorString = it.result.message
+                        }
+
                         responseWrapper.responseBody = it
                         responseWrapper
                     }
