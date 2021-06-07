@@ -123,9 +123,9 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     override suspend fun addCity(city: CitiesListResponse.City): ResponseWrapper<BaseResponse> {
         val addCitiRequest = AddCitiRequest(
-            city.name ?: "",
+             "",
             "",
-            "",
+            city.name?:"",
             city.idUnique,
             0,
             0
