@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.localdata.shared_pref.models
 import com.progressterra.ipbandroidapi.localdata.shared_pref.base.JsonPrefModel
 import java.util.*
 
-internal data class ClientInfo(
+data class ClientInfo(
     var idUnique: String,
     var sex: SexType = SexType.NONE,
     var soname: String = "",
