@@ -5,6 +5,7 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.ConfirmEm
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
+import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
@@ -61,7 +62,6 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
         val responseBody = response.responseBody
         if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null) {
-            UserData.registerAccessToken = responseBody.accessToken ?: ""
             getUserData(phoneNumber)
         }
 
@@ -135,6 +135,10 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     override suspend fun getCitiesList(): ResponseWrapper<CitiesListResponse> {
         return networkService.baseRequest { scrmAPI.getCities() }
+    }
+
+    override suspend fun createClientWithoutPhone(createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): ResponseWrapper<AccessTokenResponse> {
+        return networkService.baseRequest { scrmAPI.createClientWithoutPhone(createClientWithoutPhoneRequest) }
     }
 
     override suspend fun getAccessToken(): ResponseWrapper<AccessTokenResponse> {

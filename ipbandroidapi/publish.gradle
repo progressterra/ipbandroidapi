@@ -17,7 +17,7 @@ uploadArchives {
 
     repositories.mavenDeployer {
         configuration = configurations.deployLibrary
-        repository(url: 'git:test_lib://git@bitbucket.org:' + COMPANY + '/' + REPOSITORY_NAME + '.git')
+        repository(url: 'git:test_lib://git@bitbucket.org:' + COMPANY + '/' + REPOSITORY_NAME +'/src/' + '.git')
 
         pom.project {
             groupId = ARTIFACT_PACKAGE
