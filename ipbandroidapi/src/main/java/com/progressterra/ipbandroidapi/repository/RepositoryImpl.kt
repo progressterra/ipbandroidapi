@@ -172,13 +172,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
 
     private suspend fun getUserData(phoneNumber: String) {
-        // Получение имеющегося клиента
-        if (!getExistingClient(phoneNumber)) {
-            // Если клиента не существует, создаем нового
-            createNewClient()
-        }
-        // Получаем девайс (idDevice)
-        addDevice()
+        getExistingClient(phoneNumber)
         addPhone(phoneNumber)
     }
 
@@ -204,7 +198,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         }
     }
 
-    private suspend fun createNewClient() {
+    suspend fun createNewClient() {
         val response = networkService.baseRequest {
             scrmAPI.createNewClient(
                 ParamRequest(
@@ -234,7 +228,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
             UserData.clientAdditionalInfo = clientAdditionalInfo
     }
 
-    private suspend fun addDevice() {
+    suspend fun addDevice() {
         val response = networkService.baseRequest {
             scrmAPI.addDevice(
                 ParamRequest(
