@@ -150,7 +150,7 @@ internal interface ScrmApi {
     @GET("/api/v3/ibonus/infobytype/{AccessToken}")
     suspend fun getBonusMessagesList(@Path("AccessToken") accessToken: String): Response<BonusesMessagesResponse>
 
-    @GET("/api/v3/clients/createat")
+    @POST("/api/v3/clients/createat")
     suspend fun createClientWithoutPhone(@Body createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): Response<AccessTokenResponse>
 }
 
