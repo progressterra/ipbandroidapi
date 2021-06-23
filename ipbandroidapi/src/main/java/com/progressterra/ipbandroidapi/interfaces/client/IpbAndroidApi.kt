@@ -24,10 +24,14 @@ interface IpbAndroidApi {
             Kotpref.gson = Gson()
             NetworkSettings.ACCESS_KEY = accessKey
 
+            // если успешного создания клиента не произошло
             if (!UserData.clientAlreadyCreated) {
                 CoroutineScope(Job()).launch {
                     createNewClient(clientCreationListener)
                 }
+            } else {
+                // если клиет создан успешно был до этого
+                clientCreationListener.onClientSuccessfullyCreated()
             }
         }
 
