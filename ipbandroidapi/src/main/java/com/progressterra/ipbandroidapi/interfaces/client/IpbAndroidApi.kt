@@ -4,9 +4,6 @@ import android.content.Context
 import com.chibatching.kotpref.Kotpref
 import com.chibatching.kotpref.gsonpref.gson
 import com.google.gson.Gson
-import com.progressterra.ipbandroidapi.interfaces.client.login.LoginApi
-import com.progressterra.ipbandroidapi.interfaces.client.login.LoginApiImpl
-import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
@@ -37,30 +34,57 @@ interface IpbAndroidApi {
         }
 
         private suspend fun createNewClient(clientCreationListener: ClientCreationListener) {
-            LoginApi.newInstance().createClientWithoutPhone(
-                CreateClientWithoutPhoneRequest(
-                    channelName = "device",
-                    channelValue = UserData.deviceId,
-                    "",
-                    ""
-                )
-            ).let {
-                if (it.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
-                    if (it.responseBody?.accessToken != null) {
+            val repository = RepositoryImpl()
+
+            // получаем регистрационный токен
+            val registerTokenResponse = repository.getRegisterAccessToken()
+
+            if (registerTokenResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+
+                // сохраняем токен в префах
+                UserData.registerAccessToken = registerTokenResponse.responseBody?.accessToken ?: ""
+
+                // создаем клиента с ранее полученным токеном
+                val createClientResponse = repository.createNewClient()
+
+                if (createClientResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+                    repository.saveUserData(
+
+                        // сохраняем полученные данные , а именно id клиента, в префах
+                        createClientResponse.responseBody?.client?.convertToClientInfo(),
+                        createClientResponse.responseBody?.clientAdditionalInfo?.convertToClientAdditionalInfo()
+                    )
+                    UserData.clientExist = false
+
+                    // добавляем текущий девайс клиенту
+                    val addDeviceResponse = repository.addDevice()
+
+                    if (addDeviceResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+                        // сохраняем девайс айди для клиента в префах
+                        UserData.deviceId = addDeviceResponse.responseBody?.idDevice ?: ""
+
+                        // сохраняем успешное создание клиента в префах
                         UserData.clientAlreadyCreated = true
-                        UserData.registerAccessToken = it.responseBody?.accessToken ?: ""
-                        RepositoryImpl().createNewClient()
-                        RepositoryImpl().addDevice()
+
+                        // отправляем колбек об успешном завершении регистрации
                         clientCreationListener.onClientSuccessfullyCreated()
+                    } else {
+                        // при ошибке отправляем событие о неуспешном создан
+                        clientCreationListener.onClientCreatedError(addDeviceResponse.errorString)
+                        return
                     }
+
                 } else {
-                    clientCreationListener.onClientCreatedError(it.errorString)
+                    clientCreationListener.onClientCreatedError(createClientResponse.errorString)
+                    return
                 }
+            } else {
+                clientCreationListener.onClientCreatedError(registerTokenResponse.errorString)
+                return
             }
+
         }
 
-
-        fun getSavedAccessToken() = UserData.accessToken
     }
 }
 

@@ -18,5 +18,4 @@ internal interface LoginRepository {
     suspend fun confirmEmail(email: String): ResponseWrapper<BaseResponse>
     suspend fun addCity(city: CitiesListResponse.City): ResponseWrapper<BaseResponse>
     suspend fun getCitiesList(): ResponseWrapper<CitiesListResponse>
-    suspend fun createClientWithoutPhone(createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): ResponseWrapper<AccessTokenResponse>
 }

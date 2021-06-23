@@ -39,7 +39,7 @@ internal class LoginApiImpl : LoginApi {
     }
 
     override suspend fun createClientWithoutPhone(createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): ResponseWrapper<AccessTokenResponse> {
-        return repository.createClientWithoutPhone(createClientWithoutPhoneRequest)
+        return repository.getRegisterAccessToken(createClientWithoutPhoneRequest)
     }
 
     override suspend fun verificationChannelEnd(

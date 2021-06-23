@@ -1,8 +1,5 @@
 package com.progressterra.ipbandroidapi.repository
 
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AddCitiRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.ConfirmEmailRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
@@ -137,8 +134,14 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         return networkService.baseRequest { scrmAPI.getCities() }
     }
 
-    override suspend fun createClientWithoutPhone(createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): ResponseWrapper<AccessTokenResponse> {
-        return networkService.baseRequest { scrmAPI.createClientWithoutPhone(createClientWithoutPhoneRequest) }
+    suspend fun getRegisterAccessToken(): ResponseWrapper<AccessTokenResponse> {
+        val request = CreateClientWithoutPhoneRequest(
+            channelName = "",
+            channelValue = "",
+            "",
+            ""
+        )
+        return networkService.baseRequest { scrmAPI.createClientWithoutPhone(request) }
     }
 
     override suspend fun getAccessToken(): ResponseWrapper<AccessTokenResponse> {
@@ -198,8 +201,8 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         }
     }
 
-    suspend fun createNewClient() {
-        val response = networkService.baseRequest {
+    suspend fun createNewClient(): ResponseWrapper<ClientInfoResponse> {
+        return networkService.baseRequest {
             scrmAPI.createNewClient(
                 ParamRequest(
                     idClient = null,
@@ -211,25 +214,18 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
                 )
             )
         }
-        val responseBody = response.responseBody
-        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null) {
-            saveUserData(
-                responseBody.client?.convertToClientInfo(),
-                responseBody.clientAdditionalInfo?.convertToClientAdditionalInfo()
-            )
-            UserData.clientExist = false
-        }
+
     }
 
-    private fun saveUserData(clientInfo: ClientInfo?, clientAdditionalInfo: ClientAdditionalInfo?) {
+    fun saveUserData(clientInfo: ClientInfo?, clientAdditionalInfo: ClientAdditionalInfo?) {
         if (clientInfo != null)
             UserData.clientInfo = clientInfo
         if (clientAdditionalInfo != null)
             UserData.clientAdditionalInfo = clientAdditionalInfo
     }
 
-    suspend fun addDevice() {
-        val response = networkService.baseRequest {
+    suspend fun addDevice(): ResponseWrapper<DeviceResponse> {
+        return networkService.baseRequest {
             scrmAPI.addDevice(
                 ParamRequest(
                     idClient = UserData.clientInfo.idUnique,
@@ -239,9 +235,6 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
                 )
             )
         }
-        val rawDeviceId = response.responseBody?.idDevice
-        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && rawDeviceId != null)
-            UserData.deviceId = rawDeviceId
     }
 
     private suspend fun addPhone(phoneNumber: String) {
