@@ -9,9 +9,7 @@ import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.repository.RepositoryImpl
 import com.progressterra.ipbandroidapi.utils.IdentUtils
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 interface IpbAndroidApi {
 
@@ -67,19 +65,27 @@ interface IpbAndroidApi {
                         UserData.clientAlreadyCreated = true
 
                         // отправляем колбек об успешном завершении регистрации
-                        clientCreationListener.onClientSuccessfullyCreated()
+                        withContext(Dispatchers.Main) {
+                            clientCreationListener.onClientSuccessfullyCreated()
+                        }
                     } else {
                         // при ошибке отправляем событие о неуспешном создан
-                        clientCreationListener.onClientCreatedError(addDeviceResponse.errorString)
+                        withContext(Dispatchers.Main) {
+                            clientCreationListener.onClientCreatedError(addDeviceResponse.errorString)
+                        }
                         return
                     }
 
                 } else {
-                    clientCreationListener.onClientCreatedError(createClientResponse.errorString)
+                    withContext(Dispatchers.Main) {
+                        clientCreationListener.onClientCreatedError(createClientResponse.errorString)
+                    }
                     return
                 }
             } else {
-                clientCreationListener.onClientCreatedError(registerTokenResponse.errorString)
+                withContext(Dispatchers.Main) {
+                    clientCreationListener.onClientCreatedError(registerTokenResponse.errorString)
+                }
                 return
             }
 
