@@ -177,6 +177,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
     private suspend fun getUserData(phoneNumber: String) {
         getExistingClient(phoneNumber)
         addPhone(phoneNumber)
+        addDevice()
     }
 
     private suspend fun getExistingClient(phoneNumber: String): Boolean {
