@@ -226,7 +226,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
     }
 
     suspend fun addDevice(): ResponseWrapper<DeviceResponse> {
-        return networkService.baseRequest {
+        val response = networkService.baseRequest {
             scrmAPI.addDevice(
                 ParamRequest(
                     idClient = UserData.clientInfo.idUnique,
@@ -236,6 +236,11 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
                 )
             )
         }
+        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+            // сохраняем девайс айди для клиента в префах
+            UserData.deviceId = response.responseBody?.idDevice ?: ""
+        }
+        return response
     }
 
     private suspend fun addPhone(phoneNumber: String) {
