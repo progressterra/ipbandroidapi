@@ -145,7 +145,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         }
     }
 
-    suspend fun getRegisterAccessToken(): ResponseWrapper<AccessTokenResponse> {
+    private suspend fun getRegisterAccessToken(): ResponseWrapper<AccessTokenResponse> {
         val request = CreateClientWithoutPhoneRequest()
         return networkService.baseRequest { scrmAPI.createClientWithoutPhone(request) }
     }
@@ -207,7 +207,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         }
     }
 
-    suspend fun createNewClient(): ResponseWrapper<ClientInfoResponse> {
+    private suspend fun createNewClient(): ResponseWrapper<ClientInfoResponse> {
         return networkService.baseRequest {
             scrmAPI.createNewClient(
                 ParamRequest(
@@ -223,14 +223,14 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     }
 
-    fun saveUserData(clientInfo: ClientInfo?, clientAdditionalInfo: ClientAdditionalInfo?) {
+    private fun saveUserData(clientInfo: ClientInfo?, clientAdditionalInfo: ClientAdditionalInfo?) {
         if (clientInfo != null)
             UserData.clientInfo = clientInfo
         if (clientAdditionalInfo != null)
             UserData.clientAdditionalInfo = clientAdditionalInfo
     }
 
-    suspend fun addDevice(): ResponseWrapper<DeviceResponse> {
+    private suspend fun addDevice(): ResponseWrapper<DeviceResponse> {
         val response = networkService.baseRequest {
             scrmAPI.addDevice(
                 ParamRequest(
@@ -266,11 +266,10 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         UserData.phone = phoneNumber
     }
 
-    suspend fun createBaseClient(): InitUserResponse {
-        val repository = RepositoryImpl()
+    private suspend fun createBaseClient(): InitUserResponse {
 
         // получаем регистрационный токен
-        val registerTokenResponse = repository.getRegisterAccessToken()
+        val registerTokenResponse = getRegisterAccessToken()
 
         if (registerTokenResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
 
@@ -278,10 +277,10 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
             UserData.registerAccessToken = registerTokenResponse.responseBody?.accessToken ?: ""
 
             // создаем клиента с ранее полученным токеном
-            val createClientResponse = repository.createNewClient()
+            val createClientResponse = createNewClient()
 
             if (createClientResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
-                repository.saveUserData(
+                saveUserData(
 
                     // сохраняем полученные данные , а именно id клиента, в префах
                     createClientResponse.responseBody?.client?.convertToClientInfo(),
@@ -290,7 +289,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
                 UserData.clientExist = false
 
                 // добавляем текущий девайс клиенту
-                val addDeviceResponse = repository.addDevice()
+                val addDeviceResponse = addDevice()
 
                 if (addDeviceResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
                     // сохраняем девайс айди для клиента в префах
@@ -304,20 +303,20 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
                 } else {
                     // при ошибке отправляем событие о неуспешном создан
                     return InitUserResponse(
-                        GlobalResponseStatus.SUCCESS,
+                        GlobalResponseStatus.ERROR,
                         addDeviceResponse.errorString
                     )
                 }
 
             } else {
                 return InitUserResponse(
-                    GlobalResponseStatus.SUCCESS,
+                    GlobalResponseStatus.ERROR,
                     createClientResponse.errorString
                 )
             }
         } else {
             return InitUserResponse(
-                GlobalResponseStatus.SUCCESS,
+                GlobalResponseStatus.ERROR,
                 registerTokenResponse.errorString
             )
         }
