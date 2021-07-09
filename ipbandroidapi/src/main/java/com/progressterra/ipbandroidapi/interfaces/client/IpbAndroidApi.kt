@@ -18,12 +18,17 @@ interface IpbAndroidApi {
         fun init(
             context: Context,
             accessKey: String,
-            clientCreationListener: ClientCreationListener
         ) {
             UserData.androidId = IdentUtils.getAndroidId(context)
             Kotpref.gson = Gson()
             NetworkSettings.ACCESS_KEY = accessKey
 
+
+        }
+
+        fun initClient(
+            clientCreationListener: ClientCreationListener
+        ) {
             // если успешного создания клиента не произошло
             if (!UserData.clientAlreadyCreated) {
                 CoroutineScope(Job()).launch {
