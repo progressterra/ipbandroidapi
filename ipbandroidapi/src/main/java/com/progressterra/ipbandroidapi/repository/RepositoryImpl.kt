@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.repository
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
+import com.progressterra.ipbandroidapi.interfaces.client.login.models.InitUserResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
@@ -134,13 +135,18 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         return networkService.baseRequest { scrmAPI.getCities() }
     }
 
+    override suspend fun initClient(): InitUserResponse {
+        // если успешного создания клиента не произошло
+        return if (!UserData.clientAlreadyCreated) {
+            createBaseClient()
+        } else {
+            // если клиет создан успешно был до этого
+            InitUserResponse(GlobalResponseStatus.SUCCESS)
+        }
+    }
+
     suspend fun getRegisterAccessToken(): ResponseWrapper<AccessTokenResponse> {
-        val request = CreateClientWithoutPhoneRequest(
-            channelName = "",
-            channelValue = "",
-            "",
-            ""
-        )
+        val request = CreateClientWithoutPhoneRequest()
         return networkService.baseRequest { scrmAPI.createClientWithoutPhone(request) }
     }
 
@@ -259,4 +265,63 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         }
         UserData.phone = phoneNumber
     }
+
+    suspend fun createBaseClient(): InitUserResponse {
+        val repository = RepositoryImpl()
+
+        // получаем регистрационный токен
+        val registerTokenResponse = repository.getRegisterAccessToken()
+
+        if (registerTokenResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+
+            // сохраняем токен в префах
+            UserData.registerAccessToken = registerTokenResponse.responseBody?.accessToken ?: ""
+
+            // создаем клиента с ранее полученным токеном
+            val createClientResponse = repository.createNewClient()
+
+            if (createClientResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+                repository.saveUserData(
+
+                    // сохраняем полученные данные , а именно id клиента, в префах
+                    createClientResponse.responseBody?.client?.convertToClientInfo(),
+                    createClientResponse.responseBody?.clientAdditionalInfo?.convertToClientAdditionalInfo()
+                )
+                UserData.clientExist = false
+
+                // добавляем текущий девайс клиенту
+                val addDeviceResponse = repository.addDevice()
+
+                if (addDeviceResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+                    // сохраняем девайс айди для клиента в префах
+                    UserData.deviceId = addDeviceResponse.responseBody?.idDevice ?: ""
+
+                    // сохраняем успешное создание клиента в префах
+                    UserData.clientAlreadyCreated = true
+
+                    // отправляем колбек об успешном завершении регистрации
+                    return InitUserResponse(GlobalResponseStatus.SUCCESS)
+                } else {
+                    // при ошибке отправляем событие о неуспешном создан
+                    return InitUserResponse(
+                        GlobalResponseStatus.SUCCESS,
+                        addDeviceResponse.errorString
+                    )
+                }
+
+            } else {
+                return InitUserResponse(
+                    GlobalResponseStatus.SUCCESS,
+                    createClientResponse.errorString
+                )
+            }
+        } else {
+            return InitUserResponse(
+                GlobalResponseStatus.SUCCESS,
+                registerTokenResponse.errorString
+            )
+        }
+
+    }
+
 }

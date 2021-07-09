@@ -1,6 +1,7 @@
 package com.progressterra.ipbandroidapi.interfaces.client.login
 
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
+import com.progressterra.ipbandroidapi.interfaces.client.login.models.InitUserResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
@@ -34,6 +35,10 @@ internal class LoginApiImpl : LoginApi {
 
     override suspend fun getCitiesList(): ResponseWrapper<CitiesListResponse> {
         return repository.getCitiesList()
+    }
+
+    override suspend fun initClient(): InitUserResponse {
+        return repository.initClient()
     }
 
     override suspend fun verificationChannelEnd(
