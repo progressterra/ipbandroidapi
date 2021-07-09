@@ -1,10 +1,9 @@
 package com.progressterra.ipbandroidapi.repository
 
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AddCitiRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.ConfirmEmailRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
+import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
+import com.progressterra.ipbandroidapi.interfaces.client.login.models.InitUserResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
@@ -61,7 +60,6 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
         val responseBody = response.responseBody
         if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null) {
-            UserData.registerAccessToken = responseBody.accessToken ?: ""
             getUserData(phoneNumber)
         }
 
@@ -74,8 +72,8 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     override suspend fun addPersonalInfo(personalInfo: PersonalInfo): ResponseWrapper<BaseResponse> {
         val clientData = ClientData(
-            personalInfo.birthdate?:"",
-            personalInfo.name ?:"",
+            personalInfo.birthdate ?: "",
+            personalInfo.name ?: "",
             null,
             sex = personalInfo.sexType?.value?.toString() ?: "0",
             soname = personalInfo.lastname!!
@@ -123,9 +121,9 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     override suspend fun addCity(city: CitiesListResponse.City): ResponseWrapper<BaseResponse> {
         val addCitiRequest = AddCitiRequest(
-             "",
             "",
-            city.name?:"",
+            "",
+            city.name ?: "",
             city.idUnique,
             0,
             0
@@ -135,6 +133,21 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     override suspend fun getCitiesList(): ResponseWrapper<CitiesListResponse> {
         return networkService.baseRequest { scrmAPI.getCities() }
+    }
+
+    override suspend fun initClient(): InitUserResponse {
+        // если успешного создания клиента не произошло
+        return if (!UserData.clientAlreadyCreated) {
+            createBaseClient()
+        } else {
+            // если клиет создан успешно был до этого
+            InitUserResponse(GlobalResponseStatus.SUCCESS)
+        }
+    }
+
+    private suspend fun getRegisterAccessToken(): ResponseWrapper<AccessTokenResponse> {
+        val request = CreateClientWithoutPhoneRequest()
+        return networkService.baseRequest { scrmAPI.createClientWithoutPhone(request) }
     }
 
     override suspend fun getAccessToken(): ResponseWrapper<AccessTokenResponse> {
@@ -166,16 +179,10 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         networkService.baseRequest { scrmAPI.getBonusMessagesList(accessToken) }
 
 
-
     private suspend fun getUserData(phoneNumber: String) {
-        // Получение имеющегося клиента
-        if (!getExistingClient(phoneNumber)) {
-            // Если клиента не существует, создаем нового
-            createNewClient()
-        }
-        // Получаем девайс (idDevice)
-        addDevice()
+        getExistingClient(phoneNumber)
         addPhone(phoneNumber)
+        addDevice()
     }
 
     private suspend fun getExistingClient(phoneNumber: String): Boolean {
@@ -200,8 +207,8 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         }
     }
 
-    private suspend fun createNewClient() {
-        val response = networkService.baseRequest {
+    private suspend fun createNewClient(): ResponseWrapper<ClientInfoResponse> {
+        return networkService.baseRequest {
             scrmAPI.createNewClient(
                 ParamRequest(
                     idClient = null,
@@ -213,14 +220,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
                 )
             )
         }
-        val responseBody = response.responseBody
-        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null) {
-            saveUserData(
-                responseBody.client?.convertToClientInfo(),
-                responseBody.clientAdditionalInfo?.convertToClientAdditionalInfo()
-            )
-            UserData.clientExist = false
-        }
+
     }
 
     private fun saveUserData(clientInfo: ClientInfo?, clientAdditionalInfo: ClientAdditionalInfo?) {
@@ -230,7 +230,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
             UserData.clientAdditionalInfo = clientAdditionalInfo
     }
 
-    private suspend fun addDevice() {
+    private suspend fun addDevice(): ResponseWrapper<DeviceResponse> {
         val response = networkService.baseRequest {
             scrmAPI.addDevice(
                 ParamRequest(
@@ -241,9 +241,11 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
                 )
             )
         }
-        val rawDeviceId = response.responseBody?.idDevice
-        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && rawDeviceId != null)
-            UserData.deviceId = rawDeviceId
+        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+            // сохраняем девайс айди для клиента в префах
+            UserData.deviceId = response.responseBody?.idDevice ?: ""
+        }
+        return response
     }
 
     private suspend fun addPhone(phoneNumber: String) {
@@ -263,4 +265,62 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
         }
         UserData.phone = phoneNumber
     }
+
+    private suspend fun createBaseClient(): InitUserResponse {
+
+        // получаем регистрационный токен
+        val registerTokenResponse = getRegisterAccessToken()
+
+        if (registerTokenResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+
+            // сохраняем токен в префах
+            UserData.registerAccessToken = registerTokenResponse.responseBody?.accessToken ?: ""
+
+            // создаем клиента с ранее полученным токеном
+            val createClientResponse = createNewClient()
+
+            if (createClientResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+                saveUserData(
+
+                    // сохраняем полученные данные , а именно id клиента, в префах
+                    createClientResponse.responseBody?.client?.convertToClientInfo(),
+                    createClientResponse.responseBody?.clientAdditionalInfo?.convertToClientAdditionalInfo()
+                )
+                UserData.clientExist = false
+
+                // добавляем текущий девайс клиенту
+                val addDeviceResponse = addDevice()
+
+                if (addDeviceResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+                    // сохраняем девайс айди для клиента в префах
+                    UserData.deviceId = addDeviceResponse.responseBody?.idDevice ?: ""
+
+                    // сохраняем успешное создание клиента в префах
+                    UserData.clientAlreadyCreated = true
+
+                    // отправляем колбек об успешном завершении регистрации
+                    return InitUserResponse(GlobalResponseStatus.SUCCESS)
+                } else {
+                    // при ошибке отправляем событие о неуспешном создан
+                    return InitUserResponse(
+                        GlobalResponseStatus.ERROR,
+                        addDeviceResponse.errorString
+                    )
+                }
+
+            } else {
+                return InitUserResponse(
+                    GlobalResponseStatus.ERROR,
+                    createClientResponse.errorString
+                )
+            }
+        } else {
+            return InitUserResponse(
+                GlobalResponseStatus.ERROR,
+                registerTokenResponse.errorString
+            )
+        }
+
+    }
+
 }

@@ -19,9 +19,9 @@ data class CitiesListResponse(
         val name: String?,
         @SerializedName("radius")
         val radius: Int
-    ){
+    ) {
         override fun toString(): String {
-            return this.name?:""
+            return this.name ?: ""
         }
     }
 }

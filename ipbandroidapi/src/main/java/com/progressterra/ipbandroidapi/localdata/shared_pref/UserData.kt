@@ -12,6 +12,7 @@ object UserData : KotprefModel() {
     var deviceId by stringPref("")
     var clientExist by booleanPref(false)
     var phone by stringPref("")
+    var clientAlreadyCreated by booleanPref(false)
     var clientInfo by gsonPref(ClientInfo(""))
     var clientAdditionalInfo by gsonPref(ClientAdditionalInfo())
 }

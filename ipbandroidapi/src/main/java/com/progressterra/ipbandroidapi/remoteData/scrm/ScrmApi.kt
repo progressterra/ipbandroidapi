@@ -1,20 +1,11 @@
 package com.progressterra.ipbandroidapi.remoteData.scrm
 
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AddCitiRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.ConfirmEmailRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
+import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.AccessTokenRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.ParamRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.ClientInfoRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.VerificationRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.DeviceResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.VerificationResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -159,6 +150,8 @@ internal interface ScrmApi {
     @GET("/api/v3/ibonus/infobytype/{AccessToken}")
     suspend fun getBonusMessagesList(@Path("AccessToken") accessToken: String): Response<BonusesMessagesResponse>
 
+    @POST("/api/v3/clients/createat")
+    suspend fun createClientWithoutPhone(@Body createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): Response<AccessTokenResponse>
 }
 
 

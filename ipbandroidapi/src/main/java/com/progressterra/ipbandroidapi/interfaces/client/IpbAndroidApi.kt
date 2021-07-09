@@ -10,14 +10,16 @@ import com.progressterra.ipbandroidapi.utils.IdentUtils
 
 interface IpbAndroidApi {
 
+
     companion object {
-        fun init(context: Context, accessKey: String) {
+        fun init(
+            context: Context,
+            accessKey: String
+        ) {
             UserData.androidId = IdentUtils.getAndroidId(context)
             Kotpref.gson = Gson()
             NetworkSettings.ACCESS_KEY = accessKey
         }
-
-        fun getSavedAccessToken() = UserData.accessToken
     }
 }
 

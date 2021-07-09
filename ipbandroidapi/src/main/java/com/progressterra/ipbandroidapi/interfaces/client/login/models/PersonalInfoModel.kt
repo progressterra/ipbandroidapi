@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.interfaces.client.login.models
 
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.SexType
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
 
 class PersonalInfo {
     var name: String? = null
@@ -37,7 +37,7 @@ class PersonalInfo {
     var city: CitiesListResponse.City? = null
         set(value) {
             field = value
-            cityIsValid = field!=null
+            cityIsValid = field != null
         }
 
     var nameIsValid = false

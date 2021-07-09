@@ -12,12 +12,12 @@ data class GeneralInfoResponse(
 ) : BaseResponse() {
 
     fun convertToBonusesInfo() =
-            BonusesInfo(
-                currentQuantity = data?.currentQuantity?.toInt() ?: 0,
-                dateBurning = BonusesConverters?.convertDate(data?.dateBurning),
-                forBurningQuantity = data?.forBurningQuantity?.toInt() ?: 0,
-                typeBonusName = data?.typeBonusName ?: ""
-            )
+        BonusesInfo(
+            currentQuantity = data?.currentQuantity?.toInt() ?: 0,
+            dateBurning = BonusesConverters?.convertDate(data?.dateBurning),
+            forBurningQuantity = data?.forBurningQuantity?.toInt() ?: 0,
+            typeBonusName = data?.typeBonusName ?: ""
+        )
 }
 
 data class Data(
