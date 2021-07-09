@@ -40,9 +40,9 @@ internal class NetworkServiceImpl : NetworkService {
 
 
     /**
-        Метод предназначен для совершения запросов в сеть. Благодаря ему основываясь на коде ответа Http,
-        внутреннем статусе запроса, формируется обертка со статусом успеха, данным получеными в запросе,
-        и сообщением об ошибке, при его наличии
+    Метод предназначен для совершения запросов в сеть. Благодаря ему основываясь на коде ответа Http,
+    внутреннем статусе запроса, формируется обертка со статусом успеха, данным получеными в запросе,
+    и сообщением об ошибке, при его наличии
      */
     override suspend fun <T : BaseResponse> baseRequest(request: suspend () -> Response<T>): ResponseWrapper<T> {
         val responseWrapper = ResponseWrapper<T>()
@@ -64,9 +64,9 @@ internal class NetworkServiceImpl : NetworkService {
                         responseWrapper
                     } else {
                         // текст сообщения об ошибке по логике описанной выше смотрим также в двух местах
-                        if (it?.message!=null){
+                        if (it?.message != null) {
                             responseWrapper.errorString = it.message
-                        } else if (it?.result?.message!=null){
+                        } else if (it?.result?.message != null) {
                             responseWrapper.errorString = it.result.message
                         }
 

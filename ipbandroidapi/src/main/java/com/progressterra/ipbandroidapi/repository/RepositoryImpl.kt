@@ -71,8 +71,8 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     override suspend fun addPersonalInfo(personalInfo: PersonalInfo): ResponseWrapper<BaseResponse> {
         val clientData = ClientData(
-            personalInfo.birthdate?:"",
-            personalInfo.name ?:"",
+            personalInfo.birthdate ?: "",
+            personalInfo.name ?: "",
             null,
             sex = personalInfo.sexType?.value?.toString() ?: "0",
             soname = personalInfo.lastname!!
@@ -120,9 +120,9 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     override suspend fun addCity(city: CitiesListResponse.City): ResponseWrapper<BaseResponse> {
         val addCitiRequest = AddCitiRequest(
-             "",
             "",
-            city.name?:"",
+            "",
+            city.name ?: "",
             city.idUnique,
             0,
             0
@@ -171,7 +171,6 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
 
     override suspend fun getBonusMessagesList(accessToken: String): ResponseWrapper<BonusesMessagesResponse> =
         networkService.baseRequest { scrmAPI.getBonusMessagesList(accessToken) }
-
 
 
     private suspend fun getUserData(phoneNumber: String) {

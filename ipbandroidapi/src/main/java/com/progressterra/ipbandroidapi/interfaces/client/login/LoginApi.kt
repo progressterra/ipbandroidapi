@@ -4,13 +4,12 @@ import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerifi
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
 
 interface LoginApi {
 
     suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse
-    suspend fun addClientInfo(personalInfo: PersonalInfo):ResponseWrapper<BaseResponse>
+    suspend fun addClientInfo(personalInfo: PersonalInfo): ResponseWrapper<BaseResponse>
     suspend fun addEmail(email: String): ResponseWrapper<BaseResponse>
     suspend fun confirmEmail(email: String): ResponseWrapper<BaseResponse>
     suspend fun addCity(city: CitiesListResponse.City): ResponseWrapper<BaseResponse>

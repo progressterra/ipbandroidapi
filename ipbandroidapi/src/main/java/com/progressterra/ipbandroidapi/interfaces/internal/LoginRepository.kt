@@ -2,11 +2,9 @@ package com.progressterra.ipbandroidapi.interfaces.internal
 
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
-import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
 
 internal interface LoginRepository {
