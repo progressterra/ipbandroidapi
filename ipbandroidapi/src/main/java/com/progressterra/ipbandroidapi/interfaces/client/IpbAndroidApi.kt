@@ -9,8 +9,6 @@ import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.utils.IdentUtils
 
 interface IpbAndroidApi {
-
-
     companion object {
         fun init(
             context: Context,
