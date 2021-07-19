@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class CreateDialogResponse(
     @SerializedName("data")
-    val `data`: CreateDialogData? = null,
+    val data: CreateDialogData? = null,
     ) : BaseResponse()
 
 
