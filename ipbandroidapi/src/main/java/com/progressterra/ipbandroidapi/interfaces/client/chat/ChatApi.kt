@@ -23,6 +23,6 @@ interface ChatApi {
     suspend fun createNewDialog(
         description: String
     ): ResponseWrapper<CreateDialogResponse>
-
-    fun ChatApi(): ChatApi = ChatApiImpl()
 }
+
+fun ChatApi(): ChatApi = ChatApiImpl()

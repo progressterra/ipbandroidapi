@@ -157,20 +157,27 @@ internal interface ScrmApi {
     @POST("/api/v3/clients/createat")
     suspend fun createClientWithoutPhone(@Body createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): Response<AccessTokenResponse>
 
-    // получение списка сообщений
+
+    /**
+     * получение списка сообщений
+     */
     @GET("/messenger/mobile/messages/{dialogId}/{currentPage}")
     suspend fun getMessagesList(
         @Path("dialogId") IDRGDialog: String,
         @Path("currentPage") page: String
     ): Response<MessagesListResponse>
 
-    // отправка сообщения
+    /**
+     * отправка сообщения
+     */
     @POST("/messenger/mobile/messages/text")
     suspend fun sendMessage(
         @Body messageSendingRequest: MessageSendingRequest
     ): Response<MessagesListResponse>
 
-    // создание нового диалога
+    /**
+     * создание нового диалога
+     */
     @POST("/messenger/mobile/dialog")
     suspend fun createNewDialog(
         @Body createDialogRequest: CreateDialogRequest
