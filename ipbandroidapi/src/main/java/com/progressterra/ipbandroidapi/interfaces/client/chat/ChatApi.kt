@@ -24,9 +24,5 @@ interface ChatApi {
         description: String
     ): ResponseWrapper<CreateDialogResponse>
 
-    companion object {
-        fun getInstance(): ChatApi {
-            return ChatApiImpl()
-        }
-    }
+    fun ChatApi(): ChatApi = ChatApiImpl()
 }
