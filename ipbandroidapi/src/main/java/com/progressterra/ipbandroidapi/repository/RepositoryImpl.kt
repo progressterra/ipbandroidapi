@@ -333,7 +333,6 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
         page: String
     ): ResponseWrapper<MessagesListResponse> {
         return networkService.baseRequest { scrmAPI.getMessagesList(IDRGDialog, page) }
-
     }
 
     override suspend fun sendMessage(messageSendingRequest: MessageSendingRequest): ResponseWrapper<MessagesListResponse> {
