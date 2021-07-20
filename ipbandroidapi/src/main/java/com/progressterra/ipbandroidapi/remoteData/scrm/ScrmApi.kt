@@ -3,6 +3,10 @@ package com.progressterra.ipbandroidapi.remoteData.scrm
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessageSendingRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessagesListResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
@@ -152,6 +156,32 @@ internal interface ScrmApi {
 
     @POST("/api/v3/clients/createat")
     suspend fun createClientWithoutPhone(@Body createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): Response<AccessTokenResponse>
+
+
+    /**
+     * получение списка сообщений
+     */
+    @GET("/messenger/mobile/messages/{dialogId}/{currentPage}")
+    suspend fun getMessagesList(
+        @Path("dialogId") IDRGDialog: String,
+        @Path("currentPage") page: String
+    ): Response<MessagesListResponse>
+
+    /**
+     * отправка сообщения
+     */
+    @POST("/messenger/mobile/messages/text")
+    suspend fun sendMessage(
+        @Body messageSendingRequest: MessageSendingRequest
+    ): Response<MessagesListResponse>
+
+    /**
+     * создание нового диалога
+     */
+    @POST("/messenger/mobile/dialog")
+    suspend fun createNewDialog(
+        @Body createDialogRequest: CreateDialogRequest
+    ): Response<CreateDialogResponse>
 }
 
 

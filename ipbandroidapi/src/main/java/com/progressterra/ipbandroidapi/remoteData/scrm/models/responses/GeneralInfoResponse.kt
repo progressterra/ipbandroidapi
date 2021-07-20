@@ -14,7 +14,7 @@ data class GeneralInfoResponse(
     fun convertToBonusesInfo() =
         BonusesInfo(
             currentQuantity = data?.currentQuantity?.toInt() ?: 0,
-            dateBurning = BonusesConverters?.convertDate(data?.dateBurning),
+            dateBurning = BonusesConverters.convertDate(data?.dateBurning),
             forBurningQuantity = data?.forBurningQuantity?.toInt() ?: 0,
             typeBonusName = data?.typeBonusName ?: ""
         )

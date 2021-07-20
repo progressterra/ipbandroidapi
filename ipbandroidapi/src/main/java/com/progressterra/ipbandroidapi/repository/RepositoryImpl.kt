@@ -6,6 +6,7 @@ import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClie
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.InitUserResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
+import com.progressterra.ipbandroidapi.interfaces.internal.ChatRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
@@ -16,6 +17,10 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmApi
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessageSendingRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessagesListResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
@@ -23,7 +28,7 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_i
 import com.progressterra.ipbandroidapi.utils.Debug
 import kotlinx.coroutines.coroutineScope
 
-internal class RepositoryImpl : LoginRepository, BonusesRepository {
+internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatRepository {
 
 
     private val networkService: NetworkService = NetworkServiceImpl()
@@ -321,6 +326,21 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository {
             )
         }
 
+    }
+
+    override suspend fun getMessagesList(
+        IDRGDialog: String,
+        page: String
+    ): ResponseWrapper<MessagesListResponse> {
+        return networkService.baseRequest { scrmAPI.getMessagesList(IDRGDialog, page) }
+    }
+
+    override suspend fun sendMessage(messageSendingRequest: MessageSendingRequest): ResponseWrapper<MessagesListResponse> {
+        return networkService.baseRequest { scrmAPI.sendMessage(messageSendingRequest) }
+    }
+
+    override suspend fun createNewDialog(createDialogRequest: CreateDialogRequest): ResponseWrapper<CreateDialogResponse> {
+        return networkService.baseRequest { scrmAPI.createNewDialog(createDialogRequest) }
     }
 
 }
