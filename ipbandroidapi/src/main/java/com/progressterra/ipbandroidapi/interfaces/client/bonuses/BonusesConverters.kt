@@ -8,6 +8,7 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.Purchase
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.TransactionListResponse
 import com.progressterra.ipbandroidapi.utils.extentions.orNow
 import com.progressterra.ipbandroidapi.utils.extentions.parseToDate
+import com.progressterra.ipbandroidapi.utils.extentions.tryOrNull
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -102,13 +103,3 @@ internal object BonusesConverters {
         return convertedBonusMessages
     }
 }
-
-
-inline fun <T> tryOrNull(block: () -> T): T? =
-    try {
-        block.invoke()
-    } catch (e: Exception) {
-        Log.e("tryOrNull", "${e.message}")
-        e.printStackTrace()
-        null
-    }
