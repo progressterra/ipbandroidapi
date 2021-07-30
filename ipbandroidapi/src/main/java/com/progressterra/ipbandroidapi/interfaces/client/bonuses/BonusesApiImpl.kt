@@ -1,9 +1,6 @@
 package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusMessage
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusesInfo
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Purchase
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Transaction
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.*
 import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
@@ -23,6 +20,10 @@ internal class BonusesApiImpl : BonusesApi {
     override suspend fun getTransactionsList(accessToken: String): ResponseWrapper<List<Transaction>> =
         repository.getTransactionsList(accessToken)
             .convertation { BonusesConverters.convertToTransactionList(it) }
+
+    override suspend fun getTransactionsRaw(accessToken: String): ResponseWrapper<List<TransactionRaw>> =
+        repository.getTransactionsList(accessToken)
+            .convertation { BonusesConverters.convertToTransactionRaw(it) }
 
 
     override suspend fun getPurchasesList(accessToken: String): ResponseWrapper<List<Purchase>> {
