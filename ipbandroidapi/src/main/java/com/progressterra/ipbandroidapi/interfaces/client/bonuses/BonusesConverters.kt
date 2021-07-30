@@ -1,14 +1,14 @@
 package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusMessage
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusesInfo
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Purchase
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Transaction
+import android.util.Log
+import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.BonusesMessagesResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.PurchasesListResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.TransactionListResponse
+import com.progressterra.ipbandroidapi.utils.extentions.orNow
 import com.progressterra.ipbandroidapi.utils.extentions.parseToDate
+import com.progressterra.ipbandroidapi.utils.extentions.tryOrNull
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -46,6 +46,22 @@ internal object BonusesConverters {
             convertedTransactions.add(
                 Transaction(
                     dateEvent = convertDate(it.dateEvent),
+                    quantity = it.quantity?.toInt() ?: 0,
+                    typeBonusName = it.typeBonusName ?: "",
+                    typeOperation = it.typeOperation ?: 0
+                )
+            )
+        }
+        return convertedTransactions
+    }
+
+    fun convertToTransactionRaw(transactionListResponse: TransactionListResponse?): List<TransactionRaw> {
+        val convertedTransactions = mutableListOf<TransactionRaw>()
+
+        transactionListResponse?.dataList?.map {
+            convertedTransactions.add(
+                TransactionRaw(
+                    dateEvent = tryOrNull { it.dateEvent.parseToDate() }.orNow(),
                     quantity = it.quantity?.toInt() ?: 0,
                     typeBonusName = it.typeBonusName ?: "",
                     typeOperation = it.typeOperation ?: 0
