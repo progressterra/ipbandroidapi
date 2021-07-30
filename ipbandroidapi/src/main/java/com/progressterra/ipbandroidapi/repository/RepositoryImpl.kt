@@ -64,6 +64,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
         }
 
         val responseBody = response.responseBody
+
         if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null) {
             getUserData(phoneNumber)
         }
@@ -186,7 +187,6 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
 
     private suspend fun getUserData(phoneNumber: String) {
         getExistingClient(phoneNumber)
-        addPhone(phoneNumber)
         addDevice()
     }
 
@@ -198,6 +198,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
                 phoneNumber
             )
         }
+
         val responseBody: ClientInfoResponse? = response.responseBody
         return if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null) {
             saveUserData(
@@ -208,6 +209,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
             UserData.clientExist = true
             true
         } else {
+            addPhone(phoneNumber)
             false
         }
     }
