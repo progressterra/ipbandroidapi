@@ -7,7 +7,7 @@ fun String?.parseToDate(): Date {
     val sdf = SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss", Locale.getDefault()).apply {
         timeZone = TimeZone.getTimeZone("UTC")
     }
-    return sdf.parse(this).orIfNull { Date() }
+    return tryOrNull { sdf.parse(this) }.orIfNull { Date() }
 }
 
 fun Date?.orNow() = this.orIfNull { Date() }
