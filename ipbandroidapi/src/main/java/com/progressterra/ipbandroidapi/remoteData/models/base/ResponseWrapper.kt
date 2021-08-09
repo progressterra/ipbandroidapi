@@ -11,4 +11,21 @@ class ResponseWrapper<T> {
         newResponseWrapper.globalResponseStatus = this.globalResponseStatus
         return newResponseWrapper
     }
+
+    companion object {
+        fun <T> ressponseIsSuccess(body: T?): ResponseWrapper<T> {
+            return ResponseWrapper<T>().apply {
+                responseBody = body
+                globalResponseStatus = GlobalResponseStatus.SUCCESS
+            }
+
+        }
+
+        fun <T> ressponseIsError(msg: String): ResponseWrapper<T> {
+            return ResponseWrapper<T>().apply {
+                globalResponseStatus = GlobalResponseStatus.ERROR
+            }
+
+        }
+    }
 }

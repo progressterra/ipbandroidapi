@@ -5,18 +5,22 @@ import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerifi
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.InitUserResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
-import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
-import com.progressterra.ipbandroidapi.interfaces.internal.ChatRepository
-import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
-import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
+import com.progressterra.ipbandroidapi.interfaces.internal.*
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditionalInfo
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
-import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
+import com.progressterra.ipbandroidapi.remoteData.AddressesNetworkService
+import com.progressterra.ipbandroidapi.remoteData.DadataNetworkService
+import com.progressterra.ipbandroidapi.remoteData.IpbNetworkService
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
+import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmApi
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.Address
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddressesResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessageSendingRequest
@@ -28,12 +32,17 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_i
 import com.progressterra.ipbandroidapi.utils.Debug
 import kotlinx.coroutines.coroutineScope
 
-internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatRepository {
+internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatRepository,
+    AddressesRepository {
 
 
-    private val networkService: NetworkService = NetworkServiceImpl()
+    private val networkService: NetworkService = IpbNetworkService()
+    private val addressesNetworkService: NetworkService = AddressesNetworkService()
+    private val dadataNetworkService: NetworkService = DadataNetworkService()
 
     private val scrmAPI = networkService.createService(ScrmApi::class.java)
+    private val addressesApi = addressesNetworkService.createService(ScrmApi::class.java)
+    private val dadataApi = dadataNetworkService.createService(ScrmApi::class.java)
 
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse {
         val response = coroutineScope {
@@ -343,6 +352,44 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
 
     override suspend fun createNewDialog(createDialogRequest: CreateDialogRequest): ResponseWrapper<CreateDialogResponse> {
         return networkService.baseRequest { scrmAPI.createNewDialog(createDialogRequest) }
+    }
+
+    override suspend fun getAddressList(accessToken: String): ResponseWrapper<ListOfAddressesResponse> {
+        return addressesNetworkService.baseRequest { addressesApi.getAddressList(accessToken) }
+    }
+
+    override suspend fun addClientAddress(
+        accessToken: String,
+        modifiClientAddressRequest: Address
+    ): ResponseWrapper<ResultResponse> {
+        return addressesNetworkService.baseRequest {
+            addressesApi.addClientAddress(
+                accessToken,
+                modifiClientAddressRequest
+            )
+        }
+    }
+
+    override suspend fun updateClientAddress(
+        accessToken: String,
+        modifiClientAddressRequest: Address
+    ): ResponseWrapper<ResultResponse> {
+        return addressesNetworkService.baseRequest {
+            addressesApi.updateClientAddress(
+                accessToken,
+                modifiClientAddressRequest
+            )
+        }
+
+    }
+
+    override suspend fun getSuggestionsAddressFromDadata(dadataSuggestionsRequest: DadataSuggestionsRequest): ResponseWrapper<DadataSuggestionResponse> {
+        val response = dadataApi.getSuggestionsAddressFromDadata(dadataSuggestionsRequest)
+        return if (response.isSuccessful) {
+            ResponseWrapper.ressponseIsSuccess(response.body())
+        } else {
+            ResponseWrapper.ressponseIsError("")
+        }
     }
 
 }

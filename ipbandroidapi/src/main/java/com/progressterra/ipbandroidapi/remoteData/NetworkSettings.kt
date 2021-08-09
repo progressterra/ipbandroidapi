@@ -35,6 +35,8 @@ internal object NetworkSettings {
      * Стандартная базовая ссылка (возможно потом поменяем на var)
      */
     const val LIKEDISLIKE_ROOT_URL = "https://mp1.iprobonus.com/"
+    const val ADDRESSES_ROOT_URL = "http://84.201.184.154:5021/"
+    const val DADATA_ROOT_URL = "https://suggestions.dadata.ru/"
 
     /**
      * Доп адреса для IBONUS
