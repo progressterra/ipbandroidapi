@@ -50,20 +50,21 @@ data class AddressUI(
             address += "ул $it, "
         }
 
-        building?.let {
-            address += "д $it, "
+        houseNUmber?.let {
+            address += "д $it"
         }
 
         apartment?.let {
-            address += "кв $it, "
+            if (it != "0")
+                address += ", кв $it"
         }
 
         floor?.let {
-            address += "эт $it, "
+            address += ", эт $it"
         }
 
         entrance?.let {
-            address += "п $it "
+            address += ", п $it "
         }
         return address
     }
