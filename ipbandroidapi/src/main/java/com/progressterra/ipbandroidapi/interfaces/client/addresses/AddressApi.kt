@@ -28,3 +28,5 @@ interface AddressApi {
     @POST("suggestions/api/4_1/rs/suggest/address")
     suspend fun getSuggestionsAddressFromDadata(query: String): ResponseWrapper<DadataSuggestionResponse>
 }
+
+fun AddressApi(): AddressApi = AddressApiImpl()

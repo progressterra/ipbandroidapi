@@ -8,7 +8,7 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.Dad
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
 import retrofit2.http.*
 
-interface AddressesRepository {
+internal interface AddressesRepository {
     @GET("/api/v3/addressclient/list/{AccessToken}")
     suspend fun getAddressList(@Path("AccessToken") accessToken: String): ResponseWrapper<ListOfAddressesResponse>
 

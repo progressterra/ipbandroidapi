@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class DadataNetworkService : NetworkService() {
+internal class DadataNetworkService : NetworkService() {
 
     override val retrofitBuilder: Retrofit.Builder =
         Retrofit.Builder()

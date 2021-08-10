@@ -9,7 +9,7 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.Dad
 import com.progressterra.ipbandroidapi.repository.RepositoryImpl
 
 class AddressApiImpl : AddressApi {
-    val repository: AddressesRepository = RepositoryImpl()
+    private val repository: AddressesRepository = RepositoryImpl()
 
     override suspend fun getAddressList(accessToken: String): ResponseWrapper<ListOfAddressesResponse> {
         return repository.getAddressList(accessToken)
