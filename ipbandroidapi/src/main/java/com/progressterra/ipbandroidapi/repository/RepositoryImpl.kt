@@ -66,6 +66,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
         val responseBody = response.responseBody
 
         if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null) {
+            UserData.registerAccessToken = responseBody.accessToken ?: ""
             getUserData(phoneNumber)
         }
 
