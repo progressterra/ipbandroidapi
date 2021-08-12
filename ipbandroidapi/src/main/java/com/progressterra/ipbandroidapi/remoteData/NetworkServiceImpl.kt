@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-internal class AddressesNetworkService : NetworkService {
+internal class NetworkServiceImpl : NetworkService {
 
     private val clientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         .callTimeout(NetworkSettings.NETWORK_CALL_TIMEOUT, TimeUnit.MILLISECONDS)
@@ -22,13 +22,12 @@ internal class AddressesNetworkService : NetworkService {
             it.proceed(request)
         }
 
-    private val retrofitBuilder = Retrofit.Builder()
-        .baseUrl(NetworkSettings.ADDRESSES_ROOT_URL)
-        .client(clientBuilder.build())
-        .addConverterFactory(GsonConverterFactory.create())
 
-    private var retrofit: Retrofit = retrofitBuilder.build()
-
-    override fun <T> createService(apiClass: Class<T>): T = retrofit.create(apiClass)
-
+    override fun <T> createService(apiClass: Class<T>, baseUrl: String): T {
+        val retrofitBuilder = Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .client(clientBuilder.build())
+            .addConverterFactory(GsonConverterFactory.create())
+        return retrofitBuilder.build().create(apiClass)
+    }
 }

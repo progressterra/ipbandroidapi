@@ -10,7 +10,7 @@ import retrofit2.Response
 
 internal interface NetworkService {
 
-    fun <T> createService(apiClass: Class<T>): T
+    fun <T> createService(apiClass: Class<T>, baseUrl: String): T
 
 
     suspend fun <T> safeApiCall(responseFunction: suspend () -> T): T? =

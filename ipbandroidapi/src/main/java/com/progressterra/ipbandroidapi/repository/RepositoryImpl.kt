@@ -9,9 +9,8 @@ import com.progressterra.ipbandroidapi.interfaces.internal.*
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditionalInfo
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
-import com.progressterra.ipbandroidapi.remoteData.AddressesNetworkService
-import com.progressterra.ipbandroidapi.remoteData.DadataNetworkService
-import com.progressterra.ipbandroidapi.remoteData.IpbNetworkService
+import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
+import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
@@ -36,13 +35,17 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
     AddressesRepository {
 
 
-    private val networkService: NetworkService = IpbNetworkService()
-    private val addressesNetworkService: NetworkService = AddressesNetworkService()
-    private val dadataNetworkService: NetworkService = DadataNetworkService()
+    private val networkService: NetworkService = NetworkServiceImpl()
 
-    private val scrmAPI = networkService.createService(ScrmApi::class.java)
-    private val addressesApi = addressesNetworkService.createService(ScrmApi::class.java)
-    private val dadataApi = dadataNetworkService.createService(ScrmApi::class.java)
+
+    private val scrmAPI =
+        networkService.createService(ScrmApi::class.java, NetworkSettings.LIKEDISLIKE_ROOT_URL)
+    private val addressesApi = networkService.createService(
+        ScrmApi::class.java,
+        NetworkSettings.ADDRESSES_ROOT_URL
+    )
+    private val dadataApi =
+        networkService.createService(ScrmApi::class.java, NetworkSettings.DADATA_ROOT_URL)
 
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse {
         val response = coroutineScope {
@@ -356,14 +359,14 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
     }
 
     override suspend fun getAddressList(accessToken: String): ResponseWrapper<ListOfAddressesResponse> {
-        return addressesNetworkService.baseRequest { addressesApi.getAddressList(accessToken) }
+        return networkService.baseRequest { addressesApi.getAddressList(accessToken) }
     }
 
     override suspend fun addClientAddress(
         accessToken: String,
         modifiClientAddressRequest: Address
     ): ResponseWrapper<ResultResponse> {
-        return addressesNetworkService.baseRequest {
+        return networkService.baseRequest {
             addressesApi.addClientAddress(
                 accessToken,
                 modifiClientAddressRequest
@@ -375,7 +378,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
         accessToken: String,
         modifiClientAddressRequest: Address
     ): ResponseWrapper<ResultResponse> {
-        return addressesNetworkService.baseRequest {
+        return networkService.baseRequest {
             addressesApi.updateClientAddress(
                 accessToken,
                 modifiClientAddressRequest
