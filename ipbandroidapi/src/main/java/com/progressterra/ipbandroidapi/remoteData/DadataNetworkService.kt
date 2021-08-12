@@ -1,8 +1,6 @@
 package com.progressterra.ipbandroidapi.remoteData
 
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -26,16 +24,5 @@ internal class DadataNetworkService : NetworkService {
     private var retrofit: Retrofit = retrofitBuilder.build()
 
     override fun <T> createService(apiClass: Class<T>): T = retrofit.create(apiClass)
-
-    override suspend fun <T> safeApiCall(responseFunction: suspend () -> T): T? =
-        withContext(Dispatchers.IO) {
-            try {
-                responseFunction.invoke()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                null
-            }
-        }
-
 
 }

@@ -2,7 +2,6 @@ package com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata
 
 
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.interfaces.client.addresses.AddressUI
 
 data class SuggestionExtendedInfo(
     @SerializedName("area")
@@ -61,46 +60,5 @@ data class SuggestionExtendedInfo(
     val streetKladrId: String? = null
 ) {
 
-    fun convertToUIModel(): AddressUI {
-        return AddressUI(
-            idUnique = "00000000-0000-0000-0000-000000000000",
-            idClient = "00000000-0000-0000-0000-000000000000",
-            dateAdded = "0001-01-01T00:00:00",
-            dateVerification = null,
-            idManagerVerification = null,
-            dateDeactivation = null,
-            defaultShipping = null,
-            defaultBilling = null,
-            fiasIDCountry = null,
-            fiasIDRegion = regionFiasId,
-            fiasIDCity = cityFiasId,
-            fiasIDArea = areaFiasId,
-            fiasIDDistrict = cityDistrictFiasId,
-            fiasIDStreet = streetFiasId,
-            fiasIDHouse = houseFiasId,
-            kladrHouse = houseKladrId,
-            kladrCountry = "00000000-0000-0000-0000-000000000000",
-            kladrRegion = regionKladrId,
-            kladrCity = cityKladrId,
-            kladrArea = areaKladrId,
-            kladrDistrict = cityDistrictKladrId,
-            kladrStreet = streetKladrId,
-            nameCountry = country,
-            nameRegion = region,
-            nameCity = city,
-            nameStreet = street,
-            nameArea = area,
-            nameDistrict = cityDistrict,
-            postalCode = postalCode,
-            houseNUmber = house,
-            building = block,
-            apartment = flat,
-            entrance = entrance,
-            floor = floor,
-            latitude = 0.0,
-            longitude = 0.0,
-            isDefaultShippingAddress = null,
-            isDefaultBillingAddress = null
-        )
-    }
+
 }

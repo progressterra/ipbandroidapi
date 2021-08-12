@@ -2,11 +2,9 @@ package com.progressterra.ipbandroidapi.interfaces.client.addresses
 
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.Address
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
-import retrofit2.http.Headers
-import retrofit2.http.POST
-import retrofit2.http.PUT
 
 interface AddressApi {
 
@@ -14,12 +12,12 @@ interface AddressApi {
 
     suspend fun addClientAddress(
         accessToken: String,
-        addressUI: AddressUI
+        address: Address
     ): ResponseWrapper<ResultResponse>
 
     suspend fun updateClientAddress(
         accessToken: String,
-        addressUI: AddressUI
+        address: Address
     ): ResponseWrapper<ResultResponse>
 
     suspend fun getSuggestionsAddressFromDadata(query: String): ResponseWrapper<DadataSuggestionResponse>

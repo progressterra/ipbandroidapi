@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.interfaces.client.addresses
 import com.progressterra.ipbandroidapi.interfaces.internal.AddressesRepository
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.Address
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
@@ -17,18 +18,18 @@ class AddressApiImpl : AddressApi {
 
     override suspend fun addClientAddress(
         accessToken: String,
-        addressUI: AddressUI
+        address: Address
     ): ResponseWrapper<ResultResponse> {
-        return repository.addClientAddress(accessToken, addressUI.convertToUpdateAddressRequest())
+        return repository.addClientAddress(accessToken, address)
     }
 
     override suspend fun updateClientAddress(
         accessToken: String,
-        addressUI: AddressUI
+        address: Address
     ): ResponseWrapper<ResultResponse> {
         return repository.updateClientAddress(
             accessToken,
-            addressUI.convertToUpdateAddressRequest()
+            address
         )
     }
 

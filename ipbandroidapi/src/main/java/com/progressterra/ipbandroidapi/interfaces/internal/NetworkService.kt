@@ -4,6 +4,8 @@ import android.util.Log
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 
 internal interface NetworkService {
@@ -11,7 +13,15 @@ internal interface NetworkService {
     fun <T> createService(apiClass: Class<T>): T
 
 
-    suspend fun <T> safeApiCall(responseFunction: suspend () -> T): T?
+    suspend fun <T> safeApiCall(responseFunction: suspend () -> T): T? =
+        withContext(Dispatchers.IO) {
+            try {
+                responseFunction.invoke()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null
+            }
+        }
 
     /**
     Метод предназначен для совершения запросов в сеть. Благодаря ему основываясь на коде ответа Http,
