@@ -6,8 +6,6 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.Address
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
-import retrofit2.http.Body
-import retrofit2.http.POST
 
 internal interface AddressesRepository {
     suspend fun getAddressList(accessToken: String): ResponseWrapper<ListOfAddressesResponse>
@@ -22,6 +20,5 @@ internal interface AddressesRepository {
         modifiClientAddressRequest: Address
     ): ResponseWrapper<ResultResponse>
 
-    @POST("suggestions/api/4_1/rs/suggest/address")
-    suspend fun getSuggestionsAddressFromDadata(@Body dadataSuggestionsRequest: DadataSuggestionsRequest): ResponseWrapper<DadataSuggestionResponse>
+    suspend fun getSuggestionsAddressFromDadata(dadataSuggestionsRequest: DadataSuggestionsRequest): ResponseWrapper<DadataSuggestionResponse>
 }
