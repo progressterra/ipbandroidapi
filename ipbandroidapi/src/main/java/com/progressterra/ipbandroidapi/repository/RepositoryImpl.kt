@@ -386,9 +386,9 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
     override suspend fun getSuggestionsAddressFromDadata(dadataSuggestionsRequest: DadataSuggestionsRequest): ResponseWrapper<DadataSuggestionResponse> {
         val response = dadataApi.getSuggestionsAddressFromDadata(dadataSuggestionsRequest)
         return if (response.isSuccessful) {
-            ResponseWrapper.ressponseIsSuccess(response.body())
+            ResponseWrapper.responseIsSuccess(response.body())
         } else {
-            ResponseWrapper.ressponseIsError("")
+            ResponseWrapper.responseIsError("")
         }
     }
 

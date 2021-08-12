@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 data class Suggestion(
     @SerializedName("data")
-    val data: Data? = null,
+    val suggestionExtendedInfo: SuggestionExtendedInfo? = null,
     @SerializedName("unrestricted_value")
     val unrestrictedValue: String? = null,
     @SerializedName("value")
-    val value: String? = null
+    val previewOfSuggestion: String? = null
 )

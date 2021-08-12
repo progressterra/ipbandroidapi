@@ -4,7 +4,7 @@ package com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.interfaces.client.addresses.AddressUI
 
-data class Data(
+data class SuggestionExtendedInfo(
     @SerializedName("area")
     val area: String? = null,
     @SerializedName("area_fias_id")
@@ -31,6 +31,7 @@ data class Data(
     val entrance: String? = null,
     @SerializedName("flat")
     val flat: String? = null,
+    @SerializedName("floor")
     val floor: String? = null,
     @SerializedName("geo_lat")
     val geoLat: String? = null,
