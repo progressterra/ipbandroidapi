@@ -3,6 +3,10 @@ package com.progressterra.ipbandroidapi.remoteData.scrm
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.Address
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddressesResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessageSendingRequest
@@ -157,7 +161,6 @@ internal interface ScrmApi {
     @POST("/api/v3/clients/createat")
     suspend fun createClientWithoutPhone(@Body createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): Response<AccessTokenResponse>
 
-
     /**
      * получение списка сообщений
      */
@@ -182,6 +185,25 @@ internal interface ScrmApi {
     suspend fun createNewDialog(
         @Body createDialogRequest: CreateDialogRequest
     ): Response<CreateDialogResponse>
+
+    @GET("/api/v3/addressclient/list/{AccessToken}")
+    suspend fun getAddressList(@Path("AccessToken") accessToken: String): Response<ListOfAddressesResponse>
+
+    @POST("/api/v3/addressclient/{AccessToken}")
+    suspend fun addClientAddress(
+        @Path("AccessToken") accessToken: String,
+        @Body modifyClientAddressRequest: Address
+    ): Response<ResultResponse>
+
+    @PUT("/api/v3/addressclient/{AccessToken}")
+    suspend fun updateClientAddress(
+        @Path("AccessToken") accessToken: String,
+        @Body modifyClientAddressRequest: Address
+    ): Response<ResultResponse>
+
+    @Headers("Authorization: Token 444220bc01c3cb6a7bd102bdfb72175a2deee88e")
+    @POST("suggestions/api/4_1/rs/suggest/address")
+    suspend fun getSuggestionsAddressFromDadata(@Body dadataSuggestionsRequest: DadataSuggestionsRequest): Response<DadataSuggestionResponse>
 }
 
 

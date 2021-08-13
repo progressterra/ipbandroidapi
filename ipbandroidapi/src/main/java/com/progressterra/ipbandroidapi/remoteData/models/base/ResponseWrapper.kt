@@ -11,4 +11,5 @@ class ResponseWrapper<T> {
         newResponseWrapper.globalResponseStatus = this.globalResponseStatus
         return newResponseWrapper
     }
+
 }
