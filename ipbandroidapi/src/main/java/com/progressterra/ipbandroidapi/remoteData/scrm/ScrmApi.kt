@@ -192,13 +192,13 @@ internal interface ScrmApi {
     @POST("/api/v3/addressclient/{AccessToken}")
     suspend fun addClientAddress(
         @Path("AccessToken") accessToken: String,
-        @Body modifiClientAddressRequest: Address
+        @Body modifyClientAddressRequest: Address
     ): Response<ResultResponse>
 
     @PUT("/api/v3/addressclient/{AccessToken}")
     suspend fun updateClientAddress(
         @Path("AccessToken") accessToken: String,
-        @Body modifiClientAddressRequest: Address
+        @Body modifyClientAddressRequest: Address
     ): Response<ResultResponse>
 
     @Headers("Authorization: Token 444220bc01c3cb6a7bd102bdfb72175a2deee88e")

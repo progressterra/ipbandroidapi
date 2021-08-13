@@ -364,24 +364,24 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
 
     override suspend fun addClientAddress(
         accessToken: String,
-        modifiClientAddressRequest: Address
+        modifyClientAddressRequest: Address
     ): ResponseWrapper<ResultResponse> {
         return networkService.baseRequest {
             addressesApi.addClientAddress(
                 accessToken,
-                modifiClientAddressRequest
+                modifyClientAddressRequest
             )
         }
     }
 
     override suspend fun updateClientAddress(
         accessToken: String,
-        modifiClientAddressRequest: Address
+        modifyClientAddressRequest: Address
     ): ResponseWrapper<ResultResponse> {
         return networkService.baseRequest {
             addressesApi.updateClientAddress(
                 accessToken,
-                modifiClientAddressRequest
+                modifyClientAddressRequest
             )
         }
 

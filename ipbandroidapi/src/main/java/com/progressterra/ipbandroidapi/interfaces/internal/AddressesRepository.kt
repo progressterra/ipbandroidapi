@@ -17,7 +17,7 @@ internal interface AddressesRepository {
 
     suspend fun updateClientAddress(
         accessToken: String,
-        modifiClientAddressRequest: Address
+        modifyClientAddressRequest: Address
     ): ResponseWrapper<ResultResponse>
 
     suspend fun getSuggestionsAddressFromDadata(dadataSuggestionsRequest: DadataSuggestionsRequest): ResponseWrapper<DadataSuggestionResponse>
