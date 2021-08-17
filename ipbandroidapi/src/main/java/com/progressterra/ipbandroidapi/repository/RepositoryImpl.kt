@@ -47,6 +47,9 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
     private val dadataApi =
         networkService.createService(ScrmApi::class.java, NetworkSettings.DADATA_ROOT_URL)
 
+    private val dialogsApi =
+        networkService.createService(ScrmApi::class.java, NetworkSettings.AMBASSADOR_API_URL)
+
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse {
         val response = coroutineScope {
             networkService.safeApiCall {
@@ -347,15 +350,15 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
         IDRGDialog: String,
         page: String
     ): ResponseWrapper<MessagesListResponse> {
-        return networkService.baseRequest { scrmAPI.getMessagesList(IDRGDialog, page) }
+        return networkService.baseRequest { dialogsApi.getMessagesList(IDRGDialog, page) }
     }
 
     override suspend fun sendMessage(messageSendingRequest: MessageSendingRequest): ResponseWrapper<MessagesListResponse> {
-        return networkService.baseRequest { scrmAPI.sendMessage(messageSendingRequest) }
+        return networkService.baseRequest { dialogsApi.sendMessage(messageSendingRequest) }
     }
 
     override suspend fun createNewDialog(createDialogRequest: CreateDialogRequest): ResponseWrapper<CreateDialogResponse> {
-        return networkService.baseRequest { scrmAPI.createNewDialog(createDialogRequest) }
+        return networkService.baseRequest { dialogsApi.createNewDialog(createDialogRequest) }
     }
 
     override suspend fun getAddressList(accessToken: String): ResponseWrapper<ListOfAddressesResponse> {
