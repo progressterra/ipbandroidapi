@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.ipbmediadatacore.models.UploadImageResponse
 import okhttp3.MultipartBody
 
-internal class IpbmediadatacoreImpl : Ipbmediadatacore {
+internal class IpbmediadatacoreImpl : Ipbmediadatacore.EntityMobile {
 
     private val networkService: NetworkService = NetworkServiceImpl()
     private val mediaDataCoreApi =
