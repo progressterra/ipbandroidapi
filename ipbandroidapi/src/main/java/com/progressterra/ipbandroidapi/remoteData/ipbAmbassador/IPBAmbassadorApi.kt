@@ -1,19 +1,19 @@
-package com.progressterra.ipbandroidapi.remoteData.ipbAambassador
+package com.progressterra.ipbandroidapi.remoteData.ipbAmbassador
 
-import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.ambassador_status.AmbassadorStatusResponse
-import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_info.BankInfoResponse
-import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_info.UpdateBankDataRequest
-import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_info.UpdateBankInfoResponse
-import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.upload_file.UploadContractOfAmbassadorRequest
-import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.upload_file.UploadImageUrlRequest
-import com.progressterra.ipbandroidapi.remoteData.ipbmediadatacore.models.UploadImageResponse
+import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.ambassador_status.AmbassadorStatusResponse
+import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.BankInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.UpdateBankDataRequest
+import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.UpdateBankInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.upload_file.UploadContractOfAmbassadorRequest
+import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.upload_file.UploadImageUrlRequest
+import com.progressterra.ipbandroidapi.remoteData.ipbMediaDataCore.models.UploadImageResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
-interface IPBAambassadorApi {
+internal interface IPBAmbassadorApi {
     /**
      * загрузить файл на сервер
      */

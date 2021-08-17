@@ -1,13 +1,13 @@
-package com.progressterra.ipbandroidapi.remoteData.unknown
+package com.progressterra.ipbandroidapi.remoteData.iProBonusApi
 
-import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_info.UpdateUserInfoRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.ClientInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.UpdateUserInfoRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-internal interface UnknownApi {
+internal interface IProBonusApi {
     /**
      * получение базовой информации о клиенте
      * */

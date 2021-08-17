@@ -1,9 +1,15 @@
 package com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models
 
-class DialogInfoRequest(
+import com.google.gson.annotations.SerializedName
+
+data class DialogInfoRequest(
+    @SerializedName("listId")
     var listId: List<String>,
+    @SerializedName("descriptionDialog")
     var descriptionDialog: String,
+    @SerializedName("additionalData")
     var additionalData: String = "",
+    @SerializedName("additionalDataJSON")
     var additionalDataJSON: String
 )
 

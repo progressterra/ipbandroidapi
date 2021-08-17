@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_info
+package com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info
 
 import com.google.gson.annotations.SerializedName
 

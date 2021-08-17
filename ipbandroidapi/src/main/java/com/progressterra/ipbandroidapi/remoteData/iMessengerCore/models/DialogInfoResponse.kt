@@ -6,20 +6,20 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class DialogInfoResponse(
     @SerializedName("data")
-    val dialogInfo: DialogInfo,
+    val dialogInfo: DialogInfo? = null,
 ) : BaseResponse()
 
 data class DialogInfo(
     @SerializedName("dateCreate")
-    val dateCreate: String,
+    val dateCreate: String? = null,
     @SerializedName("description")
-    val description: String?,
+    val description: String? = null,
     @SerializedName("idEnterprise")
-    val idEnterprise: String,
+    val idEnterprise: String? = null,
     @SerializedName("idUnique")
-    val idUnique: String,
+    val idUnique: String? = null,
     @SerializedName("additionalDataJSON")
-    val additionalDataJSON: String?,
+    val additionalDataJSON: String? = null,
     @SerializedName("additionalData")
-    val additionalData: String?
+    val additionalData: String? = null
 )

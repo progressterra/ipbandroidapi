@@ -1,17 +1,17 @@
-package com.progressterra.ipbandroidapi.remoteData.unknown
+package com.progressterra.ipbandroidapi.remoteData.iProBonusApi
 
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
-import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_info.UpdateUserInfoRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.ClientInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.UpdateUserInfoRequest
 
-internal class UnknownApiImpl : Unknown {
+internal class IProBonusApiImpl : IProBonus {
     private val apbNetworkService: NetworkService = NetworkServiceImpl()
     private val ipbApi =
         apbNetworkService.createService(
-            UnknownApi::class.java,
-            NetworkSettings.AMBASSADOR_URL
+            IProBonusApi::class.java,
+            NetworkSettings.LIKEDISLIKE_ROOT_URL
         )
 
     override suspend fun getClientInfo(accessToken: String): ClientInfoResponse {

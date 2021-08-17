@@ -1,26 +1,14 @@
-package com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.ambassador_status
-
+package com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info
 
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
-data class AmbassadorStatusResponse(
+data class UpdateBankInfoResponse(
     @SerializedName("data")
-    val ambassadorInfo: AmbassadorInfo,
+    val data: BankDataExtended? = null
 ) : BaseResponse()
 
-data class AmbassadorInfo(
-    @SerializedName("dataAmbassador")
-    val dataAmbassador: DataAmbassador? = null,
-    @SerializedName("message")
-    val message: String? = null,
-    @SerializedName("statusText")
-    val statusText: String? = null,
-    @SerializedName("statusWork")
-    val statusWork: Int? = null
-)
-
-data class DataAmbassador(
+data class BankDataExtended(
     @SerializedName("bankAccountDetails")
     val bankAccountDetails: BankAccountDetails? = null,
     @SerializedName("dateLastUpdate")
@@ -35,16 +23,8 @@ data class DataAmbassador(
     val idUnique: String? = null,
     @SerializedName("jsonDataBankAccountDetails")
     val jsonDataBankAccountDetails: String? = null,
-    @SerializedName("queryStatusWork")
-    val queryStatusWork: Int? = null,
     @SerializedName("statusWork")
-    val statusWork: Int? = null,
-    @SerializedName("urlImagePassport")
-    val urlImagePassport: String? = null,
-    @SerializedName("urlImageSNILS")
-    val urlImageSNILS: String? = null,
-    @SerializedName("urlImageContractGPH")
-    val urlImagesContract: String? = null,
+    val statusWork: Int? = null
 )
 
 data class BankAccountDetails(

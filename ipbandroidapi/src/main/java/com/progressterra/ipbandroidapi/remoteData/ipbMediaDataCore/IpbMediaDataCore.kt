@@ -1,13 +1,13 @@
-package com.progressterra.ipbandroidapi.remoteData.ipbmediadatacore
+package com.progressterra.ipbandroidapi.remoteData.ipbMediaDataCore
 
-import com.progressterra.ipbandroidapi.remoteData.ipbmediadatacore.models.UploadImageResponse
+import com.progressterra.ipbandroidapi.remoteData.ipbMediaDataCore.models.UploadImageResponse
 import okhttp3.MultipartBody
 
 
 /**
  * http://84.201.184.154:5089/docsapi/v1/index.html
  */
-interface Ipbmediadatacore {
+interface IpbMediaDataCore {
     interface EntityMobile {
         suspend fun uploadImage(
             accessToken: String,
@@ -19,4 +19,4 @@ interface Ipbmediadatacore {
 
 }
 
-fun Ipbmediadatacore(): Ipbmediadatacore.EntityMobile = IpbmediadatacoreImpl()
+fun IpbMediaDataCore(): IpbMediaDataCore.EntityMobile = IpbMediaDataCoreImpl()
