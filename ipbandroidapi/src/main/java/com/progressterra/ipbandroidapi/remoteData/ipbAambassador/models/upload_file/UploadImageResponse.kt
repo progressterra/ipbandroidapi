@@ -6,30 +6,30 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class UploadImageResponse(
     @SerializedName("data")
-    val uploadImageData: UploadImageData,
+    val uploadImageData: UploadImageData? = null,
 ) : BaseResponse()
 
 data class UploadImageData(
     @SerializedName("alias")
-    val alias: String,
+    val alias: String? = null,
     @SerializedName("contentType")
-    val contentType: Int,
+    val contentType: Int? = null,
     @SerializedName("dataJSON")
-    val dataJSON: String,
+    val dataJSON: String? = null,
     @SerializedName("dateEvent")
-    val dateEvent: String,
+    val dateEvent: String? = null,
     @SerializedName("idUnique")
-    val idUnique: String,
+    val idUnique: String? = null,
     @SerializedName("order")
-    val order: Int,
+    val order: Int? = null,
     @SerializedName("previewText")
-    val previewText: String,
+    val previewText: String? = null,
     @SerializedName("size")
-    val size: Int,
+    val size: Int? = null,
     @SerializedName("stringData")
-    val stringData: String,
+    val stringData: String? = null,
     @SerializedName("tag")
-    val tag: Int,
+    val tag: Int? = null,
     @SerializedName("urlData")
-    val urlData: String
+    val urlData: String? = null
 )

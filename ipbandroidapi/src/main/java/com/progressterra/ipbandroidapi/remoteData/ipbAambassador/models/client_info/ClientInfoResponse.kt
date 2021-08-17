@@ -6,42 +6,42 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class ClientInfoResponse(
     @SerializedName("client")
-    val client: Client,
+    val client: Client? = null,
     @SerializedName("clientAdditionalInfo")
-    val clientAdditionalInfo: ClientAdditionalInfo,
+    val clientAdditionalInfo: ClientAdditionalInfo? = null,
     @SerializedName("status")
-    val clientStatus: Int
+    val clientStatus: Int? = null
 ) : BaseResponse()
 
 data class Client(
     @SerializedName("comment")
-    val comment: String?,
+    val comment: String? = null,
     @SerializedName("dateOfBirth")
-    val dateOfBirth: String?,
+    val dateOfBirth: String? = null,
     @SerializedName("dateOfRegister")
-    val dateOfRegister: String,
+    val dateOfRegister: String? = null,
     @SerializedName("idEnterprise")
-    val idEnterprise: String,
+    val idEnterprise: String? = null,
     @SerializedName("idUnique")
-    val idUnique: String,
+    val idUnique: String? = null,
     @SerializedName("name")
-    val name: String?,
+    val name: String? = null,
     @SerializedName("patronymic")
-    val patronymic: String?,
+    val patronymic: String? = null,
     @SerializedName("sex")
-    val sex: Int?,
+    val sex: Int? = null,
     @SerializedName("soname")
-    val soname: String?
+    val soname: String? = null
 )
 
 data class ClientAdditionalInfo(
     @SerializedName("additionalInfo")
-    val additionalInfo: String?,
+    val additionalInfo: String? = null,
     @SerializedName("eMailGeneral")
-    val eMailGeneral: String,
+    val eMailGeneral: String? = null,
     @SerializedName("phoneGeneral")
-    val phoneGeneral: String,
+    val phoneGeneral: String? = null,
     @SerializedName("statusCompletion")
-    val statusCompletion: Int
+    val statusCompletion: Int? = null
 )
 

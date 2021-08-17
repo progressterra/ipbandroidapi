@@ -11,18 +11,18 @@ data class BankInfoResponse(
 
 data class BankData(
     @SerializedName("bankName")
-    val bankName: String,
+    val bankName: String? = null,
     @SerializedName("bik")
-    val bik: String,
+    val bik: String? = null,
     @SerializedName("correspondentAccount")
-    val correspondentAccount: String,
+    val correspondentAccount: String? = null,
     @SerializedName("kppBank")
-    val kppBank: String,
+    val kppBank: String? = null,
     @SerializedName("numberAccount")
-    val numberAccount: String,
+    val numberAccount: String? = null,
     @SerializedName("tinOfBank")
-    val tinOfBank: String,
+    val tinOfBank: String? = null,
     @SerializedName("typeName")
-    val typeName: String
+    val typeName: String? = null
 )
 

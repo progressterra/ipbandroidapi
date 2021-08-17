@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.SexType
 import com.progressterra.ipbandroidapi.utils.extentions.parseToDate
 
-internal data class ClientInfoModel(
+data class ClientInfoModel(
     @SerializedName("idUnique")
     val idUnique: String? = "",
     @SerializedName("idEnterprise")

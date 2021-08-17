@@ -11,55 +11,55 @@ data class AmbassadorStatusResponse(
 
 data class AmbassadorInfo(
     @SerializedName("dataAmbassador")
-    val dataAmbassador: DataAmbassador?,
+    val dataAmbassador: DataAmbassador? = null,
     @SerializedName("message")
-    val message: String,
+    val message: String? = null,
     @SerializedName("statusText")
-    val statusText: String,
+    val statusText: String? = null,
     @SerializedName("statusWork")
-    val statusWork: Int
+    val statusWork: Int? = null
 )
 
 data class DataAmbassador(
     @SerializedName("bankAccountDetails")
-    val bankAccountDetails: BankAccountDetails?,
+    val bankAccountDetails: BankAccountDetails? = null,
     @SerializedName("dateLastUpdate")
-    val dateLastUpdate: String?,
+    val dateLastUpdate: String? = null,
     @SerializedName("idAmbassadorClient")
-    val idAmbassadorClient: String?,
+    val idAmbassadorClient: String? = null,
     @SerializedName("idEnterprise")
-    val idEnterprise: String?,
+    val idEnterprise: String? = null,
     @SerializedName("idOfficerConfirmation")
-    val idOfficerConfirmation: String?,
+    val idOfficerConfirmation: String? = null,
     @SerializedName("idUnique")
-    val idUnique: String?,
+    val idUnique: String? = null,
     @SerializedName("jsonDataBankAccountDetails")
-    val jsonDataBankAccountDetails: String?,
+    val jsonDataBankAccountDetails: String? = null,
     @SerializedName("queryStatusWork")
-    val queryStatusWork: Int?,
+    val queryStatusWork: Int? = null,
     @SerializedName("statusWork")
-    val statusWork: Int?,
+    val statusWork: Int? = null,
     @SerializedName("urlImagePassport")
-    val urlImagePassport: String?,
+    val urlImagePassport: String? = null,
     @SerializedName("urlImageSNILS")
-    val urlImageSNILS: String?,
+    val urlImageSNILS: String? = null,
     @SerializedName("urlImageContractGPH")
-    val urlImagesContract: String?,
+    val urlImagesContract: String? = null,
 )
 
 data class BankAccountDetails(
     @SerializedName("bankName")
-    val bankName: String,
+    val bankName: String? = null,
     @SerializedName("bik")
-    val bik: String,
+    val bik: String? = null,
     @SerializedName("correspondentAccount")
-    val correspondentAccount: String,
+    val correspondentAccount: String? = null,
     @SerializedName("kppBank")
-    val kppBank: String,
+    val kppBank: String? = null,
     @SerializedName("numberAccount")
-    val numberAccount: String,
+    val numberAccount: String? = null,
     @SerializedName("tinOfBank")
-    val tinOfBank: String,
+    val tinOfBank: String? = null,
     @SerializedName("typeName")
-    val typeName: String
+    val typeName: String? = null
 )
