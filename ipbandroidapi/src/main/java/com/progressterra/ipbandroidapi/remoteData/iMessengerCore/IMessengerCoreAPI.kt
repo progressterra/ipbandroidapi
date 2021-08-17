@@ -2,8 +2,8 @@ package com.progressterra.ipbandroidapi.remoteData.iMessengerCore
 
 import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.DialogInfoRequest
 import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.DialogInfoResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessageSendingRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessagesListResponse
+import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.MessageSendingRequest
+import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.MessagesListResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

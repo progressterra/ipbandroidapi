@@ -5,8 +5,8 @@ import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.DialogInfoRequest
 import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.DialogInfoResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessageSendingRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessagesListResponse
+import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.MessageSendingRequest
+import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.MessagesListResponse
 
 internal class IMessengerCoreImpl : IMessengerCore {
     private val networkService: NetworkService = NetworkServiceImpl()

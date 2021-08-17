@@ -7,10 +7,6 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.Address
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessageSendingRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessagesListResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse

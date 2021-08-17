@@ -2,8 +2,8 @@ package com.progressterra.ipbandroidapi.remoteData.iMessengerCore
 
 import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.DialogInfoRequest
 import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.DialogInfoResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessageSendingRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessagesListResponse
+import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.MessageSendingRequest
+import com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models.MessagesListResponse
 
 /**
  * http://84.201.184.154:5093/docsapi/v1/index.html
