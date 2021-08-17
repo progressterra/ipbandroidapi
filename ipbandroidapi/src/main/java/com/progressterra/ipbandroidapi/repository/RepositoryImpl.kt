@@ -31,7 +31,7 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_i
 import com.progressterra.ipbandroidapi.utils.Debug
 import kotlinx.coroutines.coroutineScope
 
-internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatRepository,
+internal class RepositoryImpl : LoginRepository, BonusesRepository,
     AddressesRepository {
 
 
@@ -341,21 +341,6 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
             )
         }
 
-    }
-
-    override suspend fun getMessagesList(
-        IDRGDialog: String,
-        page: String
-    ): ResponseWrapper<MessagesListResponse> {
-        return networkService.baseRequest { scrmAPI.getMessagesList(IDRGDialog, page) }
-    }
-
-    override suspend fun sendMessage(messageSendingRequest: MessageSendingRequest): ResponseWrapper<MessagesListResponse> {
-        return networkService.baseRequest { scrmAPI.sendMessage(messageSendingRequest) }
-    }
-
-    override suspend fun createNewDialog(createDialogRequest: CreateDialogRequest): ResponseWrapper<CreateDialogResponse> {
-        return networkService.baseRequest { scrmAPI.createNewDialog(createDialogRequest) }
     }
 
     override suspend fun getAddressList(accessToken: String): ResponseWrapper<ListOfAddressesResponse> {
