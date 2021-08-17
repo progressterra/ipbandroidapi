@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.remoteData.scrm.models.ambassador_status
+package com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.ambassador_status
 
 
 import com.google.gson.annotations.SerializedName

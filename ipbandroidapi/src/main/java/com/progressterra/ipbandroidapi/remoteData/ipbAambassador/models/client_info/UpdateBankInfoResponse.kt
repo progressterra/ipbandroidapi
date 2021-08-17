@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.remoteData.scrm.models.client_info
+package com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_info
 
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
