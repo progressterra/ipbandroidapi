@@ -65,6 +65,10 @@ internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador {
         )
     }
 
+    override suspend fun becomeSelfEmployed(accessToken: String): AmbassadorStatusResponse {
+        return ipbAmbassadorApi.becomeSelfEmployed(accessToken)
+    }
+
     override suspend fun getAmbassadorStatus(accessToken: String): AmbassadorStatusResponse {
         return ipbAmbassadorApi.getAmbassadorStatus(accessToken)
     }

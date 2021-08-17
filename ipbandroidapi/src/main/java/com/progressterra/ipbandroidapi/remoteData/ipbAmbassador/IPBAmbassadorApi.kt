@@ -85,5 +85,7 @@ internal interface IPBAmbassadorApi {
     suspend fun uploadAmbassadorContractPhotoUrl(
         @Body uploadImageUrlRequest: UploadContractOfAmbassadorRequest
     ): ResultResponse
+
+
 }
 

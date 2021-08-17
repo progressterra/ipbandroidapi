@@ -34,6 +34,10 @@ interface IPBAmbassador {
             accessToken: String
         ): ResultResponse
 
+        suspend fun becomeSelfEmployed(
+            accessToken: String
+        ): AmbassadorStatusResponse
+
         suspend fun getAmbassadorStatus(accessToken: String): AmbassadorStatusResponse
 
         suspend fun getContractOfAmbassador(accessToken: String): Response<ResponseBody>
