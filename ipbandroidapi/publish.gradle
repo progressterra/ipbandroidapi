@@ -17,7 +17,7 @@ uploadArchives {
 
     repositories.mavenDeployer {
         configuration = configurations.deployLibrary
-        repository(url: 'git:dev_lib://git@bitbucket.org:' + COMPANY + '/' + REPOSITORY_NAME + '/src/' +'.git')
+        repository(url: 'git:test_lib://git@bitbucket.org:' + COMPANY + '/' + REPOSITORY_NAME + '/src/' + '.git')
         // TODO: не забудь поменять для тестов
         // lib - Антон, test_lib - Иля, dev_lib - Готовое
 

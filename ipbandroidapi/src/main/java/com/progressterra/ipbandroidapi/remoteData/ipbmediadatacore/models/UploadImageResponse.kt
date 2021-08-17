@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.upload_file
+package com.progressterra.ipbandroidapi.remoteData.ipbmediadatacore.models
 
 
 import com.google.gson.annotations.SerializedName

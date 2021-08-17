@@ -11,6 +11,7 @@ import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.upload_f
 import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.upload_file.UploadImageUrlRequest
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import okhttp3.ResponseBody
+import retrofit2.Response
 
 internal class IPBAambassadorImpl : IPBAambassador.Ambassador {
 
@@ -68,7 +69,7 @@ internal class IPBAambassadorImpl : IPBAambassador.Ambassador {
         return ipbAmbassadorApi.getAmbassadorStatus(accessToken)
     }
 
-    override suspend fun getContractOfAmbassador(accessToken: String): ResponseBody {
+    override suspend fun getContractOfAmbassador(accessToken: String): Response<ResponseBody> {
         return ipbAmbassadorApi.getContractOfAmbassador(accessToken)
     }
 

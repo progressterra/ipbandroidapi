@@ -5,8 +5,8 @@ import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_i
 import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_info.UpdateBankDataRequest
 import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_info.UpdateBankInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.upload_file.UploadContractOfAmbassadorRequest
-import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.upload_file.UploadImageResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.upload_file.UploadImageUrlRequest
+import com.progressterra.ipbandroidapi.remoteData.ipbmediadatacore.models.UploadImageResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
@@ -76,7 +76,7 @@ interface IPBAambassadorApi {
      */
     @Streaming
     @GET("/ambassador/{AccessToken}/contract/draft")
-    suspend fun getContractOfAmbassador(@Path("AccessToken") accessToken: String): ResponseBody
+    suspend fun getContractOfAmbassador(@Path("AccessToken") accessToken: String): Response<ResponseBody>
 
     /**
      * прикрепить ссылку на договор

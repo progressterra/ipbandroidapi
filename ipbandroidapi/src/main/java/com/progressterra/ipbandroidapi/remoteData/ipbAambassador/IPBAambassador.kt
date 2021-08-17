@@ -5,6 +5,7 @@ import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_i
 import com.progressterra.ipbandroidapi.remoteData.ipbAambassador.models.client_info.UpdateBankInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import okhttp3.ResponseBody
+import retrofit2.Response
 
 /**
  * http://84.201.184.154:5087/docsapi/v1/index.html
@@ -35,7 +36,7 @@ interface IPBAambassador {
 
         suspend fun getAmbassadorStatus(accessToken: String): AmbassadorStatusResponse
 
-        suspend fun getContractOfAmbassador(accessToken: String): ResponseBody
+        suspend fun getContractOfAmbassador(accessToken: String): Response<ResponseBody>
 
         suspend fun uploadAmbassadorContractPhotoUrl(
             accessToken: String,

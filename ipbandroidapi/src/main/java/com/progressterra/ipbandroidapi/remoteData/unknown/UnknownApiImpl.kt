@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.remoteData.unknownApi
+package com.progressterra.ipbandroidapi.remoteData.unknown
 
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
