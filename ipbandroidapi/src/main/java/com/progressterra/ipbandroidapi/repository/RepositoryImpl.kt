@@ -46,6 +46,9 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
     private val dadataApi =
         networkService.createService(ScrmApi::class.java, NetworkSettings.DADATA_ROOT_URL)
 
+    private val dialogsApi =
+        networkService.createService(ScrmApi::class.java, NetworkSettings.AMBASSADOR_API_URL)
+
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse {
         val response = coroutineScope {
             networkService.safeApiCall {
