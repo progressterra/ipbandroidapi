@@ -9,8 +9,6 @@ data class ClientInfoResponse(
     val client: Client? = null,
     @SerializedName("clientAdditionalInfo")
     val clientAdditionalInfo: ClientAdditionalInfo? = null,
-    @SerializedName("status")
-    val clientStatus: Int? = null
 ) : BaseResponse()
 
 data class Client(
