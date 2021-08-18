@@ -13,7 +13,7 @@ data class DialogInfoRequest(
     var additionalDataJSON: String
 )
 
-data class additionalDataJSON(
+data class AdditionalDataJSON(
     var IDEnterprise: String,
     var URLImage: String
 )
