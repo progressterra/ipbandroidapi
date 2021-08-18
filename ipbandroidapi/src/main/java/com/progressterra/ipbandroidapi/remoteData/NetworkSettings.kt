@@ -41,6 +41,7 @@ internal object NetworkSettings {
     const val AMBASSADOR_URL = "http://84.201.184.154:5087/"
     const val IMAGE_DATA_CORE_URL = "http://84.201.184.154:5089/"
     const val DIALOGS_URL = "http://84.201.184.154:5093/"
+    const val IPB_PROMOCODE_URL = "http://84.201.184.154:5025"
 
     /**
      * Доп адреса для IBONUS
