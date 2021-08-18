@@ -5,7 +5,10 @@ import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerifi
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.InitUserResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
-import com.progressterra.ipbandroidapi.interfaces.internal.*
+import com.progressterra.ipbandroidapi.interfaces.internal.AddressesRepository
+import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
+import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
+import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditionalInfo
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
@@ -20,10 +23,6 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.Address
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessageSendingRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessagesListResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
@@ -31,7 +30,7 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_i
 import com.progressterra.ipbandroidapi.utils.Debug
 import kotlinx.coroutines.coroutineScope
 
-internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatRepository,
+internal class RepositoryImpl : LoginRepository, BonusesRepository,
     AddressesRepository {
 
 
@@ -344,21 +343,6 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository, ChatReposito
             )
         }
 
-    }
-
-    override suspend fun getMessagesList(
-        IDRGDialog: String,
-        page: String
-    ): ResponseWrapper<MessagesListResponse> {
-        return networkService.baseRequest { dialogsApi.getMessagesList(IDRGDialog, page) }
-    }
-
-    override suspend fun sendMessage(messageSendingRequest: MessageSendingRequest): ResponseWrapper<MessagesListResponse> {
-        return networkService.baseRequest { dialogsApi.sendMessage(messageSendingRequest) }
-    }
-
-    override suspend fun createNewDialog(createDialogRequest: CreateDialogRequest): ResponseWrapper<CreateDialogResponse> {
-        return networkService.baseRequest { dialogsApi.createNewDialog(createDialogRequest) }
     }
 
     override suspend fun getAddressList(accessToken: String): ResponseWrapper<ListOfAddressesResponse> {

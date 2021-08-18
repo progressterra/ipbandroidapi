@@ -7,10 +7,6 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.Address
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.CreateDialogResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessageSendingRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.chat.MessagesListResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
@@ -162,45 +158,32 @@ internal interface ScrmApi {
     suspend fun createClientWithoutPhone(@Body createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): Response<AccessTokenResponse>
 
     /**
-     * получение списка сообщений
+     * получение списка адресов для текущего клиента
      */
-    @GET("/messenger/mobile/messages/{dialogId}/{currentPage}")
-    suspend fun getMessagesList(
-        @Path("dialogId") IDRGDialog: String,
-        @Path("currentPage") page: String
-    ): Response<MessagesListResponse>
-
-    /**
-     * отправка сообщения
-     */
-    @POST("/messenger/mobile/messages/text")
-    suspend fun sendMessage(
-        @Body messageSendingRequest: MessageSendingRequest
-    ): Response<MessagesListResponse>
-
-    /**
-     * создание нового диалога
-     */
-    @POST("/messenger/mobile/dialog")
-    suspend fun createNewDialog(
-        @Body createDialogRequest: CreateDialogRequest
-    ): Response<CreateDialogResponse>
-
     @GET("/api/v3/addressclient/list/{AccessToken}")
     suspend fun getAddressList(@Path("AccessToken") accessToken: String): Response<ListOfAddressesResponse>
 
+    /**
+     * добавить новый адресс
+     */
     @POST("/api/v3/addressclient/{AccessToken}")
     suspend fun addClientAddress(
         @Path("AccessToken") accessToken: String,
         @Body modifyClientAddressRequest: Address
     ): Response<ResultResponse>
 
+    /**
+     * отредактировать существующий адресс
+     */
     @PUT("/api/v3/addressclient/{AccessToken}")
     suspend fun updateClientAddress(
         @Path("AccessToken") accessToken: String,
         @Body modifyClientAddressRequest: Address
     ): Response<ResultResponse>
 
+    /**
+     * получить список подсказок адресов по введенной строке
+     */
     @Headers("Authorization: Token 444220bc01c3cb6a7bd102bdfb72175a2deee88e")
     @POST("suggestions/api/4_1/rs/suggest/address")
     suspend fun getSuggestionsAddressFromDadata(@Body dadataSuggestionsRequest: DadataSuggestionsRequest): Response<DadataSuggestionResponse>

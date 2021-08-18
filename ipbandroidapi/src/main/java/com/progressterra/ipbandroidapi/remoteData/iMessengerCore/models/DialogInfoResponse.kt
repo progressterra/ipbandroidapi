@@ -1,16 +1,15 @@
-package com.progressterra.ipbandroidapi.remoteData.scrm.models.chat
+package com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models
 
 
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
-data class CreateDialogResponse(
+data class DialogInfoResponse(
     @SerializedName("data")
-    val data: CreateDialogData? = null,
-    ) : BaseResponse()
+    val dialogInfo: DialogInfo? = null,
+) : BaseResponse()
 
-
-data class CreateDialogData(
+data class DialogInfo(
     @SerializedName("dateCreate")
     val dateCreate: String? = null,
     @SerializedName("description")
@@ -18,5 +17,9 @@ data class CreateDialogData(
     @SerializedName("idEnterprise")
     val idEnterprise: String? = null,
     @SerializedName("idUnique")
-    val idUnique: String? = null
+    val idUnique: String? = null,
+    @SerializedName("additionalDataJSON")
+    val additionalDataJSON: String? = null,
+    @SerializedName("additionalData")
+    val additionalData: String? = null
 )

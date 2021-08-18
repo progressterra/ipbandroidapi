@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.remoteData.scrm.models.chat
+package com.progressterra.ipbandroidapi.remoteData.iMessengerCore.models
 
 data class MessageSendingRequest(
     val idrgDialog:String,
