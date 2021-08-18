@@ -8,7 +8,11 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
  */
 interface IPBPromoCode {
 
-    suspend fun setPromoCode(accessToken: String, promoCode: String): BaseResponse
-}
+    interface PromoCodeUse {
+        suspend fun setPromoCode(accessToken: String, promoCode: String): BaseResponse
+    }
 
-fun IPBPromoCode(): IPBPromoCode = IPBPromoCodeImpl()
+    companion object {
+        fun PromoCodeUse(): PromoCodeUse = IPBPromoCodeImpl()
+    }
+}
