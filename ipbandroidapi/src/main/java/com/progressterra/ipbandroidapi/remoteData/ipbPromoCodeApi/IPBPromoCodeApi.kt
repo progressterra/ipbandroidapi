@@ -5,7 +5,7 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-interface IPBPromoCodeApi {
+internal interface IPBPromoCodeApi {
 
     @POST("/api/v1/promocode/setpromocode/{AccessToken}/{Promocode}")
     @Headers("Content-Type: application/json")
