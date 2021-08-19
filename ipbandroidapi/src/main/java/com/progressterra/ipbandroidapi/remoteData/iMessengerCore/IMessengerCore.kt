@@ -21,5 +21,7 @@ interface IMessengerCore {
 
     suspend fun getDialogInfo(dialogInfoRequest: DialogInfoRequest): DialogInfoResponse
 
-    fun IMessengerCore(): IMessengerCore = IMessengerCoreImpl()
+    companion object {
+        fun IMessengerCore(): IMessengerCore = IMessengerCoreImpl()
+    }
 }
