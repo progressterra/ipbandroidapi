@@ -17,6 +17,7 @@ interface IpbMediaDataCore {
         ): UploadImageResponse
     }
 
+    companion object{
+        fun EntityMobile(): EntityMobile = IpbMediaDataCoreImpl()
+    }
 }
-
-fun IpbMediaDataCore(): IpbMediaDataCore.EntityMobile = IpbMediaDataCoreImpl()
