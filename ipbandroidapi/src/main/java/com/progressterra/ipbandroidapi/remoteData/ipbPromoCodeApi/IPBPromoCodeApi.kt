@@ -7,6 +7,11 @@ import retrofit2.http.Path
 
 internal interface IPBPromoCodeApi {
 
+    /**
+     * Производится проверка на применение данного промокода (типа промокода) у клиента
+     * А также конктретно на погашенность переданного промокода
+     * Промокод может передавать в любом регистре
+     */
     @POST("/api/v1/promocode/setpromocode/{AccessToken}/{Promocode}")
     @Headers("Content-Type: application/json")
     suspend fun setPromoCode(
