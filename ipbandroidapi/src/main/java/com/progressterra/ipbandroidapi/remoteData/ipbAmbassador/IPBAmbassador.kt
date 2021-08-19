@@ -53,6 +53,8 @@ interface IPBAmbassador {
     interface Product
 
     interface SaleFix
-}
 
-fun IPBAmbassadorAmbassador(): IPBAmbassador.Ambassador = IPBAmbassadorImpl()
+    companion object {
+        fun Ambassador(): Ambassador = IPBAmbassadorImpl()
+    }
+}

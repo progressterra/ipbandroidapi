@@ -11,6 +11,8 @@ interface IProBonus {
         soname: String,
         patronymic: String
     ): ClientInfoResponse
-}
 
-fun IProBonus(): IProBonus = IProBonusApiImpl()
+    companion object {
+        fun IProBonus(): IProBonus = IProBonusApiImpl()
+    }
+}

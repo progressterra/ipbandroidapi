@@ -20,6 +20,6 @@ interface IMessengerCore {
     ): MessagesListResponse
 
     suspend fun getDialogInfo(dialogInfoRequest: DialogInfoRequest): DialogInfoResponse
-}
 
-fun IMessengerCore(): IMessengerCore = IMessengerCoreImpl()
+    fun IMessengerCore(): IMessengerCore = IMessengerCoreImpl()
+}
