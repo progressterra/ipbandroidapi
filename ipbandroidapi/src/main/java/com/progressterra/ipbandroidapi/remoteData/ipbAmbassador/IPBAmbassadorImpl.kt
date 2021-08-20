@@ -31,7 +31,8 @@ internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador {
         bik: String,
         correspondentAccount: String,
         tinOfBank: String,
-        kppBank: String
+        kppBank: String,
+        tinOfClient: String
     ): UpdateBankInfoResponse {
         return ipbAmbassadorApi.updateBankClientInfo(
             UpdateBankDataRequest(
@@ -40,7 +41,8 @@ internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador {
                 bik = bik,
                 correspondentAccount = correspondentAccount,
                 tinOfBank = tinOfBank,
-                kppBank = kppBank
+                kppBank = kppBank,
+                tinOfClient = tinOfClient
             ), accessToken
         )
     }

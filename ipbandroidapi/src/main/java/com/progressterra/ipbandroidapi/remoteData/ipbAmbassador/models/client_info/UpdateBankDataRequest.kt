@@ -16,5 +16,7 @@ data class UpdateBankDataRequest(
     @SerializedName("tinOfBank")
     var tinOfBank: String,
     @SerializedName("kppBank")
-    var kppBank: String
+    var kppBank: String,
+    @SerializedName("tinOfClient")
+    val tinOfClient: String
 )
