@@ -1,11 +1,9 @@
 package com.progressterra.ipbandroidapi.remoteData.iProBonusApi
 
+import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.CityResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.UpdateUserInfoRequest
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 internal interface IProBonusApi {
     /**
@@ -22,4 +20,11 @@ internal interface IProBonusApi {
         @Path("AccessToken") accessToken: String,
         @Body updatePersonalData: UpdateUserInfoRequest
     ): ClientInfoResponse
+
+    /**
+     *  Получаем город клиента
+     */
+    @GET("/api/v1/clientcity/{AccessToken}")
+    @Headers("Content-Type: application/json")
+    suspend fun getCityClient(@Path("AccessToken") accessToken: String): CityResponse
 }
