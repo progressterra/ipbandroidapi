@@ -21,7 +21,8 @@ interface IPBAmbassador {
             bik: String,
             correspondentAccount: String,
             tinOfBank: String,
-            kppBank: String
+            kppBank: String,
+            tinOfClient: String
         ): UpdateBankInfoResponse
 
         suspend fun uploadSnilsPhotoUrl(

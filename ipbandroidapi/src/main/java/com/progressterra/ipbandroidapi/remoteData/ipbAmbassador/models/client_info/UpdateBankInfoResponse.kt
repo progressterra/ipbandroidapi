@@ -41,5 +41,7 @@ data class BankAccountDetails(
     @SerializedName("tinOfBank")
     val tinOfBank: String? = null,
     @SerializedName("typeName")
-    val typeName: String? = null
+    val typeName: String? = null,
+    @SerializedName("tinOfClient")
+    val tinOfClient: String? = null
 )
