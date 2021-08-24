@@ -20,6 +20,7 @@ internal interface IPBFavPromoRecCoreApi {
      * @param type: 0 - ENTERPRISE
      *            : 1 - PRODUCT
      *            : 2 - OFFER
+     *            : 3 - POST
      */
     @GET("/clientfavorites/mobile/list/{AccessToken}/{TypeOfEntity}")
     @Headers("Content-Type: application/json")

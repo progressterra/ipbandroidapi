@@ -11,7 +11,7 @@ internal interface IECommersCoreApi {
      * Получаем список продуктов по списку идентификаторов RGGoodsInventory
      */
     @POST("/iecommercecore/api/v1/products/bylistid/{AccessToken}")
-    fun getProductsByIds(
+    suspend fun getProductsByIds(
         @Path("AccessToken") accessToken: String,
         @Body idsList: List<String>
     ): ProductPageResponse
