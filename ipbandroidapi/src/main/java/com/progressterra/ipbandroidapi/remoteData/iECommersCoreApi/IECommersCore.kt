@@ -1,6 +1,8 @@
 package com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi
 
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.ProductPageResponse
+import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
+import retrofit2.Response
 
 
 /**
@@ -18,6 +20,15 @@ interface IECommersCore {
             idsList: List<String>
         ): ProductPageResponse
     }
+
+    interface Cart {
+        suspend fun applyBonusesToCart(
+            accessToken: String,
+            bonusesQuantity: Int
+        ): ProductsInBasketResponse
+
+    }
+
 
     companion object {
         fun Product(): Product = IECommersCoreImpl()

@@ -12,11 +12,11 @@ interface IPBCollaborationCore {
         suspend fun applyBonusesToCart(
             accessToken: String,
             bonusesQuantity: Int
-        ): Response<ProductsInBasketResponse>
+        ): ProductsInBasketResponse
 
         suspend fun confirmOrder(
             accessToken: String
-        ): Response<ProductsInBasketResponse>
+        ): ProductsInBasketResponse
     }
 
     companion object {

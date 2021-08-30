@@ -13,11 +13,11 @@ internal interface IPBCollaborationCoreApi {
     suspend fun applyBonusesForCart(
         @Path("SumPaymentBonus") bonusesCount: String,
         @Path("AccessToken") accessToken: String
-    ): Response<ProductsInBasketResponse>
+    ): ProductsInBasketResponse
 
     /**
      * Корзина превращается в заказы - сколько организаций, столько и заказов
      */
     @POST("/collaboration/cart/mobile/confirmorder/{AccessToken}")
-    suspend fun confirmOrder(@Path("AccessToken") accessToken: String): Response<ProductsInBasketResponse>
+    suspend fun confirmOrder(@Path("AccessToken") accessToken: String): ProductsInBasketResponse
 }

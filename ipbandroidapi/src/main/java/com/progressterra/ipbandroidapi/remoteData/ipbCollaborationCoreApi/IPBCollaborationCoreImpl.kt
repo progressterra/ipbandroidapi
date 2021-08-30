@@ -18,11 +18,11 @@ internal class IPBCollaborationCoreImpl : IPBCollaborationCore.Cart {
     override suspend fun applyBonusesToCart(
         accessToken: String,
         bonusesQuantity: Int
-    ): Response<ProductsInBasketResponse> {
+    ): ProductsInBasketResponse {
         return api.applyBonusesForCart(bonusesQuantity.toString(), accessToken)
     }
 
-    override suspend fun confirmOrder(accessToken: String): Response<ProductsInBasketResponse> {
+    override suspend fun confirmOrder(accessToken: String): ProductsInBasketResponse {
         return api.confirmOrder(accessToken)
     }
 }
