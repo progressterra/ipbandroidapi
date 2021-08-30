@@ -4,10 +4,14 @@ import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.CityResponse
+import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ChangeProductCountInCartRequest
+import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.UpdateUserInfoRequest
+import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+import retrofit2.Response
 
-internal class IProBonusApiImpl : IProBonus {
+internal class IProBonusApiImpl : IProBonus, IProBonus.Cart {
     private val apbNetworkService: NetworkService = NetworkServiceImpl()
     private val ipbApi =
         apbNetworkService.createService(
@@ -33,6 +37,51 @@ internal class IProBonusApiImpl : IProBonus {
 
     override suspend fun getClientCity(accessToken: String): CityResponse {
         return ipbApi.getCityClient(accessToken)
+    }
+
+    override suspend fun getProductsInCart(accessToken: String): ProductsInBasketResponse {
+        return ipbApi.getProductsInCart(accessToken)
+    }
+
+    override suspend fun removeProductFromCart(
+        accessToken: String,
+        productId: String
+    ): ProductsInBasketResponse {
+        return ipbApi.removeProductFromCartWithFullResponseModel(accessToken, productId)
+    }
+
+    override suspend fun removeProductFromCartWithBaseResponse(
+        accessToken: String,
+        productId: String,
+        sellerId: String,
+        productCount: Int
+    ): BaseResponse {
+        return ipbApi.removeProductFromCart(
+            ChangeProductCountInCartRequest(
+                productId,
+                productCount,
+                sellerId
+            ), accessToken
+        )
+    }
+
+    override suspend fun addToCart(
+        accessToken: String,
+        productId: String,
+        sellerId: String,
+        productCount: Int
+    ): ProductsInBasketResponse {
+        return ipbApi.addProductToCart(
+            ChangeProductCountInCartRequest(
+                productId,
+                productCount,
+                sellerId
+            ), accessToken
+        )
+    }
+
+    override suspend fun cancelBonusesImplementation(accessToken: String): Response<ProductsInBasketResponse> {
+        return ipbApi.cancelBonusesImplementation(accessToken)
     }
 }
 
