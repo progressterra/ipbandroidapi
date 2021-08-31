@@ -2,6 +2,7 @@ package com.progressterra.ipbandroidapi.remoteData.iProBonusApi
 
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.PurchasesResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.CityResponse
+import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.PurchaseDetailInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
@@ -47,7 +48,7 @@ interface IProBonus {
 
     interface Purchases {
         suspend fun getPurchasesList(accessToken: String): PurchasesResponse
-        suspend fun getPurchaseDetailInfo(purchaseId: String)
+        suspend fun getPurchaseDetailInfo(purchaseId: String): PurchaseDetailInfoResponse
     }
 
     companion object {

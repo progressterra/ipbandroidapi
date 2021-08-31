@@ -1,6 +1,7 @@
 package com.progressterra.ipbandroidapi.remoteData.iProBonusApi
 
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.CityResponse
+import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.PurchaseDetailInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.PurchasesResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ChangeProductCountInCartRequest
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
@@ -81,6 +82,6 @@ internal interface IProBonusApi {
      * Отображение детальной информации о покупке клиента
      */
     @GET("/api/v1/clientpurchase/info/{purchaseId}")
-    suspend fun getPurchaseDetailInfo(@Path("purchaseId") purchaseId: String)
+    suspend fun getPurchaseDetailInfo(@Path("purchaseId") purchaseId: String):PurchaseDetailInfoResponse
 
 }

@@ -4,6 +4,7 @@ import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.CityResponse
+import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.PurchaseDetailInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.PurchasesResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ChangeProductCountInCartRequest
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
@@ -88,7 +89,7 @@ internal class IProBonusApiImpl : IProBonus, IProBonus.Cart, IProBonus.Purchases
         return ipbApi.getPurchasesList(accessToken)
     }
 
-    override suspend fun getPurchaseDetailInfo(purchaseId: String) {
+    override suspend fun getPurchaseDetailInfo(purchaseId: String): PurchaseDetailInfoResponse {
         return ipbApi.getPurchaseDetailInfo(purchaseId)
     }
 }
