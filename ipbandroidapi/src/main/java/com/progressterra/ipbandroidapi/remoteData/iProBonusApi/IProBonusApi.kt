@@ -1,12 +1,13 @@
 package com.progressterra.ipbandroidapi.remoteData.iProBonusApi
 
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.CityResponse
+import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.PurchaseDetailInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.PurchasesResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ChangeProductCountInCartRequest
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.UpdateUserInfoRequest
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import retrofit2.Response
 import retrofit2.http.*
 
 internal interface IProBonusApi {
@@ -69,5 +70,18 @@ internal interface IProBonusApi {
      *  Отменяет применение бонусов в корзине
      */
     @POST("/iecommercecore/api/v3/cart/{AccessToken}/cancelimplementbonus")
-    suspend fun cancelBonusesImplementation(@Path("AccessToken") accessToken: String): Response<ProductsInBasketResponse>
+    suspend fun cancelBonusesImplementation(@Path("AccessToken") accessToken: String): ProductsInBasketResponse
+
+    /**
+     * Получение списка покупок
+     */
+    @GET("/api/v1/clientpurchase/{AccessToken}")
+    suspend fun getPurchasesList(@Path("AccessToken") accessToken: String): PurchasesResponse
+
+    /**
+     * Отображение детальной информации о покупке клиента
+     */
+    @GET("/api/v1/clientpurchase/info/{purchaseId}")
+    suspend fun getPurchaseDetailInfo(@Path("purchaseId") purchaseId: String):PurchaseDetailInfoResponse
+
 }
