@@ -6,7 +6,6 @@ import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.ImplementBonusRequest
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.ProductPageResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
-import retrofit2.Response
 
 internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart {
     private val networkService: NetworkService = NetworkServiceImpl()

@@ -1,7 +1,6 @@
 package com.progressterra.ipbandroidapi.remoteData.ipbCollaborationCoreApi
 
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
-import retrofit2.Response
 
 /**
  * http://84.201.184.154:5091/docsapi/v1/index.html

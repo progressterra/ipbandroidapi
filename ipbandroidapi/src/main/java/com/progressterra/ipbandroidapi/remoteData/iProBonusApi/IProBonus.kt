@@ -46,5 +46,6 @@ interface IProBonus {
 
     companion object {
         fun IProBonus(): IProBonus = IProBonusApiImpl()
+        fun Cart(): Cart = IProBonusApiImpl()
     }
 }

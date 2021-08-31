@@ -17,7 +17,7 @@ interface IpbMediaDataCore {
         ): UploadImageResponse
     }
 
-    companion object{
+    companion object {
         fun EntityMobile(): EntityMobile = IpbMediaDataCoreImpl()
     }
 }

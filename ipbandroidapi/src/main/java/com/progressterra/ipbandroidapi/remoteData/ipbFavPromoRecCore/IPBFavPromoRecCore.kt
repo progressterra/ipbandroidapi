@@ -15,6 +15,7 @@ interface IPBFavPromoRecCore {
             idEntity: String,
             typeOfEntity: Int
         ): BaseResponse
+
         suspend fun removeFromFavorite(accessToken: String, idEntity: String): BaseResponse
     }
 

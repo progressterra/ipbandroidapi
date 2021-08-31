@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class ProductPageResponse(
     @SerializedName("data") val data: ProductPageDTO? = null
-):BaseResponse()
+) : BaseResponse()
 
 data class ProductPageDTO(
     @SerializedName("countItemsInPage") val countItemsInPage: Int? = null,

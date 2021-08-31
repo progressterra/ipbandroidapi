@@ -2,7 +2,6 @@ package com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi
 
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.ProductPageResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
-import retrofit2.Response
 
 
 /**
@@ -32,5 +31,6 @@ interface IECommersCore {
 
     companion object {
         fun Product(): Product = IECommersCoreImpl()
+        fun Cart(): Cart = IECommersCoreImpl()
     }
 }
