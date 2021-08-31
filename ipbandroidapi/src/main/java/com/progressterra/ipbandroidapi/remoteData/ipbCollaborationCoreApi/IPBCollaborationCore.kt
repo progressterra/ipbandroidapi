@@ -19,6 +19,6 @@ interface IPBCollaborationCore {
     }
 
     companion object {
-        fun Cart(): IPBCollaborationCore.Cart = IPBCollaborationCoreImpl()
+        fun Cart(): Cart = IPBCollaborationCoreImpl()
     }
 }
