@@ -1,6 +1,5 @@
 package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
-import android.util.Log
 import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.BonusesMessagesResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse

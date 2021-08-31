@@ -44,6 +44,7 @@ internal object NetworkSettings {
     const val IPB_PROMOCODE_URL = "http://84.201.184.154:5025/"
     const val IPB_FAVPROMOREC_URL = "http://84.201.184.154:5095/"
     const val IECOMMERS_CORE_URL = "http://84.201.184.154:6023/"
+    const val COLLABORATION_CORE_URL = "http://84.201.184.154:5091/"
 
     /**
      * Доп адреса для IBONUS
