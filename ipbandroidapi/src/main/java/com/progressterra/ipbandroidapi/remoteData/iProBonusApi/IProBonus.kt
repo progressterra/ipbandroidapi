@@ -1,10 +1,10 @@
 package com.progressterra.ipbandroidapi.remoteData.iProBonusApi
 
+import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.PurchasesResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.CityResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import retrofit2.Response
 
 
 interface IProBonus {
@@ -41,11 +41,18 @@ interface IProBonus {
 
         suspend fun cancelBonusesImplementation(
             accessToken: String
-        ): Response<ProductsInBasketResponse>
+        ): ProductsInBasketResponse
+
+    }
+
+    interface Purchases {
+        suspend fun getPurchasesList(accessToken: String): PurchasesResponse
+        suspend fun getPurchaseDetailInfo(purchaseId: String)
     }
 
     companion object {
         fun IProBonus(): IProBonus = IProBonusApiImpl()
         fun Cart(): Cart = IProBonusApiImpl()
+        fun Purchases(): Purchases = IProBonusApiImpl()
     }
 }

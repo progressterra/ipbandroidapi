@@ -4,14 +4,14 @@ import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.CityResponse
+import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.PurchasesResponse
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ChangeProductCountInCartRequest
 import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.ipbAmbassador.models.client_info.UpdateUserInfoRequest
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import retrofit2.Response
 
-internal class IProBonusApiImpl : IProBonus, IProBonus.Cart {
+internal class IProBonusApiImpl : IProBonus, IProBonus.Cart, IProBonus.Purchases {
     private val apbNetworkService: NetworkService = NetworkServiceImpl()
     private val ipbApi =
         apbNetworkService.createService(
@@ -80,8 +80,16 @@ internal class IProBonusApiImpl : IProBonus, IProBonus.Cart {
         )
     }
 
-    override suspend fun cancelBonusesImplementation(accessToken: String): Response<ProductsInBasketResponse> {
+    override suspend fun cancelBonusesImplementation(accessToken: String): ProductsInBasketResponse {
         return ipbApi.cancelBonusesImplementation(accessToken)
+    }
+
+    override suspend fun getPurchasesList(accessToken: String): PurchasesResponse {
+        return ipbApi.getPurchasesList(accessToken)
+    }
+
+    override suspend fun getPurchaseDetailInfo(purchaseId: String) {
+        return ipbApi.getPurchaseDetailInfo(purchaseId)
     }
 }
 
