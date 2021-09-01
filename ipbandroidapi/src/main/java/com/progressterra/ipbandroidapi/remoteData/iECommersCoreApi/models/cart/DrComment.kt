@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart
+package com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.cart
 
 
 import com.google.gson.annotations.SerializedName

@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.remoteData.ipbCollaborationCoreApi
 
-import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
+import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.cart.ProductsInBasketResponse
 import retrofit2.http.POST
 import retrofit2.http.Path
 
