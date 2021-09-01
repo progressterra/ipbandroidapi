@@ -1,7 +1,8 @@
 package com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi
 
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.ProductPageResponse
-import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
+import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.cart.ProductsInBasketResponse
+import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 
 /**
@@ -24,6 +25,31 @@ interface IECommersCore {
         suspend fun applyBonusesToCart(
             accessToken: String,
             bonusesQuantity: Int
+        ): ProductsInBasketResponse
+
+        suspend fun getProductsInCart(accessToken: String): ProductsInBasketResponse
+
+        suspend fun removeProductFromCart(
+            accessToken: String,
+            productId: String
+        ): ProductsInBasketResponse
+
+        suspend fun removeProductFromCartWithBaseResponse(
+            accessToken: String,
+            productId: String,
+            sellerId: String = "00000000-0000-0000-0000-000000000000",
+            productCount: Int = 1
+        ): BaseResponse
+
+        suspend fun addToCart(
+            accessToken: String,
+            productId: String,
+            sellerId: String = "00000000-0000-0000-0000-000000000000",
+            productCount: Int = 1
+        ): ProductsInBasketResponse
+
+        suspend fun cancelBonusesImplementation(
+            accessToken: String
         ): ProductsInBasketResponse
 
     }

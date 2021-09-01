@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.remoteData.ipbCollaborationCoreApi
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
-import com.progressterra.ipbandroidapi.remoteData.iProBonusApi.models.cart.ProductsInBasketResponse
+import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.cart.ProductsInBasketResponse
 
 internal class IPBCollaborationCoreImpl : IPBCollaborationCore.Cart {
 
