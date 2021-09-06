@@ -2,6 +2,8 @@ package com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi
 
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.ImplementBonusRequest
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.ProductPageResponse
+import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.SetDeliveryAddressRequest
+import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.SetDeliveryCommentaryRequest
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.cart.ChangeProductCountInCartRequest
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
@@ -65,5 +67,23 @@ internal interface IECommersCoreApi {
      */
     @POST("/iecommercecore/api/v3/cart/{AccessToken}/cancelimplementbonus")
     suspend fun cancelBonusesImplementation(@Path("AccessToken") accessToken: String): ProductsInBasketResponse
+
+    /**
+     *  Добавляет адрес доставки
+     */
+    @POST("/iecommercecore/api/v3/cart/{AccessToken}/address")
+    suspend fun setDeliveryAddress(
+        @Path("AccessToken") accessToken: String,
+        @Body setDeliveryAddressRequest: SetDeliveryAddressRequest
+    ): BaseResponse
+
+    /**
+     *  Добавляет комментарий клиента к заказу
+     */
+    @POST("/iecommercecore/api/v3/cart/{AccessToken}/comment")
+    suspend fun setDeliveryCommentary(
+        @Path("AccessToken") accessToken: String,
+        @Body setDeliveryCommentaryRequest: SetDeliveryCommentaryRequest
+    ): BaseResponse
 
 }

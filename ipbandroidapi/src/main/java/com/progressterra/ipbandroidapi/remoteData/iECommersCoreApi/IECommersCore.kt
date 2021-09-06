@@ -52,6 +52,16 @@ interface IECommersCore {
             accessToken: String
         ): ProductsInBasketResponse
 
+        suspend fun setCommentary(
+            accessToken: String,
+            commentary: String
+        ): BaseResponse
+
+        suspend fun setDeliveryAddress(
+            accessToken: String,
+            idAddress: String,
+            addressString: String
+        ): BaseResponse
     }
 
 

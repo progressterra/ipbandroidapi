@@ -5,6 +5,8 @@ import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.ImplementBonusRequest
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.ProductPageResponse
+import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.SetDeliveryAddressRequest
+import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.SetDeliveryCommentaryRequest
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.cart.ChangeProductCountInCartRequest
 import com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
@@ -73,5 +75,26 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart {
 
     override suspend fun cancelBonusesImplementation(accessToken: String): ProductsInBasketResponse {
         return api.cancelBonusesImplementation(accessToken)
+    }
+
+    override suspend fun setCommentary(accessToken: String, commentary: String): BaseResponse {
+        return api.setDeliveryCommentary(
+            accessToken, SetDeliveryCommentaryRequest(commentary)
+        )
+    }
+
+    override suspend fun setDeliveryAddress(
+        accessToken: String,
+        idAddress: String,
+        addressString: String
+    ): BaseResponse {
+        return api.setDeliveryAddress(
+            accessToken = accessToken,
+            SetDeliveryAddressRequest(
+                accessToken = accessToken,
+                idAddress = idAddress,
+                addressString = addressString
+            )
+        )
     }
 }
