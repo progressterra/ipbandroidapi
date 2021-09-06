@@ -86,4 +86,10 @@ internal interface IECommersCoreApi {
         @Body setDeliveryCommentaryRequest: SetDeliveryCommentaryRequest
     ): BaseResponse
 
+    /**
+     *  Устанавливает признак того, что заказ подтвержден
+     */
+    @POST("/iecommercecore/api/v3/cart/{AccessToken}/confirmorder")
+    suspend fun confirmOrder(@Path("AccessToken") accessToken: String): ProductsInBasketResponse
+
 }

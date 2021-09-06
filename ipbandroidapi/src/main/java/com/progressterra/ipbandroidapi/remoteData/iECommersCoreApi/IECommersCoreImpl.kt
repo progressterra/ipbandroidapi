@@ -97,4 +97,8 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart {
             )
         )
     }
+
+    override suspend fun confirmOrder(accessToken: String): ProductsInBasketResponse {
+        return api.confirmOrder(accessToken)
+    }
 }

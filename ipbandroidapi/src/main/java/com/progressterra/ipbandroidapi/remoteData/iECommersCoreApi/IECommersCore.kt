@@ -62,6 +62,8 @@ interface IECommersCore {
             idAddress: String,
             addressString: String
         ): BaseResponse
+
+        suspend fun confirmOrder(accessToken: String):ProductsInBasketResponse
     }
 
 
