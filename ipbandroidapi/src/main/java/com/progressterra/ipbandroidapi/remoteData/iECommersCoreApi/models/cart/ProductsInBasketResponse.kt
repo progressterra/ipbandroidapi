@@ -4,7 +4,9 @@ package com.progressterra.ipbandroidapi.remoteData.iECommersCoreApi.models.cart
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
-
+/**
+ * 	ExtDHSaleHead
+ */
 data class ProductsInBasketResponse(
     @SerializedName("data")
     val basketInfo: BasketData? = null,
