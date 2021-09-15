@@ -1,6 +1,7 @@
 package com.progressterra.ipbandroidapi.remoteData.ipbFavPromoRecCore
 
 import com.progressterra.ipbandroidapi.remoteData.ipbFavPromoRecCore.models.IDKindOfResponse
+import com.progressterra.ipbandroidapi.remoteData.ipbFavPromoRecCore.models.TypeOfEntity
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 /**
@@ -9,7 +10,7 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 interface IPBFavPromoRecCore {
 
     interface ClientFavorites {
-        suspend fun getClientEntityByType(accessToken: String, typeOfEntity: Int): IDKindOfResponse
+        suspend fun getClientEntityByType(accessToken: String, typeOfEntity: TypeOfEntity): IDKindOfResponse
         suspend fun addToFavorite(
             accessToken: String,
             idEntity: String,

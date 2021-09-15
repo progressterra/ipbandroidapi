@@ -4,6 +4,7 @@ import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.ipbFavPromoRecCore.models.IDKindOfResponse
+import com.progressterra.ipbandroidapi.remoteData.ipbFavPromoRecCore.models.TypeOfEntity
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 internal class IPBFavPromoRecCoreImpl : IPBFavPromoRecCore.Promo,
@@ -22,9 +23,9 @@ internal class IPBFavPromoRecCoreImpl : IPBFavPromoRecCore.Promo,
 
     override suspend fun getClientEntityByType(
         accessToken: String,
-        typeOfEntity: Int
+        typeOfEntity: TypeOfEntity
     ): IDKindOfResponse {
-        return api.getClientEntityByType(accessToken, typeOfEntity)
+        return api.getClientEntityByType(accessToken, typeOfEntity.value)
     }
 
     override suspend fun addToFavorite(
