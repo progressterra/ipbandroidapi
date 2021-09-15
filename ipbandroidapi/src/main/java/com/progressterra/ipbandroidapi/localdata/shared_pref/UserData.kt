@@ -15,4 +15,17 @@ object UserData : KotprefModel() {
     var clientAlreadyCreated by booleanPref(false)
     var clientInfo by gsonPref(ClientInfo(""))
     var clientAdditionalInfo by gsonPref(ClientAdditionalInfo())
+
+    fun clearUser(): Boolean {
+        registerAccessToken = ""
+        accessToken = ""
+        deviceId = ""
+        clientExist = false
+        phone = ""
+        clientAlreadyCreated = false
+        clientInfo = ClientInfo("")
+        clientAdditionalInfo = ClientAdditionalInfo()
+
+        return true
+    }
 }
