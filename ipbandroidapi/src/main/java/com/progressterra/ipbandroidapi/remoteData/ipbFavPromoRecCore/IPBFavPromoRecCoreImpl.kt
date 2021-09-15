@@ -31,9 +31,9 @@ internal class IPBFavPromoRecCoreImpl : IPBFavPromoRecCore.Promo,
     override suspend fun addToFavorite(
         accessToken: String,
         idEntity: String,
-        typeOfEntity: Int
+        typeOfEntity: TypeOfEntity
     ): BaseResponse {
-        return api.addToFavorite(accessToken, idEntity, typeOfEntity)
+        return api.addToFavorite(accessToken, idEntity, typeOfEntity.value)
     }
 
     override suspend fun removeFromFavorite(accessToken: String, idEntity: String): BaseResponse {
