@@ -45,6 +45,7 @@ internal object NetworkSettings {
     const val IPB_FAVPROMOREC_URL = "http://84.201.184.154:5095/"
     const val IECOMMERS_CORE_URL = "http://84.201.184.154:6023/"
     const val COLLABORATION_CORE_URL = "http://84.201.184.154:5091/"
+    const val SBER_API = "http://84.201.184.154:5099/"
 
     /**
      * Доп адреса для IBONUS
