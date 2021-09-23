@@ -8,6 +8,9 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+/**
+ * http://84.201.184.154:5025/docsapi/v1/index.html
+ */
 internal interface IpbDeliveryServiceApi {
 
     @POST("/IPBSberbank/register/{idDHSaleHead}")
