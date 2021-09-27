@@ -6,14 +6,13 @@ import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.scrmApiQwerty.models.requests.RemoveClientRequest
 
-class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement {
+internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement {
 
     private val networkService: NetworkService = NetworkServiceImpl()
     private val api = networkService.createService(
         SCRMApiQwertyApi::class.java,
         NetworkSettings.SCRMAPIQWERTY_ROOT_URL
     )
-
 
     /**
      *  ClientManagement
