@@ -1,0 +1,34 @@
+package com.progressterra.ipbandroidapi.remoteData.scrmApiQwerty
+
+import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
+import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
+import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
+import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remoteData.scrmApiQwerty.models.requests.RemoveClientRequest
+
+class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement {
+
+    private val networkService: NetworkService = NetworkServiceImpl()
+    private val api = networkService.createService(
+        SCRMApiQwertyApi::class.java,
+        NetworkSettings.LIKEDISLIKE_ROOT_URL
+    )
+
+
+    /**
+     *  ClientManagement
+     */
+    override suspend fun removeClientBegin(accessToken: String): BaseResponse {
+        return api.removeClientBegin(accessToken)
+    }
+
+    override suspend fun removeClientEnd(
+        accessToken: String,
+        verificationCode: String
+    ): BaseResponse {
+        return api.removeClientEnd(
+            accessToken,
+            RemoveClientRequest(accessToken = accessToken, verifiedCode = verificationCode)
+        )
+    }
+}
