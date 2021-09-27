@@ -11,7 +11,7 @@ class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement {
     private val networkService: NetworkService = NetworkServiceImpl()
     private val api = networkService.createService(
         SCRMApiQwertyApi::class.java,
-        NetworkSettings.LIKEDISLIKE_ROOT_URL
+        NetworkSettings.SCRMAPIQWERTY_ROOT_URL
     )
 
 

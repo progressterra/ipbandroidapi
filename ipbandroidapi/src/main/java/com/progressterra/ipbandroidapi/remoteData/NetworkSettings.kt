@@ -37,6 +37,7 @@ internal object NetworkSettings {
     const val LIKEDISLIKE_ROOT_URL = "https://mp1.iprobonus.com/"
     const val AMBASSADOR_API_URL = "http://84.201.184.154:5093/"
     const val ADDRESSES_ROOT_URL = "http://84.201.184.154:5021/"
+    const val SCRMAPIQWERTY_ROOT_URL = "http://84.201.184.154:5021/"
     const val DADATA_ROOT_URL = "https://suggestions.dadata.ru/"
     const val AMBASSADOR_URL = "http://84.201.184.154:5087/"
     const val IMAGE_DATA_CORE_URL = "http://84.201.184.154:5089/"
