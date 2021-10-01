@@ -9,7 +9,7 @@ import com.progressterra.ipbandroidapi.api.iProBonusApi.models.PurchasesResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateUserInfoRequest
 
-internal class IProBonusApiImpl : IProBonus.Purchases, IProBonus.ClientsV3, IProBonus.ClientCity {
+internal class IProBonusApiImpl : IProBonus.Purchases {
     private val apbNetworkService: NetworkService = NetworkServiceImpl()
     private val ipbApi =
         apbNetworkService.createService(
@@ -17,25 +17,6 @@ internal class IProBonusApiImpl : IProBonus.Purchases, IProBonus.ClientsV3, IPro
             NetworkSettings.LIKEDISLIKE_ROOT_URL
         )
 
-    override suspend fun getClientInfo(accessToken: String): ClientInfoResponse {
-        return ipbApi.getClientInfo(accessToken)
-    }
-
-    override suspend fun updateClientInfo(
-        accessToken: String,
-        name: String,
-        soname: String,
-        patronymic: String
-    ): ClientInfoResponse {
-        return ipbApi.updatePersonalInfo(
-            accessToken,
-            UpdateUserInfoRequest(soname, name, patronymic)
-        )
-    }
-
-    override suspend fun getClientCity(accessToken: String): CityResponse {
-        return ipbApi.getCityClient(accessToken)
-    }
 
     override suspend fun getPurchasesList(accessToken: String): PurchasesResponse {
         return ipbApi.getPurchasesList(accessToken)
