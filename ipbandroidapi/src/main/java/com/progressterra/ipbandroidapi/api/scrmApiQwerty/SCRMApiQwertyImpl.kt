@@ -1,0 +1,73 @@
+package com.progressterra.ipbandroidapi.api.scrmApiQwerty
+
+import com.progressterra.ipbandroidapi.api.iProBonusApi.models.CityResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.ClientInfoResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateUserInfoRequest
+import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.RemoveClientRequest
+import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
+import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
+import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
+import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+
+internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty.ClientsV3, SCRMApiQwerty.ClientCity {
+
+    private val networkService: NetworkService = NetworkServiceImpl()
+    private val api = networkService.createService(
+        SCRMApiQwertyApi.ClientManagement::class.java,
+        NetworkSettings.SCRMAPIQWERTY_ROOT_URL
+    )
+
+    private val clientsApi = networkService.createService(
+        SCRMApiQwertyApi.ClientsV3::class.java,
+        NetworkSettings.LIKEDISLIKE_ROOT_URL
+    )
+
+    private val cityApi = networkService.createService(
+        SCRMApiQwertyApi.ClientCity::class.java,
+        NetworkSettings.LIKEDISLIKE_ROOT_URL
+    )
+
+
+    /**
+     *  ClientManagement
+     */
+    override suspend fun removeClientBegin(accessToken: String): BaseResponse {
+        return api.removeClientBegin(accessToken)
+    }
+
+    override suspend fun removeClientEnd(
+        accessToken: String,
+        verificationCode: String
+    ): BaseResponse {
+        return api.removeClientEnd(
+            accessToken,
+            RemoveClientRequest(accessToken = accessToken, verifiedCode = verificationCode)
+        )
+    }
+
+    /**
+     *  ClientsV3
+     */
+    override suspend fun getClientInfo(accessToken: String): ClientInfoResponse {
+        return clientsApi.getClientInfo(accessToken)
+    }
+
+    override suspend fun updateClientInfo(
+        accessToken: String,
+        name: String,
+        soname: String,
+        patronymic: String
+    ): ClientInfoResponse {
+        return clientsApi.updatePersonalInfo(
+            accessToken,
+            UpdateUserInfoRequest(soname, name, patronymic)
+        )
+    }
+
+    /**
+     *  ClientCity
+     */
+    override suspend fun getClientCity(accessToken: String): CityResponse {
+        return cityApi.getCityClient(accessToken)
+    }
+}
