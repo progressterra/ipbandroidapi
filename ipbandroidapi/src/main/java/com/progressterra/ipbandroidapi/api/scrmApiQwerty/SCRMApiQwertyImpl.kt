@@ -4,12 +4,14 @@ import com.progressterra.ipbandroidapi.api.iProBonusApi.models.CityResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateUserInfoRequest
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.RemoveClientRequest
+import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.TestimonialRequest
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
-internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty.ClientsV3, SCRMApiQwerty.ClientCity {
+internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty.ClientsV3,
+    SCRMApiQwerty.ClientCity, SCRMApiQwerty.TestimonialsControllerV3 {
 
     private val networkService: NetworkService = NetworkServiceImpl()
     private val api = networkService.createService(
@@ -25,6 +27,10 @@ internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty
     private val cityApi = networkService.createService(
         SCRMApiQwertyApi.ClientCity::class.java,
         NetworkSettings.LIKEDISLIKE_ROOT_URL
+    )
+    private val testimonialApi = networkService.createService(
+        SCRMApiQwertyApi.TestimonialControllerV3::class.java,
+        NetworkSettings.SCRMAPIQWERTY_ROOT_URL
     )
 
 
@@ -69,5 +75,32 @@ internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty
      */
     override suspend fun getClientCity(accessToken: String): CityResponse {
         return cityApi.getCityClient(accessToken)
+    }
+
+    /**
+     * TestimonialControllerV3
+     */
+    override suspend fun addTestimonial(
+        accessToken: String,
+        nickNameClient: String,
+        message: String,
+        idEmployee: String,
+        idOrder: String,
+        idShop: String,
+        rating: Int,
+        typeMessage: String
+    ): BaseResponse {
+        return testimonialApi.addTestimonial(
+            accessToken,
+            TestimonialRequest(
+                nickNameClient,
+                message,
+                idEmployee,
+                idOrder,
+                idShop,
+                rating,
+                typeMessage
+            )
+        )
     }
 }

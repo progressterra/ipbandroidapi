@@ -69,4 +69,10 @@ internal object NetworkSettings {
      * Использовать новый апи для каталога
      */
     const val DELIVERY_KEY_DPD = "411c31ae-5dfc-11ea-9a76-0200ac100a02"
+
+
+    /**
+     *  Дефолтный айди
+     */
+    const val DEFAULT_ID = "00000000-0000-0000-0000-000000000000"
 }
