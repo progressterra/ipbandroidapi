@@ -1,5 +1,7 @@
 package com.progressterra.ipbandroidapi.api.iECommersCoreApi.models
 
-class ImplementBonusRequest(
-    var bonusCount: Int
+import com.google.gson.annotations.SerializedName
+
+data class ImplementBonusRequest(
+    @SerializedName("sumPaymentBonus") val bonusCount: Int
 )
