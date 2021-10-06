@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductPageRe
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductSetResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.GoodsQuantityResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ProductsInBasketResponse
-import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
+import com.progressterra.ipbandroidapi.remoteData.DEFAULT_ID
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 
@@ -157,7 +157,7 @@ interface IECommersCore {
         suspend fun fastRemoveFromCart(
             accessToken: String,
             idrgGoodsInventory: String,
-            idSellerAmbassador: String = NetworkSettings.DEFAULT_ID,
+            idSellerAmbassador: String = DEFAULT_ID,
             productCount: Int = 1
         ): BaseResponse
 
@@ -167,7 +167,7 @@ interface IECommersCore {
         suspend fun fastAddToCart(
             accessToken: String,
             idrgGoodsInventory: String,
-            idSellerAmbassador: String = NetworkSettings.DEFAULT_ID,
+            idSellerAmbassador: String = DEFAULT_ID,
             productCount: Int = 1
         ): BaseResponse
 
@@ -178,7 +178,7 @@ interface IECommersCore {
         suspend fun addToCart(
             accessToken: String,
             productId: String,
-            sellerId: String = NetworkSettings.DEFAULT_ID,
+            sellerId: String = DEFAULT_ID,
             productCount: Int = 1
         ): ProductsInBasketResponse
 
