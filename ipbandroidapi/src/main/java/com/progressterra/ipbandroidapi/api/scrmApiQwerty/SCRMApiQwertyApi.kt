@@ -4,6 +4,7 @@ import com.progressterra.ipbandroidapi.api.iProBonusApi.models.CityResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateUserInfoRequest
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.RemoveClientRequest
+import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.TestimonialRequest
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import retrofit2.http.*
 
@@ -48,5 +49,17 @@ internal interface SCRMApiQwertyApi {
         @GET("/api/v1/clientcity/{AccessToken}")
         @Headers("Content-Type: application/json")
         suspend fun getCityClient(@Path("AccessToken") accessToken: String): CityResponse
+    }
+
+    interface TestimonialControllerV3{
+
+        /**
+         * Добавление нового отзыва
+         */
+        @POST("/api/v3/testimonials/{AccessToken}")
+        suspend fun addTestimonial(
+            @Path("AccessToken") accessToken: String,
+            @Body testimonialRequest: TestimonialRequest
+        ): BaseResponse
     }
 }
