@@ -1,7 +1,9 @@
 package com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart
 
+import com.google.gson.annotations.SerializedName
+
 data class ChangeProductCountInCartRequest(
-    val idGoodsInventory: String,
-    val count: Int,
-    val idSellerAmbassador: String
+    @SerializedName("idGoodsInventory") val idGoodsInventory: String,
+    @SerializedName("count") val count: Int,
+    @SerializedName("idSellerAmbassador") val idSellerAmbassador: String
 )

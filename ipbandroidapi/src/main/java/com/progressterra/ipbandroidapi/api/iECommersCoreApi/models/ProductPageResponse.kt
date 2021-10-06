@@ -44,5 +44,7 @@ data class RGGoodsInventoryExt(
     @SerializedName("costtPriceBasicUnit") val costtPriceBasicUnit: Double? = null,
     @SerializedName("maxValueDiscount") val maxValueDiscount: Double? = null,
     @SerializedName("idrfPlace") val idrfPlace: String? = null,
+    @SerializedName("colorName") val colorName: String? = null,
+    @SerializedName("idrfColor") val idrfColor: String? = null,
     @SerializedName("countInCart") val countInCart: Int? = null
 )
