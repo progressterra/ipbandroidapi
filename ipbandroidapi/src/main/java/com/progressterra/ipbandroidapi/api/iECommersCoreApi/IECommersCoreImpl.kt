@@ -140,17 +140,17 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
         return cartApi.removeProductFromCartWithFullResponseModel(accessToken, productId)
     }
 
-    override suspend fun removeProductFromCartWithBaseResponse(
+    override suspend fun fastRemoveFromCart(
         accessToken: String,
-        productId: String,
-        sellerId: String,
+        idrgGoodsInventory: String,
+        idSellerAmbassador: String,
         productCount: Int
     ): BaseResponse {
         return cartApi.removeProductFromCart(
             ChangeProductCountInCartRequest(
-                productId,
+                idrgGoodsInventory,
                 productCount,
-                sellerId
+                idSellerAmbassador
             ), accessToken
         )
     }
@@ -202,11 +202,12 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
     override suspend fun fastAddToCart(
         accessToken: String,
         idrgGoodsInventory: String,
-        sellerId: String,
+        idSellerAmbassador: String,
         productCount: Int
     ): BaseResponse {
         return cartApi.fastAddToCart(
-            accessToken, ChangeProductCountInCartRequest(idrgGoodsInventory, productCount, sellerId)
+            accessToken,
+            ChangeProductCountInCartRequest(idrgGoodsInventory, productCount, idSellerAmbassador)
         )
     }
 
