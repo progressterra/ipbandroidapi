@@ -43,6 +43,16 @@ internal interface IECommersCoreApi {
             @Path("IDDRSaleRow") IDDRSaleRow: String
         ): ProductsInBasketResponse
 
+
+        /**
+         * Удаляет все строки в которых есть данная номенклатура. Используется для удаления всех товаров данной номенклатуры из корзины
+         */
+        @POST("/iecommercecore/api/v3/cart/{AccessToken}/removenomenklaturefromcart/{IDRFNomenclature}")
+        suspend fun removeNomenclatureFromCart(
+            @Path("AccessToken") accessToken: String,
+            @Path("IDRFNomenclature") idrfNomenclature: String
+        ): ProductsInBasketResponse
+
         /**
          * добавление заданного количества товара в корзину
          */

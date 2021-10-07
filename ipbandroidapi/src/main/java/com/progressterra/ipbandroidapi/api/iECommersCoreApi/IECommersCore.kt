@@ -152,6 +152,14 @@ interface IECommersCore {
         ): ProductsInBasketResponse
 
         /**
+         *  Удаление номенклатуры из корзины
+         */
+        suspend fun removeNomenclatureFromCart(
+            accessToken: String,
+            idrfNomenclature: String
+        ): ProductsInBasketResponse
+
+        /**
          *  Удаляет товар из корзины в указанном количестве, но не возвращает саму корзину
          */
         suspend fun fastRemoveFromCart(
