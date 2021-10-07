@@ -140,6 +140,13 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
         return cartApi.removeProductFromCartWithFullResponseModel(accessToken, productId)
     }
 
+    override suspend fun removeNomenclatureFromCart(
+        accessToken: String,
+        idrfNomenclature: String
+    ): ProductsInBasketResponse {
+        return cartApi.removeNomenclatureFromCart(accessToken, idrfNomenclature)
+    }
+
     override suspend fun fastRemoveFromCart(
         accessToken: String,
         idrgGoodsInventory: String,
