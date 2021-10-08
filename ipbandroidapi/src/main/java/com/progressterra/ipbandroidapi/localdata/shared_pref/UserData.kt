@@ -28,4 +28,11 @@ object UserData : KotprefModel() {
 
         return true
     }
+
+    val isPersonalCorrupted: Boolean
+        get() =
+            clientInfo.name.isEmpty()
+                    || clientInfo.soname.isEmpty()
+                    || clientAdditionalInfo.emailGeneral.isEmpty()
+                    || clientInfo.dateOfBirth == null
 }
