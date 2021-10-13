@@ -91,7 +91,8 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         return CodeVerificationModel(
             status = response.globalResponseStatus,
             userExist = UserData.clientExist,
-            error = response.errorString
+            error = response.errorString,
+            isDataCorrupted = UserData.isPersonalCorrupted
         )
     }
 
