@@ -95,7 +95,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         val clientData = ClientData(
             personalInfo.birthdate ?: "",
             personalInfo.name ?: "",
-            null,
+            personalInfo.patronymic ?: "",
             sex = personalInfo.sexType?.value?.toString() ?: "0",
             soname = personalInfo.lastname!!
         )
