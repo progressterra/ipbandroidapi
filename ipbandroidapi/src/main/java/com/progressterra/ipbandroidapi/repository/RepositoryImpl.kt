@@ -97,7 +97,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             personalInfo.name ?: "",
             personalInfo.patronymic ?: "",
             sex = personalInfo.sexType?.value?.toString() ?: "0",
-            soname = personalInfo.lastname!!
+            soname = personalInfo.lastname ?: ""
         )
 
 
