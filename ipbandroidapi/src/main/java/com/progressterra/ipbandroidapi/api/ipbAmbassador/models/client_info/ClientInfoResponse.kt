@@ -41,5 +41,13 @@ data class ClientAdditionalInfo(
     val phoneGeneral: String? = null,
     @SerializedName("statusCompletion")
     val statusCompletion: Int? = null
-)
+) {
+    fun convertToClientAdditionalInfo(): com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditionalInfo =
+        com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditionalInfo(
+            additionalInfo = additionalInfo ?: "",
+            statusCompletion = statusCompletion ?: -1,
+            emailGeneral = eMailGeneral ?: "",
+            phoneGeneral = phoneGeneral ?: ""
+        )
+}
 
