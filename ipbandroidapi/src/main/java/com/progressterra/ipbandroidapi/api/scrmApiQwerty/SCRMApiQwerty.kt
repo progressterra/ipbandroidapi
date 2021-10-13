@@ -2,6 +2,8 @@ package com.progressterra.ipbandroidapi.api.scrmApiQwerty
 
 import com.progressterra.ipbandroidapi.api.iProBonusApi.models.CityResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.ClientInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.DEFAULT_ID
+import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 
@@ -39,9 +41,27 @@ interface SCRMApiQwerty {
         suspend fun getClientCity(accessToken: String): CityResponse
     }
 
+    interface TestimonialsControllerV3 {
+
+        /**
+         * Добавление нового отзыва
+         */
+        suspend fun addTestimonial(
+            accessToken: String,
+            nickNameClient: String,
+            message: String,
+            idEmployee: String = DEFAULT_ID,
+            idOrder: String = DEFAULT_ID,
+            idShop: String = DEFAULT_ID,
+            rating: Int,
+            typeMessage: String = "0"
+        ): BaseResponse
+    }
+
     companion object {
         fun ClientManagement(): ClientManagement = SCRMApiQwertyImpl()
         fun ClientsV3(): ClientsV3 = SCRMApiQwertyImpl()
         fun ClientCity(): ClientCity = SCRMApiQwertyImpl()
+        fun TestimonialsControllerV3(): TestimonialsControllerV3 = SCRMApiQwertyImpl()
     }
 }
