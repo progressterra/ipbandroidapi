@@ -34,6 +34,8 @@ class PersonalInfo {
             sexTypeSelected = true
         }
 
+    val patronymic: String? = null
+
     var city: CitiesListResponse.City? = null
         set(value) {
             field = value
