@@ -1,5 +1,6 @@
 package com.progressterra.ipbandroidapi.repository
 
+import com.progressterra.ipbandroidapi.api.scrmApiQwerty.SCRMApiQwertyApi
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
@@ -28,6 +29,7 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
 import com.progressterra.ipbandroidapi.utils.Debug
+import com.progressterra.ipbandroidapi.utils.extentions.tryOrNull
 import kotlinx.coroutines.coroutineScope
 
 internal class RepositoryImpl : LoginRepository, BonusesRepository,
@@ -46,8 +48,10 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
     private val dadataApi =
         networkService.createService(ScrmApi::class.java, NetworkSettings.DADATA_ROOT_URL)
 
-    private val dialogsApi =
-        networkService.createService(ScrmApi::class.java, NetworkSettings.AMBASSADOR_API_URL)
+    private val clientsApi = networkService.createService(
+        SCRMApiQwertyApi.ClientsV3::class.java,
+        NetworkSettings.LIKEDISLIKE_ROOT_URL
+    )
 
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse {
         val response = coroutineScope {
@@ -87,7 +91,8 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         return CodeVerificationModel(
             status = response.globalResponseStatus,
             userExist = UserData.clientExist,
-            error = response.errorString
+            error = response.errorString,
+            isDataCorrupted = UserData.isPersonalCorrupted
         )
     }
 
@@ -203,6 +208,12 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
     private suspend fun getUserData(phoneNumber: String) {
         getExistingClient(phoneNumber)
         addDevice()
+        getAccessToken()
+
+        // Дополнительная проверка additionalData
+        if (UserData.clientAdditionalInfo.emailGeneral.isBlank()) {
+            getClientAdditionalInfo()
+        }
     }
 
     private suspend fun getExistingClient(phoneNumber: String): Boolean {
@@ -227,6 +238,14 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             addPhone(phoneNumber)
             false
         }
+    }
+
+    private suspend fun getClientAdditionalInfo() {
+        val token = getAccessToken().responseBody?.accessToken ?: return
+
+        val response = tryOrNull { clientsApi.getClientInfo(token) }
+
+        saveUserData(null, response?.clientAdditionalInfo?.convertToClientAdditionalInfo())
     }
 
     private suspend fun createNewClient(): ResponseWrapper<ClientInfoResponse> {
