@@ -244,8 +244,10 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
 
         val response = tryOrNull { clientsApi.getClientInfo(token) }
 
-        UserData.clientAdditionalInfo.emailGeneral =
-            response?.clientAdditionalInfo?.eMailGeneral ?: ""
+//        UserData.clientAdditionalInfo.emailGeneral =
+//            response?.clientAdditionalInfo?.eMailGeneral ?: ""
+
+        saveUserData(null, response?.clientAdditionalInfo?.convertToClientAdditionalInfo())
     }
 
     private suspend fun createNewClient(): ResponseWrapper<ClientInfoResponse> {
