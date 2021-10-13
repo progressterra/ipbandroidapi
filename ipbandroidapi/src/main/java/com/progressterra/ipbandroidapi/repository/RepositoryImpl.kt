@@ -91,7 +91,8 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         return CodeVerificationModel(
             status = response.globalResponseStatus,
             userExist = UserData.clientExist,
-            error = response.errorString
+            error = response.errorString,
+            isDataCorrupted = UserData.isPersonalCorrupted
         )
     }
 
@@ -244,8 +245,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
 
         val response = tryOrNull { clientsApi.getClientInfo(token) }
 
-        UserData.clientAdditionalInfo.emailGeneral =
-            response?.clientAdditionalInfo?.eMailGeneral ?: ""
+        saveUserData(null, response?.clientAdditionalInfo?.convertToClientAdditionalInfo())
     }
 
     private suspend fun createNewClient(): ResponseWrapper<ClientInfoResponse> {
