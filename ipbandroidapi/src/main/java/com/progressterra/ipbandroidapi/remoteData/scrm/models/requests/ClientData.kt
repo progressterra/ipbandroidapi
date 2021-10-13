@@ -8,7 +8,7 @@ data class ClientData(
     @SerializedName("Name")
     val name: String,
     @SerializedName("Patronymic")
-    val patronymic: Any?,
+    val patronymic: String,
     @SerializedName("Sex")
     val sex: String,
     @SerializedName("Soname")
