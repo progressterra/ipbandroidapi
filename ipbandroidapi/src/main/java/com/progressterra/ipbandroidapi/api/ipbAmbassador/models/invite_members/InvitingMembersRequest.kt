@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class InvitingMembersRequest(
     @SerializedName("accessTokenAmbassador")
-    var accessTokenAmbassador: String,
+    val accessTokenAmbassador: String,
     @SerializedName("listPhones")
-    var listPhones: List<String>
+    val listPhones: List<String>
 )

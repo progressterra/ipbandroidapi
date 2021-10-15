@@ -4,9 +4,9 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.ambassador_statu
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.BankInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankDataRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankInfoResponse
-import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InfoForInvitingMembersResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.AmbassadorInviteDataResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InviteByPhoneResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersRequest
-import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadContractOfAmbassadorRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadImageUrlRequest
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
@@ -20,7 +20,10 @@ internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador, IPBAmbassador.Ambas
 
     private val networkService: NetworkService = NetworkServiceImpl()
     private val ipbAmbassadorApi =
-        networkService.createService(IPBAmbassadorApi::class.java, NetworkSettings.AMBASSADOR_URL)
+        networkService.createService(
+            IPBAmbassadorApi.Ambassador::class.java,
+            NetworkSettings.AMBASSADOR_URL
+        )
 
     private val ipbAmbassadorInviteApi =
         networkService.createService(
@@ -100,11 +103,11 @@ internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador, IPBAmbassador.Ambas
         )
     }
 
-    override suspend fun getInviteInfo(accessToken: String): InfoForInvitingMembersResponse {
+    override suspend fun getInviteInfo(accessToken: String): AmbassadorInviteDataResponse {
         return ipbAmbassadorInviteApi.getInviteInfo(accessToken)
     }
 
-    override suspend fun sendInvites(invitingMembersRequest: InvitingMembersRequest): InvitingMembersResponse {
+    override suspend fun sendInvites(invitingMembersRequest: InvitingMembersRequest): InviteByPhoneResponse {
         return ipbAmbassadorInviteApi.sendInvites(invitingMembersRequest)
     }
 }
