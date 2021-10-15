@@ -6,12 +6,12 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class InfoForInvitingMembersResponse(
     @SerializedName("data")
-    val data: Data?
+    val data: Data? = null
 ) : BaseResponse() {
     data class Data(
         @SerializedName("promocode")
-        val promocode: String?,
+        val promocode: String? = null,
         @SerializedName("textInvite")
-        val textInvite: String?
+        val textInvite: String? = null
     )
 }
