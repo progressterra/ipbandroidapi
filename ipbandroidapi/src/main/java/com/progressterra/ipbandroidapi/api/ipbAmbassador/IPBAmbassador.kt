@@ -57,12 +57,12 @@ interface IPBAmbassador {
         /**
          * получить текст и персональный код приглашения для отправки контактам
          */
-        suspend fun getInviteInfo(accessToken: String): Response<InfoForInvitingMembersResponse>
+        suspend fun getInviteInfo(accessToken: String): InfoForInvitingMembersResponse
 
         /**
          * отправить приглашение на список номеров телефонов для вступления в программу лояльности
          */
-        suspend fun sendInvites(invitingMembersRequest: InvitingMembersRequest): Response<InvitingMembersResponse>
+        suspend fun sendInvites(invitingMembersRequest: InvitingMembersRequest): InvitingMembersResponse
     }
 
     interface MoneyOut

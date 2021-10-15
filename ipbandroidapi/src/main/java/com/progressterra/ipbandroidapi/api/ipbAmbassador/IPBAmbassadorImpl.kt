@@ -100,11 +100,11 @@ internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador, IPBAmbassador.Ambas
         )
     }
 
-    override suspend fun getInviteInfo(accessToken: String): Response<InfoForInvitingMembersResponse> {
+    override suspend fun getInviteInfo(accessToken: String): InfoForInvitingMembersResponse {
         return ipbAmbassadorInviteApi.getInviteInfo(accessToken)
     }
 
-    override suspend fun sendInvites(invitingMembersRequest: InvitingMembersRequest): Response<InvitingMembersResponse> {
+    override suspend fun sendInvites(invitingMembersRequest: InvitingMembersRequest): InvitingMembersResponse {
         return ipbAmbassadorInviteApi.sendInvites(invitingMembersRequest)
     }
 }

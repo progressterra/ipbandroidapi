@@ -94,13 +94,13 @@ internal interface IPBAmbassadorApi {
          * получить текст и персональный код приглашения для отправки контактам
          */
         @GET("/ambassadorinvite/invitedata/{AccessToken}")
-        suspend fun getInviteInfo(@Path("AccessToken") accessToken: String): Response<InfoForInvitingMembersResponse>
+        suspend fun getInviteInfo(@Path("AccessToken") accessToken: String): InfoForInvitingMembersResponse
 
         /**
          * отправить приглашение на список номеров телефонов для вступления в программу лояльности
          */
         @POST("/ambassadorinvite/invitebyhpone")
-        suspend fun sendInvites(@Body invitingMembersRequest: InvitingMembersRequest): Response<InvitingMembersResponse>
+        suspend fun sendInvites(@Body invitingMembersRequest: InvitingMembersRequest): InvitingMembersResponse
     }
 
 
