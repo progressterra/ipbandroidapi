@@ -1,23 +1,32 @@
 package com.progressterra.ipbandroidapi.api.ipbAmbassador
 
-import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.ambassador_status.AmbassadorStatusResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.BankInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankDataRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankInfoResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InfoForInvitingMembersResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersRequest
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadContractOfAmbassadorRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadImageUrlRequest
+import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
+import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
+import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import okhttp3.ResponseBody
 import retrofit2.Response
 
-internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador {
+internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador, IPBAmbassador.AmbassadorInvite {
 
     private val networkService: NetworkService = NetworkServiceImpl()
     private val ipbAmbassadorApi =
         networkService.createService(IPBAmbassadorApi::class.java, NetworkSettings.AMBASSADOR_URL)
+
+    private val ipbAmbassadorInviteApi =
+        networkService.createService(
+            IPBAmbassadorApi.AmbassadorInvite::class.java,
+            NetworkSettings.AMBASSADOR_INVITE_URL
+        )
 
 
     override suspend fun getUserBankData(accessToken: String): BankInfoResponse {
@@ -89,5 +98,13 @@ internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador {
                 urlImage
             )
         )
+    }
+
+    override suspend fun getInviteInfo(accessToken: String): Response<InfoForInvitingMembersResponse> {
+        return ipbAmbassadorInviteApi.getInviteInfo(accessToken)
+    }
+
+    override suspend fun sendInvites(invitingMembersRequest: InvitingMembersRequest): Response<InvitingMembersResponse> {
+        return ipbAmbassadorInviteApi.sendInvites(invitingMembersRequest)
     }
 }

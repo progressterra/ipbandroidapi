@@ -4,6 +4,9 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.ambassador_statu
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.BankInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankDataRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankInfoResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InfoForInvitingMembersResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersRequest
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadContractOfAmbassadorRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadImageUrlRequest
 import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.UploadImageResponse
@@ -85,6 +88,20 @@ internal interface IPBAmbassadorApi {
     suspend fun uploadAmbassadorContractPhotoUrl(
         @Body uploadImageUrlRequest: UploadContractOfAmbassadorRequest
     ): ResultResponse
+
+    interface AmbassadorInvite {
+        /**
+         * получить текст и персональный код приглашения для отправки контактам
+         */
+        @GET("/ambassadorinvite/invitedata/{AccessToken}")
+        suspend fun getInviteInfo(@Path("AccessToken") accessToken: String): Response<InfoForInvitingMembersResponse>
+
+        /**
+         * отправить приглашение на список номеров телефонов для вступления в программу лояльности
+         */
+        @POST("/ambassadorinvite/invitebyhpone")
+        suspend fun sendInvites(@Body invitingMembersRequest: InvitingMembersRequest): Response<InvitingMembersResponse>
+    }
 
 
 }
