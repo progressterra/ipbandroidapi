@@ -7,6 +7,9 @@ import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.GoodsQua
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.remoteData.DEFAULT_ID
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.Path
 
 
 /**
@@ -128,6 +131,14 @@ interface IECommersCore {
         ): ProductPageResponse
     }
 
+    interface ProductErp {
+
+        /**
+         *  Выдает товары по конкретному магазину и организации
+         */
+        suspend fun getPartnersGoods(idShop: String, idEnterprise: String, pageNumber: Int, pageSize: Int): ProductPageResponse
+    }
+
     interface Cart {
 
         /**
@@ -238,6 +249,7 @@ interface IECommersCore {
 
     companion object {
         fun Product(): Product = IECommersCoreImpl()
+        fun ProductErp(): ProductErp = IECommersCoreImpl()
         fun Cart(): Cart = IECommersCoreImpl()
         fun Catalog(): Catalog = IECommersCoreImpl()
     }

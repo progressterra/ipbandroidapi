@@ -5,10 +5,7 @@ import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ChangePr
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.GoodsQuantityResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 internal interface IECommersCoreApi {
 
@@ -229,6 +226,20 @@ internal interface IECommersCoreApi {
             @Path("pageSizeIncome") pageSizeIncome: Int,
             @Path("SortingField") sortingField: Int,
             @Path("SorttingOrder") sortingOrder: Int
+        ): ProductPageResponse
+    }
+
+    interface ProductErp {
+        /**
+         *  Выдает товары по конкретному магазину и организации
+         */
+        @GET("/iecommercecore/api/v1/erp/products/byshop/{IDShop}/{IDEnterpise}/{pageNumberIncome}/{pageSizeIncome}")
+        @Headers("Content-Type: application/json")
+        suspend fun getPartnersGoods(
+            @Path("IDShop") idShop: String,
+            @Path("IDEnterpise") idEnterprise: String,
+            @Path("pageNumberIncome") pageNumber: Int,
+            @Path("pageSizeIncome") pageSize: Int
         ): ProductPageResponse
     }
 
