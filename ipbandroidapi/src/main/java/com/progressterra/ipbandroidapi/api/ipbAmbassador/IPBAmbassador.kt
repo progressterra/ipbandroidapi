@@ -12,6 +12,7 @@ import retrofit2.Response
 
 /**
  * http://84.201.188.117:5087/docsapi/v1/index.html
+ * http://84.201.188.117:5027/docsapi/v1/index.html
  */
 interface IPBAmbassador {
     interface Ambassador {
