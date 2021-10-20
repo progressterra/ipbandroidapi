@@ -128,6 +128,19 @@ interface IECommersCore {
         ): ProductPageResponse
     }
 
+    interface ProductErp {
+
+        /**
+         *  Выдает товары по конкретному магазину и организации
+         */
+        suspend fun getPartnersGoods(
+            idShop: String,
+            idEnterprise: String,
+            pageNumber: Int,
+            pageSize: Int
+        ): ProductPageResponse
+    }
+
     interface Cart {
 
         /**
@@ -238,6 +251,7 @@ interface IECommersCore {
 
     companion object {
         fun Product(): Product = IECommersCoreImpl()
+        fun ProductErp(): ProductErp = IECommersCoreImpl()
         fun Cart(): Cart = IECommersCoreImpl()
         fun Catalog(): Catalog = IECommersCoreImpl()
     }
