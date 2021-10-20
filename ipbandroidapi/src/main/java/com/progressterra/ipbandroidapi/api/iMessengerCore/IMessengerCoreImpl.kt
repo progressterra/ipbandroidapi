@@ -1,12 +1,9 @@
 package com.progressterra.ipbandroidapi.api.iMessengerCore
 
+import com.progressterra.ipbandroidapi.api.iMessengerCore.models.*
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.DialogInfoRequest
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.DialogInfoResponse
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.MessageSendingRequest
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.MessagesListResponse
 
 internal class IMessengerCoreImpl : IMessengerCore.Mobile {
     private val networkService: NetworkService = NetworkServiceImpl()
@@ -25,5 +22,9 @@ internal class IMessengerCoreImpl : IMessengerCore.Mobile {
 
     override suspend fun getDialogInfo(dialogInfoRequest: DialogInfoRequest): DialogInfoResponse {
         return dialogsAPI.getDialogInfo(dialogInfoRequest)
+    }
+
+    override suspend fun getDialogList(accessToken: String): ResultDialogList {
+        return dialogsAPI.getDialogList(accessToken)
     }
 }
