@@ -3,6 +3,9 @@ package com.progressterra.ipbandroidapi.api.ipbAmbassador
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.ambassador_status.AmbassadorStatusResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.BankInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankInfoResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.AmbassadorInviteDataResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InviteByPhoneResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersRequest
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -49,6 +52,18 @@ interface IPBAmbassador {
         ): ResultResponse
     }
 
+    interface AmbassadorInvite {
+        /**
+         * получить текст и персональный код приглашения для отправки контактам
+         */
+        suspend fun getInviteInfo(accessToken: String): AmbassadorInviteDataResponse
+
+        /**
+         * отправить приглашение на список номеров телефонов для вступления в программу лояльности
+         */
+        suspend fun sendInvites(invitingMembersRequest: InvitingMembersRequest): InviteByPhoneResponse
+    }
+
     interface MoneyOut
 
     interface Product
@@ -57,5 +72,6 @@ interface IPBAmbassador {
 
     companion object {
         fun Ambassador(): Ambassador = IPBAmbassadorImpl()
+        fun AmbassadorInvite(): AmbassadorInvite = IPBAmbassadorImpl()
     }
 }

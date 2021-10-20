@@ -40,6 +40,7 @@ internal object NetworkSettings {
     const val SCRMAPIQWERTY_ROOT_URL = "http://84.201.188.117:5021/"
     const val DADATA_ROOT_URL = "https://suggestions.dadata.ru/"
     const val AMBASSADOR_URL = "http://84.201.188.117:5087/"
+    const val AMBASSADOR_INVITE_URL = "http://84.201.188.117:5027/"
     const val IMAGE_DATA_CORE_URL = "http://84.201.188.117:5089/"
     const val DIALOGS_URL = "http://84.201.188.117:5093/"
     const val IPB_PROMOCODE_URL = "http://84.201.188.117:5025/"
