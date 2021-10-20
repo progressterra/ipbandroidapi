@@ -5,7 +5,7 @@ import okhttp3.MultipartBody
 
 
 /**
- * http://84.201.184.154:5089/docsapi/v1/index.html
+ * http://84.201.188.117:5089/docsapi/v1/index.html
  */
 interface IpbMediaDataCore {
     interface EntityMobile {
