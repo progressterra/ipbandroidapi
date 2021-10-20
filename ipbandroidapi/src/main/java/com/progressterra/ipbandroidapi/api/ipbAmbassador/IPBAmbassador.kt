@@ -8,7 +8,7 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 
 /**
- * http://84.201.184.154:5087/docsapi/v1/index.html
+ * http://84.201.188.117:5087/docsapi/v1/index.html
  */
 interface IPBAmbassador {
     interface Ambassador {

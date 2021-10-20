@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.api.iMessengerCore.models.MessageSendingR
 import com.progressterra.ipbandroidapi.api.iMessengerCore.models.MessagesListResponse
 
 /**
- * http://84.201.184.154:5093/docsapi/v1/index.html
+ * http://84.201.188.117:5093/docsapi/v1/index.html
  */
 interface IMessengerCore {
 
