@@ -1,9 +1,6 @@
 package com.progressterra.ipbandroidapi.api.iMessengerCore
 
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.DialogInfoRequest
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.DialogInfoResponse
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.MessageSendingRequest
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.MessagesListResponse
+import com.progressterra.ipbandroidapi.api.iMessengerCore.models.*
 
 /**
  * http://84.201.184.154:5093/docsapi/v1/index.html
@@ -21,6 +18,11 @@ interface IMessengerCore {
         ): MessagesListResponse
 
         suspend fun getDialogInfo(dialogInfoRequest: DialogInfoRequest): DialogInfoResponse
+
+        /**
+         * Получение списка диалогов для заданного пользователя
+         */
+        suspend fun getDialogList(accessToken: String): ResultDialogList
     }
 
     companion object {
