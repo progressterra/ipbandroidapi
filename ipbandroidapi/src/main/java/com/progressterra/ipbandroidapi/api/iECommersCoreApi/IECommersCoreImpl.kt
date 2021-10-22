@@ -10,7 +10,7 @@ import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
-    IECommersCore.Catalog {
+    IECommersCore.Catalog, IECommersCore.ProductErp {
     private val networkService: NetworkService = NetworkServiceImpl()
     private val cartApi = networkService.createService(
         IECommersCoreApi.Cart::class.java,
@@ -22,6 +22,10 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
     )
     private val catalogApi = networkService.createService(
         IECommersCoreApi.Catalog::class.java,
+        NetworkSettings.IECOMMERS_CORE_URL
+    )
+    private val productErp = networkService.createService(
+        IECommersCoreApi.ProductErp::class.java,
         NetworkSettings.IECOMMERS_CORE_URL
     )
 
@@ -237,5 +241,17 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
      */
     override suspend fun getCatalog(accessToken: String): CatalogResponse {
         return catalogApi.getCatalog(accessToken)
+    }
+
+    /**
+     * Product for ERP
+     */
+    override suspend fun getPartnersGoods(
+        idShop: String,
+        idEnterprise: String,
+        pageNumber: Int,
+        pageSize: Int
+    ): ProductPageResponse {
+        return productErp.getPartnersGoods(idShop, idEnterprise, pageNumber, pageSize)
     }
 }

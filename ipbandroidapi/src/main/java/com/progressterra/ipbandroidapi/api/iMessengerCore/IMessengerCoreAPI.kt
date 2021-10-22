@@ -1,9 +1,6 @@
 package com.progressterra.ipbandroidapi.api.iMessengerCore
 
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.DialogInfoRequest
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.DialogInfoResponse
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.MessageSendingRequest
-import com.progressterra.ipbandroidapi.api.iMessengerCore.models.MessagesListResponse
+import com.progressterra.ipbandroidapi.api.iMessengerCore.models.*
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -34,4 +31,10 @@ internal interface IMessengerCoreAPI {
      */
     @POST("/messenger/mobile/dialog/bylistuser")
     suspend fun getDialogInfo(@Body dialogInfoRequest: DialogInfoRequest): DialogInfoResponse
+
+    /**
+     * Получение списка диалогов для заданного пользователя
+     */
+    @GET("/messenger/mobile/list/{AccessToken}")
+    suspend fun getDialogList(@Path("AccessToken") accessToken: String): ResultDialogList
 }
