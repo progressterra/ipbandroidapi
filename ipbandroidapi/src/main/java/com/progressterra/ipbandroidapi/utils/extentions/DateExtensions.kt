@@ -1,6 +1,5 @@
 package com.progressterra.ipbandroidapi.utils.extentions
 
-import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -22,7 +21,6 @@ fun String?.parseToDate(): Date? {
     val sdf = SimpleDateFormat(timeFormat, Locale.getDefault()).apply {
         timeZone = serverTimeZone
     }
-    Log.d("myTag", "timeFrom = $timeFormat")
     return tryOrNull { sdf.parse(this) }
 }
 
