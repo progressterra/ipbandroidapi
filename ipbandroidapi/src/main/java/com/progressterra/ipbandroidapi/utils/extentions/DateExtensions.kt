@@ -17,9 +17,6 @@ fun String?.parseToDate(): Date? {
             indexOf("+") == -1 -> {
                 serverDateFormat
             }
-            indexOf("-") == -1 -> {
-                serverDateFormat
-            }
             else -> {
                 serverDateFormatTimeZone
             }
