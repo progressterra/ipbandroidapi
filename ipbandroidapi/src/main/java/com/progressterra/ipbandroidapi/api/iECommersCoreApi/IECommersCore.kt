@@ -10,7 +10,7 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 
 /**
- *  http://84.201.184.154:6023/docsapi/v1/index.html
+ *  http://84.201.188.117:6023/docsapi/v1/index.html
  */
 interface IECommersCore {
 
@@ -138,6 +138,19 @@ interface IECommersCore {
         ): ProductPageResponse
     }
 
+    interface ProductErp {
+
+        /**
+         *  Выдает товары по конкретному магазину и организации
+         */
+        suspend fun getPartnersGoods(
+            idShop: String,
+            idEnterprise: String,
+            pageNumber: Int,
+            pageSize: Int
+        ): ProductPageResponse
+    }
+
     interface Cart {
 
         /**
@@ -248,6 +261,7 @@ interface IECommersCore {
 
     companion object {
         fun Product(): Product = IECommersCoreImpl()
+        fun ProductErp(): ProductErp = IECommersCoreImpl()
         fun Cart(): Cart = IECommersCoreImpl()
         fun Catalog(): Catalog = IECommersCoreImpl()
     }

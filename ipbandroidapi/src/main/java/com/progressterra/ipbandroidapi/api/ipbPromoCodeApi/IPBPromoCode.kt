@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 
 /**
- * http://84.201.184.154:5025/docsapi/v1/index.html
+ * http://84.201.188.117:5025/docsapi/v1/index.html
  */
 interface IPBPromoCode {
 

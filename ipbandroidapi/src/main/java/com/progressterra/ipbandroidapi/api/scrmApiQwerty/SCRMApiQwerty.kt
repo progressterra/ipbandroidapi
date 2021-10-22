@@ -8,7 +8,7 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 
 /**
- * http://84.201.184.154:5021/docsapi/v3/index.html
+ * http://84.201.188.117:5021/docsapi/v3/index.html
  */
 interface SCRMApiQwerty {
 
