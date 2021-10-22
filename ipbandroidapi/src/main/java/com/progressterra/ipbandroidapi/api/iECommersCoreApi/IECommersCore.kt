@@ -126,6 +126,16 @@ interface IECommersCore {
             sortingField: Int,
             sortingOrder: Int
         ): ProductPageResponse
+
+        /**
+         * Получение списка продуктов по номенклатуре. В списке должен приходить ОДИН товар
+         * @param IDRFNomenklatura Номенклатура товара
+         * @param IDRFShop Уникальный идентификатор магазина, по умолчанию можно использовать "00000000-0000-0000-0000-000000000000"
+         */
+        suspend fun getProductByNomenklatura(
+            nomenclatura: String,
+            idrfShop: String = "00000000-0000-0000-0000-000000000000"
+        ): ProductPageResponse
     }
 
     interface Cart {

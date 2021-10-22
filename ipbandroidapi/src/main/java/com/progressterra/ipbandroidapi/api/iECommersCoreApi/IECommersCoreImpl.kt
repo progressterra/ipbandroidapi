@@ -99,6 +99,13 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
         )
     }
 
+    override suspend fun getProductByNomenklatura(
+        nomenclatura: String,
+        idrfShop: String
+    ): ProductPageResponse {
+        return productApi.getProductByNomenklatura(nomenclatura, idrfShop)
+    }
+
     override suspend fun searchProductsByCategoryCollapsed(
         accessToken: String,
         searchString: String,
