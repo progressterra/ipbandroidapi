@@ -22,7 +22,7 @@ fun String?.parseToDate(): Date? {
             }
         }
     } else {
-        serverDateFormatTimeZone
+        serverDateFormat
     }
 
     val sdf = SimpleDateFormat(timeFormat, Locale.getDefault()).apply {
