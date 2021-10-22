@@ -227,6 +227,17 @@ internal interface IECommersCoreApi {
             @Path("SortingField") sortingField: Int,
             @Path("SorttingOrder") sortingOrder: Int
         ): ProductPageResponse
+
+        /**
+         * Получение списка продуктов по номенклатуре. В списке должен приходить ОДИН товар
+         * @param IDRFNomenklatura Номенклатура товара
+         * @param IDRFShop Уникальный идентификатор магазина, по умолчанию можно использовать "00000000-0000-0000-0000-000000000000"
+         */
+        @GET("/iecommercecore/api/v1/erp/products/product/{IDRFNomenklatura}/{IDRFShop}")
+        suspend fun getProductByNomenklatura(
+            @Path("IDRFNomenklatura") nomenclatura: String,
+            @Path("IDRFShop") idrfShop: String
+        ): ProductPageResponse
     }
 
     interface ProductErp {
