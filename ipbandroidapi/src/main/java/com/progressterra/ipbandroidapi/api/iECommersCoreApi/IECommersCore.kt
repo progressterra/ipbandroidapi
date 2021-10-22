@@ -134,7 +134,7 @@ interface IECommersCore {
          */
         suspend fun getProductByNomenklatura(
             nomenclatura: String,
-            idrfShop: String = "00000000-0000-0000-0000-000000000000"
+            idrfShop: String = DEFAULT_ID
         ): ProductPageResponse
     }
 
