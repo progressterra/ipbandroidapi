@@ -1,5 +1,6 @@
 package com.progressterra.ipbandroidapi.utils.extentions
 
+import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -12,15 +13,8 @@ private val serverTimeZone = TimeZone.getTimeZone("Europe/Moscow")
 fun String?.parseToDate(): Date? {
     if (this == null) return null
 
-    val timeFormat = if (contains("+") || contains("-")) {
-        when {
-            indexOf("+") == -1 -> {
-                serverDateFormat
-            }
-            else -> {
-                serverDateFormatTimeZone
-            }
-        }
+    val timeFormat = if (indexOf("+", 8) != -1 || indexOf("-", 8) != -1) {
+        serverDateFormatTimeZone
     } else {
         serverDateFormat
     }
@@ -28,6 +22,7 @@ fun String?.parseToDate(): Date? {
     val sdf = SimpleDateFormat(timeFormat, Locale.getDefault()).apply {
         timeZone = serverTimeZone
     }
+    Log.d("myTag", "timeFrom = $timeFormat")
     return tryOrNull { sdf.parse(this) }
 }
 
