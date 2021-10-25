@@ -48,6 +48,7 @@ internal object NetworkSettings {
     const val IECOMMERS_CORE_URL = "http://84.201.188.117:6023/"
     const val COLLABORATION_CORE_URL = "http://84.201.188.117:5091/"
     const val SBER_API = "http://84.201.188.117:5099/"
+    const val DELIVERY_API = "http://84.201.188.97:1955/"
 
     /**
      * Доп адреса для IBONUS

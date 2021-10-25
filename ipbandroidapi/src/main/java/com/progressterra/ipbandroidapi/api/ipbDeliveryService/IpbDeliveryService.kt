@@ -1,11 +1,15 @@
 package com.progressterra.ipbandroidapi.api.ipbDeliveryService
 
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.GetOrderStatusResponse
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.RegisterOrderResponse
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultDeliveryList
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultOrderStatusCreation
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.SetDeliveryTypeRequest
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.payment.RegisterOrderResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 /**
  * http://84.201.188.117:5099/docsapi/v1/index.html
+ * http://84.201.188.97:1955/docsapi/v1/index.html
  */
 interface IpbDeliveryService {
 
@@ -28,8 +32,26 @@ interface IpbDeliveryService {
         suspend fun getOrderStatus(idDHSaleHead: String): GetOrderStatusResponse
     }
 
+    interface Delivery {
+        /**
+         * Метод для полученения списка возможных способов доставки для заданного города
+         */
+        suspend fun getDeliveryList(accessToken: String): ResultDeliveryList
+
+        /**
+         * Метод для создания заказа
+         * Парметры заказа. rfMethodType - Метод доставки (0 - курьер, 1 - пункт выдачи, 2 - постамат); rfServiceType - Служба доставки (0 - IML) rdPickUpPoint - код (имя) пункта выдачи у выбранной службы
+         */
+        suspend fun createDeliveryOrder(
+            setDeliveryTypeRequest: SetDeliveryTypeRequest,
+            accessToken: String
+        ): ResultOrderStatusCreation
+
+    }
+
 
     companion object {
         fun IPBSberbank(): IPBSberbank = IpbDeliveryServiceImpl()
+        fun IPBDelivery(): Delivery = IpbDeliveryServiceImpl()
     }
 }
