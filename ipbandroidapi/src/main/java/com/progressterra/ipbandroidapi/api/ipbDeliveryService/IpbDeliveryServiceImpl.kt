@@ -1,9 +1,7 @@
 package com.progressterra.ipbandroidapi.api.ipbDeliveryService
 
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.GetOrderStatusResponse
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultDeliveryList
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultOrderStatusCreation
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.SetDeliveryTypeRequest
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.*
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.payment.RegisterOrderResponse
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
@@ -42,9 +40,17 @@ internal class IpbDeliveryServiceImpl : IpbDeliveryService.IPBSberbank,
     }
 
     override suspend fun createDeliveryOrder(
-        setDeliveryTypeRequest: SetDeliveryTypeRequest,
-        accessToken: String
+        accessToken: String,
+        rfMethodType: DeliveryMethodType,
+        rfServiceType: ServiceMethodType,
+        rdPickUpPoint: String?
     ): ResultOrderStatusCreation {
-        return deliveryApi.createDeliveryOrder(setDeliveryTypeRequest, accessToken)
+        return deliveryApi.createDeliveryOrder(
+            SetDeliveryTypeRequest(
+                rfMethodType = rfMethodType.type,
+                rfServiceType = rfServiceType.type,
+                rdPickUpPoint = rdPickUpPoint
+            ), accessToken
+        )
     }
 }

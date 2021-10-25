@@ -43,17 +43,6 @@ data class ResultDeliveryList(
         @SerializedName("drrfPickupPointCode")
         val drrfPickupPointCode: String? = null,
         @SerializedName("drrfType")
-        val drrfType: DeliveryType? = null
+        val drrfType: String? = null
     )
-
-    enum class DeliveryType {
-        @SerializedName("Доставка до постомата")
-        POSTAMAT,
-
-        @SerializedName("Доставка до Пункта Выдачи Заказов (ПВЗ)")
-        PVZ
-
-        // существует еще тип - курьерская доставка
-        // данный тип применяется к доставке, если DhPickupPointInfo==null
-    }
 }

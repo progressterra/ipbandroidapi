@@ -1,9 +1,10 @@
 package com.progressterra.ipbandroidapi.api.ipbDeliveryService
 
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.GetOrderStatusResponse
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.DeliveryMethodType
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultDeliveryList
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultOrderStatusCreation
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.SetDeliveryTypeRequest
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ServiceMethodType
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.payment.RegisterOrderResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
@@ -43,8 +44,10 @@ interface IpbDeliveryService {
          * Парметры заказа. rfMethodType - Метод доставки (0 - курьер, 1 - пункт выдачи, 2 - постамат); rfServiceType - Служба доставки (0 - IML) rdPickUpPoint - код (имя) пункта выдачи у выбранной службы
          */
         suspend fun createDeliveryOrder(
-            setDeliveryTypeRequest: SetDeliveryTypeRequest,
-            accessToken: String
+            accessToken: String,
+            rfMethodType: DeliveryMethodType,
+            rfServiceType: ServiceMethodType,
+            rdPickUpPoint: String? = null,
         ): ResultOrderStatusCreation
 
     }

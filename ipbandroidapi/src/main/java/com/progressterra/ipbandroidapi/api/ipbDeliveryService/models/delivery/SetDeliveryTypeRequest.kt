@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery
 
 import com.google.gson.annotations.SerializedName
 
-data class SetDeliveryTypeRequest(
+internal data class SetDeliveryTypeRequest(
     @SerializedName("rfMethodType")
     val rfMethodType: Int,
     @SerializedName("rfServiceType")
@@ -10,3 +10,13 @@ data class SetDeliveryTypeRequest(
     @SerializedName("rdPickUpPoint")
     val rdPickUpPoint: String? = null
 )
+
+enum class DeliveryMethodType(val type: Int) {
+    COURIER(0),
+    PVZ(1),
+    POSTAMAT(2)
+}
+
+enum class ServiceMethodType(val type: Int) {
+    IML(0)
+}
