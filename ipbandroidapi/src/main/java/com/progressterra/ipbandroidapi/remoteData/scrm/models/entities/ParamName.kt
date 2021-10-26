@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.remoteData.scrm.models.entities
 
-internal enum class ParamName(
+enum class ParamName(
     val value: String
 ) {
     EMAIL("email"),
