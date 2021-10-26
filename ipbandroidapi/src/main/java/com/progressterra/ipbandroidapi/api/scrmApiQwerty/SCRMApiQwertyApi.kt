@@ -5,7 +5,9 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.Clie
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateUserInfoRequest
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.RemoveClientRequest
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.TestimonialRequest
+import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
 import retrofit2.http.*
 
 internal interface SCRMApiQwertyApi {
@@ -40,6 +42,26 @@ internal interface SCRMApiQwertyApi {
             @Path("AccessToken") accessToken: String,
             @Body updatePersonalData: UpdateUserInfoRequest
         ): ClientInfoResponse
+
+        /**
+         * Возвращает клиента по 2-м параметрам Наименованию параметра и Значению параметра
+         * phone/79999990000, email/name@mail.org
+         *
+         * @param AccessToken Токен доступа клиента
+         * @param ParamName Наименование параметра
+         * @param ParamValue Значение параметра
+         * @return ответ сервера
+         */
+        @GET("/api/v3/clients/{AccessToken}/{ParamName}/{ParamValue}")
+        @Headers("Content-Type: application/json")
+        suspend fun getClientByParams(
+            @Path("AccessToken") AccessToken: String,
+            @Path("ParamName") ParamName: String,
+            @Path("ParamValue") ParamValue: String
+        ): ClientInfoResponse
+
+        @POST("/api/v3/clients/createat")
+        suspend fun createClientWithoutPhone(@Body createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): AccessTokenResponse
     }
 
     interface ClientCity {
@@ -51,7 +73,7 @@ internal interface SCRMApiQwertyApi {
         suspend fun getCityClient(@Path("AccessToken") accessToken: String): CityResponse
     }
 
-    interface TestimonialControllerV3{
+    interface TestimonialControllerV3 {
 
         /**
          * Добавление нового отзыва

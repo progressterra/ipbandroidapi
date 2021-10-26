@@ -3,8 +3,9 @@ package com.progressterra.ipbandroidapi.api.scrmApiQwerty
 import com.progressterra.ipbandroidapi.api.iProBonusApi.models.CityResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.remoteData.DEFAULT_ID
-import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
 
 
 /**
@@ -28,13 +29,31 @@ interface SCRMApiQwerty {
     }
 
     interface ClientsV3 {
+
         suspend fun getClientInfo(accessToken: String): ClientInfoResponse
+
         suspend fun updateClientInfo(
             accessToken: String,
             name: String,
             soname: String,
             patronymic: String
         ): ClientInfoResponse
+
+
+        /**
+         *  Получение клиета по двум параметрам, если клиента нет вернет status != 0
+         *  В result.message - текст ошибки
+         */
+        suspend fun getClientInfo(
+            registerAccessToken: String,
+            paramName: ParamName,
+            paramValue: String
+        ): ClientInfoResponse
+
+        /**
+         * Создает пустого пользователя и возвращает токен
+         */
+        suspend fun createUserWithoutData(): AccessTokenResponse
     }
 
     interface ClientCity {
