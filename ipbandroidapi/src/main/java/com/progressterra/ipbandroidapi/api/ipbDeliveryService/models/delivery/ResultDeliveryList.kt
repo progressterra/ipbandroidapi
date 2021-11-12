@@ -43,6 +43,16 @@ data class ResultDeliveryList(
         @SerializedName("drrfPickupPointCode")
         val drrfPickupPointCode: String? = null,
         @SerializedName("drrfType")
-        val drrfType: String? = null
+        val drrfType: String? = null,
+        @SerializedName("drrfPaymentAvaliable")
+        val drrfPaymentAvaliable: Int? = null,
+        @SerializedName("drrdDressingRoom")
+        val drrdDressingRoom: Boolean? = null,
+        @SerializedName("drrdCanTake")
+        val drrdCanTake: Boolean? = null,
+        @SerializedName("drrdWhereIs")
+        val drrdWhereIs: String? = null,
+        @SerializedName("drrdMetroStation")
+        val drrdMetroStation: String? = null
     )
 }
