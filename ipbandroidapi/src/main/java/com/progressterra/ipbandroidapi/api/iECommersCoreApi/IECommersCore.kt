@@ -5,6 +5,8 @@ import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductPageRe
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductSetResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.GoodsQuantityResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ProductsInBasketResponse
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.DeliveryMethodType
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ServiceMethodType
 import com.progressterra.ipbandroidapi.remoteData.DEFAULT_ID
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
@@ -249,6 +251,23 @@ interface IECommersCore {
         suspend fun getGoodsQuantity(
             accessToken: String, idrgGoodsInventory: String
         ): GoodsQuantityResponse
+
+        /**
+         * Добавляет доставку в заказ
+         * idrgGoodsInventory для:
+         * Собственная доставка: b2842d16-1780-4b21-bf9e-043ac525bab7
+         * IML: 706ab89f-e220-4c61-a8e9-d7178c422314
+         * СДЭК: a236b46f-2f54-4cb1-a119-484d11bb827d
+         */
+        suspend fun addDeliveryToCart(
+            accessToken: String,
+            idrgGoodsInventory: String,
+            displayName: String,
+            calculatedPrice: Double,
+            rfMethodType: DeliveryMethodType,
+            rfServiceType: ServiceMethodType,
+            rdPickUpPoint: String? = null
+        ): ProductsInBasketResponse
     }
 
     interface Catalog {
