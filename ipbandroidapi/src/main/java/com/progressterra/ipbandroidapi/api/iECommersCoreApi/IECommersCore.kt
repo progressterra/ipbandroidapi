@@ -1,6 +1,7 @@
 package com.progressterra.ipbandroidapi.api.iECommersCoreApi
 
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.CatalogResponse
+import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.DeliveryServiceId
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductPageResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductSetResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.GoodsQuantityResponse
@@ -261,7 +262,7 @@ interface IECommersCore {
          */
         suspend fun addDeliveryToCart(
             accessToken: String,
-            idrgGoodsInventory: String,
+            deliveryServiceId: DeliveryServiceId,
             displayName: String,
             calculatedPrice: Double,
             rfMethodType: DeliveryMethodType,

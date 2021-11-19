@@ -240,7 +240,7 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
 
     override suspend fun addDeliveryToCart(
         accessToken: String,
-        idrgGoodsInventory: String,
+        deliveryServiceId: DeliveryServiceId,
         displayName: String,
         calculatedPrice: Double,
         rfMethodType: DeliveryMethodType,
@@ -250,7 +250,7 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
         return cartApi.addDeliveryToCart(
             acessToken = accessToken,
             createDeliveryOrderRequest = CreateDeliveryOrderRequest(
-                idrgGoodsInventory,
+                deliveryServiceId.id,
                 displayName,
                 calculatedPrice,
                 rfMethodType.type,
