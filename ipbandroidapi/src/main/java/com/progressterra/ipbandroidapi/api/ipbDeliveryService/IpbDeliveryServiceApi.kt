@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.Re
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultOrderStatusCreation
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.SetDeliveryTypeRequest
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.payment.RegisterOrderResponse
-import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.payment.SendCardDataResponse
 import retrofit2.http.*
 
 /**
@@ -22,7 +22,7 @@ internal interface IpbDeliveryServiceApi {
         suspend fun sendCardData(
             @Path("idDHSaleHead") idDHSaleHead: String,
             @Query("seToken") seToken: String
-        ): BaseResponse
+        ): SendCardDataResponse
 
         @POST("/IPBSberbank/getOrderStatus/{idDHSaleHead}")
         @Headers("Content-Type: application/json")

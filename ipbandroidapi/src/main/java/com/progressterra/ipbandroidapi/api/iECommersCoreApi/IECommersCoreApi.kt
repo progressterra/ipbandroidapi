@@ -106,6 +106,19 @@ internal interface IECommersCoreApi {
             @Path("AccessToken") accessToken: String,
             @Path("IDRGGoodsInventory") idrgGoodsInventory: String
         ): GoodsQuantityResponse
+
+        /**
+         * Добавляет доставку в заказ
+         * idrgGoodsInventory для:
+         * Собственная доставка: b2842d16-1780-4b21-bf9e-043ac525bab7
+         * IML: 706ab89f-e220-4c61-a8e9-d7178c422314
+         * СДЭК: a236b46f-2f54-4cb1-a119-484d11bb827d
+         */
+        @POST("/iecommercecore/api/v3/cart/{AccessToken}/delivery")
+        suspend fun addDeliveryToCart(
+            @Path("AccessToken") acessToken: String,
+            @Body createDeliveryOrderRequest: CreateDeliveryOrderRequest
+        ): ProductsInBasketResponse
     }
 
     interface Product {

@@ -4,6 +4,8 @@ import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.*
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ChangeProductCountInCartRequest
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.GoodsQuantityResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ProductsInBasketResponse
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.DeliveryMethodType
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ServiceMethodType
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
@@ -234,6 +236,28 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
         idrgGoodsInventory: String
     ): GoodsQuantityResponse {
         return cartApi.getGoodsQuantity(accessToken, idrgGoodsInventory)
+    }
+
+    override suspend fun addDeliveryToCart(
+        accessToken: String,
+        deliveryServiceId: DeliveryServiceId,
+        displayName: String,
+        calculatedPrice: Double,
+        rfMethodType: DeliveryMethodType,
+        rfServiceType: ServiceMethodType,
+        rdPickUpPoint: String?
+    ): ProductsInBasketResponse {
+        return cartApi.addDeliveryToCart(
+            acessToken = accessToken,
+            createDeliveryOrderRequest = CreateDeliveryOrderRequest(
+                deliveryServiceId.id,
+                displayName,
+                calculatedPrice,
+                rfMethodType.type,
+                rfServiceType.type,
+                rdPickUpPoint
+            )
+        )
     }
 
     /**
