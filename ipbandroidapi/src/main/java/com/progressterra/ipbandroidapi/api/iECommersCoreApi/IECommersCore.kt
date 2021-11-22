@@ -6,10 +6,12 @@ import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductPageRe
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductSetResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.GoodsQuantityResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ProductsInBasketResponse
+import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.shop.YooMoneyConfirmationResponse
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.DeliveryMethodType
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ServiceMethodType
 import com.progressterra.ipbandroidapi.remoteData.DEFAULT_ID
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+import java.math.BigDecimal
 
 
 /**
@@ -279,10 +281,28 @@ interface IECommersCore {
         suspend fun getCatalog(accessToken: String): CatalogResponse
     }
 
+    interface Shop {
+
+        /**
+         * Оплата через Ю-мани. Отправка данных платежа на сервер
+         */
+        suspend fun sendYooMoneyToken(
+            accessToken: String,
+            paymentToken: String,
+            amount: BigDecimal,
+        ): YooMoneyConfirmationResponse
+
+        /**
+         * Проверка состояния оплаты. Если пришел статус успеха, считаем платеж совершенным
+         */
+        suspend fun getPaymentConfirmation(cartId: String): BaseResponse
+    }
+
     companion object {
         fun Product(): Product = IECommersCoreImpl()
         fun ProductErp(): ProductErp = IECommersCoreImpl()
         fun Cart(): Cart = IECommersCoreImpl()
         fun Catalog(): Catalog = IECommersCoreImpl()
+        fun Shop(): Shop = IECommersCoreImpl()
     }
 }

@@ -4,15 +4,18 @@ import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.*
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ChangeProductCountInCartRequest
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.GoodsQuantityResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ProductsInBasketResponse
+import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.shop.PaymentTokenRequest
+import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.shop.YooMoneyConfirmationResponse
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.DeliveryMethodType
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ServiceMethodType
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+import java.math.BigDecimal
 
 internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
-    IECommersCore.Catalog, IECommersCore.ProductErp {
+    IECommersCore.Catalog, IECommersCore.ProductErp, IECommersCore.Shop {
     private val networkService: NetworkService = NetworkServiceImpl()
     private val cartApi = networkService.createService(
         IECommersCoreApi.Cart::class.java,
@@ -29,6 +32,10 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
     private val productErp = networkService.createService(
         IECommersCoreApi.ProductErp::class.java,
         NetworkSettings.IECOMMERS_CORE_URL
+    )
+    private val shopApi = networkService.createService(
+        IECommersCoreApi.Shop::class.java,
+        NetworkSettings.IENTERPRISE_URL
     )
 
     /**
@@ -277,5 +284,17 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
         pageSize: Int
     ): ProductPageResponse {
         return productErp.getPartnersGoods(idShop, idEnterprise, pageNumber, pageSize)
+    }
+
+    override suspend fun sendYooMoneyToken(
+        accessToken: String,
+        paymentToken: String,
+        amount: BigDecimal
+    ): YooMoneyConfirmationResponse {
+        return shopApi.sendYooMoneyToken(accessToken, PaymentTokenRequest(amount, paymentToken))
+    }
+
+    override suspend fun getPaymentConfirmation(cartId: String): BaseResponse {
+        return shopApi.getPaymentConfirmation(cartId)
     }
 }
