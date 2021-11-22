@@ -12,7 +12,6 @@ import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import java.math.BigDecimal
 
 internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
     IECommersCore.Catalog, IECommersCore.ProductErp, IECommersCore.Shop {
@@ -289,7 +288,7 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
     override suspend fun sendYooMoneyToken(
         accessToken: String,
         paymentToken: String,
-        amount: BigDecimal
+        amount: Double
     ): YooMoneyConfirmationResponse {
         return shopApi.sendYooMoneyToken(accessToken, PaymentTokenRequest(amount, paymentToken))
     }
