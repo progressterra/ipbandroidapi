@@ -1,10 +1,7 @@
 package com.progressterra.ipbandroidapi.api.ipbDeliveryService
 
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.GetOrderStatusResponse
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.DeliveryMethodType
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultDeliveryList
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultOrderStatusCreation
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ServiceMethodType
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.*
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.payment.RegisterOrderResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
@@ -50,6 +47,10 @@ interface IpbDeliveryService {
             rdPickUpPoint: String? = null,
         ): ResultOrderStatusCreation
 
+        /**
+         * Получение всех станий метро в городе клиента
+         */
+        suspend fun getMetroStations(accessToken: String): MetroStationsResponse
     }
 
 

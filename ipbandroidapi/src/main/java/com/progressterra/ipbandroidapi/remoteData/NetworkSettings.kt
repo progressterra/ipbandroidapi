@@ -46,6 +46,7 @@ internal object NetworkSettings {
     const val IPB_PROMOCODE_URL = "http://84.201.188.117:5025/"
     const val IPB_FAVPROMOREC_URL = "http://84.201.188.117:5095/"
     const val IECOMMERS_CORE_URL = "http://84.201.188.117:6023/"
+    const val IENTERPRISE_URL = "http://84.201.188.97:5023/"
     const val COLLABORATION_CORE_URL = "http://84.201.188.117:5091/"
     const val SBER_API = "http://84.201.188.117:5099/"
     const val DELIVERY_API = "http://84.201.188.97:1955/"

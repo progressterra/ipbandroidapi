@@ -53,4 +53,8 @@ internal class IpbDeliveryServiceImpl : IpbDeliveryService.IPBSberbank,
             ), accessToken
         )
     }
+
+    override suspend fun getMetroStations(accessToken: String): MetroStationsResponse {
+        return deliveryApi.getMetroStations(accessToken)
+    }
 }

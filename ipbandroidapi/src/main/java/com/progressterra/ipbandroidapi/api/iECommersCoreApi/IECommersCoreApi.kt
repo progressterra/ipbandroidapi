@@ -4,6 +4,8 @@ import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.*
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ChangeProductCountInCartRequest
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.GoodsQuantityResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ProductsInBasketResponse
+import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.shop.PaymentTokenRequest
+import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.shop.YooMoneyConfirmationResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import retrofit2.http.*
 
@@ -274,5 +276,22 @@ internal interface IECommersCoreApi {
          */
         @GET("/iecommercecore/api/v1/catalog/{AccessToken}")
         suspend fun getCatalog(@Path("AccessToken") accessToken: String): CatalogResponse
+    }
+
+    interface Shop {
+        /**
+         * Оплата через Ю-мани. Отправка данных платежа на сервер
+         */
+        @POST("iecommercecore/api/v1/yandexcash/payment/{AccessToken}")
+        suspend fun sendYooMoneyToken(
+            @Path("AccessToken") AccessToken: String,
+            @Body data: PaymentTokenRequest
+        ): YooMoneyConfirmationResponse
+
+        /**
+         * Проверка состояния оплаты. Если пришел статус успеха, считаем платеж совершенным
+         */
+        @GET("/iecommercecore/api/v1/yandexcash/payment/{CartID}")
+        suspend fun getPaymentConfirmation(@Path("CartID") cartId: String): BaseResponse
     }
 }

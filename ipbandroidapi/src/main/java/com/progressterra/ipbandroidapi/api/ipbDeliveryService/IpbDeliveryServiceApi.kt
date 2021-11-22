@@ -1,6 +1,7 @@
 package com.progressterra.ipbandroidapi.api.ipbDeliveryService
 
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.GetOrderStatusResponse
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.MetroStationsResponse
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultDeliveryList
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultOrderStatusCreation
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.SetDeliveryTypeRequest
@@ -39,6 +40,9 @@ internal interface IpbDeliveryServiceApi {
             @Body setDeliveryTypeRequest: SetDeliveryTypeRequest,
             @Path("AccessToken") accessToken: String
         ): ResultOrderStatusCreation
+
+        @GET("/api/Metro/GetMetroStations/{AccessToken}")
+        suspend fun getMetroStations(@Path("AccessToken") accessToken: String): MetroStationsResponse
     }
 }
 
