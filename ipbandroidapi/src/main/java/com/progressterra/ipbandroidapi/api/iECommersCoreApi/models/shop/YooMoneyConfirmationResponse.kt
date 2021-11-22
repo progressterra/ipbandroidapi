@@ -6,19 +6,19 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class YooMoneyConfirmationResponse(
     @SerializedName("data")
-    val `data`: Data?,
+    val data: Data? = null,
 ) : BaseResponse()
 
 data class Data(
     @SerializedName("confirmation")
-    val confirmation: Confirmation?,
+    val confirmation: Confirmation? = null,
     @SerializedName("userMessage")
-    val userMessage: String?
+    val userMessage: String? = null
 )
 
 data class Confirmation(
     @SerializedName("confirmation_url")
-    val confirmationUrl: String?,
+    val confirmationUrl: String? = null,
     @SerializedName("type")
-    val type: String?
+    val type: String? = null
 )

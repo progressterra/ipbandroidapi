@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class MetroStationsResponse(
     @SerializedName("dataList")
-    val metroDataList: List<MetroData>?
+    val metroDataList: List<MetroData>? = null
 ) : BaseResponse()
 
 data class MetroData(
