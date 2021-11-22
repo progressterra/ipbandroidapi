@@ -11,7 +11,6 @@ import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.De
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ServiceMethodType
 import com.progressterra.ipbandroidapi.remoteData.DEFAULT_ID
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import java.math.BigDecimal
 
 
 /**
@@ -289,7 +288,7 @@ interface IECommersCore {
         suspend fun sendYooMoneyToken(
             accessToken: String,
             paymentToken: String,
-            amount: BigDecimal,
+            amount: Double,
         ): YooMoneyConfirmationResponse
 
         /**
