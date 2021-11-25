@@ -1,9 +1,11 @@
 package com.progressterra.ipbandroidapi.api.ipbMediaDataCore
 
+import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.MediaDataListResponse
+import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.MediaDataResponse
+import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.UploadImageResponse
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
-import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.UploadImageResponse
 import okhttp3.MultipartBody
 
 internal class IpbMediaDataCoreImpl : IpbMediaDataCore.EntityMobile {
@@ -22,5 +24,13 @@ internal class IpbMediaDataCoreImpl : IpbMediaDataCore.EntityMobile {
         image: MultipartBody.Part
     ): UploadImageResponse {
         return mediaDataCoreApi.uploadImage(accessToken, alias, tag, image)
+    }
+
+    override suspend fun getMediaDataListByEntity(idEntity: String): MediaDataListResponse {
+        return mediaDataCoreApi.getMediaDataListByEntity(idEntity)
+    }
+
+    override suspend fun getMediaDataById(mediaDataId: String): MediaDataResponse {
+        return mediaDataCoreApi.getMediaDataById(mediaDataId)
     }
 }
