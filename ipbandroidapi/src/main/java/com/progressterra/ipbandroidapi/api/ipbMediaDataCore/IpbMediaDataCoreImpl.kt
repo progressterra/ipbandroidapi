@@ -7,6 +7,8 @@ import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import okhttp3.MultipartBody
+import okhttp3.ResponseBody
+import retrofit2.Response
 
 internal class IpbMediaDataCoreImpl : IpbMediaDataCore.EntityMobile {
 
@@ -32,5 +34,9 @@ internal class IpbMediaDataCoreImpl : IpbMediaDataCore.EntityMobile {
 
     override suspend fun getMediaDataById(mediaDataId: String): MediaDataResponse {
         return mediaDataCoreApi.getMediaDataById(mediaDataId)
+    }
+
+    override suspend fun downloadFile(url: String): Response<ResponseBody> {
+        return mediaDataCoreApi.downloadFile(url)
     }
 }
