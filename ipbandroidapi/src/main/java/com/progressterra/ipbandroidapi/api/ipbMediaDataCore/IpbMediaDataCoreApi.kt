@@ -4,6 +4,8 @@ import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.MediaDataList
 import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.MediaDataResponse
 import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.UploadImageResponse
 import okhttp3.MultipartBody
+import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.http.*
 
 internal interface IpbMediaDataCoreApi {
@@ -21,4 +23,8 @@ internal interface IpbMediaDataCoreApi {
 
     @GET("/mobile/{IDRGEntitytMediaData}")
     suspend fun getMediaDataById(@Path("IDRGEntitytMediaData") mediaDataId: String): MediaDataResponse
+
+    @Streaming
+    @GET()
+    suspend fun downloadFile(@Url url: String): Response<ResponseBody>
 }

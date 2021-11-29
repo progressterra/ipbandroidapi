@@ -4,6 +4,8 @@ import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.MediaDataList
 import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.MediaDataResponse
 import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.UploadImageResponse
 import okhttp3.MultipartBody
+import okhttp3.ResponseBody
+import retrofit2.Response
 
 
 /**
@@ -27,6 +29,11 @@ interface IpbMediaDataCore {
          * Выдает медиаданные по идентфиикатору медиаданных
          */
         suspend fun getMediaDataById(mediaDataId: String): MediaDataResponse
+
+        /**
+         * скачивает файл по заданному url
+         */
+        suspend fun downloadFile(url: String): Response<ResponseBody>
     }
 
     companion object {
