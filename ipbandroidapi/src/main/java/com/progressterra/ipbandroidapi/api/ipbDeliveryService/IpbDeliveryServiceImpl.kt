@@ -57,4 +57,14 @@ internal class IpbDeliveryServiceImpl : IpbDeliveryService.IPBSberbank,
     override suspend fun getMetroStations(accessToken: String): MetroStationsResponse {
         return deliveryApi.getMetroStations(accessToken)
     }
+
+    override suspend fun getOrderStatus(
+        rdOrderId: String,
+        rfServiceType: ServiceMethodType
+    ): ResultDeliveryStatusInfo {
+        return deliveryApi.getOrderStatus(
+            rdOrderId = rdOrderId,
+            rfServiceType = rfServiceType.type.toString()
+        )
+    }
 }

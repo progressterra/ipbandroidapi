@@ -1,10 +1,7 @@
 package com.progressterra.ipbandroidapi.api.ipbDeliveryService
 
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.GetOrderStatusResponse
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.MetroStationsResponse
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultDeliveryList
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.ResultOrderStatusCreation
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.SetDeliveryTypeRequest
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.*
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.payment.RegisterOrderResponse
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.payment.SendCardDataResponse
 import retrofit2.http.*
@@ -43,6 +40,12 @@ internal interface IpbDeliveryServiceApi {
 
         @GET("/api/Metro/GetMetroStations/{AccessToken}")
         suspend fun getMetroStations(@Path("AccessToken") accessToken: String): MetroStationsResponse
+
+        @GET("/Delivery/GetOrderStatusInfo/{RDOrderId}/{RFServiceType}")
+        suspend fun getOrderStatus(
+            @Path("RDOrderId") rdOrderId: String,
+            @Path("RFServiceType") rfServiceType: String
+        ): ResultDeliveryStatusInfo
     }
 }
 

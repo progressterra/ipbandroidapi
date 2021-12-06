@@ -51,6 +51,14 @@ interface IpbDeliveryService {
          * Получение всех станий метро в городе клиента
          */
         suspend fun getMetroStations(accessToken: String): MetroStationsResponse
+
+        /**
+         *  Получение информации о заказе
+         */
+        suspend fun getOrderStatus(
+            rdOrderId: String,
+            rfServiceType: ServiceMethodType
+        ): ResultDeliveryStatusInfo
     }
 
 
