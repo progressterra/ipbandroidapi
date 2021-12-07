@@ -2,10 +2,10 @@ package com.progressterra.ipbandroidapi.api.scrmApiQwerty
 
 import com.progressterra.ipbandroidapi.api.iProBonusApi.models.CityResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.ClientInfoResponse
+import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.DeviceParameters
 import com.progressterra.ipbandroidapi.remoteData.DEFAULT_ID
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
 
 
 /**
@@ -51,9 +51,9 @@ interface SCRMApiQwerty {
         ): ClientInfoResponse
 
         /**
-         * Создает пустого пользователя и возвращает токен
+         * Добавляет/обновлят device token, который используется для отправки сообщений
          */
-        suspend fun createUserWithoutData(): AccessTokenResponse
+        suspend fun setDeviceToken(deviceParameters: DeviceParameters): ClientInfoResponse
     }
 
     interface ClientCity {

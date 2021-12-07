@@ -3,15 +3,14 @@ package com.progressterra.ipbandroidapi.api.scrmApiQwerty
 import com.progressterra.ipbandroidapi.api.iProBonusApi.models.CityResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateUserInfoRequest
+import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.DeviceParameters
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.RemoveClientRequest
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.TestimonialRequest
-import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
 
 internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty.ClientsV3,
     SCRMApiQwerty.ClientCity, SCRMApiQwerty.TestimonialsControllerV3 {
@@ -85,8 +84,8 @@ internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty
         )
     }
 
-    override suspend fun createUserWithoutData(): AccessTokenResponse {
-        return clientsApi.createClientWithoutPhone(CreateClientWithoutPhoneRequest())
+    override suspend fun setDeviceToken(deviceParameters: DeviceParameters): ClientInfoResponse {
+        return clientsApi.setDeviceToken(deviceParameters)
     }
 
     /**

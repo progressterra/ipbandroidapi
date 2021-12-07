@@ -3,11 +3,10 @@ package com.progressterra.ipbandroidapi.api.scrmApiQwerty
 import com.progressterra.ipbandroidapi.api.iProBonusApi.models.CityResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateUserInfoRequest
+import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.DeviceParameters
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.RemoveClientRequest
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.TestimonialRequest
-import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
 import retrofit2.http.*
 
 internal interface SCRMApiQwertyApi {
@@ -60,8 +59,13 @@ internal interface SCRMApiQwertyApi {
             @Path("ParamValue") ParamValue: String
         ): ClientInfoResponse
 
-        @POST("/api/v3/clients/createat")
-        suspend fun createClientWithoutPhone(@Body createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): AccessTokenResponse
+        /**
+         * Добавляет/обновлят device token, который используется для отправки сообщений
+         */
+        @POST("/api/v3/clients/devicetoken")
+        suspend fun setDeviceToken(
+            @Body deviceParameters: DeviceParameters
+        ): ClientInfoResponse
     }
 
     interface ClientCity {

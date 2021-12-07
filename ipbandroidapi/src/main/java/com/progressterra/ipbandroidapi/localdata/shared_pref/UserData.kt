@@ -15,6 +15,7 @@ object UserData : KotprefModel() {
     var clientAlreadyCreated by booleanPref(false)
     var clientInfo by gsonPref(ClientInfo(""))
     var clientAdditionalInfo by gsonPref(ClientAdditionalInfo())
+    var fcmToken by stringPref("")
 
     fun clearUser(): Boolean {
         registerAccessToken = ""
@@ -25,6 +26,7 @@ object UserData : KotprefModel() {
         clientAlreadyCreated = false
         clientInfo = ClientInfo("")
         clientAdditionalInfo = ClientAdditionalInfo()
+        fcmToken = ""
 
         return true
     }
