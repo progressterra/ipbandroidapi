@@ -2,6 +2,16 @@ package com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Статусы заказа: Order/0. Заказ оформлен IPB->ERP
+ * ConfirmFromStore/1. Статус подтверждения/резервироания наличия товара на складе ERP->IPB
+ * ConfirmFromCallCenter/2. Заказ подтвержден по колцецтру ERP->IPB
+ * SentToWarehouse/3. Статус передано в сборку ERP->IPB
+ * SentDeliveryService/4. Статус собран и передан в курьерскую службу ERP->IPB
+ * OnPickUpPoint/5. Статус товар в пункте выдачи КУРС->IPB->ERP
+ * Delivered/6. Заказ получен КУРС->IPB->ERP
+ * Canceled/7. Или заказ вернули/не забыли/отказались КУРС->IPB->ERP
+ */
 enum class StatusOrder(val value: Int) {
     @SerializedName("0")
     ORDER(0),
