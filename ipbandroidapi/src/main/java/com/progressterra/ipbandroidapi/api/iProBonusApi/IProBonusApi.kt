@@ -22,7 +22,6 @@ internal interface IProBonusApi {
     @GET("/api/v1/clientpurchase/info/{purchaseId}")
     suspend fun getPurchaseDetailInfo(@Path("purchaseId") purchaseId: String): PurchaseDetailInfoResponse
 
-
     @GET("/api/v1/messageinapp/{AccessToken}/inappmessages")
     suspend fun getInAppMessages(@Path("AccessToken") accessToken: String): NotificationsResponse
 

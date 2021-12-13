@@ -25,6 +25,12 @@ internal interface IECommersCoreApi {
         suspend fun getProductsInCart(@Path("AccessToken") accessToken: String): ProductsInBasketResponse
 
         /**
+         * Возвращает заказ по идентификатору
+         */
+        @GET("/iecommercecore/api/v3/cart/order/{IDHSalaHead}")
+        suspend fun getOrderById(@Path("IDHSalaHead") orderId: String): ProductsInBasketResponse
+
+        /**
          * удаление заданного количества товара из корзины, но возвращает только статус успешности
          */
         @POST("/iecommercecore/api/v3/cart/{AccessToken}/goods/count/remove")
