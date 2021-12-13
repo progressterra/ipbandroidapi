@@ -171,6 +171,11 @@ interface IECommersCore {
         suspend fun getProductsInCart(accessToken: String): ProductsInBasketResponse
 
         /**
+         * Возвращает заказ по идентификатору
+         */
+        suspend fun getOrderById(orderId: String): ProductsInBasketResponse
+
+        /**
          * Удаление строки товара из корзины
          */
         suspend fun removeProductFromCart(

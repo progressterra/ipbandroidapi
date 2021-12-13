@@ -152,6 +152,10 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
         return cartApi.getProductsInCart(accessToken)
     }
 
+    override suspend fun getOrderById(orderId: String): ProductsInBasketResponse {
+        return cartApi.getOrderById(orderId)
+    }
+
     override suspend fun removeProductFromCart(
         accessToken: String,
         productId: String
