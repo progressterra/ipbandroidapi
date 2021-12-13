@@ -98,7 +98,7 @@ data class BasketData(
     @SerializedName("statusObject")
     val statusObject: Int? = null,
     @SerializedName("statusOrder")
-    val statusOrder: Int? = null,
+    val statusOrder: StatusOrder? = null,
     @SerializedName("systemLevelOfSatisfaction")
     val systemLevelOfSatisfaction: Int? = null,
     @SerializedName("typeSaleReturn")
