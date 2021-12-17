@@ -27,6 +27,9 @@ fun String?.parseToDate(): Date? {
 fun Date?.orNow() = this.orIfNull { Date() }
 
 fun Date.format(pattern: String = "yyyy-MM-dd'T'HH:mm:ss"): String {
-    val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+    val sdf = SimpleDateFormat(pattern, Locale.getDefault()).apply {
+        timeZone = serverTimeZone
+    }
+
     return sdf.format(this)
 }
