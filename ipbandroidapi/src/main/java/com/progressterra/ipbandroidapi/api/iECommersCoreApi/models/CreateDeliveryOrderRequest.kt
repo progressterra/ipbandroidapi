@@ -11,11 +11,11 @@ internal class CreateDeliveryOrderRequest(
     val calculatedPrice: Double,
     @SerializedName("comment")
     val comment: String,
-    @SerializedName("rfMethodType")
+    @SerializedName("methodType")
     val methodType: Int,
-    @SerializedName("rfServiceType")
+    @SerializedName("serviceType")
     val serviceType: Int,
-    @SerializedName("rdPickUpPoint")
+    @SerializedName("pickUpPoint")
     val pickUpPoint: String? = null
 )
 
