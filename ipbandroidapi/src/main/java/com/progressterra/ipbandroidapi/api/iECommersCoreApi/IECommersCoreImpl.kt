@@ -253,19 +253,21 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
         deliveryServiceId: DeliveryServiceId,
         displayName: String,
         calculatedPrice: Double,
-        rfMethodType: DeliveryMethodType,
-        rfServiceType: ServiceMethodType,
-        rdPickUpPoint: String?
+        comment: String,
+        methodType: DeliveryMethodType,
+        serviceType: ServiceMethodType,
+        pickUpPoint: String? = null
     ): ProductsInBasketResponse {
         return cartApi.addDeliveryToCart(
             acessToken = accessToken,
             createDeliveryOrderRequest = CreateDeliveryOrderRequest(
-                deliveryServiceId.id,
-                displayName,
-                calculatedPrice,
-                rfMethodType.type,
-                rfServiceType.type,
-                rdPickUpPoint
+                idrgGoodsInventory = deliveryServiceId.id,
+                displayName = displayName,
+                calculatedPrice = calculatedPrice,
+                comment = comment,
+                methodType = methodType.type,
+                serviceType = serviceType.type,
+                pickUpPoint = pickUpPoint
             )
         )
     }

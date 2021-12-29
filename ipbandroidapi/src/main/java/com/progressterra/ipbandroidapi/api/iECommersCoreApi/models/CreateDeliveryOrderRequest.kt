@@ -9,12 +9,14 @@ internal class CreateDeliveryOrderRequest(
     val displayName: String,
     @SerializedName("calculatedPrice")
     val calculatedPrice: Double,
+    @SerializedName("comment")
+    val comment: String,
     @SerializedName("rfMethodType")
-    val rfMethodType: Int,
+    val methodType: Int,
     @SerializedName("rfServiceType")
-    val rfServiceType: Int,
+    val serviceType: Int,
     @SerializedName("rdPickUpPoint")
-    val rdPickUpPoint: String? = null
+    val pickUpPoint: String? = null
 )
 
 enum class DeliveryServiceId(val id: String) {

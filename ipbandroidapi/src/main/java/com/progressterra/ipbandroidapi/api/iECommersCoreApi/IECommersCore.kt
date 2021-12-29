@@ -271,9 +271,10 @@ interface IECommersCore {
             deliveryServiceId: DeliveryServiceId,
             displayName: String,
             calculatedPrice: Double,
-            rfMethodType: DeliveryMethodType,
-            rfServiceType: ServiceMethodType,
-            rdPickUpPoint: String? = null
+            comment: String,
+            methodType: DeliveryMethodType,
+            serviceType: ServiceMethodType,
+            pickUpPoint: String? = null
         ): ProductsInBasketResponse
     }
 
