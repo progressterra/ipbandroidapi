@@ -256,7 +256,7 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
         comment: String,
         methodType: DeliveryMethodType,
         serviceType: ServiceMethodType,
-        pickUpPoint: String? = null
+        pickUpPoint: String?
     ): ProductsInBasketResponse {
         return cartApi.addDeliveryToCart(
             acessToken = accessToken,
