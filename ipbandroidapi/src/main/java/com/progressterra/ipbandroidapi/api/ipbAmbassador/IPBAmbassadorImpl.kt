@@ -4,6 +4,7 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.ambassador_statu
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.BankInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankDataRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankInfoResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.cooperation_type.CooperationListResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.AmbassadorInviteDataResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InviteByPhoneResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersRequest
@@ -101,6 +102,10 @@ internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador, IPBAmbassador.Ambas
                 urlImage
             )
         )
+    }
+
+    override suspend fun getCooperationTypeList(accessToken: String): CooperationListResponse {
+        return ipbAmbassadorApi.getCooperationTypeList(accessToken)
     }
 
     override suspend fun getInviteInfo(accessToken: String): AmbassadorInviteDataResponse {

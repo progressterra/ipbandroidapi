@@ -9,7 +9,7 @@ configurations {
 }
 
 dependencies {
-    deployLibrary "ar.com.synergian:wagon-git:0.2.5"
+    deployLibrary "ar.com.synergian:wagon-git:0.3.0"
 }
 
 

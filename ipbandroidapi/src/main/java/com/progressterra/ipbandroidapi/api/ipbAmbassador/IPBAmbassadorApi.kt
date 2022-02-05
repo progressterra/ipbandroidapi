@@ -4,6 +4,7 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.ambassador_statu
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.BankInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankDataRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankInfoResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.cooperation_type.CooperationListResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.AmbassadorInviteDataResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InviteByPhoneResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersRequest
@@ -90,6 +91,12 @@ internal interface IPBAmbassadorApi {
         suspend fun uploadAmbassadorContractPhotoUrl(
             @Body uploadImageUrlRequest: UploadContractOfAmbassadorRequest
         ): ResultResponse
+
+        /**
+         * Возвращает список активных вариантов сотрудничества
+         */
+        @GET("/typecooperation/list/{AccessToken}")
+        suspend fun getCooperationTypeList(@Path("AccessToken") accessToken: String): CooperationListResponse
     }
 
 
