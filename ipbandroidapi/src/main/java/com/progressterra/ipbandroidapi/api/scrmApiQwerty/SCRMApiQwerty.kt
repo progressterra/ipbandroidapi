@@ -77,6 +77,10 @@ interface SCRMApiQwerty {
         ): BaseResponse
     }
 
+    interface VerifiedChannel {
+        suspend fun beginVerificationChannel(channelName: String, channelValue: String)
+    }
+
     companion object {
         fun ClientManagement(): ClientManagement = SCRMApiQwertyImpl()
         fun ClientsV3(): ClientsV3 = SCRMApiQwertyImpl()

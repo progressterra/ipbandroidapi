@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.api.scrmApiQwerty
 import com.progressterra.ipbandroidapi.api.iProBonusApi.models.CityResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateUserInfoRequest
+import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.BeginVerificationChannelRequest
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.DeviceParameters
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.RemoveClientRequest
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.TestimonialRequest
@@ -13,7 +14,8 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
 
 internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty.ClientsV3,
-    SCRMApiQwerty.ClientCity, SCRMApiQwerty.TestimonialsControllerV3 {
+    SCRMApiQwerty.ClientCity, SCRMApiQwerty.TestimonialsControllerV3,
+    SCRMApiQwerty.VerifiedChannel {
 
     private val networkService: NetworkService = NetworkServiceImpl()
     private val api = networkService.createService(
@@ -32,6 +34,10 @@ internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty
     )
     private val testimonialApi = networkService.createService(
         SCRMApiQwertyApi.TestimonialControllerV3::class.java,
+        NetworkSettings.SCRMAPIQWERTY_ROOT_URL
+    )
+    private val verifiedChannelApi = networkService.createService(
+        SCRMApiQwertyApi.VerifiedChannel::class.java,
         NetworkSettings.SCRMAPIQWERTY_ROOT_URL
     )
 
@@ -118,6 +124,15 @@ internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty
                 idShop,
                 rating,
                 typeMessage
+            )
+        )
+    }
+
+    override suspend fun beginVerificationChannel(channelName: String, channelValue: String) {
+        return verifiedChannelApi.beginVerificationChannel(
+            BeginVerificationChannelRequest(
+                channelName = channelName,
+                channelValue = channelValue
             )
         )
     }

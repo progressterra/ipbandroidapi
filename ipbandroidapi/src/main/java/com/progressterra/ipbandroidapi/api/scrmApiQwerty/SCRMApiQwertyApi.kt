@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.api.scrmApiQwerty
 import com.progressterra.ipbandroidapi.api.iProBonusApi.models.CityResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateUserInfoRequest
+import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.BeginVerificationChannelRequest
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.DeviceParameters
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.RemoveClientRequest
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.TestimonialRequest
@@ -87,5 +88,14 @@ internal interface SCRMApiQwertyApi {
             @Path("AccessToken") accessToken: String,
             @Body testimonialRequest: TestimonialRequest
         ): BaseResponse
+    }
+
+    interface VerifiedChannel {
+
+        /**
+         * Начало верификации телефона
+         */
+        @POST("/api/verificationchannel/phone/begin")
+        suspend fun beginVerificationChannel(@Body body: BeginVerificationChannelRequest)
     }
 }
