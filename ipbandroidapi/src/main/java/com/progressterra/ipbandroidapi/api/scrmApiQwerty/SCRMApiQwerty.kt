@@ -86,5 +86,6 @@ interface SCRMApiQwerty {
         fun ClientsV3(): ClientsV3 = SCRMApiQwertyImpl()
         fun ClientCity(): ClientCity = SCRMApiQwertyImpl()
         fun TestimonialsControllerV3(): TestimonialsControllerV3 = SCRMApiQwertyImpl()
+        fun VerifiedChannel(): VerifiedChannel = SCRMApiQwertyImpl()
     }
 }
