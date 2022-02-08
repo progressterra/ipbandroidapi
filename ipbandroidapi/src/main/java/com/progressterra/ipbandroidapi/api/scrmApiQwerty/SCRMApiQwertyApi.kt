@@ -96,6 +96,6 @@ internal interface SCRMApiQwertyApi {
          * Начало верификации телефона
          */
         @POST("/api/verificationchannel/phone/begin")
-        suspend fun beginVerificationChannel(@Body body: BeginVerificationChannelRequest)
+        suspend fun beginVerificationChannel(@Body body: BeginVerificationChannelRequest): BaseResponse
     }
 }

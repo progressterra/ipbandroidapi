@@ -128,7 +128,10 @@ internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty
         )
     }
 
-    override suspend fun beginVerificationChannel(channelName: String, channelValue: String) {
+    override suspend fun beginVerificationChannel(
+        channelName: String,
+        channelValue: String
+    ): BaseResponse {
         return verifiedChannelApi.beginVerificationChannel(
             BeginVerificationChannelRequest(
                 channelName = channelName,
