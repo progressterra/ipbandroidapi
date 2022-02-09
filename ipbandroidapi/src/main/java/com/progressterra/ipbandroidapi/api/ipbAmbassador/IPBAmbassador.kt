@@ -4,6 +4,7 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.ambassador_statu
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.BankInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.cooperation_type.CooperationListResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.direct_payment.SetNewPhoneResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.AmbassadorInviteDataResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InviteByPhoneResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersRequest
@@ -54,6 +55,12 @@ interface IPBAmbassador {
         ): ResultResponse
 
         suspend fun getCooperationTypeList(accessToken: String): CooperationListResponse
+
+        suspend fun setNewNumber(
+            accessToken: String,
+            phone: String,
+            verifiedChannelCode: String
+        ): SetNewPhoneResponse
     }
 
     interface AmbassadorInvite {
