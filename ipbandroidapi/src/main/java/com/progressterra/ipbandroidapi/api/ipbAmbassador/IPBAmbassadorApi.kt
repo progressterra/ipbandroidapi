@@ -10,6 +10,8 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.direct_payment.S
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.AmbassadorInviteDataResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InviteByPhoneResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersRequest
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.money_out.RemoveBonusesRequest
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.money_out.RemoveBonusesResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadContractOfAmbassadorRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadImageUrlRequest
 import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.UploadImageResponse
@@ -104,6 +106,11 @@ internal interface IPBAmbassadorApi {
             @Path("AccessToken") accessToken: String,
             @Body newPhoneRequest: SetNewPhoneRequest
         ): AmbassadorDataResponse
+
+        @POST("/moneyout")
+        suspend fun removeBonuses(
+            @Body removeBonusesRequest: RemoveBonusesRequest
+        ): RemoveBonusesResponse
 
         /**
          * Возвращает список активных вариантов сотрудничества

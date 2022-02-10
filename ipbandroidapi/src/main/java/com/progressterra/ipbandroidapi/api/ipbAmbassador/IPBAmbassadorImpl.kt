@@ -10,6 +10,8 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.direct_payment.S
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.AmbassadorInviteDataResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InviteByPhoneResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersRequest
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.money_out.RemoveBonusesRequest
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.money_out.RemoveBonusesResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadContractOfAmbassadorRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadImageUrlRequest
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
@@ -122,6 +124,16 @@ internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador, IPBAmbassador.Ambas
         return ipbAmbassadorApi.setNewNumber(
             accessToken,
             SetNewPhoneRequest(accessToken, phone, verifiedChannelCode)
+        )
+    }
+
+    override suspend fun removeBonuses(
+        accessToken: String,
+        outType: Int,
+        sum: Int
+    ): RemoveBonusesResponse {
+        return ipbAmbassadorApi.removeBonuses(
+            RemoveBonusesRequest(accessToken, outType, sum)
         )
     }
 

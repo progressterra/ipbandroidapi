@@ -8,6 +8,7 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.direct_payment.A
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.AmbassadorInviteDataResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InviteByPhoneResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersRequest
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.money_out.RemoveBonusesResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -63,6 +64,12 @@ interface IPBAmbassador {
             phone: String,
             verifiedChannelCode: String
         ): AmbassadorDataResponse
+
+        suspend fun removeBonuses(
+            accessToken: String,
+            outType: Int,
+            sum: Int
+        ): RemoveBonusesResponse
     }
 
     interface AmbassadorInvite {
