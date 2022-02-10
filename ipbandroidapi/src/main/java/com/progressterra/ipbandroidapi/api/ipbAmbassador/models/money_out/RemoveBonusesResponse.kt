@@ -1,11 +1,12 @@
 package com.progressterra.ipbandroidapi.api.ipbAmbassador.models.money_out
 
 import com.google.gson.annotations.SerializedName
+import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class RemoveBonusesResponse(
     @SerializedName("data")
     val data: RemoveBonusesData
-)
+): BaseResponse()
 
 data class RemoveBonusesData(
     @SerializedName("amountReceivable")
