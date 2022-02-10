@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.ipbAmbassador.models.direct_payment
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
-data class SetNewPhoneResponse(
+data class AmbassadorDataResponse(
     @SerializedName("data")
     val data: Data
 ): BaseResponse()

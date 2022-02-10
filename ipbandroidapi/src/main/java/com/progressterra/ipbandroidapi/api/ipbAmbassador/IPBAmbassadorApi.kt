@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.Bank
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankDataRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.cooperation_type.CooperationListResponse
-import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.direct_payment.SetNewPhoneResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.direct_payment.AmbassadorDataResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.direct_payment.SetNewPhoneRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.AmbassadorInviteDataResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InviteByPhoneResponse
@@ -94,11 +94,16 @@ internal interface IPBAmbassadorApi {
             @Body uploadImageUrlRequest: UploadContractOfAmbassadorRequest
         ): ResultResponse
 
+        @POST("/ambassador/{AccessToken}/directpayment/default")
+        suspend fun setDirectPaymentCooperationType(
+            @Path("AccessToken") accessToken: String
+        ): AmbassadorDataResponse
+
         @POST("/ambassador/{AccessToken}/directpayment/newphone")
         suspend fun setNewNumber(
             @Path("AccessToken") accessToken: String,
             @Body newPhoneRequest: SetNewPhoneRequest
-        ): SetNewPhoneResponse
+        ): AmbassadorDataResponse
 
         /**
          * Возвращает список активных вариантов сотрудничества

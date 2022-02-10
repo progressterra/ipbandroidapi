@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.Bank
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankDataRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.UpdateBankInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.cooperation_type.CooperationListResponse
-import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.direct_payment.SetNewPhoneResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.direct_payment.AmbassadorDataResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.direct_payment.SetNewPhoneRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.AmbassadorInviteDataResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InviteByPhoneResponse
@@ -110,11 +110,15 @@ internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador, IPBAmbassador.Ambas
         return ipbAmbassadorApi.getCooperationTypeList(accessToken)
     }
 
+    override suspend fun setDirectPaymentCooperationType(accessToken: String): AmbassadorDataResponse {
+        return ipbAmbassadorApi.setDirectPaymentCooperationType(accessToken)
+    }
+
     override suspend fun setNewNumber(
         accessToken: String,
         phone: String,
         verifiedChannelCode: String
-    ): SetNewPhoneResponse {
+    ): AmbassadorDataResponse {
         return ipbAmbassadorApi.setNewNumber(
             accessToken,
             SetNewPhoneRequest(accessToken, phone, verifiedChannelCode)
