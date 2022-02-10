@@ -12,6 +12,7 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.I
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.invite_members.InvitingMembersRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.money_out.RemoveBonusesRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.money_out.RemoveBonusesResponse
+import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.money_out.applications.ApplicationsResponse
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadContractOfAmbassadorRequest
 import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.upload_file.UploadImageUrlRequest
 import com.progressterra.ipbandroidapi.api.ipbMediaDataCore.models.UploadImageResponse
@@ -117,6 +118,22 @@ internal interface IPBAmbassadorApi {
          */
         @GET("/typecooperation/list/{AccessToken}")
         suspend fun getCooperationTypeList(@Path("AccessToken") accessToken: String): CooperationListResponse
+
+        /**
+         * Получение списка одобренных заявок на вывод денег
+         */
+        @GET("/moneyout/list/{AccessToken}/confirm")
+        suspend fun getConfirmedApplications(
+            @Path("AccessToken") accessToken: String
+        ): ApplicationsResponse
+
+        /**
+         * Получение списка не одобренных заявок на вывод денег
+         */
+        @GET("/moneyout/list/{AccessToken}/notconfirm")
+        suspend fun getNotConfirmedApplications(
+            @Path("AccessToken") accessToken: String
+        ): ApplicationsResponse
     }
 
 
