@@ -5,86 +5,86 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class AmbassadorDataResponse(
     @SerializedName("data")
-    val data: Data
+    val data: Data?
 ): BaseResponse()
 
 data class BankAccountDetails(
     @SerializedName("bankName")
-    val bankName: String,
+    val bankName: String?,
     @SerializedName("bik")
-    val bik: String,
+    val bik: String?,
     @SerializedName("correspondentAccount")
-    val correspondentAccount: String,
+    val correspondentAccount: String?,
     @SerializedName("kppBank")
-    val kppBank: String,
+    val kppBank: String?,
     @SerializedName("numberAccount")
-    val numberAccount: String,
+    val numberAccount: String?,
     @SerializedName("tinOfBank")
-    val tinOfBank: String,
+    val tinOfBank: String?,
     @SerializedName("tinOfClient")
-    val tinOfClient: String,
+    val tinOfClient: String?,
     @SerializedName("typeName")
-    val typeName: String
+    val typeName: String?
 )
 
 data class Data(
     @SerializedName("dataAmbassador")
-    val dataAmbassador: DataAmbassador
+    val dataAmbassador: DataAmbassador?
 )
 
 data class DataAmbassador(
     @SerializedName("address")
-    val address: String,
+    val address: String?,
     @SerializedName("bankAccountDetails")
-    val bankAccountDetails: BankAccountDetails,
+    val bankAccountDetails: BankAccountDetails?,
     @SerializedName("dataForDirectPayment")
-    val dataForDirectPayment: String,
+    val dataForDirectPayment: String?,
     @SerializedName("dateGPH")
-    val dateGPH: String,
+    val dateGPH: String?,
     @SerializedName("dateLastUpdate")
-    val dateLastUpdate: String,
+    val dateLastUpdate: String?,
     @SerializedName("dateOfBirth")
-    val dateOfBirth: String,
+    val dateOfBirth: String?,
     @SerializedName("idAmbassadorClient")
-    val idAmbassadorClient: String,
+    val idAmbassadorClient: String?,
     @SerializedName("idEnterprise")
-    val idEnterprise: String,
+    val idEnterprise: String?,
     @SerializedName("idOfficerConfirmation")
-    val idOfficerConfirmation: String,
+    val idOfficerConfirmation: String?,
     @SerializedName("idUnique")
-    val idUnique: String,
+    val idUnique: String?,
     @SerializedName("idrfTypeCooperation")
-    val idrfTypeCooperation: String,
+    val idrfTypeCooperation: String?,
     @SerializedName("jsonDataBankAccountDetails")
-    val jsonDataBankAccountDetails: String,
+    val jsonDataBankAccountDetails: String?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("numberGPH")
-    val numberGPH: String,
+    val numberGPH: String?,
     @SerializedName("officialData")
-    val officialData: String,
+    val officialData: String?,
     @SerializedName("passportGet")
-    val passportGet: String,
+    val passportGet: String?,
     @SerializedName("passportNumber")
-    val passportNumber: String,
+    val passportNumber: String?,
     @SerializedName("passportSerial")
-    val passportSerial: String,
+    val passportSerial: String?,
     @SerializedName("patronicName")
-    val patronicName: String,
+    val patronicName: String?,
     @SerializedName("queryStatusWork")
-    val queryStatusWork: Int,
+    val queryStatusWork: Int?,
     @SerializedName("soname")
-    val soname: String,
+    val soname: String?,
     @SerializedName("stateAmbassador")
-    val stateAmbassador: Int,
+    val stateAmbassador: Int?,
     @SerializedName("statusWork")
-    val statusWork: Int,
+    val statusWork: Int?,
     @SerializedName("tin")
-    val tin: String,
+    val tin: String?,
     @SerializedName("urlImageContractGPH")
-    val urlImageContractGPH: String,
+    val urlImageContractGPH: String?,
     @SerializedName("urlImagePassport")
-    val urlImagePassport: String,
+    val urlImagePassport: String?,
     @SerializedName("urlImageSNILS")
-    val urlImageSNILS: String
+    val urlImageSNILS: String?
 )

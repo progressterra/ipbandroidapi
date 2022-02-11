@@ -5,46 +5,46 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class ApplicationsResponse(
     @SerializedName("dataList")
-    val dataList: List<ApplicationData>
+    val dataList: List<ApplicationData>?
 ): BaseResponse()
 
 data class ApplicationData(
     @SerializedName("amountReceivable")
-    val amountReceivable: Int,
+    val amountReceivable: Int?,
     @SerializedName("clientInfo")
-    val clientInfo: String,
+    val clientInfo: String?,
     @SerializedName("dateDoc")
-    val dateDoc: String,
+    val dateDoc: String?,
     @SerializedName("dateConfirmation")
-    val dateConfirmation: String,
+    val dateConfirmation: String?,
     @SerializedName("idClientAmbassador")
-    val idClientAmbassador: String,
+    val idClientAmbassador: String?,
     @SerializedName("idEnterprise")
-    val idEnterprise: String,
+    val idEnterprise: String?,
     @SerializedName("idOfficerConfirmation")
-    val idOfficerConfirmation: String,
+    val idOfficerConfirmation: String?,
     @SerializedName("idUnique")
-    val idUnique: String,
+    val idUnique: String?,
     @SerializedName("number")
-    val number: Int,
+    val number: Int?,
     @SerializedName("outType")
-    val outType: Int,
+    val outType: Int?,
     @SerializedName("periodTransactionBegin")
-    val periodTransactionBegin: String,
+    val periodTransactionBegin: String?,
     @SerializedName("periodTransactionEnd")
-    val periodTransactionEnd: String,
+    val periodTransactionEnd: String?,
     @SerializedName("stateWithDigditalSignDoc")
-    val stateWithDigditalSignDoc: Int,
+    val stateWithDigditalSignDoc: Int?,
     @SerializedName("statusDoc")
-    val statusDoc: Int,
+    val statusDoc: Int?,
     @SerializedName("sum")
-    val sum: Int,
+    val sum: Int?,
     @SerializedName("sumComission")
-    val sumComission: Int,
+    val sumComission: Int?,
     @SerializedName("sumOut")
-    val sumOut: Int,
+    val sumOut: Int?,
     @SerializedName("textMessage")
-    val textMessage: String,
+    val textMessage: String?,
     @SerializedName("urlImageAct")
-    val urlImageAct: String
+    val urlImageAct: String?
 )
