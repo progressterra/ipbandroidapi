@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class SessionListResponse(
     @SerializedName("dataList")
-    val dataList: List<SessionExt?>?
+    val dataList: List<SessionExt>?
 ) : BaseResponse()
 
 data class SessionExt(

@@ -29,9 +29,9 @@ data class CompileSession(
     @SerializedName("idrfActor")
     val idrfActor: String?,
     @SerializedName("listCompileQuantum")
-    val listCompileQuantum: List<CompileQuantumBySession?>?,
+    val listCompileQuantum: List<CompileQuantumBySession>?,
     @SerializedName("listEffector")
-    val listEffector: List<RGEffectorExt?>?,
+    val listEffector: List<RGEffectorExt>?,
     @SerializedName("sessionType")
     val sessionType: Int?,
     @SerializedName("title")
@@ -52,17 +52,17 @@ data class CompileQuantumBySession(
     @SerializedName("idrfActor")
     val idrfActor: String?,
     @SerializedName("listAffector")
-    val listAffector: List<RFAffectorExt?>?,
+    val listAffector: List<RFAffectorExt>?,
     @SerializedName("listEffectorAreaQuant")
-    val listEffectorAreaQuant: List<CompileEffector?>?,
+    val listEffectorAreaQuant: List<CompileEffector>?,
     @SerializedName("listEffectorAreaReaction")
-    val listEffectorAreaReaction: List<CompileEffector?>?,
+    val listEffectorAreaReaction: List<CompileEffector>?,
     @SerializedName("listLingvoAffector")
-    val listLingvoAffector: List<AffectrorAsLingvoAffector?>?,
+    val listLingvoAffector: List<AffectrorAsLingvoAffector>?,
     @SerializedName("listReaction")
-    val listReaction: List<RGReactionExt?>?,
+    val listReaction: List<RGReactionExt>?,
     @SerializedName("listVideoQuantum")
-    val listVideoQuantum: List<MediaQuantum?>?,
+    val listVideoQuantum: List<MediaQuantum>?,
     @SerializedName("playDataType")
     val playDataType: Int?,
     @SerializedName("replicaText")
@@ -194,7 +194,7 @@ data class LingvoAffectorData(
     @SerializedName("idrfAffector")
     val idrfAffector: String?,
     @SerializedName("lingvoPrimitiveList")
-    val lingvoPrimitiveList: List<String?>?,
+    val lingvoPrimitiveList: List<String>?,
     @SerializedName("typeName")
     val typeName: String?
 )
@@ -224,7 +224,7 @@ data class RGReactionExt(
     @SerializedName("idrfQuantum")
     val idrfQuantum: String?,
     @SerializedName("listEffector")
-    val listEffector: List<RGEffector?>?,
+    val listEffector: List<RGEffector>?,
     @SerializedName("startResponseInterval")
     val startResponseInterval: Int?,
     @SerializedName("startTrackingInterval")
