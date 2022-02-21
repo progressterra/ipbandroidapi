@@ -10,13 +10,13 @@ class PurchasesResponse(
 
 data class Listdata(
     @SerializedName("addedBonusesSum")
-    val addedBonusesSum: Int? = null,
+    val addedBonusesSum: Double? = null,
     @SerializedName("purchaseDate")
     val purchaseDate: String? = null,
     @SerializedName("purchaseId")
     val purchaseId: String? = null,
     @SerializedName("purchaseSum")
-    val purchaseSum: Int? = null,
+    val purchaseSum: Double? = null,
     @SerializedName("shopName")
     val shopName: String? = null,
     @SerializedName("spentBonusesSum")
