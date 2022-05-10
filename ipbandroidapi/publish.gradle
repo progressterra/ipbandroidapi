@@ -1,23 +1,27 @@
 apply plugin: 'maven-publish'
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/" + COMPANY + "/" + REPOSITORY_NAME)
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+afterEvaluate {
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/" + COMPANY + "/" + REPOSITORY_NAME)
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+                }
             }
         }
-    }
-    publications {
-        releaseAndroidLibrary(MavenPublication) {
-            groupId = ARTIFACT_PACKAGE
-            //ARTIFACT_NAME_TEST for publish test library flavor, ARTIFACT_NAME_RELEASE for release one
-            artifactId = ARTIFACT_NAME_TEST
-            version = "${major}.${generateMinorVersionCode(null)}"
+        publications {
+            releaseAndroidLibrary(MavenPublication) {
+                from components.release
+
+                groupId = ARTIFACT_PACKAGE
+                //ARTIFACT_NAME_TEST for publish test library flavor, ARTIFACT_NAME_RELEASE for release one
+                artifactId = ARTIFACT_NAME_RELEASE
+                version = "${major}.${generateMinorVersionCode(null)}"
+            }
         }
+        println("${major}.${generateMinorVersionCode()}")
     }
-    println("${major}.${generateMinorVersionCode()}")
 }
