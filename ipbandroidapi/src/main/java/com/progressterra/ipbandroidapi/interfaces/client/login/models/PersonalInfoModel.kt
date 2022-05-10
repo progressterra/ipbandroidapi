@@ -51,6 +51,6 @@ class PersonalInfo {
 
 
     fun infoIsValid(): Boolean {
-        return nameIsValid && lastNameIsValid && emailIsValid && sexTypeSelected && birthDateIsValid && cityIsValid
+        return nameIsValid && lastNameIsValid && sexTypeSelected && birthDateIsValid && cityIsValid
     }
 }
