@@ -49,7 +49,7 @@ internal object NetworkSettings {
     const val IENTERPRISE_URL = "http://84.201.188.97:5023/"
     const val COLLABORATION_CORE_URL = "http://84.201.188.117:5091/"
     const val SBER_API = "http://84.201.188.117:5099/"
-    const val DELIVERY_API = "http://84.201.188.97:1955/"
+    const val DELIVERY_API = "http://84.201.188.117:1955/"
     const val IMHL_API_URL = "http://84.201.188.117:7001/"
 
     /**
