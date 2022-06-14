@@ -4,6 +4,7 @@ import com.chibatching.kotpref.KotprefModel
 import com.chibatching.kotpref.gsonpref.gsonPref
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditionalInfo
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
+import com.progressterra.ipbandroidapi.localdata.shared_pref.models.SexType
 
 object UserData : KotprefModel() {
     var registerAccessToken by stringPref("")
@@ -27,8 +28,21 @@ object UserData : KotprefModel() {
         clientInfo = ClientInfo("")
         clientAdditionalInfo = ClientAdditionalInfo()
         fcmToken = ""
-
         return true
+    }
+
+    fun isDataCorrupted(
+        includeEmail: Boolean,
+        includeSex: Boolean,
+        includeName: Boolean,
+        includeSurname: Boolean,
+        includeBirthDate: Boolean
+    ): Boolean {
+        return (includeEmail && clientAdditionalInfo.emailGeneral.isBlank()) ||
+                (includeSex && (clientInfo.sex == SexType.NONE)) ||
+                (includeName && clientInfo.name.isEmpty()) ||
+                (includeSurname && clientInfo.soname.isEmpty()) ||
+                (includeBirthDate && (clientInfo.dateOfBirth == null))
     }
 
     val isPersonalCorrupted: Boolean

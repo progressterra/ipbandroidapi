@@ -35,9 +35,7 @@ import kotlinx.coroutines.coroutineScope
 internal class RepositoryImpl : LoginRepository, BonusesRepository,
     AddressesRepository {
 
-
     private val networkService: NetworkService = NetworkServiceImpl()
-
 
     private val scrmAPI =
         networkService.createService(ScrmApi::class.java, NetworkSettings.LIKEDISLIKE_ROOT_URL)
@@ -92,7 +90,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             status = response.globalResponseStatus,
             userExist = UserData.clientExist,
             error = response.errorString,
-            isDataCorrupted = UserData.isPersonalCorrupted
+            //isDataCorrupted = UserData.isPersonalCorrupted
         )
     }
 
