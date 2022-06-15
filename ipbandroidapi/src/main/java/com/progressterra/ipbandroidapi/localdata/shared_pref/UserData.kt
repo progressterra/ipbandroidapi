@@ -44,11 +44,4 @@ object UserData : KotprefModel() {
                 (includeSurname && clientInfo.soname.isEmpty()) ||
                 (includeBirthDate && (clientInfo.dateOfBirth == null))
     }
-
-    val isPersonalCorrupted: Boolean
-        get() =
-            clientInfo.name.isBlank()
-                    || clientInfo.soname.isBlank()
-                    || clientAdditionalInfo.emailGeneral.isBlank()
-                    || clientInfo.dateOfBirth == null
 }

@@ -25,7 +25,7 @@ class PersonalInfo {
     var birthdate: String? = null
         set(value) {
             field = value
-            birthDateIsValid = true
+            birthDateIsValid = !field.isNullOrBlank() && (Regex(".+\\..+\\..+")).matches(field ?: "")
         }
 
     var sexType: SexType? = null
@@ -35,6 +35,10 @@ class PersonalInfo {
         }
 
     var patronymic: String? = null
+        set(value) {
+            field = value
+            patronymicIsValid = !field.isNullOrBlank()
+        }
 
     var city: CitiesListResponse.City? = null
         set(value) {
@@ -42,6 +46,7 @@ class PersonalInfo {
             cityIsValid = field != null
         }
 
+    var patronymicIsValid = false
     var nameIsValid = false
     var lastNameIsValid = false
     var emailIsValid = false
@@ -50,7 +55,23 @@ class PersonalInfo {
     var cityIsValid = false
 
 
-    fun infoIsValid(): Boolean {
-        return nameIsValid && lastNameIsValid && sexTypeSelected && birthDateIsValid && cityIsValid
+    fun infoIsValid(
+        includeName: Boolean,
+        includeSurname: Boolean,
+        includeSex: Boolean,
+        includeBirthDate: Boolean,
+        includeCity: Boolean,
+        includeEmail: Boolean,
+        includePatronymic: Boolean
+    ): Boolean {
+        return !(
+                (nameIsValid xor includeName) &&
+                (lastNameIsValid xor includeSurname) &&
+                (sexTypeSelected xor includeSex) &&
+                (birthDateIsValid xor includeBirthDate) &&
+                (cityIsValid xor includeCity) &&
+                (patronymicIsValid xor includePatronymic) &&
+                (emailIsValid xor includeEmail)
+                )
     }
 }
