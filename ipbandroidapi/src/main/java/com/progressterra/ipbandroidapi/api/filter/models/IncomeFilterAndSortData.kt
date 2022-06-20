@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class IncomeFilterAndSortData(
     @SerializedName("shownotmarkedasdeleted")
-    val showNotMarkedAsDeleted : Boolean,
+    val showNotMarkedAsDeleted : Boolean?,
     @SerializedName("searchString")
     val searchString: String?,
     @SerializedName("listFields")
