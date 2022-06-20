@@ -8,7 +8,7 @@ data class IncomeFilterAndSortData(
     @SerializedName("searchString")
     val searchString: String?,
     @SerializedName("listFields")
-    val listFields: List<FieldForFilter>,
+    val listFields: List<FieldForFilter?>?,
     @SerializedName("sort")
-    val sortData: SortData
+    val sortData: SortData?
 )

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class FilterRequest(
     @SerializedName("idCategory")
-    val idCategory: String,
+    val idCategory: String?,
     @SerializedName("filterAndSortData")
-    val filterAndSortData: IncomeFilterAndSortData
+    val filterAndSortData: IncomeFilterAndSortData?
 )

@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class FilterData(
     @SerializedName("color")
-    val color: List<FilterColor?>,
+    val color: List<FilterColor?>?,
     @SerializedName("collection")
-    val collections: List<String?>,
+    val collections: List<String?>?,
     @SerializedName("typeOfGoods")
-    val types: List<String?>,
+    val types: List<String?>?,
     @SerializedName("sizeOfGoods")
-    val sizes: List<String?>
+    val sizes: List<String?>?
 )

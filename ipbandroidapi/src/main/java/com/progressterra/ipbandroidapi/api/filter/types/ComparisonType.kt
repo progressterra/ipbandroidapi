@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.filter.models
+package com.progressterra.ipbandroidapi.api.filter.types
 
 enum class ComparisonType(val value: String) {
     EQUALS_STRONG("equalsStrong"),
