@@ -8,4 +8,8 @@ interface IPBFilter {
     suspend fun getFilteredProduct(idCategory: String, filterAndSortData: IncomeFilterAndSortData): ProductPageResponse
 
     suspend fun getFilterData(idCategory: String): FilterDataResponse
+
+    companion object {
+        fun Filter(): IPBFilter = IPBFilterImpl()
+    }
 }
