@@ -6,12 +6,24 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class FilterData(
-    @SerializedName("color")
+    @SerializedName(COLORS_NAME)
     val color: List<FilterColor?>?,
-    @SerializedName("collection")
+    @SerializedName(COLLECTIONS_NAME)
     val collections: List<String?>?,
-    @SerializedName("typeOfGoods")
+    @SerializedName(TYPES_NAME)
     val types: List<String?>?,
-    @SerializedName("sizeOfGoods")
+    @SerializedName(SIZES_NAME)
     val sizes: List<String?>?
-) : Parcelable
+) : Parcelable {
+
+    companion object {
+
+        const val SIZES_NAME = "sizeOfGoods"
+
+        const val COLLECTIONS_NAME = "collection"
+
+        const val TYPES_NAME = "typeOfGoods"
+
+        const val COLORS_NAME = "color"
+    }
+}
