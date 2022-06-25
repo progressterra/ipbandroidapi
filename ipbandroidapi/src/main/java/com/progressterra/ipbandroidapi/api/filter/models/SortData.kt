@@ -6,6 +6,6 @@ data class SortData(
     @SerializedName("fieldName")
     val fieldName: String?,
     @SerializedName("variantSort")
-    val typeVariationSort: String
+    val typeVariationSort: String?
 
 )

@@ -5,5 +5,5 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class FilterDataResponse(
     @SerializedName("data")
-    val data: FilterData
+    val data: FilterData?
 ) : BaseResponse()

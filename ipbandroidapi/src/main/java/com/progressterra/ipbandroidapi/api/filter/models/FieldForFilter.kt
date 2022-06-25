@@ -6,7 +6,7 @@ data class FieldForFilter(
     @SerializedName("fieldName")
     val fieldName: String?,
     @SerializedName("comparisonType")
-    val comparisonType: String,
+    val comparisonType: String?,
     @SerializedName("listValue")
-    val listValue: List<String?>
+    val listValue: List<String?>?
 )
