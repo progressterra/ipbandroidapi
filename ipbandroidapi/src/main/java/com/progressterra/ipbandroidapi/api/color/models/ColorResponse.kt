@@ -6,5 +6,5 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class ColorResponse(
     @SerializedName("dataList")
-    val data: List<FilterColor>
+    val data: List<FilterColor?>?
 ) : BaseResponse()
