@@ -25,6 +25,6 @@ internal interface IpbMediaDataCoreApi {
     suspend fun getMediaDataById(@Path("IDRGEntitytMediaData") mediaDataId: String): MediaDataResponse
 
     @Streaming
-    @GET()
+    @GET
     suspend fun downloadFile(@Url url: String): Response<ResponseBody>
 }

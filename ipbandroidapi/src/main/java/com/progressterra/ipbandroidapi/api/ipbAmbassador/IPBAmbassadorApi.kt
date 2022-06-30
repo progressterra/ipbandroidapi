@@ -34,7 +34,7 @@ internal interface IPBAmbassadorApi {
             @Path("AccessToken") accessToken: String,
             @Path("Alias") alias: String,
             @Path("Tag") tag: String,
-            @Part() image: MultipartBody.Part
+            @Part image: MultipartBody.Part
         ): Response<UploadImageResponse>
 
         /**

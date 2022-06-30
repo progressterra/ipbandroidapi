@@ -1,6 +1,5 @@
 package com.progressterra.ipbandroidapi.api.sizetable
 
-import com.progressterra.ipbandroidapi.api.filter.IPBFilterApi
 import com.progressterra.ipbandroidapi.api.sizetable.models.SizeTableResponse
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl

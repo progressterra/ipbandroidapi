@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.api.ipbDeliveryService
 
-import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.GetOrderStatusResponse
+import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.payment.GetOrderStatusResponse
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery.*
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.payment.RegisterOrderResponse
 import com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.payment.SendCardDataResponse

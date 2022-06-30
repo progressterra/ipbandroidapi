@@ -58,7 +58,4 @@ data class SuggestionExtendedInfo(
     val streetFiasId: String? = null,
     @SerializedName("street_kladr_id")
     val streetKladrId: String? = null
-) {
-
-
-}
+)
