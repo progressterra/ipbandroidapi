@@ -12,7 +12,7 @@ class IPBFilterImpl : IPBFilter {
     private val networkService: NetworkService = NetworkServiceImpl()
     private val api = networkService.createService(
         IPBFilterApi::class.java,
-        NetworkSettings.IPB_FILTER_URL
+        NetworkSettings.IPB_PRODUCT_URL
     )
 
     override suspend fun getFilteredProduct(
