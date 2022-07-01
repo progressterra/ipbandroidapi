@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class CatalogInfoResponse(
-    @SerializedName("name")
-    val name: String?
+    @SerializedName("dataList")
+    val dataList: List<CatalogInfo>
 ) : BaseResponse()
