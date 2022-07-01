@@ -279,6 +279,8 @@ internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
         return catalogApi.getCatalog(accessToken)
     }
 
+    override suspend fun getCatalogInfoById(ids: List<String>): CatalogInfoResponse = catalogApi.getCategoryInfo(ids)
+
     /**
      * Product for ERP
      */

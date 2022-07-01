@@ -1,9 +1,6 @@
 package com.progressterra.ipbandroidapi.api.iECommersCoreApi
 
-import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.CatalogResponse
-import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.DeliveryServiceId
-import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductPageResponse
-import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductSetResponse
+import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.*
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.GoodsQuantityResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.shop.YooMoneyConfirmationResponse
@@ -284,6 +281,8 @@ interface IECommersCore {
          * Выводит каталог
          */
         suspend fun getCatalog(accessToken: String): CatalogResponse
+
+        suspend fun getCatalogInfoById(ids: List<String>): CatalogInfoResponse
     }
 
     interface Shop {

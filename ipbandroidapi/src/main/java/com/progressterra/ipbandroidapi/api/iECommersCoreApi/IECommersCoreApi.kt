@@ -282,6 +282,12 @@ internal interface IECommersCoreApi {
          */
         @GET("/iecommercecore/api/v1/catalog/{AccessToken}")
         suspend fun getCatalog(@Path("AccessToken") accessToken: String): CatalogResponse
+
+        /**
+         * Catalog info
+         */
+        @POST("/iecommercecore/api/v1/catalog/web/listbyid")
+        suspend fun getCategoryInfo(@Body ids: List<String>): CatalogInfoResponse
     }
 
     interface Shop {
