@@ -22,7 +22,6 @@ class PersonalInfo {
             emailIsValid = !field.isNullOrBlank() && (Regex(".+@.+\\..+")).matches(field ?: "")
         }
 
-    //TODO rework, it works while only date picker used
     var birthdate: String? = null
         set(value) {
             field = value

@@ -9,4 +9,8 @@ class UpdateUserInfoRequest(
     var name: String,
     @SerializedName("patronymic")
     var patronymic: String,
+    @SerializedName("dateOfBirth")
+    var dateOfBirth: String,
+    @SerializedName("sex")
+    var sex: Int
 )

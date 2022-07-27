@@ -36,7 +36,9 @@ interface SCRMApiQwerty {
             accessToken: String,
             name: String,
             soname: String,
-            patronymic: String
+            patronymic: String,
+            dateOfBirth: String,
+            sex: Int
         ): ClientInfoResponse
 
 
