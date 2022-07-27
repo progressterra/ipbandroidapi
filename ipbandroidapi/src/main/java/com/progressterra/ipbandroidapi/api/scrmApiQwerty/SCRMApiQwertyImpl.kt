@@ -71,12 +71,11 @@ internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty
         name: String,
         soname: String,
         patronymic: String,
-        dateOfBirth: String,
         sex: Int
     ): ClientInfoResponse {
         return clientsApi.updatePersonalInfo(
             accessToken,
-            UpdateUserInfoRequest(soname, name, patronymic, dateOfBirth, sex)
+            UpdateUserInfoRequest(soname, name, patronymic, sex)
         )
     }
 
