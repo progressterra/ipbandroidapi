@@ -217,7 +217,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
 
     private suspend fun getExistingClient(phoneNumber: String): Boolean {
         val response = networkService.baseRequest {
-            scrmService.getClientByParams(
+            scrmService.clientInfoByToken(
                 UserData.registerAccessToken,
                 ParamName.PHONE.value,
                 phoneNumber

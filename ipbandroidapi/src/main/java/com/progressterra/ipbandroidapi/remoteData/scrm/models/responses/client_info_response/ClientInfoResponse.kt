@@ -2,6 +2,8 @@ package com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_
 
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.clientinfo.ClientAdditionalInfoModel
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.clientinfo.ClientInfoModel
 
 data class ClientInfoResponse(
     /**
@@ -14,5 +16,5 @@ data class ClientInfoResponse(
      * Дополнительные данные клиента
      */
     @SerializedName("clientAdditionalInfo")
-    val clientAdditionalInfo: ClientAdditionalModel? = null
+    val clientAdditionalInfo: ClientAdditionalInfoModel? = null
 ) : BaseResponse()

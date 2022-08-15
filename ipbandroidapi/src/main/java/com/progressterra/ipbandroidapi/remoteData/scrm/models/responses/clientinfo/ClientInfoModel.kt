@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response
+package com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.clientinfo
 
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
@@ -7,25 +7,23 @@ import com.progressterra.ipbandroidapi.utils.extentions.parseToDate
 
 data class ClientInfoModel(
     @SerializedName("idUnique")
-    val idUnique: String? = "",
+    val idUnique: String?,
     @SerializedName("idEnterprise")
-    val idEnterprise: String? = "",
+    val idEnterprise: String?,
     @SerializedName("name")
-    val name: String? = "",
+    val name: String?,
     @SerializedName("soname")
-    val soname: String? = "",
+    val soname: String?,
     @SerializedName("patronymic")
-    val patronymic: String? = "",
+    val patronymic: String?,
     @SerializedName("sex")
-    val sex: Int? = null,
+    val sex: Int?,
     @SerializedName("dateOfBirth")
-    val dateOfBirth: String? = "",
+    val dateOfBirth: String?,
     @SerializedName("dateOfRegister")
-    val dateOfRegister: String? = "",
+    val dateOfRegister: String?,
     @SerializedName("comment")
-    val comment: String? = "",
-    @SerializedName("jsonAgileData")
-    val jsonAgileData: String? = ""
+    val comment: String?
 ) {
     fun convertToClientInfo(): ClientInfo = ClientInfo(
         idUnique = idUnique ?: "",

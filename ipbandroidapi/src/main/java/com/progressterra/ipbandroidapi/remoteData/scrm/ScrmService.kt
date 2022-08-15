@@ -17,6 +17,8 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.Purchase
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.TransactionListResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.accesstoken.AccessTokenResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.clientinfo.ClientInfoReponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.deviceid.DeviceIdResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.verification.VerificationEndResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.verification.VerificationStartResponse
 import retrofit2.Response
@@ -37,51 +39,20 @@ internal interface ScrmService {
     suspend fun verificationChannelEnd(@Body verificationEnd: VerificationEndRequest): VerificationEndResponse
 
     /**
-     * Возвращает клиента по 2-м параметрам Наименованию параметра и Значению параметра
-     * phone/79999990000, email/name@mail.org
-     *
-     * @param AccessToken Токен доступа клиента
-     * @param ParamName Наименование параметра
-     * @param ParamValue Значение параметра
-     * @return ответ сервера
+     * Возвращает информацию про клиента по токену
      */
-    @GET("/api/v3/clients/{AccessToken}/{ParamName}/{ParamValue}")
-    @Headers("Content-Type: application/json")
-    suspend fun getClientByParams(
+    @GET("/api/v7/clients/{AccessToken}/fulldata")
+    suspend fun clientInfoByToken(
         @Path("AccessToken") AccessToken: String,
-        @Path("ParamName") ParamName: String,
-        @Path("ParamValue") ParamValue: String
-    ): Response<ClientInfoResponse>
+    ): ClientInfoReponse
 
     /**
-     * Создает нового клиента и возвращает объект клиента, который был создан
-     *
-     * @param paramRequest параметры
-     * @return ответ сервера
+     * Возвращает id клиента по токену
      */
-    @POST("/api/v3/clients")
-    @Headers("Content-Type: application/json")
-    suspend fun createNewClient(@Body paramRequest: ParamRequest): Response<ClientInfoResponse>
-
-    /**
-     * Добавляет новое устройство для клиента
-     *
-     * @param paramRequest параметры
-     * @return ответ сервера
-     */
-    @POST("/api/v3/clients/device")
-    @Headers("Content-Type: application/json")
-    suspend fun addDevice(@Body paramRequest: ParamRequest): Response<DeviceResponse>
-
-    /**
-     * Добавляет номер телефона в связку с клиентом
-     *
-     * @param paramRequest параметры
-     * @return ответ сервера
-     */
-    @POST("/api/v3/clients/phone")
-    @Headers("Content-Type: application/json")
-    suspend fun addPhone(@Body paramRequest: ParamRequest): Response<ClientInfoResponse>
+    @GET("/api/v7/clients/{AccessToken}")
+    suspend fun deviceIdByToken(
+        @Path("AccessToken") accessToken: String,
+    ): DeviceIdResponse
 
     /**
      * Получение accesstoken
@@ -89,6 +60,7 @@ internal interface ScrmService {
     @POST("api/v7/clients/accesstoken")
     suspend fun accessToken(@Body accessToken: AccessTokenRequest): AccessTokenResponse
 
+    //TODO ???
     /**
      * Получение информации о бонусах клиента
      */
@@ -96,6 +68,7 @@ internal interface ScrmService {
     @Headers("Content-Type: application/json")
     suspend fun getGeneralInfo(@Path("AccessToken") accessToken: String): Response<GeneralInfoResponse>
 
+    //TODO rework
     /**
      * Установка персональных данных клиента, в ответ приходит обновленная модель
      */
@@ -103,6 +76,7 @@ internal interface ScrmService {
     @Headers("Content-Type: application/json")
     suspend fun addPersonalInfo(@Body personalInfoResponse: ClientInfoRequest): Response<ClientInfoResponse>
 
+    //TODO rework
     /**
      * Установка почты клиента
      */
@@ -110,14 +84,7 @@ internal interface ScrmService {
     @Headers("Content-Type: application/json")
     suspend fun addEmail(@Body paramRequest: ParamRequest): Response<BaseResponse>
 
-    /**
-     * Отправка подтверждения на почту клиента
-     */
-    @POST("/api/v3/gamification/emailconfirm/sendlink")
-    suspend fun confirmEmail(
-        @Body confirmEmailRequest: ConfirmEmailRequest
-    ): Response<BaseResponse>
-
+    //TODO ???
     /**
      * Установка города клиента
      */
@@ -128,6 +95,7 @@ internal interface ScrmService {
         @Body cityEntity: AddCitiRequest
     ): Response<BaseResponse>
 
+    //TODO ???
     /**
      * Получение списка городов доступных для выбора
      */
@@ -135,33 +103,35 @@ internal interface ScrmService {
     @Headers("Content-Type: application/json")
     suspend fun getCities(): Response<CitiesListResponse>
 
+    //TODO ???
     /**
      * Предоставляет данные по всем транзакциям бонусов
      */
     @GET("/api/v3/ibonus/alltransaction/{AccessToken}")
     suspend fun getTransactionsList(@Path("AccessToken") accessToken: String): Response<TransactionListResponse>
 
+    //TODO ???
     /**
      * Получение списка покупок
      */
     @GET("/api/v1/clientpurchase/{AccessToken}")
     suspend fun getShopList(@Path("AccessToken") accessToken: String): Response<PurchasesListResponse>
 
+    //TODO ???
     /**
      * Получение списка бонусных сообщений
      */
     @GET("/api/v3/ibonus/infobytype/{AccessToken}")
     suspend fun getBonusMessagesList(@Path("AccessToken") accessToken: String): Response<BonusesMessagesResponse>
 
-    @POST("/api/v3/clients/createat")
-    suspend fun createClientWithoutPhone(@Body createClientWithoutPhoneRequest: CreateClientWithoutPhoneRequest): Response<AccessTokenResponse>
-
+    //TODO ???
     /**
      * получение списка адресов для текущего клиента
      */
     @GET("/api/v3/addressclient/list/{AccessToken}")
     suspend fun getAddressList(@Path("AccessToken") accessToken: String): Response<ListOfAddressesResponse>
 
+    //TODO ???
     /**
      * добавить новый адресс
      */
@@ -171,6 +141,7 @@ internal interface ScrmService {
         @Body modifyClientAddressRequest: Address
     ): Response<ResultResponse>
 
+    //TODO ???
     /**
      * отредактировать существующий адресс
      */
@@ -180,6 +151,7 @@ internal interface ScrmService {
         @Body modifyClientAddressRequest: Address
     ): Response<ResultResponse>
 
+    //TODO ???
     /**
      * получить список подсказок адресов по введенной строке
      */
