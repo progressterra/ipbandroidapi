@@ -8,32 +8,33 @@ import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddr
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.*
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.accesstoken.AccessTokenRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.verification.VerificationEndRequest
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.verification.VerificationStartRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.BonusesMessagesResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.PurchasesListResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.TransactionListResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.accesstoken.AccessTokenResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.verification.VerificationEndResponse
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.verification.VerificationStartResponse
 import retrofit2.Response
 import retrofit2.http.*
 
-internal interface ScrmApi {
+internal interface ScrmService {
 
     /**
      * Начало верификации канала
-     *
-     * @param verificationRequest данные верификации
-     * @return ответ сервера
      */
-    @POST("/api/v3/clients/verificationchannelbegin")
-    @Headers("Content-Type: text/json")
-    suspend fun verificationChannelBegin(@Body verificationRequest: VerificationRequest): ResultResponse
+    @POST("/api/v7/clients/login/start")
+    suspend fun verificationChannelBegin(@Body verificationStart: VerificationStartRequest): VerificationStartResponse
 
     /**
      * Окончание верификации канала
-     *
-     * @param verificationRequest данные верификации
-     * @return ответ сервера
      */
-    @POST("/api/v3/clients/verificationchannelend")
-    @Headers("Content-Type: application/json")
-    suspend fun verificationChannelEnd(@Body verificationRequest: VerificationRequest): Response<VerificationResponse>
+    @POST("/api/v7/clients/login/end")
+    suspend fun verificationChannelEnd(@Body verificationEnd: VerificationEndRequest): VerificationEndResponse
 
     /**
      * Возвращает клиента по 2-м параметрам Наименованию параметра и Значению параметра
@@ -85,9 +86,8 @@ internal interface ScrmApi {
     /**
      * Получение accesstoken
      */
-    @POST("api/v3/clients/accesstoken")
-    @Headers("Content-Type: application/json")
-    suspend fun getAccessToken(@Body accessToken: AccessTokenRequest): Response<AccessTokenResponse>
+    @POST("api/v7/clients/accesstoken")
+    suspend fun accessToken(@Body accessToken: AccessTokenRequest): AccessTokenResponse
 
     /**
      * Получение информации о бонусах клиента
@@ -95,7 +95,6 @@ internal interface ScrmApi {
     @GET("api/v3/ibonus/generalinfo/{AccessToken}")
     @Headers("Content-Type: application/json")
     suspend fun getGeneralInfo(@Path("AccessToken") accessToken: String): Response<GeneralInfoResponse>
-
 
     /**
      * Установка персональных данных клиента, в ответ приходит обновленная модель

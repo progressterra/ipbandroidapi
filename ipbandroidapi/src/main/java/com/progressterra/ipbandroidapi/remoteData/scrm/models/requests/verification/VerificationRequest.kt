@@ -1,6 +1,7 @@
-package com.progressterra.ipbandroidapi.remoteData.scrm.models.requests
+package com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.verification
 
 import com.google.gson.annotations.SerializedName
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.ChannelName
 
 internal class VerificationRequest(
     /**

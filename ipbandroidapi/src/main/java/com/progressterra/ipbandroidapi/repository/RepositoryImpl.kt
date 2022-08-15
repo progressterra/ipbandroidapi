@@ -19,13 +19,14 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmApi
+import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmService
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.Address
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.*
+import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.verification.VerificationRequest
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
 import com.progressterra.ipbandroidapi.utils.Debug
@@ -37,14 +38,14 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
 
     private val networkService: NetworkService = NetworkServiceImpl()
 
-    private val scrmAPI =
-        networkService.createService(ScrmApi::class.java, NetworkSettings.LIKEDISLIKE_ROOT_URL)
+    private val scrmService =
+        networkService.createService(ScrmService::class.java, NetworkSettings.LIKEDISLIKE_ROOT_URL)
     private val addressesApi = networkService.createService(
-        ScrmApi::class.java,
+        ScrmService::class.java,
         NetworkSettings.ADDRESSES_ROOT_URL
     )
     private val dadataApi =
-        networkService.createService(ScrmApi::class.java, NetworkSettings.DADATA_ROOT_URL)
+        networkService.createService(ScrmService::class.java, NetworkSettings.DADATA_ROOT_URL)
 
     private val clientsApi = networkService.createService(
         SCRMApiQwertyApi.ClientsV3::class.java,
@@ -54,7 +55,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse {
         val response = coroutineScope {
             networkService.safeApiCall {
-                scrmAPI.verificationChannelBegin(
+                scrmService.verificationChannelBegin(
                     VerificationRequest(
                         phoneNumber
                     )
@@ -75,7 +76,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
     ): CodeVerificationModel {
         val response = coroutineScope {
             networkService.baseRequest {
-                scrmAPI.verificationChannelEnd(VerificationRequest(phoneNumber, code))
+                scrmService.verificationChannelEnd(VerificationRequest(phoneNumber, code))
             }
         }
 
@@ -116,7 +117,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         )
 
 
-        val response = networkService.baseRequest { scrmAPI.addPersonalInfo(addClientInfoRequest) }
+        val response = networkService.baseRequest { scrmService.addPersonalInfo(addClientInfoRequest) }
 
         saveUserData(
             response.responseBody?.client?.convertToClientInfo(),
@@ -132,7 +133,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             ParamName.EMAIL,
             email,
         )
-        return networkService.baseRequest { scrmAPI.addEmail(request) }
+        return networkService.baseRequest { scrmService.addEmail(request) }
     }
 
     override suspend fun confirmEmail(email: String): ResponseWrapper<BaseResponse> {
@@ -140,7 +141,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             UserData.accessToken,
             email
         )
-        return networkService.baseRequest { scrmAPI.confirmEmail(confirmEmailRequest) }
+        return networkService.baseRequest { scrmService.confirmEmail(confirmEmailRequest) }
     }
 
     override suspend fun addCity(city: CitiesListResponse.City): ResponseWrapper<BaseResponse> {
@@ -152,11 +153,11 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             0,
             0
         )
-        return networkService.baseRequest { scrmAPI.setCity(UserData.accessToken, addCitiRequest) }
+        return networkService.baseRequest { scrmService.setCity(UserData.accessToken, addCitiRequest) }
     }
 
     override suspend fun getCitiesList(): ResponseWrapper<CitiesListResponse> {
-        return networkService.baseRequest { scrmAPI.getCities() }
+        return networkService.baseRequest { scrmService.getCities() }
     }
 
     override suspend fun initClient(): InitUserResponse {
@@ -171,7 +172,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
 
     private suspend fun getRegisterAccessToken(): ResponseWrapper<AccessTokenResponse> {
         val request = CreateClientWithoutPhoneRequest()
-        return networkService.baseRequest { scrmAPI.createClientWithoutPhone(request) }
+        return networkService.baseRequest { scrmService.createClientWithoutPhone(request) }
     }
 
     override suspend fun getAccessToken(): ResponseWrapper<AccessTokenResponse> {
@@ -184,23 +185,23 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             paramValue = UserData.deviceId,
             0
         )
-        val response = networkService.baseRequest { scrmAPI.getAccessToken(accessTokenRequest) }
+        val response = networkService.baseRequest { scrmService.accessToken(accessTokenRequest) }
         UserData.accessToken = response.responseBody?.accessToken ?: ""
         return response
     }
 
     override suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<GeneralInfoResponse> {
-        return networkService.baseRequest { scrmAPI.getGeneralInfo(accessToken) }
+        return networkService.baseRequest { scrmService.getGeneralInfo(accessToken) }
     }
 
     override suspend fun getTransactionsList(accessToken: String): ResponseWrapper<TransactionListResponse> =
-        networkService.baseRequest { scrmAPI.getTransactionsList(accessToken) }
+        networkService.baseRequest { scrmService.getTransactionsList(accessToken) }
 
     override suspend fun getPurchasesList(accessToken: String): ResponseWrapper<PurchasesListResponse> =
-        networkService.baseRequest { scrmAPI.getShopList(accessToken) }
+        networkService.baseRequest { scrmService.getShopList(accessToken) }
 
     override suspend fun getBonusMessagesList(accessToken: String): ResponseWrapper<BonusesMessagesResponse> =
-        networkService.baseRequest { scrmAPI.getBonusMessagesList(accessToken) }
+        networkService.baseRequest { scrmService.getBonusMessagesList(accessToken) }
 
 
     private suspend fun getUserData(phoneNumber: String) {
@@ -216,7 +217,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
 
     private suspend fun getExistingClient(phoneNumber: String): Boolean {
         val response = networkService.baseRequest {
-            scrmAPI.getClientByParams(
+            scrmService.getClientByParams(
                 UserData.registerAccessToken,
                 ParamName.PHONE.value,
                 phoneNumber
@@ -248,7 +249,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
 
     private suspend fun createNewClient(): ResponseWrapper<ClientInfoResponse> {
         return networkService.baseRequest {
-            scrmAPI.createNewClient(
+            scrmService.createNewClient(
                 ParamRequest(
                     idClient = null,
                     accessToken = UserData.registerAccessToken,
@@ -271,7 +272,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
 
     private suspend fun addDevice(): ResponseWrapper<DeviceResponse> {
         val response = networkService.baseRequest {
-            scrmAPI.addDevice(
+            scrmService.addDevice(
                 ParamRequest(
                     idClient = UserData.clientInfo.idUnique,
                     accessToken = UserData.registerAccessToken,
@@ -289,7 +290,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
 
     private suspend fun addPhone(phoneNumber: String) {
         val response = networkService.baseRequest {
-            scrmAPI.addPhone(
+            scrmService.addPhone(
                 ParamRequest(
                     idClient = UserData.clientInfo.idUnique,
                     accessToken = UserData.registerAccessToken,
