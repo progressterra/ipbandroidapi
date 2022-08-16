@@ -24,13 +24,14 @@ import com.progressterra.ipbandroidapi.api.scrm.models.address.Address
 import com.progressterra.ipbandroidapi.api.scrm.models.address.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionsRequest
+import com.progressterra.ipbandroidapi.api.scrm.models.clientinfo.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.entities.ParamName
 import com.progressterra.ipbandroidapi.api.scrm.models.requests.*
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.*
-import com.progressterra.ipbandroidapi.api.scrm.models.responses.client_info_response.ClientInfoResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndRequest
+import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartRequest
 import com.progressterra.ipbandroidapi.utils.Debug
 import com.progressterra.ipbandroidapi.utils.extentions.tryOrNull
-import kotlinx.coroutines.coroutineScope
 
 internal class RepositoryImpl : LoginRepository, BonusesRepository,
     AddressesRepository {
@@ -51,78 +52,66 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         NetworkSettings.LIKEDISLIKE_ROOT_URL
     )
 
+    //TODO channel type and data?
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse {
-        val response = coroutineScope {
-            networkService.safeApiCall {
-                scrmService.verificationChannelBegin(
-                    VerificationRequest(
-                        phoneNumber
-                    )
+        val response = networkService.safeApiCall {
+            scrmService.verificationChannelBegin(
+                VerificationStartRequest(
+                    0,
+                    ""
                 )
-            }
+            )
         }
-
         val status =
-            if (response?.status == 0) GlobalResponseStatus.SUCCESS else GlobalResponseStatus.ERROR
-        val message = response?.message ?: ""
+            if (response?.result?.status == 0) GlobalResponseStatus.SUCCESS else GlobalResponseStatus.ERROR
+        val message = response?.result?.message ?: ""
 
         return LoginResponse(status, message)
     }
 
+    //TODO channel type, data? rename model because it is response
     override suspend fun verificationChannelEnd(
         phoneNumber: String,
         code: String
     ): CodeVerificationModel {
-        val response = coroutineScope {
-            networkService.baseRequest {
-                scrmService.verificationChannelEnd(VerificationRequest(phoneNumber, code))
-            }
+        val response = networkService.safeApiCall {
+            scrmService.verificationChannelEnd(
+                VerificationEndRequest(0, "", "", "")
+            )
         }
 
-        val responseBody = response.responseBody
-
-        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS && responseBody != null) {
-            UserData.registerAccessToken = responseBody.accessToken ?: ""
+        if (response?.result?.status == 0) {
+            UserData.registerAccessToken = response.data.idDevice
             getUserData(phoneNumber)
         }
 
         return CodeVerificationModel(
-            status = response.globalResponseStatus,
+            status = if (response?.result?.status == 0) GlobalResponseStatus.SUCCESS else GlobalResponseStatus.ERROR,
             userExist = UserData.clientExist,
-            error = response.errorString,
-            //isDataCorrupted = UserData.isPersonalCorrupted
+            error = response?.result?.message ?: "",
         )
     }
 
-    override suspend fun addPersonalInfo(personalInfo: PersonalInfo): ResponseWrapper<BaseResponse> {
-        val clientData = ClientData(
-            personalInfo.birthdate ?: "",
+    //TODO access token and maybe Result class or empty realization
+    override suspend fun addPersonalInfo(personalInfo: PersonalInfo): ClientInfoResponse {
+
+        val response = networkService.safeApiCall { scrmService.setPersonalInfo(
+            "",
+            ClientInfoRequest(
+                personalInfo.sexType?.value ?: 0,
+            personalInfo.lastname ?: "",
             personalInfo.name ?: "",
             personalInfo.patronymic ?: "",
-            sex = personalInfo.sexType?.value?.toString() ?: "0",
-            soname = personalInfo.lastname ?: ""
-        )
-
-
-        val addClientInfoRequest = ClientInfoRequest(
-            accessToken = UserData.accessToken,
-            clientData = clientData,
-            iDClient = UserData.clientInfo.idUnique,
-            0.0,
-            0.0,
-            null,
-            null,
-            0
-        )
-
-
-        val response = networkService.baseRequest { scrmService.addPersonalInfo(addClientInfoRequest) }
+            personalInfo.birthdate ?: "",
+            ""
+            )
+        ) }
 
         saveUserData(
-            response.responseBody?.client?.convertToClientInfo(),
-            response.responseBody?.clientAdditionalInfo?.convertToClientAdditionalInfo()
+            response?.data?.clientInfo?.convertToClientInfo(),
+            response?.data?.clientAdditionalInfo?.convertToClientAdditionalInfo()
         )
-        return response as ResponseWrapper<BaseResponse>
+        return response
     }
 
     override suspend fun addEmail(email: String): ResponseWrapper<BaseResponse> {
