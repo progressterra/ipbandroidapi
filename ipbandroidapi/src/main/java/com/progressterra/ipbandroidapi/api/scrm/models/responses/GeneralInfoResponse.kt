@@ -8,10 +8,20 @@ import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusesI
 
 data class GeneralInfoResponse(
     @SerializedName("result") val result: BaseResult,
-    @SerializedName("data") val data: GeneralInfoData,
+    @SerializedName("data") val data: Data,
     @SerializedName("totalNumberRecords") val totalNumberRecords: Int
 ) {
 
+    data class Data(
+        @SerializedName("currentQuantity")
+        val currentQuantity: Double,
+        @SerializedName("dateBurning")
+        val dateBurning: String,
+        @SerializedName("forBurningQuantity")
+        val forBurningQuantity: Double,
+        @SerializedName("typeBonusName")
+        val typeBonusName: String?
+    )
     fun convertToBonusesInfo() =
         BonusesInfo(
             currentQuantity = data.currentQuantity.toInt(),
@@ -21,13 +31,3 @@ data class GeneralInfoResponse(
         )
 }
 
-data class GeneralInfoData(
-    @SerializedName("currentQuantity")
-    val currentQuantity: Double,
-    @SerializedName("dateBurning")
-    val dateBurning: String,
-    @SerializedName("forBurningQuantity")
-    val forBurningQuantity: Double,
-    @SerializedName("typeBonusName")
-    val typeBonusName: String?
-)

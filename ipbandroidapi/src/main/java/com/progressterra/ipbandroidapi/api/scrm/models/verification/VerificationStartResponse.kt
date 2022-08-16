@@ -1,10 +1,9 @@
-package com.progressterra.ipbandroidapi.api.scrm.models.responses.clientinfo
+package com.progressterra.ipbandroidapi.api.scrm.models.verification
 
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.api.scrm.models.BaseResult
 
-data class DeviceIdResponse(
+data class VerificationStartResponse(
     @SerializedName("result") val result: BaseResult,
-    @SerializedName("data") val deviceId: String,
     @SerializedName("totalNumberRecords") val totalNumberRecords: Int
 )

@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.scrm.models.responses.accesstoken
+package com.progressterra.ipbandroidapi.api.scrm.models.accesstoken
 
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.api.scrm.models.BaseResult

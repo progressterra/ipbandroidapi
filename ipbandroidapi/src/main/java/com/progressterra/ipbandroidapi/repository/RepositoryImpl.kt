@@ -132,7 +132,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             ParamName.EMAIL,
             email,
         )
-        return networkService.baseRequest { scrmService.addEmail(request) }
+        return networkService.baseRequest { scrmService.setEmail(request) }
     }
 
     override suspend fun confirmEmail(email: String): ResponseWrapper<BaseResponse> {

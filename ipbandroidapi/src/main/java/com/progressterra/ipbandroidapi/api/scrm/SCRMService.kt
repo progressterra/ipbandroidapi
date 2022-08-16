@@ -7,16 +7,18 @@ import com.progressterra.ipbandroidapi.api.scrm.models.address.ListOfAddressesRe
 import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionsRequest
 import com.progressterra.ipbandroidapi.api.scrm.models.requests.*
-import com.progressterra.ipbandroidapi.api.scrm.models.requests.accesstoken.AccessTokenRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.requests.verification.VerificationEndRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.requests.verification.VerificationStartRequest
+import com.progressterra.ipbandroidapi.api.scrm.models.accesstoken.AccessTokenRequest
+import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailRequest
+import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndRequest
+import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartRequest
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.PurchasesListResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.responses.accesstoken.AccessTokenResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.responses.clientinfo.ClientInfoResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.responses.deviceid.DeviceIdResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.responses.verification.VerificationEndResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.responses.verification.VerificationStartResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.accesstoken.AccessTokenResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.clientinfo.ClientInfoResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.deviceid.DeviceIdResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -69,9 +71,11 @@ internal interface SCRMService {
     /**
      * Установка почты клиента
      */
-    @POST("/api/v3/clients/email")
-    @Headers("Content-Type: application/json")
-    suspend fun addEmail(@Body paramRequest: ParamRequest): Response<BaseResponse>
+    @POST("/api/v7/clients/email/{AccessToken}")
+    suspend fun setEmail(
+        @Path("AccessToken") accessToken: String,
+        @Body request: EmailRequest
+    ): EmailResponse
 
     //TODO move
     /**
@@ -93,21 +97,21 @@ internal interface SCRMService {
     suspend fun getCities(): Response<CitiesListResponse>
 
 
-    //TODO move
+    //TODO move out
     /**
      * Получение списка покупок
      */
     @GET("/api/v1/clientpurchase/{AccessToken}")
     suspend fun getShopList(@Path("AccessToken") accessToken: String): Response<PurchasesListResponse>
 
-    //TODO move
+    //TODO move out
     /**
      * получение списка адресов для текущего клиента
      */
     @GET("/api/v3/addressclient/list/{AccessToken}")
     suspend fun getAddressList(@Path("AccessToken") accessToken: String): Response<ListOfAddressesResponse>
 
-    //TODO move
+    //TODO move out
     /**
      * добавить новый адресс
      */
@@ -117,7 +121,7 @@ internal interface SCRMService {
         @Body modifyClientAddressRequest: Address
     ): Response<ResultResponse>
 
-    //TODO move
+    //TODO move out
     /**
      * отредактировать существующий адресс
      */
@@ -127,7 +131,7 @@ internal interface SCRMService {
         @Body modifyClientAddressRequest: Address
     ): Response<ResultResponse>
 
-    //TODO move
+    //TODO move out
     /**
      * получить список подсказок адресов по введенной строке
      */

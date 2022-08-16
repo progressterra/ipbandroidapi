@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.scrm.models.requests.verification
+package com.progressterra.ipbandroidapi.api.scrm.models.verification
 
 import com.google.gson.annotations.SerializedName
 
