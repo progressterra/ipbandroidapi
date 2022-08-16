@@ -19,16 +19,15 @@ import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.ScrmService
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.Address
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddressesResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.*
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.requests.verification.VerificationRequest
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.*
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.client_info_response.ClientInfoResponse
+import com.progressterra.ipbandroidapi.api.scrm.SCRMService
+import com.progressterra.ipbandroidapi.api.scrm.models.address.Address
+import com.progressterra.ipbandroidapi.api.scrm.models.address.ListOfAddressesResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionsRequest
+import com.progressterra.ipbandroidapi.api.scrm.models.entities.ParamName
+import com.progressterra.ipbandroidapi.api.scrm.models.requests.*
+import com.progressterra.ipbandroidapi.api.scrm.models.responses.*
+import com.progressterra.ipbandroidapi.api.scrm.models.responses.client_info_response.ClientInfoResponse
 import com.progressterra.ipbandroidapi.utils.Debug
 import com.progressterra.ipbandroidapi.utils.extentions.tryOrNull
 import kotlinx.coroutines.coroutineScope
@@ -39,13 +38,13 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
     private val networkService: NetworkService = NetworkServiceImpl()
 
     private val scrmService =
-        networkService.createService(ScrmService::class.java, NetworkSettings.LIKEDISLIKE_ROOT_URL)
+        networkService.createService(SCRMService::class.java, NetworkSettings.LIKEDISLIKE_ROOT_URL)
     private val addressesApi = networkService.createService(
-        ScrmService::class.java,
+        SCRMService::class.java,
         NetworkSettings.ADDRESSES_ROOT_URL
     )
     private val dadataApi =
-        networkService.createService(ScrmService::class.java, NetworkSettings.DADATA_ROOT_URL)
+        networkService.createService(SCRMService::class.java, NetworkSettings.DADATA_ROOT_URL)
 
     private val clientsApi = networkService.createService(
         SCRMApiQwertyApi.ClientsV3::class.java,

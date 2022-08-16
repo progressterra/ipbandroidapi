@@ -3,10 +3,10 @@ package com.progressterra.ipbandroidapi.interfaces.client.addresses
 import com.progressterra.ipbandroidapi.interfaces.internal.AddressesRepository
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.Address
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.ListOfAddressesResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.address.dadata.DadataSuggestionsRequest
+import com.progressterra.ipbandroidapi.api.scrm.models.address.Address
+import com.progressterra.ipbandroidapi.api.scrm.models.address.ListOfAddressesResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionsRequest
 import com.progressterra.ipbandroidapi.repository.RepositoryImpl
 
 class AddressApiImpl : AddressApi {

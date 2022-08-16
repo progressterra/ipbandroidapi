@@ -7,7 +7,7 @@ import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.responses.CitiesListResponse
 import com.progressterra.ipbandroidapi.repository.RepositoryImpl
 
 internal class LoginApiImpl : LoginApi {

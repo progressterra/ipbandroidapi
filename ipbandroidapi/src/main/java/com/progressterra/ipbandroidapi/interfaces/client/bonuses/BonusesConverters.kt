@@ -1,10 +1,10 @@
 package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
 import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.*
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.BonusesMessagesResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.GeneralInfoResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.PurchasesListResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.TransactionListResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.responses.BonusesMessagesResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.responses.GeneralInfoResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.responses.PurchasesListResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.responses.TransactionListResponse
 import com.progressterra.ipbandroidapi.utils.extentions.orNow
 import com.progressterra.ipbandroidapi.utils.extentions.parseToDate
 import com.progressterra.ipbandroidapi.utils.extentions.tryOrNull

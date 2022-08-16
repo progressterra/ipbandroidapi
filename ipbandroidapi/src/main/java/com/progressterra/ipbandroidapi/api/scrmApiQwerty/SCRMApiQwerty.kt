@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.api.ipbAmbassador.models.client_info.Clie
 import com.progressterra.ipbandroidapi.api.scrmApiQwerty.models.requests.DeviceParameters
 import com.progressterra.ipbandroidapi.remoteData.DEFAULT_ID
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
+import com.progressterra.ipbandroidapi.api.scrm.models.entities.ParamName
 
 
 /**

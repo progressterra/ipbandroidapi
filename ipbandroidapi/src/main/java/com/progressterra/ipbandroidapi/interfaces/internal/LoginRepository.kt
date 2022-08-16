@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.interfaces.client.login.models.InitUserRe
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.CitiesListResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.responses.CitiesListResponse
 
 internal interface LoginRepository {
 

@@ -2,7 +2,6 @@ package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
 import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.*
 import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.responses.AccessTokenResponse
 
 interface BonusesApi {
 

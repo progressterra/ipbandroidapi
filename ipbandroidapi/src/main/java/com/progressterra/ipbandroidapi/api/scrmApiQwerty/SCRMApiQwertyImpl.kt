@@ -11,7 +11,7 @@ import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
 import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import com.progressterra.ipbandroidapi.remoteData.scrm.models.entities.ParamName
+import com.progressterra.ipbandroidapi.api.scrm.models.entities.ParamName
 
 internal class SCRMApiQwertyImpl : SCRMApiQwerty.ClientManagement, SCRMApiQwerty.ClientsV3,
     SCRMApiQwerty.ClientCity, SCRMApiQwerty.TestimonialsControllerV3,
