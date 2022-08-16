@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.api.scrm
 
-import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
+import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remotedata.models.base.ResultResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.address.Address
 import com.progressterra.ipbandroidapi.api.scrm.models.address.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionResponse
@@ -13,8 +13,7 @@ import com.progressterra.ipbandroidapi.api.scrm.models.requests.verification.Ver
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.PurchasesListResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.accesstoken.AccessTokenResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.responses.client_info_response.ClientInfoResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.responses.clientinfo.ClientInfoReponse
+import com.progressterra.ipbandroidapi.api.scrm.models.responses.clientinfo.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.deviceid.DeviceIdResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.verification.VerificationEndResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.verification.VerificationStartResponse
@@ -27,21 +26,21 @@ internal interface SCRMService {
      * Начало верификации канала
      */
     @POST("/api/v7/clients/login/start")
-    suspend fun verificationChannelBegin(@Body verificationStart: VerificationStartRequest): VerificationStartResponse
+    suspend fun verificationChannelBegin(@Body request: VerificationStartRequest): VerificationStartResponse
 
     /**
      * Окончание верификации канала
      */
     @POST("/api/v7/clients/login/end")
-    suspend fun verificationChannelEnd(@Body verificationEnd: VerificationEndRequest): VerificationEndResponse
+    suspend fun verificationChannelEnd(@Body request: VerificationEndRequest): VerificationEndResponse
 
     /**
      * Возвращает информацию про клиента по токену
      */
     @GET("/api/v7/clients/{AccessToken}/fulldata")
     suspend fun clientInfoByToken(
-        @Path("AccessToken") AccessToken: String,
-    ): ClientInfoReponse
+        @Path("AccessToken") accessToken: String,
+    ): ClientInfoResponse
 
     /**
      * Возвращает id клиента по токену
@@ -55,15 +54,16 @@ internal interface SCRMService {
      * Получение accesstoken
      */
     @POST("api/v7/clients/accesstoken")
-    suspend fun accessToken(@Body accessToken: AccessTokenRequest): AccessTokenResponse
+    suspend fun accessToken(@Body request: AccessTokenRequest): AccessTokenResponse
 
-    //TODO rework
     /**
      * Установка персональных данных клиента, в ответ приходит обновленная модель
      */
-    @POST("/api/v3/clients/personalinfo")
-    @Headers("Content-Type: application/json")
-    suspend fun addPersonalInfo(@Body personalInfoResponse: ClientInfoRequest): Response<ClientInfoResponse>
+    @POST("/api/v7/clients/personalinfo/{AccessToken}")
+    suspend fun setPersonalInfo(
+        @Path("AccessToken") accessToken: String,
+        @Body request: ClientInfoRequest
+    ): ClientInfoResponse
 
     //TODO rework
     /**

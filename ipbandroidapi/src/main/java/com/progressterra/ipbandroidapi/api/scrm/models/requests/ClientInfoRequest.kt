@@ -4,21 +4,17 @@ package com.progressterra.ipbandroidapi.api.scrm.models.requests
 import com.google.gson.annotations.SerializedName
 
 data class ClientInfoRequest(
-    @SerializedName("AccessToken")
-    val accessToken: String,
-    @SerializedName("ClientData")
-    val clientData: ClientData,
-    @SerializedName("IDClient")
-    val iDClient: String,
-    @SerializedName("Latitude")
-    val latitude: Double,
-    @SerializedName("Longitude")
-    val longitude: Double,
-    @SerializedName("ParamName")
-    val paramName: Any?,
-    @SerializedName("ParamValue")
-    val paramValue: Any?,
-    @SerializedName("SourceQuery")
-    val sourceQuery: Int
+    @SerializedName("sex")
+    val sex: Int,
+    @SerializedName("soname")
+    val soname: String?,
+    @SerializedName("name")
+    val name: String?,
+    @SerializedName("patronymic")
+    val patronymic: String?,
+    @SerializedName("dateOfBirth")
+    val dateOfBirth: String,
+    @SerializedName("comment")
+    val comment: String?
 )
 

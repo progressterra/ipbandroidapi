@@ -7,7 +7,7 @@ data class ClientAdditionalInfoModel(
     @SerializedName("additionalInfo")
     val additionalInfo: String?,
     @SerializedName("statusCompletion")
-    val statusCompletion: Int?,
+    val statusCompletion: Int,
     @SerializedName("eMailGeneral")
     val eMailGeneral: String?,
     @SerializedName("phoneGeneral")

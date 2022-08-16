@@ -7,9 +7,9 @@ import com.progressterra.ipbandroidapi.utils.extentions.parseToDate
 
 data class ClientInfoModel(
     @SerializedName("idUnique")
-    val idUnique: String?,
+    val idUnique: String,
     @SerializedName("idEnterprise")
-    val idEnterprise: String?,
+    val idEnterprise: String,
     @SerializedName("name")
     val name: String?,
     @SerializedName("soname")
@@ -21,7 +21,7 @@ data class ClientInfoModel(
     @SerializedName("dateOfBirth")
     val dateOfBirth: String?,
     @SerializedName("dateOfRegister")
-    val dateOfRegister: String?,
+    val dateOfRegister: String,
     @SerializedName("comment")
     val comment: String?
 ) {
@@ -32,7 +32,7 @@ data class ClientInfoModel(
         name = name ?: "",
         patronymic = patronymic ?: "",
         dateOfBirth = dateOfBirth?.parseToDate(),
-        dateOfRegister = dateOfRegister ?: ""
+        dateOfRegister = dateOfRegister
     )
 
     private fun convertSex(intSex: Int?): SexType {
