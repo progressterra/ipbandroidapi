@@ -3,8 +3,8 @@ package com.progressterra.ipbandroidapi.api.imhlapi
 import com.progressterra.ipbandroidapi.api.imhlapi.models.compile.CompiledSessionResponse
 import com.progressterra.ipbandroidapi.api.imhlapi.models.session.SessionListResponse
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
+import com.progressterra.ipbandroidapi.remotedata.NetworkServiceImpl
+import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
 
 internal class ImhlImpl : Imhl.Compile, Imhl.Session {
 

@@ -3,10 +3,10 @@ package com.progressterra.ipbandroidapi.api.filter
 import com.progressterra.ipbandroidapi.api.filter.models.FilterDataResponse
 import com.progressterra.ipbandroidapi.api.filter.models.FilterRequest
 import com.progressterra.ipbandroidapi.api.filter.models.IncomeFilterAndSortData
-import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductPageResponse
+import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.ProductPageResponse
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
+import com.progressterra.ipbandroidapi.remotedata.NetworkServiceImpl
+import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
 
 class IPBFilterImpl : IPBFilter {
     private val networkService: NetworkService = NetworkServiceImpl()

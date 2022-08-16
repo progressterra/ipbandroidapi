@@ -1,9 +1,9 @@
 package com.progressterra.ipbandroidapi.interfaces.internal
 
 import android.util.Log
-import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
-import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
+import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remotedata.models.base.GlobalResponseStatus
+import com.progressterra.ipbandroidapi.remotedata.models.base.ResponseWrapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response

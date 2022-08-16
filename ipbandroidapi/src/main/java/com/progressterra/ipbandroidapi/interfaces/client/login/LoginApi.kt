@@ -3,8 +3,8 @@ package com.progressterra.ipbandroidapi.interfaces.client.login
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.InitUserResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
-import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
+import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remotedata.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.CitiesListResponse
 
 interface LoginApi {

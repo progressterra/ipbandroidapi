@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.repository
 
-import com.progressterra.ipbandroidapi.api.scrmApiQwerty.SCRMApiQwertyApi
+import com.progressterra.ipbandroidapi.api.scrmapiqwerty.SCRMApiQwertyApi
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
@@ -13,12 +13,12 @@ import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientAdditionalInfo
 import com.progressterra.ipbandroidapi.localdata.shared_pref.models.ClientInfo
-import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
-import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
-import com.progressterra.ipbandroidapi.remoteData.models.base.GlobalResponseStatus
-import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
-import com.progressterra.ipbandroidapi.remoteData.models.base.ResultResponse
+import com.progressterra.ipbandroidapi.remotedata.NetworkServiceImpl
+import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
+import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remotedata.models.base.GlobalResponseStatus
+import com.progressterra.ipbandroidapi.remotedata.models.base.ResponseWrapper
+import com.progressterra.ipbandroidapi.remotedata.models.base.ResultResponse
 import com.progressterra.ipbandroidapi.api.scrm.SCRMService
 import com.progressterra.ipbandroidapi.api.scrm.models.address.Address
 import com.progressterra.ipbandroidapi.api.scrm.models.address.ListOfAddressesResponse

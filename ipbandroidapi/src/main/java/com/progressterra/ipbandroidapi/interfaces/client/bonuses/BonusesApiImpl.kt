@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.interfaces.client.bonuses
 
 import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.*
 import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
-import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
+import com.progressterra.ipbandroidapi.remotedata.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.repository.RepositoryImpl
 
 internal class BonusesApiImpl : BonusesApi {

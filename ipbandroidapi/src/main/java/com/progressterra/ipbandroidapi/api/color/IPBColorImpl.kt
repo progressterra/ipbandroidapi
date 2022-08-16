@@ -3,8 +3,8 @@ package com.progressterra.ipbandroidapi.api.color
 import com.progressterra.ipbandroidapi.api.color.models.ColorResponse
 import com.progressterra.ipbandroidapi.api.color.models.ColoredResponse
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remoteData.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
+import com.progressterra.ipbandroidapi.remotedata.NetworkServiceImpl
+import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
 
 class IPBColorImpl : IPBColor {
     private val networkService: NetworkService = NetworkServiceImpl()

@@ -5,7 +5,7 @@ import com.chibatching.kotpref.Kotpref
 import com.chibatching.kotpref.gsonpref.gson
 import com.google.gson.Gson
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
-import com.progressterra.ipbandroidapi.remoteData.NetworkSettings
+import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
 import com.progressterra.ipbandroidapi.utils.IdentUtils
 
 interface IpbAndroidApi {

@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.api.scrm.models.BaseResult
 import com.progressterra.ipbandroidapi.interfaces.client.bonuses.BonusesConverters
 import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusesInfo
-import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class GeneralInfoResponse(
     @SerializedName("result") val result: BaseResult,

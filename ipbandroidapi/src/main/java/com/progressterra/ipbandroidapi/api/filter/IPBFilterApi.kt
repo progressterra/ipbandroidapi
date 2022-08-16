@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.filter
 
 import com.progressterra.ipbandroidapi.api.filter.models.FilterDataResponse
 import com.progressterra.ipbandroidapi.api.filter.models.FilterRequest
-import com.progressterra.ipbandroidapi.api.iECommersCoreApi.models.ProductPageResponse
+import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.ProductPageResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

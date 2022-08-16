@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.interfaces.internal
 
-import com.progressterra.ipbandroidapi.remoteData.models.base.ResponseWrapper
+import com.progressterra.ipbandroidapi.remotedata.models.base.ResponseWrapper
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.*
 
 internal interface BonusesRepository {

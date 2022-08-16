@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.scrm.models.responses
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.interfaces.client.bonuses.BonusesConverters
 import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Purchase
-import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
 
 internal class PurchasesListResponse(
     @SerializedName("listdata")
