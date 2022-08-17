@@ -1,7 +1,5 @@
 package com.progressterra.ipbandroidapi.api.scrm
 
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
-import com.progressterra.ipbandroidapi.remotedata.models.base.ResultResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.address.Address
 import com.progressterra.ipbandroidapi.api.scrm.models.address.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionResponse
@@ -19,6 +17,8 @@ import com.progressterra.ipbandroidapi.api.scrm.models.clientinfo.ClientInfoResp
 import com.progressterra.ipbandroidapi.api.scrm.models.deviceid.DeviceIdResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartResponse
+import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.remotedata.models.base.ResultResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -77,7 +77,14 @@ internal interface SCRMService {
         @Body request: EmailRequest
     ): EmailResponse
 
-    //TODO move
+    /**
+     * Отправка подтверждения на почту клиента
+     */
+    @POST("/api/v3/gamification/emailconfirm/sendlink")
+    suspend fun confirmEmail(
+        @Body confirmEmailRequest: ConfirmEmailRequest
+    ): Response<BaseResponse>
+
     /**
      * Установка города клиента
      */
@@ -96,6 +103,11 @@ internal interface SCRMService {
     @Headers("Content-Type: application/json")
     suspend fun getCities(): Response<CitiesListResponse>
 
+    /**
+     * Предоставляет данные по всем транзакциям бонусов
+     */
+    @GET("/api/v3/ibonus/alltransaction/{AccessToken}")
+    suspend fun getTransactionsList(@Path("AccessToken") accessToken: String): Response<TransactionListResponse>
 
     //TODO move out
     /**

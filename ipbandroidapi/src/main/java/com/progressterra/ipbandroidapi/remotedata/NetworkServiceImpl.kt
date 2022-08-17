@@ -1,5 +1,6 @@
 package com.progressterra.ipbandroidapi.remotedata
 
+import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -7,7 +8,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-internal class NetworkServiceImpl : NetworkService {
+//TODO DI
+internal class NetworkServiceImpl : NetworkService.Abstract(HandleException.Base()) {
 
     private val clientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         .callTimeout(NetworkSettings.NETWORK_CALL_TIMEOUT, TimeUnit.MILLISECONDS)

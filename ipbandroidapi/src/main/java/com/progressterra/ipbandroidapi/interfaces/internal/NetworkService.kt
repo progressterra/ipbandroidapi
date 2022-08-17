@@ -1,27 +1,27 @@
 package com.progressterra.ipbandroidapi.interfaces.internal
 
 import android.util.Log
+import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remotedata.models.base.GlobalResponseStatus
 import com.progressterra.ipbandroidapi.remotedata.models.base.ResponseWrapper
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import retrofit2.Response
 
 internal interface NetworkService {
 
     fun <T> createService(apiClass: Class<T>, baseUrl: String): T
 
+    suspend fun <T> handle(block: suspend () -> T): T
 
-    suspend fun <T> safeApiCall(responseFunction: suspend () -> T): T? =
-        withContext(Dispatchers.IO) {
+        abstract class Abstract(private val handleException: HandleException) : NetworkService {
+
+        override suspend fun <T> handle(block: suspend () -> T): T =
             try {
-                responseFunction.invoke()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                null
+                block.invoke()
+            } catch (exception: Exception) {
+                throw handleException.handle(exception)
             }
-        }
+    }
 
     /**
     Метод предназначен для совершения запросов в сеть. Благодаря ему основываясь на коде ответа Http,

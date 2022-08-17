@@ -22,7 +22,7 @@ internal class LoginApiImpl : LoginApi {
     }
 
     override suspend fun addEmail(email: String): ResponseWrapper<BaseResponse> {
-        return repository.addEmail(email)
+        return repository.setEmail(email)
     }
 
     override suspend fun confirmEmail(email: String): ResponseWrapper<BaseResponse> {

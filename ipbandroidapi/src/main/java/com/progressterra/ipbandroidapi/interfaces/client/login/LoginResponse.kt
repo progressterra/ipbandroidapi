@@ -4,5 +4,5 @@ import com.progressterra.ipbandroidapi.remotedata.models.base.GlobalResponseStat
 
 data class LoginResponse(
     val status: GlobalResponseStatus,
-    val errorMessage: String = ""
+    val errorMessage: String
 )

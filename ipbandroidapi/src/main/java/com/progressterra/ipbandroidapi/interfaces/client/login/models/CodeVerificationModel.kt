@@ -6,5 +6,4 @@ data class CodeVerificationModel(
     val status: GlobalResponseStatus,
     val userExist: Boolean,
     val error: String = "",
-    //val isDataCorrupted: Boolean
 )
