@@ -1,7 +1,8 @@
 package com.progressterra.ipbandroidapi.interfaces.client.login
 
+import com.progressterra.ipbandroidapi.api.scrm.models.clientinfo.ClientInfoResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
-import com.progressterra.ipbandroidapi.interfaces.client.login.models.InitUserResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
 import com.progressterra.ipbandroidapi.remotedata.models.base.ResponseWrapper
@@ -11,9 +12,9 @@ interface LoginApi {
 
     suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse
 
-    suspend fun addClientInfo(personalInfo: PersonalInfo): ResponseWrapper<BaseResponse>
+    suspend fun addClientInfo(accessToken: String, personalInfo: PersonalInfo): ClientInfoResponse
 
-    suspend fun addEmail(email: String): ResponseWrapper<BaseResponse>
+    suspend fun addEmail(accessToken: String, email: String): EmailResponse
 
     suspend fun confirmEmail(email: String): ResponseWrapper<BaseResponse>
 
@@ -21,7 +22,7 @@ interface LoginApi {
 
     suspend fun getCitiesList(): ResponseWrapper<CitiesListResponse>
 
-    suspend fun initClient(): InitUserResponse
+    //suspend fun initClient(): InitUserResponse
 
     /**
      * @param phoneNumber номер телефона без + (985...)
