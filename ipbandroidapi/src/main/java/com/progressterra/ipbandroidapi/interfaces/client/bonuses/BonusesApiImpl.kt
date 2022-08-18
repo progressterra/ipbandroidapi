@@ -9,20 +9,14 @@ internal class BonusesApiImpl : BonusesApi {
 
     private val repository: BonusesRepository = RepositoryImpl()
 
-    override suspend fun getAccessToken(): ResponseWrapper<AccessTokenResponse> =
-        repository.getAccessToken()
+    override suspend fun getBonusesInfo(accessToken: String): BonusesInfo =
+        BonusesConverters.convertToBonusesInfo(repository.bonusesInfo(accessToken))
 
-    override suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<BonusesInfo> =
-        repository.bonusesInfo(accessToken)
-            .convertation { BonusesConverters.convertToBonusesInfo(it) }
+    override suspend fun getTransactionsList(accessToken: String): List<Transaction> =
+        BonusesConverters.convertToTransactionList(repository.transactionsList(accessToken))
 
-    override suspend fun getTransactionsList(accessToken: String): ResponseWrapper<List<Transaction>> =
-        repository.transactionsList(accessToken)
-            .convertation { BonusesConverters.convertToTransactionList(it) }
-
-    override suspend fun getTransactionsRaw(accessToken: String): ResponseWrapper<List<TransactionRaw>> =
-        repository.transactionsList(accessToken)
-            .convertation { BonusesConverters.convertToTransactionRaw(it) }
+    override suspend fun getTransactionsRaw(accessToken: String): List<TransactionRaw> =
+        BonusesConverters.convertToTransactionRaw(repository.transactionsList(accessToken))
 
 
     override suspend fun getPurchasesList(accessToken: String): ResponseWrapper<List<Purchase>> {
@@ -31,9 +25,6 @@ internal class BonusesApiImpl : BonusesApi {
         }
     }
 
-    override suspend fun getBonusMessageList(accessToken: String): ResponseWrapper<List<BonusMessage>> {
-        return repository.bonusMessagesList(accessToken).convertation {
-            BonusesConverters.convertToBonusMessagesList(it)
-        }
-    }
+    override suspend fun getBonusMessageList(accessToken: String): List<BonusMessage> =
+            BonusesConverters.convertToBonusMessagesList(repository.bonusMessagesList(accessToken))
 }

@@ -1,7 +1,6 @@
 package com.progressterra.ipbandroidapi.repository
 
 import com.progressterra.ipbandroidapi.api.ibonus.IBonusService
-import com.progressterra.ipbandroidapi.api.scrmapiqwerty.SCRMApiQwertyApi
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
@@ -51,11 +50,6 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
 
     private val dadataApi =
         networkService.createService(SCRMService::class.java, NetworkSettings.DADATA_ROOT_URL)
-
-    private val clientsApi = networkService.createService(
-        SCRMApiQwertyApi.ClientsV3::class.java,
-        NetworkSettings.LIKEDISLIKE_ROOT_URL
-    )
 
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse {
         val response = networkService.handle {
@@ -145,8 +139,6 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         return networkService.baseRequest { scrmService.getCities() }
     }
 
-
-
     //TODO latitude, longitude, iddevice
     override suspend fun getAccessToken(): AccessTokenResponse {
         val accessTokenRequest = AccessTokenRequest(
@@ -205,9 +197,9 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
     private suspend fun getClientAdditionalInfo() {
         val token = getAccessToken().data
 
-        val response = tryOrNull { clientsApi.getClientInfo(token) }
+        val response = tryOrNull { scrmService.clientInfoByToken(token) }
 
-        saveUserData(null, response?.clientAdditionalInfo?.convertToClientAdditionalInfo())
+        saveUserData(null, response?.data?.clientAdditionalInfo?.convertToClientAdditionalInfo())
     }
 
 

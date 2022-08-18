@@ -5,12 +5,11 @@ import com.progressterra.ipbandroidapi.remotedata.models.base.ResponseWrapper
 
 interface BonusesApi {
 
-    suspend fun getAccessToken(): ResponseWrapper<AccessTokenResponse>
-    suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<BonusesInfo>
-    suspend fun getTransactionsList(accessToken: String): ResponseWrapper<List<Transaction>>
+    suspend fun getBonusesInfo(accessToken: String): BonusesInfo
+    suspend fun getTransactionsList(accessToken: String): List<Transaction>
     suspend fun getPurchasesList(accessToken: String): ResponseWrapper<List<Purchase>>
-    suspend fun getBonusMessageList(accessToken: String): ResponseWrapper<List<BonusMessage>>
-    suspend fun getTransactionsRaw(accessToken: String): ResponseWrapper<List<TransactionRaw>>
+    suspend fun getBonusMessageList(accessToken: String): List<BonusMessage>
+    suspend fun getTransactionsRaw(accessToken: String): List<TransactionRaw>
 
     companion object {
         fun getInstance(): BonusesApi {
