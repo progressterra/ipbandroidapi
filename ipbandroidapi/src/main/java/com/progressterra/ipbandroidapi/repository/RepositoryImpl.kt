@@ -4,8 +4,6 @@ import com.progressterra.ipbandroidapi.api.ibonus.IBonusService
 import com.progressterra.ipbandroidapi.api.scrmapiqwerty.SCRMApiQwertyApi
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
-import com.progressterra.ipbandroidapi.interfaces.client.login.models.CreateClientWithoutPhoneRequest
-import com.progressterra.ipbandroidapi.interfaces.client.login.models.InitUserResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.interfaces.internal.AddressesRepository
 import com.progressterra.ipbandroidapi.interfaces.internal.BonusesRepository
@@ -30,7 +28,6 @@ import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSugg
 import com.progressterra.ipbandroidapi.api.scrm.models.clientinfo.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailRequest
 import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.entities.ParamName
 import com.progressterra.ipbandroidapi.api.scrm.models.requests.*
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndRequest
@@ -60,13 +57,12 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         NetworkSettings.LIKEDISLIKE_ROOT_URL
     )
 
-    //TODO channel type and data?
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse {
         val response = networkService.handle {
             scrmService.verificationChannelBegin(
                 VerificationStartRequest(
                     0,
-                    ""
+                    phoneNumber
                 )
             )
         }
@@ -76,21 +72,19 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         )
     }
 
-    //TODO handle error in presentation
-
-    //TODO channel type, data? rename model because it is response
+    //TODO infodevice?
     override suspend fun verificationChannelEnd(
         phoneNumber: String,
         code: String
     ): CodeVerificationModel {
         val response = networkService.handle {
             scrmService.verificationChannelEnd(
-                VerificationEndRequest(0, "", "", "")
+                VerificationEndRequest(0, phoneNumber, code, "")
             )
         }
         if (response.result.status == 0) {
             UserData.registerAccessToken = response.data.idDevice
-            getUserData(phoneNumber)
+            getUserData()
         }
         return CodeVerificationModel(
             if (response.result.status == 0) GlobalResponseStatus.SUCCESS else GlobalResponseStatus.ERROR,
@@ -99,11 +93,10 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         )
     }
 
-    //TODO access token
-    override suspend fun addPersonalInfo(personalInfo: PersonalInfo): ClientInfoResponse {
+    override suspend fun addPersonalInfo(accessToken: String, personalInfo: PersonalInfo): ClientInfoResponse {
         val response = networkService.handle {
             scrmService.setPersonalInfo(
-                "",
+                accessToken,
                 ClientInfoRequest(
                     personalInfo.sexType?.value ?: 0,
                     personalInfo.lastname ?: "",
@@ -121,12 +114,11 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         return response
     }
 
-    //TODO access token
-    override suspend fun setEmail(email: String): EmailResponse {
+    override suspend fun setEmail(accessToken: String, email: String): EmailResponse {
         val request = EmailRequest(
             email
         )
-        return networkService.handle { scrmService.setEmail("", request) }
+        return networkService.handle { scrmService.setEmail(accessToken, request) }
     }
 
     override suspend fun confirmEmail(email: String): ResponseWrapper<BaseResponse> {
@@ -153,18 +145,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         return networkService.baseRequest { scrmService.getCities() }
     }
 
-    override suspend fun initClient(): InitUserResponse {
-        return if (!UserData.clientAlreadyCreated) {
-            createBaseClient()
-        } else {
-            InitUserResponse(GlobalResponseStatus.SUCCESS)
-        }
-    }
 
-    private suspend fun getRegisterAccessToken(): ResponseWrapper<AccessTokenResponse> {
-        val request = CreateClientWithoutPhoneRequest()
-        return networkService.baseRequest { scrmService.createClientWithoutPhone(request) }
-    }
 
     //TODO latitude, longitude, iddevice
     override suspend fun getAccessToken(): AccessTokenResponse {
@@ -192,9 +173,9 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         networkService.handle { iBonusService.bonusMessagesList(accessToken) }
 
 
-    private suspend fun getUserData(phoneNumber: String) {
+    private suspend fun getUserData() {
         getExistingClient()
-        addDevice()
+        //addDevice()
         getAccessToken()
 
         // Дополнительная проверка additionalData
@@ -237,73 +218,16 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             UserData.clientAdditionalInfo = clientAdditionalInfo
     }
 
-    private suspend fun addDevice(): ResponseWrapper<DeviceResponse> {
-        val response = networkService.baseRequest {
-            TODO()
-        }
-        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
-            // сохраняем девайс айди для клиента в префах
-            UserData.deviceId = response.responseBody?.idDevice ?: ""
-        }
-        return response
-    }
 
-    private suspend fun createBaseClient(): InitUserResponse {
+//    private suspend fun addDevice(): ResponseWrapper<DeviceResponse> {
+//        val response = networkService.baseRequest {}
+//        if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
+//            // сохраняем девайс айди для клиента в префах
+//            UserData.deviceId = response.responseBody?.idDevice ?: ""
+//        }
+//        return response
+//    }
 
-        // получаем регистрационный токен
-        val registerTokenResponse = getRegisterAccessToken()
-
-        if (registerTokenResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
-
-            // сохраняем токен в префах
-            UserData.registerAccessToken = registerTokenResponse.responseBody?.accessToken ?: ""
-
-            // создаем клиента с ранее полученным токеном
-            val createClientResponse = createNewClient()
-
-            if (createClientResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
-                saveUserData(
-
-                    // сохраняем полученные данные , а именно id клиента, в префах
-                    createClientResponse.responseBody?.client?.convertToClientInfo(),
-                    createClientResponse.responseBody?.clientAdditionalInfo?.convertToClientAdditionalInfo()
-                )
-                UserData.clientExist = false
-
-                // добавляем текущий девайс клиенту
-                val addDeviceResponse = addDevice()
-
-                if (addDeviceResponse.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
-                    // сохраняем девайс айди для клиента в префах
-                    UserData.deviceId = addDeviceResponse.responseBody?.idDevice ?: ""
-
-                    // сохраняем успешное создание клиента в префах
-                    UserData.clientAlreadyCreated = true
-
-                    // отправляем колбек об успешном завершении регистрации
-                    return InitUserResponse(GlobalResponseStatus.SUCCESS)
-                } else {
-                    // при ошибке отправляем событие о неуспешном создан
-                    return InitUserResponse(
-                        GlobalResponseStatus.ERROR,
-                        addDeviceResponse.errorString
-                    )
-                }
-
-            } else {
-                return InitUserResponse(
-                    GlobalResponseStatus.ERROR,
-                    createClientResponse.errorString
-                )
-            }
-        } else {
-            return InitUserResponse(
-                GlobalResponseStatus.ERROR,
-                registerTokenResponse.errorString
-            )
-        }
-
-    }
 
     override suspend fun getAddressList(accessToken: String): ResponseWrapper<ListOfAddressesResponse> {
         return networkService.baseRequest { addressesApi.getAddressList(accessToken) }
@@ -347,5 +271,4 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             }
         }
     }
-
 }

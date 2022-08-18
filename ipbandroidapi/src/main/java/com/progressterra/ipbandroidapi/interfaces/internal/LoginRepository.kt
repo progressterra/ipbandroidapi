@@ -16,10 +16,10 @@ internal interface LoginRepository {
     suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse
     suspend fun verificationChannelEnd(phoneNumber: String, code: String): CodeVerificationModel
     suspend fun getAccessToken(): AccessTokenResponse
-    suspend fun addPersonalInfo(personalInfo: PersonalInfo): ClientInfoResponse
-    suspend fun setEmail(email: String): EmailResponse
+    suspend fun addPersonalInfo(accessToken: String, personalInfo: PersonalInfo): ClientInfoResponse
+    suspend fun setEmail(accessToken: String, email: String): EmailResponse
     suspend fun confirmEmail(email: String): ResponseWrapper<BaseResponse>
     suspend fun addCity(city: CitiesListResponse.City): ResponseWrapper<BaseResponse>
     suspend fun getCitiesList(): ResponseWrapper<CitiesListResponse>
-    suspend fun initClient(): InitUserResponse
+    //suspend fun initClient(): InitUserResponse
 }
