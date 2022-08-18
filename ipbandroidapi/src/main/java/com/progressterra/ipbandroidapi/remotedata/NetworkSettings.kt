@@ -52,6 +52,8 @@ internal object NetworkSettings {
     const val DELIVERY_API = "http://84.201.188.117:1955/"
     const val IMHL_API_URL = "http://84.201.188.117:7001/"
     const val IPB_PRODUCT_URL = "http://84.201.188.117:5501/"
+    const val IBONUS_URL = "http://84.201.188.117:7003"
+    const val SCRM_URL = "http://84.201.188.117:7021"
 
     /**
      * Доп адреса для IBONUS

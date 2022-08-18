@@ -1,5 +1,6 @@
 package com.progressterra.ipbandroidapi.repository
 
+import com.progressterra.ipbandroidapi.api.ibonus.IBonusService
 import com.progressterra.ipbandroidapi.api.scrmapiqwerty.SCRMApiQwertyApi
 import com.progressterra.ipbandroidapi.interfaces.client.login.LoginResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
@@ -34,8 +35,6 @@ import com.progressterra.ipbandroidapi.api.scrm.models.requests.*
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndRequest
 import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartRequest
-import com.progressterra.ipbandroidapi.exception.FailedRequestException
-import com.progressterra.ipbandroidapi.utils.Debug
 import com.progressterra.ipbandroidapi.utils.extentions.tryOrNull
 
 internal class RepositoryImpl : LoginRepository, BonusesRepository,
@@ -44,11 +43,15 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
     private val networkService: NetworkService = NetworkServiceImpl()
 
     private val scrmService =
-        networkService.createService(SCRMService::class.java, NetworkSettings.LIKEDISLIKE_ROOT_URL)
+        networkService.createService(SCRMService::class.java, NetworkSettings.SCRM_URL)
+
     private val addressesApi = networkService.createService(
         SCRMService::class.java,
         NetworkSettings.ADDRESSES_ROOT_URL
     )
+
+    private val iBonusService = networkService.createService(IBonusService::class.java, NetworkSettings.IBONUS_URL)
+
     private val dadataApi =
         networkService.createService(SCRMService::class.java, NetworkSettings.DADATA_ROOT_URL)
 
@@ -170,23 +173,23 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             0F,
             0F
         )
-        val response = networkService.baseRequest { scrmService.accessToken(accessTokenRequest) }
-        UserData.accessToken = response.responseBody?.accessToken ?: ""
+        val response = networkService.handle { scrmService.accessToken(accessTokenRequest) }
+        UserData.accessToken = response.data
         return response
     }
 
-    override suspend fun getBonusesInfo(accessToken: String): ResponseWrapper<GeneralInfoResponse> {
-        return networkService.baseRequest { scrmService.getGeneralInfo(accessToken) }
+    override suspend fun bonusesInfo(accessToken: String): GeneralInfoResponse {
+        return networkService.handle { iBonusService.generalInfo(accessToken) }
     }
 
-    override suspend fun getTransactionsList(accessToken: String): ResponseWrapper<TransactionListResponse> =
-        networkService.baseRequest { scrmService.getTransactionsList(accessToken) }
+    override suspend fun transactionsList(accessToken: String): TransactionListResponse =
+        networkService.handle { iBonusService.transactionsList(accessToken) }
 
-    override suspend fun getPurchasesList(accessToken: String): ResponseWrapper<PurchasesListResponse> =
+    override suspend fun purchasesList(accessToken: String): ResponseWrapper<PurchasesListResponse> =
         networkService.baseRequest { scrmService.getShopList(accessToken) }
 
-    override suspend fun getBonusMessagesList(accessToken: String): ResponseWrapper<BonusesMessagesResponse> =
-        networkService.baseRequest { scrmService.getBonusMessagesList(accessToken) }
+    override suspend fun bonusMessagesList(accessToken: String): BonusesMessagesResponse =
+        networkService.handle { iBonusService.bonusMessagesList(accessToken) }
 
 
     private suspend fun getUserData(phoneNumber: String) {
@@ -236,14 +239,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
 
     private suspend fun addDevice(): ResponseWrapper<DeviceResponse> {
         val response = networkService.baseRequest {
-            scrmService.addDevice(
-                ParamRequest(
-                    idClient = UserData.clientInfo.idUnique,
-                    accessToken = UserData.registerAccessToken,
-                    paramName = ParamName.ADD_DEVICE,
-                    paramValue = UserData.androidId
-                )
-            )
+            TODO()
         }
         if (response.globalResponseStatus == GlobalResponseStatus.SUCCESS) {
             // сохраняем девайс айди для клиента в префах

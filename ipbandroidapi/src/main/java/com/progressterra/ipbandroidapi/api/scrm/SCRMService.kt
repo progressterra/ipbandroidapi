@@ -103,12 +103,6 @@ internal interface SCRMService {
     @Headers("Content-Type: application/json")
     suspend fun getCities(): Response<CitiesListResponse>
 
-    /**
-     * Предоставляет данные по всем транзакциям бонусов
-     */
-    @GET("/api/v3/ibonus/alltransaction/{AccessToken}")
-    suspend fun getTransactionsList(@Path("AccessToken") accessToken: String): Response<TransactionListResponse>
-
     //TODO move out
     /**
      * Получение списка покупок
