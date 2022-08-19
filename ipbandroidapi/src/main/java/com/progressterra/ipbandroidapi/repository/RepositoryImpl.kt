@@ -108,6 +108,14 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
         return response
     }
 
+    override suspend fun userData(accessToken: String): ClientInfoResponse {
+        return networkService.handle {
+            scrmService.clientInfoByToken(
+                UserData.registerAccessToken
+            )
+        }
+    }
+
     override suspend fun setEmail(accessToken: String, email: String): EmailResponse {
         val request = EmailRequest(
             email

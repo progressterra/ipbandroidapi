@@ -3,7 +3,6 @@ package com.progressterra.ipbandroidapi.interfaces.client.login
 import com.progressterra.ipbandroidapi.api.scrm.models.clientinfo.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
-import com.progressterra.ipbandroidapi.interfaces.client.login.models.InitUserResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
@@ -39,7 +38,9 @@ internal class LoginApiImpl : LoginApi {
         return repository.getCitiesList()
     }
 
-//    override suspend fun initClient(): InitUserResponse {
+    override suspend fun clientInfo(accessToken: String): ClientInfoResponse = repository.userData(accessToken)
+
+    //    override suspend fun initClient(): InitUserResponse {
 //        return repository.initClient()
 //    }
 

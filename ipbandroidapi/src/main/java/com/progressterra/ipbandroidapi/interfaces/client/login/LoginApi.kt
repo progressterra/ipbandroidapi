@@ -10,6 +10,8 @@ import com.progressterra.ipbandroidapi.api.scrm.models.responses.CitiesListRespo
 
 interface LoginApi {
 
+    suspend fun clientInfo(accessToken: String): ClientInfoResponse
+
     suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse
 
     suspend fun addClientInfo(accessToken: String, personalInfo: PersonalInfo): ClientInfoResponse
