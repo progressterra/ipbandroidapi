@@ -88,16 +88,16 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
     }
 
     //TODO replace with some model
-    override suspend fun addPersonalInfo(accessToken: String, sex: Int, soname: String, name: String, patronymic: String, dateOfBirth: String): ClientInfoResponse {
+    override suspend fun addPersonalInfo(accessToken: String, soname: String, name: String, patronymic: String): ClientInfoResponse {
         val response = networkService.handle {
             scrmService.setPersonalInfo(
                 accessToken,
                 ClientInfoRequest(
-                    sex,
+                    0,
                     soname,
                     name,
                     patronymic,
-                    dateOfBirth,
+                    "",
                     ""
                 )
             )

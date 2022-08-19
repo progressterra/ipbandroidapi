@@ -14,7 +14,7 @@ interface LoginApi {
 
     suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse
 
-    suspend fun addClientInfo(accessToken: String, personalInfo: PersonalInfo): ClientInfoResponse
+    suspend fun addClientInfo(accessToken: String, soname: String, name: String, patronymic: String): ClientInfoResponse
 
     suspend fun addEmail(accessToken: String, email: String): EmailResponse
 

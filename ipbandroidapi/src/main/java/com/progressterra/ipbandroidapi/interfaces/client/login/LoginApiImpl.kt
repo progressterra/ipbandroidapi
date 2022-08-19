@@ -3,7 +3,6 @@ package com.progressterra.ipbandroidapi.interfaces.client.login
 import com.progressterra.ipbandroidapi.api.scrm.models.clientinfo.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailResponse
 import com.progressterra.ipbandroidapi.interfaces.client.login.models.CodeVerificationModel
-import com.progressterra.ipbandroidapi.interfaces.client.login.models.PersonalInfo
 import com.progressterra.ipbandroidapi.interfaces.internal.LoginRepository
 import com.progressterra.ipbandroidapi.localdata.shared_pref.UserData
 import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
@@ -18,8 +17,8 @@ internal class LoginApiImpl : LoginApi {
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse =
         repository.verificationChannelBegin(phoneNumber)
 
-    override suspend fun addClientInfo(accessToken: String, personalInfo: PersonalInfo): ClientInfoResponse {
-        return repository.addPersonalInfo(accessToken, personalInfo)
+    override suspend fun addClientInfo(accessToken: String, soname: String, name: String, patronymic: String): ClientInfoResponse {
+        return repository.addPersonalInfo(accessToken, soname, name, patronymic)
     }
 
     override suspend fun addEmail(accessToken: String, email: String): EmailResponse {

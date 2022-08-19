@@ -17,7 +17,7 @@ internal interface LoginRepository {
     suspend fun verificationChannelEnd(phoneNumber: String, code: String): CodeVerificationModel
     suspend fun getAccessToken(): AccessTokenResponse
     suspend fun userData(accessToken: String) : ClientInfoResponse
-    suspend fun addPersonalInfo(accessToken: String, sex: Int, soname: String, name: String, patronymic: String, dateOfBirth: String): ClientInfoResponse
+    suspend fun addPersonalInfo(accessToken: String, soname: String, name: String, patronymic: String): ClientInfoResponse
     suspend fun setEmail(accessToken: String, email: String): EmailResponse
     suspend fun confirmEmail(email: String): ResponseWrapper<BaseResponse>
     suspend fun addCity(city: CitiesListResponse.City): ResponseWrapper<BaseResponse>
