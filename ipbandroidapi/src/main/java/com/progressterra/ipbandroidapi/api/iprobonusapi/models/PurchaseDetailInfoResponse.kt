@@ -18,7 +18,11 @@ data class Data(
     @SerializedName("purchaseSum")
     val purchaseSum: Int? = null,
     @SerializedName("shopName")
-    val shopName: String? = null
+    val shopName: String? = null,
+    @SerializedName("number")
+    val number: String? = null,
+    @SerializedName("adressString")
+    val address: String? = null
 )
 
 data class ProductsInfo(
