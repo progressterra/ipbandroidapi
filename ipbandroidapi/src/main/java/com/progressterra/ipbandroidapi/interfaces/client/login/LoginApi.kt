@@ -12,6 +12,8 @@ interface LoginApi {
 
     suspend fun clientInfo(accessToken: String): ClientInfoResponse
 
+    suspend fun accessToken(): String
+
     suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse
 
     suspend fun addClientInfo(accessToken: String, soname: String, name: String, patronymic: String): ClientInfoResponse

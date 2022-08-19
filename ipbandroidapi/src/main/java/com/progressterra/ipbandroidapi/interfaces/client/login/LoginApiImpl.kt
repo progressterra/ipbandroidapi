@@ -37,6 +37,10 @@ internal class LoginApiImpl : LoginApi {
         return repository.getCitiesList()
     }
 
+    override suspend fun accessToken(): String {
+        return repository.getAccessToken().data
+    }
+
     override suspend fun clientInfo(accessToken: String): ClientInfoResponse = repository.userData(accessToken)
 
     //    override suspend fun initClient(): InitUserResponse {
