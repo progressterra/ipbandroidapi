@@ -15,6 +15,8 @@ import com.progressterra.ipbandroidapi.api.scrm.models.responses.PurchasesListRe
 import com.progressterra.ipbandroidapi.api.scrm.models.accesstoken.AccessTokenResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.clientinfo.ClientInfoResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.deviceid.DeviceIdResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.devicetoken.DeviceParameters
+import com.progressterra.ipbandroidapi.api.scrm.models.devicetoken.DeviceTokenResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartResponse
 import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
@@ -76,6 +78,12 @@ internal interface SCRMService {
         @Path("AccessToken") accessToken: String,
         @Body request: EmailRequest
     ): EmailResponse
+
+    @POST("/api/v7/clients/devicetoken/{AccessToken}")
+    suspend fun setDeviceToken(
+        @Path("AccessToken") accessToken: String,
+        @Body request: DeviceParameters
+    ): DeviceTokenResponse
 
     /**
      * Отправка подтверждения на почту клиента

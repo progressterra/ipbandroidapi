@@ -18,7 +18,7 @@ afterEvaluate {
 
                 groupId = ARTIFACT_PACKAGE
                 //ARTIFACT_NAME_TEST for publish test library flavor, ARTIFACT_NAME_RELEASE for release one
-                artifactId = ARTIFACT_NAME_TEST
+                artifactId = ARTIFACT_NAME_RELEASE
                 version = "${major}.${generateMinorVersionCode(null)}"
             }
         }
