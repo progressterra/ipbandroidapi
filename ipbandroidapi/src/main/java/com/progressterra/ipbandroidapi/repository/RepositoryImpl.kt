@@ -25,6 +25,8 @@ import com.progressterra.ipbandroidapi.api.scrm.models.address.ListOfAddressesRe
 import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionsRequest
 import com.progressterra.ipbandroidapi.api.scrm.models.clientinfo.ClientInfoResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.devicetoken.DeviceParameters
+import com.progressterra.ipbandroidapi.api.scrm.models.devicetoken.DeviceTokenResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailRequest
 import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.requests.*
@@ -64,6 +66,10 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             if (response.result.status == 0) GlobalResponseStatus.SUCCESS else GlobalResponseStatus.ERROR,
             response.result.message ?: ""
         )
+    }
+
+    override suspend fun setDeviceToken(accessToken: String, deviceParameters: DeviceParameters): DeviceTokenResponse {
+        return scrmService.setDeviceToken(accessToken, deviceParameters)
     }
 
     //TODO infodevice?

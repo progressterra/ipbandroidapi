@@ -12,7 +12,7 @@ import com.progressterra.ipbandroidapi.api.scrm.models.responses.CitiesListRespo
 
 interface LoginApi {
 
-    suspend fun setDeviceToken(deviceParameters: DeviceParameters): DeviceTokenResponse
+    suspend fun setDeviceToken(accessToken: String, deviceParameters: DeviceParameters): DeviceTokenResponse
 
     suspend fun clientInfo(accessToken: String): ClientInfoResponse
 
