@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.scrm.models.requests
 
 import com.google.gson.annotations.SerializedName
 
-internal data class AddCitiRequest(
+data class AddCitiRequest(
     @SerializedName("city_fias_idc")
     val cityFiasIdc: String,
     @SerializedName("city_kladr_id")

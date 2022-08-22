@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.interfaces.client.bonuses.BonusesConverte
 import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Purchase
 import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
 
-internal class PurchasesListResponse(
+class PurchasesListResponse(
     @SerializedName("listdata")
     val listdata: List<Listdata>
 ) : BaseResponse() {

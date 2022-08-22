@@ -10,7 +10,7 @@ interface HandleException {
 
     class Base : HandleException {
 
-        override fun handle(error: Exception) = when (error) {
+        override fun handle(exception: Exception) = when (exception) {
             is UnknownHostException, is SocketTimeoutException -> NoInternetConnectionException()
             else -> ServiceUnavailableException()
         }
