@@ -173,7 +173,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
     //TODO latitude, longitude, iddevice
     override suspend fun getAccessToken(): AccessTokenResponse {
         val accessTokenRequest = AccessTokenRequest(
-            "",
+            UserData.fcmToken,
             0F,
             0F
         )
