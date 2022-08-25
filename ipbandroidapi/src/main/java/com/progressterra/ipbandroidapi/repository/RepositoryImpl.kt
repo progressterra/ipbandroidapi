@@ -37,6 +37,7 @@ import com.progressterra.ipbandroidapi.api.scrm.models.requests.*
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.*
 import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndRequest
 import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartRequest
+import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationType
 import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.utils.extentions.tryOrNull
 
@@ -67,10 +68,8 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
     override suspend fun verificationChannelBegin(phoneNumber: String): LoginResponse {
         val response = networkService.handle {
             scrmCloudDataSource.verificationChannelBegin(
-                VerificationStartRequest(
-                    0,
-                    phoneNumber
-                )
+                VerificationType.PHONE,
+                phoneNumber
             )
         }
         return LoginResponse(
@@ -177,7 +176,7 @@ internal class RepositoryImpl : LoginRepository, BonusesRepository,
             0F,
             0F
         )
-        val response = networkService.handle { scrmCloudDataSource.accessToken(accessTokenRequest) }
+        val response = networkService.handle { scrmCloudDataSource.accessToken("") }
         UserData.accessToken = response.data
         return response
     }
