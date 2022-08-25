@@ -31,7 +31,7 @@ interface SCRMRepository {
 
     suspend fun deviceIdByToken(accessToken: String): DeviceIdResponse
 
-    suspend fun accessToken(request: AccessTokenRequest): AccessTokenResponse
+    suspend fun accessToken(): AccessTokenResponse
 
     suspend fun setPersonalInfo(accessToken: String, request: ClientInfoRequest): ClientInfoResponse
 
@@ -48,14 +48,18 @@ interface SCRMRepository {
     suspend fun getSuggestionsAddressFromDadata(dadataSuggestionsRequest: DadataSuggestionsRequest): Response<DadataSuggestionResponse>
 
     class Base(
-        private val sCRMCloudDataSource: SCRMCloudDataSource
+        private val sCRMCloudDataSource: SCRMCloudDataSource,
+        private val sCRMCacheDataSource: SCRMCacheDataSource
     ) : SCRMRepository {
 
         override suspend fun verificationChannelBegin(request: VerificationStartRequest): VerificationStartResponse =
             sCRMCloudDataSource.verificationChannelBegin(request)
 
-        override suspend fun verificationChannelEnd(request: VerificationEndRequest): VerificationEndResponse =
-            sCRMCloudDataSource.verificationChannelEnd(request)
+        override suspend fun verificationChannelEnd(request: VerificationEndRequest): VerificationEndResponse {
+            val response = sCRMCloudDataSource.verificationChannelEnd(request)
+            sCRMCacheDataSource.saveIdDevice(response.data.idDevice)
+            return response
+        }
 
         override suspend fun clientInfoByToken(accessToken: String): ClientInfoResponse =
             sCRMCloudDataSource.clientInfoByToken(accessToken)
@@ -63,8 +67,7 @@ interface SCRMRepository {
         override suspend fun deviceIdByToken(accessToken: String): DeviceIdResponse =
             sCRMCloudDataSource.deviceIdByToken(accessToken)
 
-        override suspend fun accessToken(request: AccessTokenRequest): AccessTokenResponse =
-            sCRMCloudDataSource.accessToken(request)
+        override suspend fun accessToken(): AccessTokenResponse = sCRMCloudDataSource.accessToken(sCRMCacheDataSource.idDevice())
 
         override suspend fun setPersonalInfo(accessToken: String, request: ClientInfoRequest): ClientInfoResponse =
             sCRMCloudDataSource.setPersonalInfo(accessToken, request)

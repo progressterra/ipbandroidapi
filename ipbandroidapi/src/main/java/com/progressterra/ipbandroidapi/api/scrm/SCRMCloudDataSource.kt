@@ -33,7 +33,7 @@ interface SCRMCloudDataSource {
 
     suspend fun deviceIdByToken(accessToken: String): DeviceIdResponse
 
-    suspend fun accessToken(request: AccessTokenRequest): AccessTokenResponse
+    suspend fun accessToken(idDevice: String): AccessTokenResponse
 
     suspend fun setPersonalInfo(accessToken: String, request: ClientInfoRequest): ClientInfoResponse
 
@@ -70,8 +70,8 @@ interface SCRMCloudDataSource {
             service.deviceIdByToken(accessToken)
         }
 
-        override suspend fun accessToken(request: AccessTokenRequest): AccessTokenResponse = handle {
-            service.accessToken(request)
+        override suspend fun accessToken(idDevice: String): AccessTokenResponse = handle {
+            service.accessToken(AccessTokenRequest(idDevice, 0F, 0F))
         }
 
         override suspend fun setPersonalInfo(accessToken: String, request: ClientInfoRequest): ClientInfoResponse = handle {
