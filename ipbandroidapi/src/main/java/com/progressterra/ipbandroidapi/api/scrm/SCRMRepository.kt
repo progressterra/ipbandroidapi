@@ -1,6 +1,5 @@
 package com.progressterra.ipbandroidapi.api.scrm
 
-import com.progressterra.ipbandroidapi.api.scrm.models.accesstoken.AccessTokenRequest
 import com.progressterra.ipbandroidapi.api.scrm.models.accesstoken.AccessTokenResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.address.dadata.DadataSuggestionsRequest
@@ -14,16 +13,13 @@ import com.progressterra.ipbandroidapi.api.scrm.models.requests.ClientInfoReques
 import com.progressterra.ipbandroidapi.api.scrm.models.requests.ConfirmEmailRequest
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.CitiesListResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.PurchasesListResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.verification.*
 import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
 import retrofit2.Response
 
 interface SCRMRepository {
 
-    suspend fun verificationChannelBegin(request: VerificationStartRequest): VerificationStartResponse
+    suspend fun verificationChannelBegin(type: VerificationType, value: String): VerificationStartResponse
 
     suspend fun verificationChannelEnd(request: VerificationEndRequest): VerificationEndResponse
 
@@ -52,8 +48,11 @@ interface SCRMRepository {
         private val sCRMCacheDataSource: SCRMCacheDataSource
     ) : SCRMRepository {
 
-        override suspend fun verificationChannelBegin(request: VerificationStartRequest): VerificationStartResponse =
-            sCRMCloudDataSource.verificationChannelBegin(request)
+        override suspend fun verificationChannelBegin(
+            type: VerificationType,
+            value: String
+        ): VerificationStartResponse =
+            sCRMCloudDataSource.verificationChannelBegin(type, value)
 
         override suspend fun verificationChannelEnd(request: VerificationEndRequest): VerificationEndResponse {
             val response = sCRMCloudDataSource.verificationChannelEnd(request)

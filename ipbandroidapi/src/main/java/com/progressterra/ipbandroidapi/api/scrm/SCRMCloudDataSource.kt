@@ -14,10 +14,7 @@ import com.progressterra.ipbandroidapi.api.scrm.models.requests.ClientInfoReques
 import com.progressterra.ipbandroidapi.api.scrm.models.requests.ConfirmEmailRequest
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.CitiesListResponse
 import com.progressterra.ipbandroidapi.api.scrm.models.responses.PurchasesListResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartResponse
+import com.progressterra.ipbandroidapi.api.scrm.models.verification.*
 import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.remotedata.CloudDataSource
 import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
@@ -25,7 +22,7 @@ import retrofit2.Response
 
 interface SCRMCloudDataSource {
 
-    suspend fun verificationChannelBegin(request: VerificationStartRequest): VerificationStartResponse
+    suspend fun verificationChannelBegin(type: VerificationType, value: String): VerificationStartResponse
 
     suspend fun verificationChannelEnd(request: VerificationEndRequest): VerificationEndResponse
 
@@ -54,8 +51,8 @@ interface SCRMCloudDataSource {
         handleException: HandleException
     ) : SCRMCloudDataSource, CloudDataSource.Abstract(handleException) {
 
-        override suspend fun verificationChannelBegin(request: VerificationStartRequest): VerificationStartResponse = handle {
-            service.verificationChannelBegin(request)
+        override suspend fun verificationChannelBegin(type: VerificationType, value: String): VerificationStartResponse = handle {
+            service.verificationChannelBegin(VerificationStartRequest(type.ordinal, value))
         }
 
         override suspend fun verificationChannelEnd(request: VerificationEndRequest): VerificationEndResponse = handle {
