@@ -7,7 +7,7 @@ import com.progressterra.ipbandroidapi.remotedata.models.base.GlobalResponseStat
 import com.progressterra.ipbandroidapi.remotedata.models.base.ResponseWrapper
 import retrofit2.Response
 
-internal interface NetworkService {
+interface NetworkService {
 
     fun <T> createService(apiClass: Class<T>, baseUrl: String): T
 

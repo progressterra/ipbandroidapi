@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 //TODO DI
-internal class NetworkServiceImpl : NetworkService.Abstract(HandleException.Base()) {
+class NetworkServiceImpl : NetworkService.Abstract(HandleException.Base()) {
 
     private val clientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         .callTimeout(NetworkSettings.NETWORK_CALL_TIMEOUT, TimeUnit.MILLISECONDS)
