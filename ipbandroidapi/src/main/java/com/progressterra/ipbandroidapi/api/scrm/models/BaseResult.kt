@@ -7,6 +7,6 @@ data class BaseResult(
     @SerializedName("message") val message: String?,
     @SerializedName("messageDev") val messageDev: String?,
     @SerializedName("codeResult") val codeResult: Int,
-    @SerializedName("duration") val duration: Int,
+    @SerializedName("duration") val duration: Double,
     @SerializedName("idLog") val idLog: String
 )
