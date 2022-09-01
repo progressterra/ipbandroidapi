@@ -1,15 +1,14 @@
 package com.progressterra.ipbandroidapi.api.city
 
-import com.progressterra.ipbandroidapi.api.iprobonusapi.models.CityResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.requests.AddCitiRequest
+import com.progressterra.ipbandroidapi.api.city.model.AddCityRequest
+import com.progressterra.ipbandroidapi.api.city.model.CityResponse
 import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.remotedata.CloudDataSource
 import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
-import retrofit2.Response
 
 interface CityCloudDataSource {
 
-    suspend fun setCity(accessToken: String, cityEntity: AddCitiRequest): Response<BaseResponse>
+    suspend fun setCity(accessToken: String, cityEntity: AddCityRequest): BaseResponse
 
     suspend fun clientCity(accessToken: String): CityResponse
 
@@ -18,7 +17,7 @@ interface CityCloudDataSource {
         handleException: HandleException
     ) : CityCloudDataSource, CloudDataSource.Abstract(handleException) {
 
-        override suspend fun setCity(accessToken: String, cityEntity: AddCitiRequest): Response<BaseResponse> = handle {
+        override suspend fun setCity(accessToken: String, cityEntity: AddCityRequest): BaseResponse = handle {
             service.setCity(accessToken, cityEntity)
         }
 

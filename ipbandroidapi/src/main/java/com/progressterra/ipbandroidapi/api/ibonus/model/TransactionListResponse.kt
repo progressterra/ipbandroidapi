@@ -1,11 +1,11 @@
-package com.progressterra.ipbandroidapi.api.scrm.models.responses
+package com.progressterra.ipbandroidapi.api.ibonus.model
 
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.api.scrm.models.BaseResult
 import com.progressterra.ipbandroidapi.interfaces.client.bonuses.BonusesConverters
 import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Transaction
 
-internal data class TransactionListResponse(
+data class TransactionListResponse(
     @SerializedName("result") val result: BaseResult,
     @SerializedName("data") val dataList: List<Data>,
     @SerializedName("totalNumberRecords") val totalNumberRecords: Int

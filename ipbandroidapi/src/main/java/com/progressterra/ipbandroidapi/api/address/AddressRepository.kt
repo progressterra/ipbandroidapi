@@ -14,21 +14,21 @@ interface AddressRepository {
     suspend fun getAddressList(accessToken: String): Response<ListOfAddressesResponse>
 
     class Base(
-        private val addressCloudDataSource: AddressCloudDataSource
+        private val cloudDataSource: AddressCloudDataSource
     ) : AddressRepository {
 
         override suspend fun getAddressList(accessToken: String): Response<ListOfAddressesResponse> =
-            addressCloudDataSource.getAddressList(accessToken)
+            cloudDataSource.getAddressList(accessToken)
 
         override suspend fun addClientAddress(
             accessToken: String,
             modifyClientAddressRequest: Address
-        ): Response<ResultResponse> = addressCloudDataSource.addClientAddress(accessToken, modifyClientAddressRequest)
+        ): Response<ResultResponse> = cloudDataSource.addClientAddress(accessToken, modifyClientAddressRequest)
 
         override suspend fun updateClientAddress(
             accessToken: String,
             modifyClientAddressRequest: Address
         ): Response<ResultResponse> =
-            addressCloudDataSource.updateClientAddress(accessToken, modifyClientAddressRequest)
+            cloudDataSource.updateClientAddress(accessToken, modifyClientAddressRequest)
     }
 }

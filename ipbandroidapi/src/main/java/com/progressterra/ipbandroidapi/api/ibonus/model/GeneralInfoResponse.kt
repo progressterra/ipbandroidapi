@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.scrm.models.responses
+package com.progressterra.ipbandroidapi.api.ibonus.model
 
 
 import com.google.gson.annotations.SerializedName

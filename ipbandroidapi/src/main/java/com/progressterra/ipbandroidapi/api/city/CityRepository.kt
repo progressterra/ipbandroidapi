@@ -1,20 +1,23 @@
 package com.progressterra.ipbandroidapi.api.city
 
-import com.progressterra.ipbandroidapi.api.iprobonusapi.models.CityResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.requests.AddCitiRequest
+import com.progressterra.ipbandroidapi.api.city.model.AddCityRequest
+import com.progressterra.ipbandroidapi.api.city.model.CityResponse
 import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
-import retrofit2.Response
 
 interface CityRepository {
 
-    suspend fun setCity(accessToken: String, cityEntity: AddCitiRequest): Response<BaseResponse>
+    suspend fun setCity(accessToken: String, cityEntity: AddCityRequest): BaseResponse
 
-    suspend fun clientCity(accessToken: String): CityResponse
+    suspend fun getCity(accessToken: String): CityResponse
 
-    class Base(private val cityCloudDataSource: CityCloudDataSource) : CityRepository {
+    class Base(private val cloudDataSource: CityCloudDataSource) : CityRepository {
 
-        override suspend fun setCity(accessToken: String, cityEntity: AddCitiRequest): Response<BaseResponse> = cityCloudDataSource.setCity(accessToken, cityEntity)
+        override suspend fun setCity(
+            accessToken: String,
+            cityEntity: AddCityRequest
+        ): BaseResponse = cloudDataSource.setCity(accessToken, cityEntity)
 
-        override suspend fun clientCity(accessToken: String): CityResponse = cityCloudDataSource.clientCity(accessToken)
+        override suspend fun getCity(accessToken: String): CityResponse =
+            cloudDataSource.clientCity(accessToken)
     }
 }
