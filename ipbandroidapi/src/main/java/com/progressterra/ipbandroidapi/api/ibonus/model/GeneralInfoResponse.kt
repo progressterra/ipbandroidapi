@@ -21,13 +21,14 @@ data class GeneralInfoResponse(
         val forBurningQuantity: Double,
         @SerializedName("typeBonusName")
         val typeBonusName: String?
-    )
-    fun convertToBonusesInfo() =
-        BonusesInfo(
-            currentQuantity = data.currentQuantity.toInt(),
-            dateBurning = BonusesConverters.convertDate(data.dateBurning),
-            forBurningQuantity = data.forBurningQuantity.toInt(),
-            typeBonusName = data.typeBonusName ?: ""
-        )
+    ) {
+        fun convertToBonusesInfo() =
+            BonusesInfo(
+                currentQuantity = currentQuantity.toInt(),
+                dateBurning = BonusesConverters.convertDate(dateBurning),
+                forBurningQuantity = forBurningQuantity.toInt(),
+                typeBonusName = typeBonusName ?: ""
+            )
+    }
 }
 
