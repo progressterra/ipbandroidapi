@@ -8,5 +8,8 @@ interface PurchasesRepository {
 
     class Base(
         private val cloudDataSource: PurchasesCloudDataSource
-    )
+    ) : PurchasesRepository {
+
+        override suspend fun getShopList(accessToken: String): PurchasesListResponse = cloudDataSource.getShopList(accessToken)
+    }
 }

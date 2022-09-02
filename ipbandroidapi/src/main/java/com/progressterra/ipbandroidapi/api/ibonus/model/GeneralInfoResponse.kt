@@ -22,6 +22,7 @@ data class GeneralInfoResponse(
         @SerializedName("typeBonusName")
         val typeBonusName: String?
     ) {
+        //TODO move to mapper
         fun convertToBonusesInfo() =
             BonusesInfo(
                 currentQuantity = currentQuantity.toInt(),

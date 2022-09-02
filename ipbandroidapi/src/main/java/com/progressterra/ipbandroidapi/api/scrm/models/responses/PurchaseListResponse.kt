@@ -7,7 +7,7 @@ import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
 
 class PurchasesListResponse(
     @SerializedName("listdata")
-    val listdata: List<Listdata>
+    val listdata: List<ListData>
 ) : BaseResponse() {
 
     fun convertToOrderList(purchasesListResponse: PurchasesListResponse?): MutableList<Purchase> {
@@ -26,20 +26,19 @@ class PurchasesListResponse(
         }
         return convertedPurchases
     }
+
+    data class ListData(
+        @SerializedName("addedBonusesSum")
+        val addedBonusesSum: Int? = null,
+        @SerializedName("purchaseDate")
+        val purchaseDate: String? = null,
+        @SerializedName("purchaseId")
+        val purchaseId: String? = null,
+        @SerializedName("purchaseSum")
+        val purchaseSum: Int? = null,
+        @SerializedName("shopName")
+        val shopName: String? = null,
+        @SerializedName("spentBonusesSum")
+        val spentBonusesSum: Double? = null
+    )
 }
-
-data class Listdata(
-    @SerializedName("addedBonusesSum")
-    val addedBonusesSum: Int? = null,
-    @SerializedName("purchaseDate")
-    val purchaseDate: String? = null,
-    @SerializedName("purchaseId")
-    val purchaseId: String? = null,
-    @SerializedName("purchaseSum")
-    val purchaseSum: Int? = null,
-    @SerializedName("shopName")
-    val shopName: String? = null,
-    @SerializedName("spentBonusesSum")
-    val spentBonusesSum: Double? = null
-)
-
