@@ -1,19 +1,15 @@
 package com.progressterra.ipbandroidapi.api.address
 
 import com.progressterra.ipbandroidapi.api.address.model.Address
+import com.progressterra.ipbandroidapi.api.address.model.AddressInfo
 import com.progressterra.ipbandroidapi.api.address.model.AddressesInfo
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 
 interface AddressRepository {
 
-    suspend fun addClientAddress(
+    suspend fun setClientAddress(
         accessToken: String,
-        modifyClientAddressRequest: Address
-    ): Result<Boolean>
-
-    suspend fun updateClientAddress(
-        accessToken: String,
-        modifyClientAddressRequest: Address
+        addressInfo: AddressInfo
     ): Result<Boolean>
 
     suspend fun getAddressList(accessToken: String): Result<AddressesInfo>
@@ -24,27 +20,15 @@ interface AddressRepository {
 
         override suspend fun getAddressList(accessToken: String): Result<AddressesInfo> = handle {
             cloudDataSource.getAddressList(accessToken)
-        }.map { it.body()!!.addressInfo.toAddressesInfo() }
+        }.map { AddressesInfo(it.addressInfo) }
 
-        override suspend fun addClientAddress(
+        override suspend fun setClientAddress(
             accessToken: String,
-            modifyClientAddressRequest: Address
+            addressInfo: AddressInfo
         ): Result<Boolean> = handle {
-            cloudDataSource.addClientAddress(
-                accessToken,
-                modifyClientAddressRequest
-            )
+            cloudDataSource.setClientAddress(accessToken, Address(addressInfo))
         }.map {
-            it.body()?.status == 0
-        }
-
-        override suspend fun updateClientAddress(
-            accessToken: String,
-            modifyClientAddressRequest: Address
-        ): Result<Boolean> = handle {
-            cloudDataSource.updateClientAddress(accessToken, modifyClientAddressRequest)
-        }.map {
-            it.body()?.status == 0
+            it.status == 0
         }
     }
 }

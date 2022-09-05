@@ -12,11 +12,4 @@ data class MainInfoAboutAddress(
     val defaultShippingAddress: Address?,
     @SerializedName("listAddAddress")
     val listAddress: List<Address>?
-) {
-
-    fun toAddressesInfo(): AddressesInfo = AddressesInfo(
-        defaultBillingAddress?.toAddressInfo() ?: AddressInfo(),
-        defaultShippingAddress?.toAddressInfo() ?: AddressInfo(),
-        listAddress?.map { it.toAddressInfo() } ?: emptyList()
-    )
-}
+)

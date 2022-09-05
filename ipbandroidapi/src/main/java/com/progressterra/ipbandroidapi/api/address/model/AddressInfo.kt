@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.api.address.model
 
 /**
-* Data model
+ * Data model
  */
 data class AddressInfo(
     val apartment: String = "",
@@ -40,4 +40,44 @@ data class AddressInfo(
     val nameRegion: String = "",
     val nameStreet: String = "",
     val postalCode: String = ""
-)
+) {
+
+    constructor(address: Address) : this(
+        address.apartment ?: "",
+        address.building ?: "",
+        address.dateAdded ?: "",
+        address.dateDeactivation ?: "",
+        address.dateVerification ?: "",
+        address.defaultBilling ?: "",
+        address.defaultShipping ?: "",
+        address.entrance ?: "",
+        address.fiasIDArea ?: "",
+        address.fiasIDCity ?: "",
+        address.fiasIDCountry ?: "",
+        address.fiasIDDistrict ?: "",
+        address.fiasIDHouse ?: "",
+        address.fiasIDRegion ?: "",
+        address.fiasIDStreet ?: "",
+        address.floor ?: "",
+        address.houseNUmber ?: "",
+        address.idClient ?: "",
+        address.idManagerVerification ?: "",
+        address.idUnique ?: "",
+        address.kladrArea ?: "",
+        address.kladrCity ?: "",
+        address.kladrCountry ?: "",
+        address.kladrDistrict ?: "",
+        address.kladrHouse ?: "",
+        address.kladrRegion ?: "",
+        address.kladrStreet ?: "",
+        address.latitude ?: 0.0,
+        address.longitude ?: 0.0,
+        address.nameArea ?: "",
+        address.nameCity ?: "",
+        address.nameCountry ?: "",
+        address.nameDistrict ?: "",
+        address.nameRegion ?: "",
+        address.nameStreet ?: "",
+        address.postalCode ?: ""
+    )
+}

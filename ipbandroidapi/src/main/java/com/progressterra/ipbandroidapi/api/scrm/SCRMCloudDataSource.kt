@@ -15,7 +15,7 @@ import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 
 interface SCRMCloudDataSource {
 
-    suspend fun verificationChannelBegin(type: VerificationType, value: String): VerificationStartResponse
+    suspend fun verificationChannelBegin(request: VerificationStartRequest): VerificationStartResponse
 
     suspend fun verificationChannelEnd(request: VerificationEndRequest): VerificationEndResponse
 
@@ -23,7 +23,7 @@ interface SCRMCloudDataSource {
 
     suspend fun deviceIdByToken(accessToken: String): DeviceIdResponse
 
-    suspend fun accessToken(idDevice: String): AccessTokenResponse
+    suspend fun accessToken(request: AccessTokenRequest): AccessTokenResponse
 
     suspend fun setPersonalInfo(accessToken: String, request: ClientInfoRequest): ClientInfoResponse
 
@@ -36,13 +36,15 @@ interface SCRMCloudDataSource {
         handleException: HandleException
     ) : SCRMCloudDataSource, AbstractCloudDataSource(handleException) {
 
-        override suspend fun verificationChannelBegin(type: VerificationType, value: String): VerificationStartResponse = handle {
-            service.verificationChannelBegin(VerificationStartRequest(type.ordinal, value))
-        }
+        override suspend fun verificationChannelBegin(request: VerificationStartRequest): VerificationStartResponse =
+            handle {
+                service.verificationChannelBegin(request)
+            }
 
-        override suspend fun verificationChannelEnd(request: VerificationEndRequest): VerificationEndResponse = handle {
-            service.verificationChannelEnd(request)
-        }
+        override suspend fun verificationChannelEnd(request: VerificationEndRequest): VerificationEndResponse =
+            handle {
+                service.verificationChannelEnd(request)
+            }
 
         override suspend fun clientInfoByToken(accessToken: String): ClientInfoResponse = handle {
             service.clientInfoByToken(accessToken)
@@ -52,19 +54,27 @@ interface SCRMCloudDataSource {
             service.deviceIdByToken(accessToken)
         }
 
-        override suspend fun accessToken(idDevice: String): AccessTokenResponse = handle {
-            service.accessToken(AccessTokenRequest(idDevice, 0F, 0F))
-        }
+        override suspend fun accessToken(request: AccessTokenRequest): AccessTokenResponse =
+            handle {
+                service.accessToken(request)
+            }
 
-        override suspend fun setPersonalInfo(accessToken: String, request: ClientInfoRequest): ClientInfoResponse = handle {
+        override suspend fun setPersonalInfo(
+            accessToken: String,
+            request: ClientInfoRequest
+        ): ClientInfoResponse = handle {
             service.setPersonalInfo(accessToken, request)
         }
 
-        override suspend fun setEmail(accessToken: String, request: EmailRequest): EmailResponse = handle {
-            service.setEmail(accessToken, request)
-        }
+        override suspend fun setEmail(accessToken: String, request: EmailRequest): EmailResponse =
+            handle {
+                service.setEmail(accessToken, request)
+            }
 
-        override suspend fun setDeviceToken(accessToken: String, request: DeviceParameters): DeviceTokenResponse = handle {
+        override suspend fun setDeviceToken(
+            accessToken: String,
+            request: DeviceParameters
+        ): DeviceTokenResponse = handle {
             service.setDeviceToken(accessToken, request)
         }
     }

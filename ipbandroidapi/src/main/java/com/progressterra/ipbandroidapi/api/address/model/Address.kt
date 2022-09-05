@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.address.model
 import com.google.gson.annotations.SerializedName
 
 /**
-* API model
+ * API model
  */
 data class Address(
     @SerializedName("apartment")
@@ -78,44 +78,45 @@ data class Address(
     val nameStreet: String?,
     @SerializedName("postalCode")
     val postalCode: String?
-) { 
-    
-    fun toAddressInfo(): AddressInfo = AddressInfo(
-        apartment ?: "",
-        building ?: "",
-        dateAdded ?: "",
-        dateDeactivation ?: "",
-        dateVerification ?: "",
-        defaultBilling ?: "",
-        defaultShipping ?: "",
-        entrance ?: "",
-        fiasIDArea ?: "",
-        fiasIDCity ?: "",
-        fiasIDCountry ?: "",
-        fiasIDDistrict ?: "",
-        fiasIDHouse ?: "",
-        fiasIDRegion ?: "",
-        fiasIDStreet ?: "",
-        floor ?: "",
-        houseNUmber ?: "",
-        idClient ?: "",
-        idManagerVerification ?: "",
-        idUnique ?: "",
-        kladrArea ?: "",
-        kladrCity ?: "",
-        kladrCountry ?: "",
-        kladrDistrict ?: "",
-        kladrHouse ?: "",
-        kladrRegion ?: "",
-        kladrStreet ?: "",
-        latitude ?: 0.0,
-        longitude ?: 0.0,
-        nameArea ?: "",
-        nameCity ?: "",
-        nameCountry ?: "",
-        nameDistrict ?: "",
-        nameRegion ?: "",
-        nameStreet ?: "",
-        postalCode ?: ""
+) {
+
+    //TODO experiment with internal constructors
+    constructor(addressInfo: AddressInfo) : this(
+        addressInfo.apartment,
+        addressInfo.building,
+        addressInfo.dateAdded,
+        addressInfo.dateDeactivation,
+        addressInfo.dateVerification,
+        addressInfo.defaultBilling,
+        addressInfo.defaultShipping,
+        addressInfo.entrance,
+        addressInfo.fiasIDArea,
+        addressInfo.fiasIDCity,
+        addressInfo.fiasIDCountry,
+        addressInfo.fiasIDDistrict,
+        addressInfo.fiasIDHouse,
+        addressInfo.fiasIDRegion,
+        addressInfo.fiasIDStreet,
+        addressInfo.floor,
+        addressInfo.houseNUmber,
+        addressInfo.idClient,
+        addressInfo.idManagerVerification,
+        addressInfo.idUnique,
+        addressInfo.kladrArea,
+        addressInfo.kladrCity,
+        addressInfo.kladrCountry,
+        addressInfo.kladrDistrict,
+        addressInfo.kladrHouse,
+        addressInfo.kladrRegion,
+        addressInfo.kladrStreet,
+        addressInfo.latitude,
+        addressInfo.longitude,
+        addressInfo.nameArea,
+        addressInfo.nameCity,
+        addressInfo.nameCountry,
+        addressInfo.nameDistrict,
+        addressInfo.nameRegion,
+        addressInfo.nameStreet,
+        addressInfo.postalCode
     )
 }
