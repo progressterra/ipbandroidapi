@@ -8,7 +8,7 @@ interface SCRMRepository {
     suspend fun startVerificationChannel(
         type: VerificationType,
         value: String
-    ): VerificationStartResponse
+    ): Result<Boolean>
 
     suspend fun finishVerificationChannel(request: VerificationEndRequest): Result<String>
 
@@ -35,8 +35,9 @@ interface SCRMRepository {
         override suspend fun startVerificationChannel(
             type: VerificationType,
             value: String
-        ): VerificationStartResponse =
+        ): Result<Boolean> = handle {
             sCRMCloudDataSource.verificationChannelBegin(type, value)
+        }.map { it.result.status == 0 }
 
         override suspend fun finishVerificationChannel(request: VerificationEndRequest): Result<String> =
             handle {
