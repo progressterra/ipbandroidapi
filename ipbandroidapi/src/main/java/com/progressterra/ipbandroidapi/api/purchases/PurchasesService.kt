@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.api.purchases
 
-import com.progressterra.ipbandroidapi.api.scrm.models.responses.PurchasesListResponse
+import com.progressterra.ipbandroidapi.api.purchases.model.PurchasesListResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 

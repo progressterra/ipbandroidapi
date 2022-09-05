@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.api.ipbcollaborationcoreapi.models
 
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
 
 data class ResultListShop(
     @SerializedName("dataList") val dataList: List<RFShop>? = null

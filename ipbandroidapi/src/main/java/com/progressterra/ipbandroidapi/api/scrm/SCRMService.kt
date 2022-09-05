@@ -1,18 +1,12 @@
 package com.progressterra.ipbandroidapi.api.scrm
 
-import com.progressterra.ipbandroidapi.api.scrm.models.requests.*
-import com.progressterra.ipbandroidapi.api.scrm.models.accesstoken.AccessTokenRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.accesstoken.AccessTokenResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.clientinfo.ClientInfoResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.deviceid.DeviceIdResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.devicetoken.DeviceParameters
-import com.progressterra.ipbandroidapi.api.scrm.models.devicetoken.DeviceTokenResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationEndResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.VerificationStartResponse
+import com.progressterra.ipbandroidapi.api.scrm.model.*
+import com.progressterra.ipbandroidapi.api.scrm.model.EmailRequest
+import com.progressterra.ipbandroidapi.api.scrm.model.EmailResponse
+import com.progressterra.ipbandroidapi.api.scrm.model.ClientInfoResponse
+import com.progressterra.ipbandroidapi.api.scrm.model.DeviceIdResponse
+import com.progressterra.ipbandroidapi.api.scrm.model.DeviceParameters
+import com.progressterra.ipbandroidapi.api.scrm.model.DeviceTokenResponse
 import retrofit2.http.*
 
 interface SCRMService {

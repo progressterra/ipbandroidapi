@@ -1,11 +1,11 @@
 package com.progressterra.ipbandroidapi.api.ibonus.model
 
-
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.api.scrm.models.BaseResult
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.BonusesConverters
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.BonusesInfo
+import com.progressterra.ipbandroidapi.api.BaseResult
 
+/**
+* API model
+ */
 data class GeneralInfoResponse(
     @SerializedName("result") val result: BaseResult,
     @SerializedName("data") val data: Data,
@@ -22,14 +22,13 @@ data class GeneralInfoResponse(
         @SerializedName("typeBonusName")
         val typeBonusName: String?
     ) {
-        //TODO move to mapper
-        fun convertToBonusesInfo() =
-            BonusesInfo(
-                currentQuantity = currentQuantity.toInt(),
-                dateBurning = BonusesConverters.convertDate(dateBurning),
-                forBurningQuantity = forBurningQuantity.toInt(),
-                typeBonusName = typeBonusName ?: ""
-            )
+
+        fun toGeneralInfo(): GeneralInfo = GeneralInfo(
+            currentQuantity,
+            dateBurning,
+            forBurningQuantity,
+            typeBonusName ?: ""
+        )
     }
 }
 

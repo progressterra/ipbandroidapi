@@ -8,11 +8,11 @@ plugins {
 apply from: 'publish.gradle'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 32
 
         versionCode commitsCount()
         versionName "$major.${generateMinorVersionCode()}"
@@ -40,23 +40,23 @@ android {
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.10"
     implementation 'androidx.core:core-ktx:1.8.0'
 
     // Network
-    api "com.squareup.retrofit2:retrofit:$retrofit_version"
-    api "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    api "com.squareup.okhttp3:okhttp:$okhttp_version"
+    api "com.squareup.retrofit2:retrofit:2.9.0"
+    api "com.squareup.retrofit2:converter-gson:2.9.0"
+    api "com.squareup.okhttp3:okhttp:4.10.0"
+    api "com.google.code.gson:gson:2.9.1"
 
     // Logging
-    api "com.squareup.okhttp3:logging-interceptor:4.9.3"
+    api "com.squareup.okhttp3:logging-interceptor:4.10.0"
 
     // Coroutines
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
 
     // KotPref
     api "com.chibatching.kotpref:kotpref:2.13.2"
     api "com.chibatching.kotpref:initializer:2.13.2"
     api "com.chibatching.kotpref:gson-support:2.13.2"
-    api "com.google.code.gson:gson:2.9.0"
 }

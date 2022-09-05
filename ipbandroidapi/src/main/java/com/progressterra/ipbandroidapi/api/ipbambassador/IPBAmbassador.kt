@@ -10,7 +10,7 @@ import com.progressterra.ipbandroidapi.api.ipbambassador.models.invite_members.I
 import com.progressterra.ipbandroidapi.api.ipbambassador.models.invite_members.InvitingMembersRequest
 import com.progressterra.ipbandroidapi.api.ipbambassador.models.money_out.RemoveBonusesResponse
 import com.progressterra.ipbandroidapi.api.ipbambassador.models.money_out.applications.ApplicationsResponse
-import com.progressterra.ipbandroidapi.remotedata.models.base.ResultResponse
+import com.progressterra.ipbandroidapi.base.ResultResponse
 import okhttp3.ResponseBody
 import retrofit2.Response
 

@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.api.ipbambassador.models.money_out.applications
 
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
 
 data class ApplicationsResponse(
     @SerializedName("dataList")

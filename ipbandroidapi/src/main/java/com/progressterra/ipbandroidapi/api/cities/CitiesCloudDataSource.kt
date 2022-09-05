@@ -1,8 +1,8 @@
 package com.progressterra.ipbandroidapi.api.cities
 
-import com.progressterra.ipbandroidapi.api.scrm.models.responses.CitiesListResponse
+import com.progressterra.ipbandroidapi.api.cities.model.CitiesListResponse
 import com.progressterra.ipbandroidapi.exception.HandleException
-import com.progressterra.ipbandroidapi.remotedata.CloudDataSource
+import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 
 interface CitiesCloudDataSource {
 
@@ -11,7 +11,7 @@ interface CitiesCloudDataSource {
     class Base(
         private val service: CitiesService,
         handleException: HandleException
-    ) : CitiesCloudDataSource, CloudDataSource.Abstract(handleException) {
+    ) : CitiesCloudDataSource, AbstractCloudDataSource(handleException) {
 
         override suspend fun getCities(): CitiesListResponse = handle {
             service.getCities()

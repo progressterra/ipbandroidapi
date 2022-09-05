@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.iprobonusapi
 import com.progressterra.ipbandroidapi.api.iprobonusapi.models.NotificationsResponse
 import com.progressterra.ipbandroidapi.api.iprobonusapi.models.PurchaseDetailInfoResponse
 import com.progressterra.ipbandroidapi.api.iprobonusapi.models.PurchasesResponse
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path

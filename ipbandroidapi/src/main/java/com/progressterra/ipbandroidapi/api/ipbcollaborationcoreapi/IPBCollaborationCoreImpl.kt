@@ -1,52 +1,51 @@
 package com.progressterra.ipbandroidapi.api.ipbcollaborationcoreapi
 
+import com.progressterra.ipbandroidapi.api.URL
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.ProductPageResponse
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.api.ipbcollaborationcoreapi.models.*
-import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remotedata.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
+import com.progressterra.ipbandroidapi.core.NetworkService
 
 internal class IPBCollaborationCoreImpl : IPBCollaborationCore.Cart,
     IPBCollaborationCore.Enterprise, IPBCollaborationCore.Offer, IPBCollaborationCore.News,
     IPBCollaborationCore.Shop, IPBCollaborationCore.Product {
 
-    private val networkService: NetworkService = NetworkServiceImpl()
+    private val networkService: NetworkService = NetworkService.Base()
 
     private val cartApi =
         networkService.createService(
             IPBCollaborationCoreApi.Cart::class.java,
-            NetworkSettings.COLLABORATION_CORE_URL
+            URL.COLLABORATION_CORE_URL
         )
 
     private val entApi =
         networkService.createService(
             IPBCollaborationCoreApi.Enterprise::class.java,
-            NetworkSettings.COLLABORATION_CORE_URL
+            URL.COLLABORATION_CORE_URL
         )
 
     private val offerApi =
         networkService.createService(
             IPBCollaborationCoreApi.Offer::class.java,
-            NetworkSettings.COLLABORATION_CORE_URL
+            URL.COLLABORATION_CORE_URL
         )
 
     private val newsApi =
         networkService.createService(
             IPBCollaborationCoreApi.News::class.java,
-            NetworkSettings.COLLABORATION_CORE_URL
+            URL.COLLABORATION_CORE_URL
         )
 
     private val shopApi =
         networkService.createService(
             IPBCollaborationCoreApi.Shop::class.java,
-            NetworkSettings.COLLABORATION_CORE_URL
+            URL.COLLABORATION_CORE_URL
         )
 
     private val productApi =
         networkService.createService(
             IPBCollaborationCoreApi.Product::class.java,
-            NetworkSettings.COLLABORATION_CORE_URL
+            URL.COLLABORATION_CORE_URL
         )
 
     override suspend fun applyBonusesToCart(

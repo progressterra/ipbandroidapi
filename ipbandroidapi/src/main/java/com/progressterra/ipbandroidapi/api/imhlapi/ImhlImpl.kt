@@ -1,20 +1,19 @@
 package com.progressterra.ipbandroidapi.api.imhlapi
 
+import com.progressterra.ipbandroidapi.api.URL
 import com.progressterra.ipbandroidapi.api.imhlapi.models.compile.CompiledSessionResponse
 import com.progressterra.ipbandroidapi.api.imhlapi.models.session.SessionListResponse
-import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remotedata.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
+import com.progressterra.ipbandroidapi.core.NetworkService
 
 internal class ImhlImpl : Imhl.Compile, Imhl.Session {
 
-    private val networkService: NetworkService = NetworkServiceImpl()
+    private val networkService: NetworkService = NetworkService.Base()
 
     private val imhlCompileApi =
-        networkService.createService(ImhlApi.Compile::class.java, NetworkSettings.IMHL_API_URL)
+        networkService.createService(ImhlApi.Compile::class.java, URL.IMHL_API_URL)
 
     private val imhlSessionApi =
-        networkService.createService(ImhlApi.Session::class.java, NetworkSettings.IMHL_API_URL)
+        networkService.createService(ImhlApi.Session::class.java, URL.IMHL_API_URL)
 
     override suspend fun compileSession(sessionId: String): CompiledSessionResponse {
         return imhlCompileApi.compileSession(sessionId)

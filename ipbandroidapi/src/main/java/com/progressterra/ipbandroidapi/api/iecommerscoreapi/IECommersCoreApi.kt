@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.cart.GoodsQua
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.shop.PaymentTokenRequest
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.shop.YooMoneyConfirmationResponse
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
 import retrofit2.http.*
 
 internal interface IECommersCoreApi {

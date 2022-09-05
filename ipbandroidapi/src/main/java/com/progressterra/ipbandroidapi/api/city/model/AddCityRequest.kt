@@ -1,8 +1,10 @@
 package com.progressterra.ipbandroidapi.api.city.model
 
-
 import com.google.gson.annotations.SerializedName
 
+/**
+ * API model
+ */
 data class AddCityRequest(
     @SerializedName("city_fias_idc")
     val cityFiasIdc: String,

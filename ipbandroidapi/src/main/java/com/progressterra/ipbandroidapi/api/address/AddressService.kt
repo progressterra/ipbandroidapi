@@ -1,8 +1,8 @@
 package com.progressterra.ipbandroidapi.api.address
 
-import com.progressterra.ipbandroidapi.api.scrm.models.address.Address
-import com.progressterra.ipbandroidapi.api.scrm.models.address.ListOfAddressesResponse
-import com.progressterra.ipbandroidapi.remotedata.models.base.ResultResponse
+import com.progressterra.ipbandroidapi.api.address.model.Address
+import com.progressterra.ipbandroidapi.api.address.model.ListOfAddressesResponse
+import com.progressterra.ipbandroidapi.base.ResultResponse
 import retrofit2.Response
 import retrofit2.http.*
 

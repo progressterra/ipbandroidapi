@@ -1,26 +1,25 @@
 package com.progressterra.ipbandroidapi.api.ipbdeliveryservice
 
-import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.payment.GetOrderStatusResponse
+import com.progressterra.ipbandroidapi.api.URL
 import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.delivery.*
+import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.payment.GetOrderStatusResponse
 import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.payment.RegisterOrderResponse
-import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remotedata.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
+import com.progressterra.ipbandroidapi.core.NetworkService
 
 internal class IpbDeliveryServiceImpl : IpbDeliveryService.IPBSberbank,
     IpbDeliveryService.Delivery {
 
-    private val networkService: NetworkService = NetworkServiceImpl()
+    private val networkService: NetworkService = NetworkService.Base()
     private val sberApi =
         networkService.createService(
             IpbDeliveryServiceApi.IPBSberbank::class.java,
-            NetworkSettings.SBER_API
+            URL.SBER_API
         )
 
     private val deliveryApi = networkService.createService(
         IpbDeliveryServiceApi.Delivery::class.java,
-        NetworkSettings.DELIVERY_API
+        URL.DELIVERY_API
     )
 
     override suspend fun registerOrder(idDHSaleHead: String): RegisterOrderResponse {

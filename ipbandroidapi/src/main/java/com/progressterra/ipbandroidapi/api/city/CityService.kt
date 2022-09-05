@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.city
 
 import com.progressterra.ipbandroidapi.api.city.model.AddCityRequest
 import com.progressterra.ipbandroidapi.api.city.model.CityResponse
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
 import retrofit2.http.*
 
 interface CityService {

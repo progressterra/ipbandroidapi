@@ -1,5 +1,6 @@
 package com.progressterra.ipbandroidapi.api.ipbambassador
 
+import com.progressterra.ipbandroidapi.api.URL
 import com.progressterra.ipbandroidapi.api.ipbambassador.models.ambassador_status.AmbassadorStatusResponse
 import com.progressterra.ipbandroidapi.api.ipbambassador.models.client_info.BankInfoResponse
 import com.progressterra.ipbandroidapi.api.ipbambassador.models.client_info.UpdateBankDataRequest
@@ -15,26 +16,24 @@ import com.progressterra.ipbandroidapi.api.ipbambassador.models.money_out.Remove
 import com.progressterra.ipbandroidapi.api.ipbambassador.models.money_out.applications.ApplicationsResponse
 import com.progressterra.ipbandroidapi.api.ipbambassador.models.upload_file.UploadContractOfAmbassadorRequest
 import com.progressterra.ipbandroidapi.api.ipbambassador.models.upload_file.UploadImageUrlRequest
-import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remotedata.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
-import com.progressterra.ipbandroidapi.remotedata.models.base.ResultResponse
+import com.progressterra.ipbandroidapi.base.ResultResponse
+import com.progressterra.ipbandroidapi.core.NetworkService
 import okhttp3.ResponseBody
 import retrofit2.Response
 
 internal class IPBAmbassadorImpl : IPBAmbassador.Ambassador, IPBAmbassador.AmbassadorInvite {
 
-    private val networkService: NetworkService = NetworkServiceImpl()
+    private val networkService: NetworkService = NetworkService.Base()
     private val ipbAmbassadorApi =
         networkService.createService(
             IPBAmbassadorApi.Ambassador::class.java,
-            NetworkSettings.AMBASSADOR_URL
+            URL.AMBASSADOR_URL
         )
 
     private val ipbAmbassadorInviteApi =
         networkService.createService(
             IPBAmbassadorApi.AmbassadorInvite::class.java,
-            NetworkSettings.AMBASSADOR_INVITE_URL
+            URL.AMBASSADOR_INVITE_URL
         )
 
 

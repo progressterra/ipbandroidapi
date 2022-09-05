@@ -1,8 +1,11 @@
 package com.progressterra.ipbandroidapi.api.city.model
 
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
 
+/**
+ * API model
+ */
 data class CityResponse(
     @SerializedName("data") val city: Data? = null
 ) : BaseResponse() {
@@ -17,5 +20,18 @@ data class CityResponse(
         @SerializedName("city_kladr_id") val cityKladrId: String? = null,
         @SerializedName("latitude") val latitude: Double? = null,
         @SerializedName("longitude") val longitude: Double? = null
-    )
+    ) {
+        
+        fun toCityInfo(): CityInfo = CityInfo(
+            idUnique ?: "",
+            idClient ?: "",
+            dateEvent ?: "",
+            idrfCity ?: "",
+            cityName ?: "",
+            cityFiasIdc ?: "",
+            cityKladrId ?: "",
+            latitude ?: 0.0,
+            longitude ?: 0.0
+        )
+    }
 }

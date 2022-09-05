@@ -1,10 +1,11 @@
 package com.progressterra.ipbandroidapi.api.ibonus.model
 
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.api.scrm.models.BaseResult
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.BonusesConverters
-import com.progressterra.ipbandroidapi.interfaces.client.bonuses.models.Transaction
+import com.progressterra.ipbandroidapi.api.BaseResult
 
+/**
+* API model
+ */
 data class TransactionListResponse(
     @SerializedName("result") val result: BaseResult,
     @SerializedName("data") val dataList: List<Data>,
@@ -20,20 +21,13 @@ data class TransactionListResponse(
         val typeBonusName: String?,
         @SerializedName("typeOperation")
         val typeOperation: Int
-    )
+    ) {
 
-    fun convertToTransactionList(transactionListResponse: TransactionListResponse?): List<Transaction> {
-        return buildList {
-            transactionListResponse?.dataList?.map {
-                add(
-                    Transaction(
-                        dateEvent = BonusesConverters.convertDate(it.dateEvent),
-                        quantity = it.quantity.toInt(),
-                        typeBonusName = it.typeBonusName ?: "",
-                        typeOperation = it.typeOperation
-                    )
-                )
-            }
-        }
+        fun toTransactionInfo(): TransactionInfo = TransactionInfo(
+            dateEvent,
+            quantity,
+            typeBonusName ?: "",
+            typeOperation
+        )
     }
 }

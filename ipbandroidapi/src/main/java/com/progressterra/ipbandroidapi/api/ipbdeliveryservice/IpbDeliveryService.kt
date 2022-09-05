@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.ipbdeliveryservice
 import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.payment.GetOrderStatusResponse
 import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.delivery.*
 import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.payment.RegisterOrderResponse
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
 
 /**
  * http://84.201.188.117:5099/docsapi/v1/index.html

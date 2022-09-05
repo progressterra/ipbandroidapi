@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.api.ipbpromocodeapi
 
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
 
 
 /**

@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.imhlapi.models.compile
 
 
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
 
 data class CompiledSessionResponse(
     @SerializedName("data")

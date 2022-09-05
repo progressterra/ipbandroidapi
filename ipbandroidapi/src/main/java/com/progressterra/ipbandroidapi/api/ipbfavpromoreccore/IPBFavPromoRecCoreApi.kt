@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.api.ipbfavpromoreccore
 
 import com.progressterra.ipbandroidapi.api.ipbfavpromoreccore.models.IDKindOfResponse
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST

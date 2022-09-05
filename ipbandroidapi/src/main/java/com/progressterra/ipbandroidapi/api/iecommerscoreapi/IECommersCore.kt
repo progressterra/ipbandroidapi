@@ -6,8 +6,8 @@ import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.cart.Products
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.shop.YooMoneyConfirmationResponse
 import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.delivery.DeliveryMethodType
 import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.delivery.ServiceMethodType
-import com.progressterra.ipbandroidapi.remotedata.DEFAULT_ID
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.NetworkSettings.DEFAULT_ID
 
 
 /**

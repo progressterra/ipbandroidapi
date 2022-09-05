@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.shop
 
 
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
 
 data class YooMoneyConfirmationResponse(
     @SerializedName("data")

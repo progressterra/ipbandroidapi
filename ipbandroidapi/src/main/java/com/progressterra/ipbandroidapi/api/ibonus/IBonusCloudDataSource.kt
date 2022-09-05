@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.api.ibonus.model.BonusesMessagesResponse
 import com.progressterra.ipbandroidapi.api.ibonus.model.GeneralInfoResponse
 import com.progressterra.ipbandroidapi.api.ibonus.model.TransactionListResponse
 import com.progressterra.ipbandroidapi.exception.HandleException
-import com.progressterra.ipbandroidapi.remotedata.CloudDataSource
+import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 
 interface IBonusCloudDataSource {
 
@@ -17,7 +17,7 @@ interface IBonusCloudDataSource {
     class Base(
         private val service: IBonusService,
         handleException: HandleException
-    ) : CloudDataSource.Abstract(handleException), IBonusCloudDataSource {
+    ) : AbstractCloudDataSource(handleException), IBonusCloudDataSource {
 
         override suspend fun getGeneralInfo(accessToken: String): GeneralInfoResponse = handle {
             service.getGeneralInfo(accessToken)

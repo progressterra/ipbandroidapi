@@ -1,20 +1,19 @@
 package com.progressterra.ipbandroidapi.api.ipbfavpromoreccore
 
-import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remotedata.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
+import com.progressterra.ipbandroidapi.api.URL
 import com.progressterra.ipbandroidapi.api.ipbfavpromoreccore.models.IDKindOfResponse
 import com.progressterra.ipbandroidapi.api.ipbfavpromoreccore.models.TypeOfEntity
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
+import com.progressterra.ipbandroidapi.core.NetworkService
 
 internal class IPBFavPromoRecCoreImpl : IPBFavPromoRecCore.Promo,
     IPBFavPromoRecCore.ClientFavorites {
 
-    private val networkService: NetworkService = NetworkServiceImpl()
+    private val networkService: NetworkService = NetworkService.Base()
     private val api =
         networkService.createService(
             IPBFavPromoRecCoreApi::class.java,
-            NetworkSettings.IPB_FAVPROMOREC_URL
+            URL.IPB_FAVPROMOREC_URL
         )
 
     override suspend fun getIDKindOf(idKindOf: String): IDKindOfResponse {

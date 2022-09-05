@@ -1,15 +1,14 @@
 package com.progressterra.ipbandroidapi.api.ipbpromocodeapi
 
-import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remotedata.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.api.URL
+import com.progressterra.ipbandroidapi.base.BaseResponse
+import com.progressterra.ipbandroidapi.core.NetworkService
 
 internal class IPBPromoCodeImpl : IPBPromoCode.PromoCodeUse {
-    private val networkService: NetworkService = NetworkServiceImpl()
+    private val networkService: NetworkService = NetworkService.Base()
     private val api = networkService.createService(
         IPBPromoCodeApi::class.java,
-        NetworkSettings.IPB_PROMOCODE_URL
+        URL.IPB_PROMOCODE_URL
     )
 
     override suspend fun setPromoCode(accessToken: String, promoCode: String): BaseResponse {

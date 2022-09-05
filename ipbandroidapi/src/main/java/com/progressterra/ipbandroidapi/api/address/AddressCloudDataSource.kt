@@ -1,10 +1,10 @@
 package com.progressterra.ipbandroidapi.api.address
 
-import com.progressterra.ipbandroidapi.api.scrm.models.address.Address
-import com.progressterra.ipbandroidapi.api.scrm.models.address.ListOfAddressesResponse
+import com.progressterra.ipbandroidapi.api.address.model.Address
+import com.progressterra.ipbandroidapi.api.address.model.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.exception.HandleException
-import com.progressterra.ipbandroidapi.remotedata.CloudDataSource
-import com.progressterra.ipbandroidapi.remotedata.models.base.ResultResponse
+import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
+import com.progressterra.ipbandroidapi.base.ResultResponse
 import retrofit2.Response
 
 interface AddressCloudDataSource {
@@ -18,7 +18,7 @@ interface AddressCloudDataSource {
     class Base(
         private val service: AddressService,
         handleException: HandleException
-    ) : AddressCloudDataSource, CloudDataSource.Abstract(handleException) {
+    ) : AddressCloudDataSource, AbstractCloudDataSource(handleException) {
 
         override suspend fun addClientAddress(
             accessToken: String,

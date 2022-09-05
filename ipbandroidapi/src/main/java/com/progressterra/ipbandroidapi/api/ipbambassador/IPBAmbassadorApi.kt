@@ -16,7 +16,7 @@ import com.progressterra.ipbandroidapi.api.ipbambassador.models.money_out.applic
 import com.progressterra.ipbandroidapi.api.ipbambassador.models.upload_file.UploadContractOfAmbassadorRequest
 import com.progressterra.ipbandroidapi.api.ipbambassador.models.upload_file.UploadImageUrlRequest
 import com.progressterra.ipbandroidapi.api.ipbmediadatacore.models.UploadImageResponse
-import com.progressterra.ipbandroidapi.remotedata.models.base.ResultResponse
+import com.progressterra.ipbandroidapi.base.ResultResponse
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response

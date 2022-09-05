@@ -1,5 +1,6 @@
 package com.progressterra.ipbandroidapi.api.iecommerscoreapi
 
+import com.progressterra.ipbandroidapi.api.URL
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.*
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.cart.ChangeProductCountInCartRequest
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.cart.GoodsQuantityResponse
@@ -8,33 +9,31 @@ import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.shop.PaymentT
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.shop.YooMoneyConfirmationResponse
 import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.delivery.DeliveryMethodType
 import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.delivery.ServiceMethodType
-import com.progressterra.ipbandroidapi.interfaces.internal.NetworkService
-import com.progressterra.ipbandroidapi.remotedata.NetworkServiceImpl
-import com.progressterra.ipbandroidapi.remotedata.NetworkSettings
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.base.BaseResponse
+import com.progressterra.ipbandroidapi.core.NetworkService
 
 internal class IECommersCoreImpl : IECommersCore.Product, IECommersCore.Cart,
     IECommersCore.Catalog, IECommersCore.ProductErp, IECommersCore.Shop {
-    private val networkService: NetworkService = NetworkServiceImpl()
+    private val networkService: NetworkService = NetworkService.Base()
     private val cartApi = networkService.createService(
         IECommersCoreApi.Cart::class.java,
-        NetworkSettings.IECOMMERS_CORE_URL
+        URL.IECOMMERS_CORE_URL
     )
     private val productApi = networkService.createService(
         IECommersCoreApi.Product::class.java,
-        NetworkSettings.IECOMMERS_CORE_URL
+        URL.IECOMMERS_CORE_URL
     )
     private val catalogApi = networkService.createService(
         IECommersCoreApi.Catalog::class.java,
-        NetworkSettings.IECOMMERS_CORE_URL
+        URL.IECOMMERS_CORE_URL
     )
     private val productErp = networkService.createService(
         IECommersCoreApi.ProductErp::class.java,
-        NetworkSettings.IECOMMERS_CORE_URL
+        URL.IECOMMERS_CORE_URL
     )
     private val shopApi = networkService.createService(
         IECommersCoreApi.Shop::class.java,
-        NetworkSettings.IENTERPRISE_URL
+        URL.IENTERPRISE_URL
     )
 
     /**

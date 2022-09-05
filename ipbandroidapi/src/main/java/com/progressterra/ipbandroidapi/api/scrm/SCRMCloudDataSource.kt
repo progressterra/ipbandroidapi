@@ -1,17 +1,17 @@
 package com.progressterra.ipbandroidapi.api.scrm
 
-import com.progressterra.ipbandroidapi.api.scrm.models.accesstoken.AccessTokenRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.accesstoken.AccessTokenResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.clientinfo.ClientInfoResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.deviceid.DeviceIdResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.devicetoken.DeviceParameters
-import com.progressterra.ipbandroidapi.api.scrm.models.devicetoken.DeviceTokenResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.email.EmailResponse
-import com.progressterra.ipbandroidapi.api.scrm.models.requests.ClientInfoRequest
-import com.progressterra.ipbandroidapi.api.scrm.models.verification.*
+import com.progressterra.ipbandroidapi.api.scrm.model.*
+import com.progressterra.ipbandroidapi.api.scrm.model.AccessTokenRequest
+import com.progressterra.ipbandroidapi.api.scrm.model.AccessTokenResponse
+import com.progressterra.ipbandroidapi.api.scrm.model.ClientInfoResponse
+import com.progressterra.ipbandroidapi.api.scrm.model.DeviceIdResponse
+import com.progressterra.ipbandroidapi.api.scrm.model.DeviceParameters
+import com.progressterra.ipbandroidapi.api.scrm.model.DeviceTokenResponse
+import com.progressterra.ipbandroidapi.api.scrm.model.EmailRequest
+import com.progressterra.ipbandroidapi.api.scrm.model.EmailResponse
+import com.progressterra.ipbandroidapi.api.scrm.model.ClientInfoRequest
 import com.progressterra.ipbandroidapi.exception.HandleException
-import com.progressterra.ipbandroidapi.remotedata.CloudDataSource
+import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 
 interface SCRMCloudDataSource {
 
@@ -34,7 +34,7 @@ interface SCRMCloudDataSource {
     class Base(
         private val service: SCRMService,
         handleException: HandleException
-    ) : SCRMCloudDataSource, CloudDataSource.Abstract(handleException) {
+    ) : SCRMCloudDataSource, AbstractCloudDataSource(handleException) {
 
         override suspend fun verificationChannelBegin(type: VerificationType, value: String): VerificationStartResponse = handle {
             service.verificationChannelBegin(VerificationStartRequest(type.ordinal, value))

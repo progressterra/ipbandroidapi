@@ -3,8 +3,8 @@ package com.progressterra.ipbandroidapi.api.city
 import com.progressterra.ipbandroidapi.api.city.model.AddCityRequest
 import com.progressterra.ipbandroidapi.api.city.model.CityResponse
 import com.progressterra.ipbandroidapi.exception.HandleException
-import com.progressterra.ipbandroidapi.remotedata.CloudDataSource
-import com.progressterra.ipbandroidapi.remotedata.models.base.BaseResponse
+import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
+import com.progressterra.ipbandroidapi.base.BaseResponse
 
 interface CityCloudDataSource {
 
@@ -15,7 +15,7 @@ interface CityCloudDataSource {
     class Base(
         private val service: CityService,
         handleException: HandleException
-    ) : CityCloudDataSource, CloudDataSource.Abstract(handleException) {
+    ) : CityCloudDataSource, AbstractCloudDataSource(handleException) {
 
         override suspend fun setCity(accessToken: String, cityEntity: AddCityRequest): BaseResponse = handle {
             service.setCity(accessToken, cityEntity)
