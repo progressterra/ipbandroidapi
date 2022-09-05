@@ -2,6 +2,7 @@ package com.progressterra.ipbandroidapi.api.scrm
 
 import com.progressterra.ipbandroidapi.api.scrm.model.*
 import com.progressterra.ipbandroidapi.core.AbstractRepository
+import com.progressterra.ipbandroidapi.exception.BadRequestException
 import com.progressterra.ipbandroidapi.user.SexType
 
 interface SCRMRepository {
@@ -34,7 +35,7 @@ interface SCRMRepository {
         comment: String = ""
     ): Result<ClientGeneralData>
 
-    suspend fun setEmail(accessToken: String = "", email: String = ""): Result<Boolean>
+    suspend fun setEmail(accessToken: String = "", email: String = ""): Result<Unit>
 
     suspend fun setDeviceToken(
         accessToken: String = "",
@@ -51,13 +52,16 @@ interface SCRMRepository {
             type: VerificationType,
             value: String
         ): Result<Boolean> = handle {
-            sCRMCloudDataSource.verificationChannelBegin(
+            val response = sCRMCloudDataSource.verificationChannelBegin(
                 VerificationStartRequest(
                     type.ordinal,
                     value
                 )
             )
-        }.map { it.result.status == 0 }
+            if (response.result.status != 0)
+                throw BadRequestException()
+            response
+        }.map { true }
 
         override suspend fun finishVerificationChannel(
             type: VerificationType,
@@ -74,13 +78,18 @@ interface SCRMRepository {
                         infoDevice
                     )
                 )
+                if (response.result.status != 0)
+                    throw BadRequestException()
                 sCRMCacheDataSource.saveIdDevice(response.data.idDevice)
                 response
             }.map { response -> response.data.idDevice }
 
         override suspend fun getClientInfoByToken(accessToken: String): Result<ClientGeneralData> =
             handle {
-                sCRMCloudDataSource.clientInfoByToken(accessToken)
+                val response = sCRMCloudDataSource.clientInfoByToken(accessToken)
+                if (response.result.status != 0)
+                    throw BadRequestException()
+                response
             }.map {
                 ClientGeneralData(
                     it.data.clientInfo.toClientData(),
@@ -89,18 +98,24 @@ interface SCRMRepository {
             }
 
         override suspend fun getDeviceIdByToken(accessToken: String): Result<String> = handle {
-            sCRMCloudDataSource.deviceIdByToken(accessToken)
+            val response = sCRMCloudDataSource.deviceIdByToken(accessToken)
+            if (response.result.status != 0)
+                throw BadRequestException()
+            response
         }.map { it.deviceId }
 
         override suspend fun getAccessToken(latitude: Float, longitude: Float): Result<String> =
             handle {
-                sCRMCloudDataSource.accessToken(
+                val response = sCRMCloudDataSource.accessToken(
                     AccessTokenRequest(
                         sCRMCacheDataSource.idDevice(),
                         latitude,
                         longitude
                     )
                 )
+                if (response.result.status != 0)
+                    throw BadRequestException()
+                response
             }.map { it.data }
 
         override suspend fun setPersonalInfo(
@@ -112,11 +127,14 @@ interface SCRMRepository {
             dateOfBirth: String,
             comment: String
         ): Result<ClientGeneralData> = handle {
-            sCRMCloudDataSource.setPersonalInfo(
+            val response = sCRMCloudDataSource.setPersonalInfo(
                 accessToken, ClientInfoRequest(
                     sex.ordinal, soname, name, patronymic, dateOfBirth, comment
                 )
             )
+            if (response.result.status != 0)
+                throw BadRequestException()
+            response
         }.map {
             ClientGeneralData(
                 it.data.clientInfo.toClientData(),
@@ -124,21 +142,26 @@ interface SCRMRepository {
             )
         }
 
-        override suspend fun setEmail(accessToken: String, email: String): Result<Boolean> =
+        override suspend fun setEmail(accessToken: String, email: String): Result<Unit> =
             handle {
-                sCRMCloudDataSource.setEmail(accessToken, EmailRequest(email))
-            }.map { it.result.status == 0 }
+                val response = sCRMCloudDataSource.setEmail(accessToken, EmailRequest(email))
+                if (response.result.status != 0)
+                    throw BadRequestException()
+            }
 
         override suspend fun setDeviceToken(
             accessToken: String,
             idDevice: String,
             deviceToken: String
         ): Result<Boolean> = handle {
-            sCRMCloudDataSource.setDeviceToken(
+            val response = sCRMCloudDataSource.setDeviceToken(
                 accessToken, DeviceParameters(
                     idDevice, deviceToken
                 )
             )
-        }.map { it.result.status == 0 }
+            if (response.result.status != 0)
+                throw BadRequestException()
+            response
+        }.map { true }
     }
 }
