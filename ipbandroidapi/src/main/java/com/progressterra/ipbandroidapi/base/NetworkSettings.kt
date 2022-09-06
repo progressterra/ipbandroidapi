@@ -25,7 +25,7 @@ object NetworkSettings {
     /**
      * Ключ доступа
      */
-    const val ACCESS_KEY = "5400d184-6753-440d-819c-1034ce7042ed"
+    var ACCESS_KEY = "5400d184-6753-440d-819c-1034ce7042ed"
 
     /**
      * Использовать новый апи для каталога
