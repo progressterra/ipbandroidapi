@@ -4,13 +4,14 @@ import com.progressterra.ipbandroidapi.api.address.model.Address
 import com.progressterra.ipbandroidapi.api.address.model.AddressInfo
 import com.progressterra.ipbandroidapi.api.address.model.AddressesInfo
 import com.progressterra.ipbandroidapi.core.AbstractRepository
+import com.progressterra.ipbandroidapi.exception.BadRequestException
 
 interface AddressRepository {
 
     suspend fun setClientAddress(
         accessToken: String,
         addressInfo: AddressInfo
-    ): Result<Boolean>
+    ): Result<Unit>
 
     suspend fun getAddressList(accessToken: String): Result<AddressesInfo>
 
@@ -25,10 +26,10 @@ interface AddressRepository {
         override suspend fun setClientAddress(
             accessToken: String,
             addressInfo: AddressInfo
-        ): Result<Boolean> = handle {
-            cloudDataSource.setClientAddress(accessToken, Address(addressInfo))
-        }.map {
-            it.status == 0
+        ): Result<Unit> = handle {
+            val response = cloudDataSource.setClientAddress(accessToken, Address(addressInfo))
+            if (response.result?.status != 0)
+                throw BadRequestException()
         }
     }
 }

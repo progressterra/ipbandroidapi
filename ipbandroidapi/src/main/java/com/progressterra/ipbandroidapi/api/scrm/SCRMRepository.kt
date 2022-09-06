@@ -10,7 +10,7 @@ interface SCRMRepository {
     suspend fun startVerificationChannel(
         type: VerificationType = VerificationType.PHONE,
         value: String = ""
-    ): Result<Boolean>
+    ): Result<Unit>
 
     suspend fun finishVerificationChannel(
         type: VerificationType = VerificationType.PHONE,
@@ -41,7 +41,7 @@ interface SCRMRepository {
         accessToken: String = "",
         idDevice: String = "",
         deviceToken: String = ""
-    ): Result<Boolean>
+    ): Result<Unit>
 
     class Base(
         private val sCRMCloudDataSource: SCRMCloudDataSource,
@@ -51,7 +51,7 @@ interface SCRMRepository {
         override suspend fun startVerificationChannel(
             type: VerificationType,
             value: String
-        ): Result<Boolean> = handle {
+        ): Result<Unit> = handle {
             val response = sCRMCloudDataSource.verificationChannelBegin(
                 VerificationStartRequest(
                     type.ordinal,
@@ -60,8 +60,7 @@ interface SCRMRepository {
             )
             if (response.result.status != 0)
                 throw BadRequestException()
-            response
-        }.map { true }
+        }
 
         override suspend fun finishVerificationChannel(
             type: VerificationType,
@@ -153,7 +152,7 @@ interface SCRMRepository {
             accessToken: String,
             idDevice: String,
             deviceToken: String
-        ): Result<Boolean> = handle {
+        ): Result<Unit> = handle {
             val response = sCRMCloudDataSource.setDeviceToken(
                 accessToken, DeviceParameters(
                     idDevice, deviceToken
@@ -161,7 +160,6 @@ interface SCRMRepository {
             )
             if (response.result.status != 0)
                 throw BadRequestException()
-            response
-        }.map { true }
+        }
     }
 }
