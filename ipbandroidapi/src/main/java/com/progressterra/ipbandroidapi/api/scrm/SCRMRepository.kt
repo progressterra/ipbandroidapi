@@ -3,7 +3,8 @@ package com.progressterra.ipbandroidapi.api.scrm
 import com.progressterra.ipbandroidapi.api.scrm.model.*
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
-import com.progressterra.ipbandroidapi.user.SexType
+import com.progressterra.ipbandroidapi.user.UserData
+import com.progressterra.ipbandroidapi.utils.format
 
 interface SCRMRepository {
 
@@ -27,12 +28,7 @@ interface SCRMRepository {
 
     suspend fun setPersonalInfo(
         accessToken: String = "",
-        sex: SexType = SexType.NONE,
-        soname: String = "",
-        name: String = "",
-        patronymic: String = "",
-        dateOfBirth: String = "",
-        comment: String = ""
+        data: ClientGeneralData
     ): Result<ClientGeneralData>
 
     suspend fun setEmail(accessToken: String = "", email: String = ""): Result<Unit>
@@ -44,8 +40,7 @@ interface SCRMRepository {
     ): Result<Unit>
 
     class Base(
-        private val sCRMCloudDataSource: SCRMCloudDataSource,
-        private val sCRMCacheDataSource: SCRMCacheDataSource
+        private val sCRMCloudDataSource: SCRMCloudDataSource
     ) : SCRMRepository, AbstractRepository() {
 
         override suspend fun startVerificationChannel(
@@ -79,7 +74,7 @@ interface SCRMRepository {
                 )
                 if (response.result.status != 0)
                     throw BadRequestException()
-                sCRMCacheDataSource.saveIdDevice(response.data.idDevice)
+                UserData.deviceId = response.data.idDevice
                 response
             }.map { response -> response.data.idDevice }
 
@@ -91,8 +86,8 @@ interface SCRMRepository {
                 response
             }.map {
                 ClientGeneralData(
-                    it.data.clientInfo.toClientData(),
-                    it.data.clientAdditionalInfo.toClientAdditionalData()
+                    ClientData(it.data.client),
+                    ClientAdditionalData(it.data.clientAdditional)
                 )
             }
 
@@ -107,7 +102,7 @@ interface SCRMRepository {
             handle {
                 val response = sCRMCloudDataSource.accessToken(
                     AccessTokenRequest(
-                        sCRMCacheDataSource.idDevice(),
+                        UserData.deviceId,
                         latitude,
                         longitude
                     )
@@ -119,16 +114,16 @@ interface SCRMRepository {
 
         override suspend fun setPersonalInfo(
             accessToken: String,
-            sex: SexType,
-            soname: String,
-            name: String,
-            patronymic: String,
-            dateOfBirth: String,
-            comment: String
+            data: ClientGeneralData
         ): Result<ClientGeneralData> = handle {
             val response = sCRMCloudDataSource.setPersonalInfo(
                 accessToken, ClientInfoRequest(
-                    sex.ordinal, soname, name, patronymic, dateOfBirth, comment
+                    data.client.sex.ordinal,
+                    data.client.soname,
+                    data.client.name,
+                    data.client.patronymic,
+                    data.client.dateOfBirth.format(),
+                    data.client.comment
                 )
             )
             if (response.result.status != 0)
@@ -136,8 +131,8 @@ interface SCRMRepository {
             response
         }.map {
             ClientGeneralData(
-                it.data.clientInfo.toClientData(),
-                it.data.clientAdditionalInfo.toClientAdditionalData()
+                ClientData(it.data.client),
+                ClientAdditionalData(it.data.clientAdditional)
             )
         }
 

@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.api.ibonus
 
 import com.progressterra.ipbandroidapi.api.ibonus.model.BonusesMessagesResponse
-import com.progressterra.ipbandroidapi.api.ibonus.model.GeneralInfoResponse
+import com.progressterra.ipbandroidapi.api.ibonus.model.GeneralBonusResponse
 import com.progressterra.ipbandroidapi.api.ibonus.model.TransactionListResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,7 +12,7 @@ interface IBonusService {
      * Получение информации о бонусах клиента
      */
     @GET("api/v7/ibonus/generalinfo/{AccessToken}")
-    suspend fun getGeneralInfo(@Path("AccessToken") accessToken: String): GeneralInfoResponse
+    suspend fun getGeneralInfo(@Path("AccessToken") accessToken: String): GeneralBonusResponse
 
     /**
      * Предоставляет данные по всем транзакциям бонусов

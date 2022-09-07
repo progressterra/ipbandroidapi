@@ -1,34 +1,12 @@
 package com.progressterra.ipbandroidapi.api.ipbdeliveryservice
 
-import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.payment.GetOrderStatusResponse
 import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.delivery.*
-import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.payment.RegisterOrderResponse
-import com.progressterra.ipbandroidapi.base.BaseResponse
 
 /**
  * http://84.201.188.117:5099/docsapi/v1/index.html
  * http://84.201.188.97:1955/docsapi/v1/index.html
  */
 interface IpbDeliveryService {
-
-    interface IPBSberbank {
-        /**
-         * Регистрация заказа
-         */
-        suspend fun registerOrder(
-            idDHSaleHead: String
-        ): RegisterOrderResponse
-
-        /**
-         * Передача карточных данных на авторизацию
-         */
-        suspend fun sendCardData(idDHSaleHead: String, seToken: String): BaseResponse
-
-        /**
-         * Получение информации по заказу
-         */
-        suspend fun getOrderStatus(idDHSaleHead: String): GetOrderStatusResponse
-    }
 
     interface Delivery {
         /**
@@ -63,7 +41,6 @@ interface IpbDeliveryService {
 
 
     companion object {
-        fun IPBSberbank(): IPBSberbank = IpbDeliveryServiceImpl()
         fun IPBDelivery(): Delivery = IpbDeliveryServiceImpl()
     }
 }

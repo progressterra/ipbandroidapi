@@ -8,15 +8,12 @@ private const val serverDateFormatTimeZone = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSXXX"
 
 private val serverTimeZone = TimeZone.getTimeZone("Europe/Moscow")
 
-fun String?.parseToDate(): Date? {
-    if (this == null) return null
-
+fun String.parseToDate(): Date? {
     val timeFormat = if (indexOf("+", 8) != -1 || indexOf("-", 8) != -1) {
         serverDateFormatTimeZone
     } else {
         serverDateFormat
     }
-
     val sdf = SimpleDateFormat(timeFormat, Locale.getDefault()).apply {
         timeZone = serverTimeZone
     }
@@ -35,6 +32,5 @@ fun Date.format(pattern: String = "yyyy-MM-dd'T'HH:mm:ss"): String {
     val sdf = SimpleDateFormat(pattern, Locale.getDefault()).apply {
         timeZone = serverTimeZone
     }
-
     return sdf.format(this)
 }

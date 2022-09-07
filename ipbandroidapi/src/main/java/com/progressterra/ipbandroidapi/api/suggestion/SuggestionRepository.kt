@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.api.suggestion
 import com.progressterra.ipbandroidapi.api.suggestion.model.DadataSuggestionsRequest
 import com.progressterra.ipbandroidapi.api.suggestion.model.SuggestionInfo
 import com.progressterra.ipbandroidapi.core.AbstractRepository
+import com.progressterra.ipbandroidapi.exception.BadRequestException
 
 interface SuggestionRepository {
 

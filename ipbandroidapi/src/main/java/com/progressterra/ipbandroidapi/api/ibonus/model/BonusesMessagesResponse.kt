@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.api.BaseResult
 
 /**
-* API model
+ * API model
  */
 data class BonusesMessagesResponse(
     @SerializedName("result") val result: BaseResult,
@@ -20,13 +20,5 @@ data class BonusesMessagesResponse(
         val forBurningQuantity: Double,
         @SerializedName("typeBonusName")
         val typeBonusName: String?
-    ) {
-
-        fun toBonusInfo(): BonusInfo = BonusInfo(
-            currentQuantity,
-            dateBurning,
-            forBurningQuantity,
-            typeBonusName ?: ""
-        )
-    }
+    )
 }

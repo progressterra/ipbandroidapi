@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
 /**
-* API model
+ * API model
  */
 data class CitiesListResponse(
     @SerializedName("dataList")
@@ -22,14 +22,5 @@ data class CitiesListResponse(
         val name: String?,
         @SerializedName("radius")
         val radius: Int
-    ) {
-
-        fun toCity(): City = City(
-            idUnique,
-            latitudeCenter,
-            longitudeCenter,
-            name ?: "",
-            radius
-        )
-    }
+    )
 }

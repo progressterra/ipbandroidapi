@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
 /**
-* API model
+ * API model
  */
 data class PurchasesListResponse(
     @SerializedName("listdata")
@@ -24,15 +24,5 @@ data class PurchasesListResponse(
         val shopName: String? = null,
         @SerializedName("spentBonusesSum")
         val spentBonusesSum: Double? = null
-    ) {
-
-        fun toPurchase(): PurchaseInfo = PurchaseInfo(
-            addedBonusesSum ?: 0,
-            purchaseDate ?: "",
-            purchaseId ?: "",
-            purchaseSum ?: 0,
-            shopName ?: "",
-            spentBonusesSum ?: 0.0
-        )
-    }
+    )
 }

@@ -20,18 +20,5 @@ data class CityResponse(
         @SerializedName("city_kladr_id") val cityKladrId: String? = null,
         @SerializedName("latitude") val latitude: Double? = null,
         @SerializedName("longitude") val longitude: Double? = null
-    ) {
-        
-        fun toCityInfo(): CityInfo = CityInfo(
-            idUnique ?: "",
-            idClient ?: "",
-            dateEvent ?: "",
-            idrfCity ?: "",
-            cityName ?: "",
-            cityFiasIdc ?: "",
-            cityKladrId ?: "",
-            latitude ?: 0.0,
-            longitude ?: 0.0
-        )
-    }
+    )
 }

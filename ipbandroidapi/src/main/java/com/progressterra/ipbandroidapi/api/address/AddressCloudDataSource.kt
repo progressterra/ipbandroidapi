@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.api.address
 
-import com.progressterra.ipbandroidapi.api.address.model.Address
+import com.progressterra.ipbandroidapi.api.address.model.AddressRaw
 import com.progressterra.ipbandroidapi.api.address.model.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
@@ -8,7 +8,7 @@ import com.progressterra.ipbandroidapi.base.ResultResponse
 
 interface AddressCloudDataSource {
 
-    suspend fun setClientAddress(accessToken: String, modifyClientAddressRequest: Address): ResultResponse
+    suspend fun setClientAddress(accessToken: String, modifyClientAddressRequest: AddressRaw): ResultResponse
 
     suspend fun getAddressList(accessToken: String): ListOfAddressesResponse
 
@@ -19,7 +19,7 @@ interface AddressCloudDataSource {
 
         override suspend fun setClientAddress(
             accessToken: String,
-            modifyClientAddressRequest: Address
+            modifyClientAddressRequest: AddressRaw
         ): ResultResponse = handle {
             service.setClientAddress(accessToken, modifyClientAddressRequest)
         }

@@ -8,5 +8,5 @@ import com.progressterra.ipbandroidapi.base.BaseResponse
  */
 data class ListOfAddressesResponse(
     @SerializedName("data")
-    val addressInfo: MainInfoAboutAddress,
+    val addressInfo: AddressesRaw,
 ) : BaseResponse()

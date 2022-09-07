@@ -1,14 +1,14 @@
 package com.progressterra.ipbandroidapi.api.ibonus
 
 import com.progressterra.ipbandroidapi.api.ibonus.model.BonusesMessagesResponse
-import com.progressterra.ipbandroidapi.api.ibonus.model.GeneralInfoResponse
+import com.progressterra.ipbandroidapi.api.ibonus.model.GeneralBonusResponse
 import com.progressterra.ipbandroidapi.api.ibonus.model.TransactionListResponse
 import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 
 interface IBonusCloudDataSource {
 
-    suspend fun getGeneralInfo(accessToken: String): GeneralInfoResponse
+    suspend fun getGeneralInfo(accessToken: String): GeneralBonusResponse
 
     suspend fun getTransactionsList(accessToken: String): TransactionListResponse
 
@@ -19,7 +19,7 @@ interface IBonusCloudDataSource {
         handleException: HandleException
     ) : AbstractCloudDataSource(handleException), IBonusCloudDataSource {
 
-        override suspend fun getGeneralInfo(accessToken: String): GeneralInfoResponse = handle {
+        override suspend fun getGeneralInfo(accessToken: String): GeneralBonusResponse = handle {
             service.getGeneralInfo(accessToken)
         }
 

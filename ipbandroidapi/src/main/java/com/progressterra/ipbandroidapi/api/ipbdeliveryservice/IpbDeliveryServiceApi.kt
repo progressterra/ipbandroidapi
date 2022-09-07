@@ -11,22 +11,10 @@ import retrofit2.http.*
  * http://84.201.188.97:1955/docsapi/v1/index.html
  */
 internal interface IpbDeliveryServiceApi {
+
     interface IPBSberbank {
-        @POST("/IPBSberbank/register/{idDHSaleHead}")
-        suspend fun registerOrder(@Path("idDHSaleHead") idDHSaleHead: String): RegisterOrderResponse
 
-        @POST("/IPBSberbank/paymentOrder/{idDHSaleHead}")
-        @Headers("Content-Type: application/json")
-        suspend fun sendCardData(
-            @Path("idDHSaleHead") idDHSaleHead: String,
-            @Query("seToken") seToken: String
-        ): SendCardDataResponse
-
-        @POST("/IPBSberbank/getOrderStatus/{idDHSaleHead}")
-        @Headers("Content-Type: application/json")
-        suspend fun getOrderStatus(@Path("idDHSaleHead") idDHSaleHead: String): GetOrderStatusResponse
     }
-
 
     interface Delivery {
         @GET("Delivery/GetDeliveryList/{AccessToken}")

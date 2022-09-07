@@ -8,11 +8,11 @@ import com.progressterra.ipbandroidapi.api.BaseResult
  */
 data class ClientInfoResponse(
     @SerializedName("result") val result: BaseResult,
-    @SerializedName("data") val data: ClientInfoResponseData,
+    @SerializedName("data") val data: Data,
     @SerializedName("totalNumberRecords") val totalNumberRecords: Int
 ) {
-    data class ClientInfoResponseData(
-        @SerializedName("client") val clientInfo: ClientInfoModel,
-        @SerializedName("clientAdditionalInfo") val clientAdditionalInfo: ClientAdditionalInfoModel
+    data class Data(
+        @SerializedName("client") val client: ClientRaw,
+        @SerializedName("clientAdditionalInfo") val clientAdditional: ClientAdditionalRaw
     )
 }

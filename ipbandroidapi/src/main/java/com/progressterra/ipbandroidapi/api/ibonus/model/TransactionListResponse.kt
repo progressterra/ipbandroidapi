@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.api.BaseResult
 
 /**
-* API model
+ * API model
  */
 data class TransactionListResponse(
     @SerializedName("result") val result: BaseResult,
@@ -21,13 +21,5 @@ data class TransactionListResponse(
         val typeBonusName: String?,
         @SerializedName("typeOperation")
         val typeOperation: Int
-    ) {
-
-        fun toTransactionInfo(): TransactionInfo = TransactionInfo(
-            dateEvent,
-            quantity,
-            typeBonusName ?: "",
-            typeOperation
-        )
-    }
+    )
 }

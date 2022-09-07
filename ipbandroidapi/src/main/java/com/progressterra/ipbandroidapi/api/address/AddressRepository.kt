@@ -1,8 +1,8 @@
 package com.progressterra.ipbandroidapi.api.address
 
-import com.progressterra.ipbandroidapi.api.address.model.Address
-import com.progressterra.ipbandroidapi.api.address.model.AddressInfo
-import com.progressterra.ipbandroidapi.api.address.model.AddressesInfo
+import com.progressterra.ipbandroidapi.api.address.model.AddressRaw
+import com.progressterra.ipbandroidapi.api.address.model.AddressData
+import com.progressterra.ipbandroidapi.api.address.model.AddressesData
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
 
@@ -10,24 +10,27 @@ interface AddressRepository {
 
     suspend fun setClientAddress(
         accessToken: String,
-        addressInfo: AddressInfo
+        addressData: AddressData
     ): Result<Unit>
 
-    suspend fun getAddressList(accessToken: String): Result<AddressesInfo>
+    suspend fun getAddressList(accessToken: String): Result<AddressesData>
 
     class Base(
         private val cloudDataSource: AddressCloudDataSource
     ) : AddressRepository, AbstractRepository() {
 
-        override suspend fun getAddressList(accessToken: String): Result<AddressesInfo> = handle {
-            cloudDataSource.getAddressList(accessToken)
-        }.map { AddressesInfo(it.addressInfo) }
+        override suspend fun getAddressList(accessToken: String): Result<AddressesData> = handle {
+            val response = cloudDataSource.getAddressList(accessToken)
+            if (response.result?.status != 0)
+                throw BadRequestException()
+            response
+        }.map { AddressesData(it.addressInfo) }
 
         override suspend fun setClientAddress(
             accessToken: String,
-            addressInfo: AddressInfo
+            addressData: AddressData
         ): Result<Unit> = handle {
-            val response = cloudDataSource.setClientAddress(accessToken, Address(addressInfo))
+            val response = cloudDataSource.setClientAddress(accessToken, AddressRaw(addressData))
             if (response.result?.status != 0)
                 throw BadRequestException()
         }

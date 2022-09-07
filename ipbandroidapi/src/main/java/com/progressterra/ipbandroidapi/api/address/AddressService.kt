@@ -1,9 +1,8 @@
 package com.progressterra.ipbandroidapi.api.address
 
-import com.progressterra.ipbandroidapi.api.address.model.Address
+import com.progressterra.ipbandroidapi.api.address.model.AddressRaw
 import com.progressterra.ipbandroidapi.api.address.model.ListOfAddressesResponse
 import com.progressterra.ipbandroidapi.base.ResultResponse
-import retrofit2.Response
 import retrofit2.http.*
 
 interface AddressService {
@@ -11,7 +10,7 @@ interface AddressService {
     @PUT("/api/v3/addressclient/{AccessToken}")
     suspend fun setClientAddress(
         @Path("AccessToken") accessToken: String,
-        @Body modifyClientAddressRequest: Address
+        @Body modifyClientAddressRequest: AddressRaw
     ): ResultResponse
 
     @GET("/api/v3/addressclient/list/{AccessToken}")
