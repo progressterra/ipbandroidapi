@@ -1,8 +1,8 @@
 package com.progressterra.ipbandroidapi.api.moneyout
 
-import com.progressterra.ipbandroidapi.api.ambassador.models.ApplicationsResponse
-import com.progressterra.ipbandroidapi.api.ambassador.models.RemoveBonusesRequest
-import com.progressterra.ipbandroidapi.api.ambassador.models.RemoveBonusesResponse
+import com.progressterra.ipbandroidapi.api.moneyout.model.ApplicationsResponse
+import com.progressterra.ipbandroidapi.api.moneyout.model.RemoveBonusesRequest
+import com.progressterra.ipbandroidapi.api.moneyout.model.RemoveBonusesResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

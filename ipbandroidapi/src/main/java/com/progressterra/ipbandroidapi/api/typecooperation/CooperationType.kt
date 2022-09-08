@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.ambassador
+package com.progressterra.ipbandroidapi.api.typecooperation
 
 enum class CooperationType {
     SELF_EMPLOYER,

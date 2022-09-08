@@ -1,18 +1,16 @@
-package com.progressterra.ipbandroidapi.api.ambassador.models
+package com.progressterra.ipbandroidapi.api.moneyout.model
 
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-data class ApplicationsResponse(
-    @SerializedName("dataList")
-    val dataList: List<Data>?
-): BaseResponse() {
+data class RemoveBonusesResponse(
+    @SerializedName("data")
+    val data: Data?
+) : BaseResponse() {
 
     data class Data(
         @SerializedName("amountReceivable")
         val amountReceivable: Int?,
-        @SerializedName("clientInfo")
-        val clientInfo: String?,
         @SerializedName("dateDoc")
         val dateDoc: String?,
         @SerializedName("dateConfirmation")

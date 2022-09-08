@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.ambassador.models
+package com.progressterra.ipbandroidapi.api.moneyout.model
 
 data class RemoveBonusesData(
     val amountReceivable: Int,

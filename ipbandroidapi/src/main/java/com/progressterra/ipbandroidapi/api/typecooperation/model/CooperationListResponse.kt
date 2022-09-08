@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.ambassador.models
+package com.progressterra.ipbandroidapi.api.typecooperation.model
 
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse

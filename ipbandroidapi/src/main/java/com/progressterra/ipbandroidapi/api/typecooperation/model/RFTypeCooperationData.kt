@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.ambassador.models
+package com.progressterra.ipbandroidapi.api.typecooperation.model
 
 import com.progressterra.ipbandroidapi.api.ambassador.CooperationType
 import com.progressterra.ipbandroidapi.utils.toCooperationType
