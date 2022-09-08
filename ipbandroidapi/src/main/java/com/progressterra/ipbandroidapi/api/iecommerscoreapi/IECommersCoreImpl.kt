@@ -7,8 +7,8 @@ import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.cart.GoodsQua
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.cart.ProductsInBasketResponse
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.shop.PaymentTokenRequest
 import com.progressterra.ipbandroidapi.api.iecommerscoreapi.models.shop.YooMoneyConfirmationResponse
-import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.delivery.DeliveryMethodType
-import com.progressterra.ipbandroidapi.api.ipbdeliveryservice.models.delivery.ServiceMethodType
+import com.progressterra.ipbandroidapi.api.ipbdelivery.model.DeliveryMethodType
+import com.progressterra.ipbandroidapi.api.ipbdelivery.model.ServiceMethodType
 import com.progressterra.ipbandroidapi.base.BaseResponse
 import com.progressterra.ipbandroidapi.core.NetworkService
 

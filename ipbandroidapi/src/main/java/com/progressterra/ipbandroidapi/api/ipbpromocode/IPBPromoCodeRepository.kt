@@ -13,7 +13,7 @@ interface IPBPromoCodeRepository {
 
         override suspend fun setPromoCode(accessToken: String, promoCode: String): Result<Unit> = handle {
             val response = cloudDataSource.setPromoCode(accessToken, promoCode)
-            if (response.status == 0)
+            if (response.status != 0)
                 throw BadRequestException()
         }
     }

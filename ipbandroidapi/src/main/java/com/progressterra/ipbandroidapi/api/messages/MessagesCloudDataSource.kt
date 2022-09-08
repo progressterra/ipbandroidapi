@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.api.messages
 
-import com.progressterra.ipbandroidapi.api.messages.models.NotificationsResponse
+import com.progressterra.ipbandroidapi.api.messages.model.NotificationsResponse
 import com.progressterra.ipbandroidapi.base.BaseResponse
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException

@@ -15,7 +15,7 @@ interface PurchasesRepository {
         override suspend fun getShopList(accessToken: String): Result<List<PurchaseData>> =
             handle {
                 val response = cloudDataSource.getShopList(accessToken)
-                if (response.status == 0)
+                if (response.status != 0)
                     throw BadRequestException()
                 response
             }.map { purchasesListResponse ->

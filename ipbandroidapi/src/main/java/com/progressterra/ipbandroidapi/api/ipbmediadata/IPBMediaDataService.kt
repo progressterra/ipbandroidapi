@@ -1,8 +1,8 @@
 package com.progressterra.ipbandroidapi.api.ipbmediadata
 
-import com.progressterra.ipbandroidapi.api.ipbmediadata.models.MediaDataListResponse
-import com.progressterra.ipbandroidapi.api.ipbmediadata.models.MediaDataResponse
-import com.progressterra.ipbandroidapi.api.ipbmediadata.models.UploadImageResponse
+import com.progressterra.ipbandroidapi.api.ipbmediadata.model.MediaDataListResponse
+import com.progressterra.ipbandroidapi.api.ipbmediadata.model.MediaDataResponse
+import com.progressterra.ipbandroidapi.api.ipbmediadata.model.UploadImageResponse
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.http.*
