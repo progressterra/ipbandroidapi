@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.iecommerce.cart.model
 
 import com.google.gson.annotations.SerializedName
 
-class CreateDeliveryOrderRequest(
+internal class CreateDeliveryOrderRequest(
     @SerializedName("idrgGoodsInventory")
     val idrgGoodsInventory: String,
     @SerializedName("displayName")

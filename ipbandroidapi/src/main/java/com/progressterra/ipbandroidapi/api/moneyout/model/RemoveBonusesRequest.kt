@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.moneyout.model
 
 import com.google.gson.annotations.SerializedName
 
-data class RemoveBonusesRequest(
+internal data class RemoveBonusesRequest(
     @SerializedName("accessToken")
     val accessToken: String,
     @SerializedName("outType")

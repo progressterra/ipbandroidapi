@@ -1,9 +1,9 @@
 package com.progressterra.ipbandroidapi.api.scrm.model
 
 import com.progressterra.ipbandroidapi.user.SexType
-import com.progressterra.ipbandroidapi.utils.toSex
-import com.progressterra.ipbandroidapi.utils.orNow
-import com.progressterra.ipbandroidapi.utils.parseToDate
+import com.progressterra.ipbandroidapi.ext.toSex
+import com.progressterra.ipbandroidapi.ext.orNow
+import com.progressterra.ipbandroidapi.ext.parseToDate
 import java.util.*
 
 /**

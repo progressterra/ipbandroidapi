@@ -21,7 +21,7 @@ data class RemoveBonusesData(
     val urlImageAct: String
 ) {
 
-    constructor(data: RemoveBonusesResponse.Data?) : this(
+    internal constructor(data: RemoveBonusesResponse.Data?) : this(
         data?.amountReceivable ?: 0,
         data?.dateDoc ?: "",
         data?.dateConfirmation ?: "",

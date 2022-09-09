@@ -10,7 +10,7 @@ import retrofit2.http.Path
 /**
  * http://84.201.188.117:6023/docsapi/v1/index.html
  */
-interface CartService {
+internal interface CartService {
 
     @POST("/iecommercecore/api/v3/cart/{AccessToken}/implementbonus")
     suspend fun implementBonus(

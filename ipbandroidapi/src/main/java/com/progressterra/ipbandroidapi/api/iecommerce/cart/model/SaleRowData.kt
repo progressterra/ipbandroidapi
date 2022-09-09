@@ -1,0 +1,33 @@
+package com.progressterra.ipbandroidapi.api.iecommerce.cart.model
+
+data class SaleRowData(
+    val barcodeCodeGoods: String,
+    val basePrice: Int,
+    val beginPrice: Double,
+    val datePickingFirst: String,
+    val datePickingSecond: String,
+    val defectName: String,
+    val dhSaleHead: DhSaleHead,
+    val drAddedBonus: List<DrAddedBonus>,
+    val drDiscountPosition: List<DrDiscountPosition>,
+    val drPaymentPositionSale: List<DrPaymentPositionSale>,
+    val drPaymentRowBonus: List<DrPaymentRowBonus>,
+    val endPrice: Double,
+    val idDiscountBasisForBeginPrice: String,
+    val idFeature: String,
+    val idSeller: String,
+    val idUnique: String,
+    val iddhSaleHead: String,
+    val iddrRetrun: String,
+    val iddrSaleForReturn: String,
+    val idrfNomnclatura: String,
+    val idrfReasonReturn: String,
+    val idrgGoodsInventory: String,
+    val imageJSONData: String,
+    val indexInCheck: Int,
+    val kiz: String,
+    val nameGoods: String,
+    val priceCost: Int,
+    val reasonReturnText: String,
+    val saleType: Int
+)

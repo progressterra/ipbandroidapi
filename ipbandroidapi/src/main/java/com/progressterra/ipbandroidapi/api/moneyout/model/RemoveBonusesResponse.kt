@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.moneyout.model
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-data class RemoveBonusesResponse(
+internal data class RemoveBonusesResponse(
     @SerializedName("data")
     val data: Data?
 ) : BaseResponse() {

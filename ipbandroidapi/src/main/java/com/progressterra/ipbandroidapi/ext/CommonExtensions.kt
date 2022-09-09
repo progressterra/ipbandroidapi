@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.utils
+package com.progressterra.ipbandroidapi.ext
 
 import com.progressterra.ipbandroidapi.api.typecooperation.CooperationType
 import com.progressterra.ipbandroidapi.user.SexType

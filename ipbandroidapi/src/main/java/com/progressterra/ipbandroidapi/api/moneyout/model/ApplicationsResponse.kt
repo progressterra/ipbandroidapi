@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.moneyout.model
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-data class ApplicationsResponse(
+internal data class ApplicationsResponse(
     @SerializedName("dataList")
     val dataList: List<Data>?
 ): BaseResponse() {

@@ -22,7 +22,7 @@ data class ApplicationData(
     val urlImageAct: String
 ) {
 
-    constructor(data: ApplicationsResponse.Data?) : this(
+    internal constructor(data: ApplicationsResponse.Data?) : this(
         data?.amountReceivable ?: 0,
         data?.clientInfo ?: "",
         data?.dateDoc ?: "",

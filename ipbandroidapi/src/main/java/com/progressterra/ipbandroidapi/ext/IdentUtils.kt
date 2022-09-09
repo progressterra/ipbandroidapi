@@ -1,7 +1,6 @@
-package com.progressterra.ipbandroidapi.utils
+package com.progressterra.ipbandroidapi.ext
 
 import android.content.Context
-import android.os.Debug
 import android.provider.Settings
 
 internal object IdentUtils {

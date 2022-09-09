@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.api.moneyout.model.RemoveBonusesResponse
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 
-interface MoneyOutCloudDataSource {
+internal interface MoneyOutCloudDataSource {
 
     suspend fun removeBonuses(removeBonusesRequest: RemoveBonusesRequest): RemoveBonusesResponse
 

@@ -3,15 +3,12 @@ package com.progressterra.ipbandroidapi.api.iecommerce.cart.model
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-/**
- * 	ExtDHSaleHead
- */
-data class ProductsInBasketResponse(
+internal data class ProductsInBasketResponse(
     @SerializedName("data")
-    val basketInfo: BasketData? = null,
+    val basketInfo: Data? = null,
 ) : BaseResponse() {
 
-    data class BasketData(
+    data class Data(
         @SerializedName("adAvailablePaymentBonus")
         val adAvailablePaymentBonus: Int? = null,
         @SerializedName("adressString")

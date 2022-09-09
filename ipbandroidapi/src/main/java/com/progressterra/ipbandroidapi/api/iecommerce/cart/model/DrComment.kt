@@ -1,9 +1,8 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.cart.model
 
-
 import com.google.gson.annotations.SerializedName
 
-data class DrComment(
+internal data class DrComment(
     @SerializedName("comment")
     val comment: String? = null,
     @SerializedName("dateComment")

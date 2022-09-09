@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.api.scrm.model.*
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
 import com.progressterra.ipbandroidapi.user.UserData
-import com.progressterra.ipbandroidapi.utils.format
+import com.progressterra.ipbandroidapi.ext.format
 
 interface SCRMRepository {
 

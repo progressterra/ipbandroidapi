@@ -1,13 +1,12 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.cart
 
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.*
-import com.progressterra.ipbandroidapi.base.BaseResponse
 
-interface CartCloudDataSource {
+interface CartRepository {
 
     suspend fun implementBonus(
         accessToken: String,
-        implementBonusRequest: ImplementBonusRequest
+        bonusCount: Int
     ): ProductsInBasketResponse
 
     suspend fun getProductsInCart(accessToken: String): ProductsInBasketResponse
@@ -15,9 +14,11 @@ interface CartCloudDataSource {
     suspend fun getOrderById(orderId: String): ProductsInBasketResponse
 
     suspend fun removeProductFromCart(
-        changeProductCountInCartRequest: ChangeProductCountInCartRequest,
+        idGoodsInventory: String,
+        count: Int,
+        idSellerAmbassador: String,
         accessToken: String
-    ): BaseResponse
+    ): Result<Unit>
 
     suspend fun removeProductFromCartWithFullResponseModel(
         accessToken: String,
@@ -30,7 +31,9 @@ interface CartCloudDataSource {
     ): ProductsInBasketResponse
 
     suspend fun addProductToCart(
-        changeProductCountInCartRequest: ChangeProductCountInCartRequest,
+        idGoodsInventory: String,
+        count: Int,
+        idSellerAmbassador: String,
         accessToken: String
     ): ProductsInBasketResponse
 
@@ -38,20 +41,23 @@ interface CartCloudDataSource {
 
     suspend fun setDeliveryAddress(
         accessToken: String,
-        setDeliveryAddressRequest: SetDeliveryAddressRequest
-    ): BaseResponse
+        idAddress: String,
+        addressString: String
+    ): Result<Unit>
 
     suspend fun setDeliveryCommentary(
         accessToken: String,
-        setDeliveryCommentaryRequest: SetDeliveryCommentaryRequest
-    ): BaseResponse
+        commentary: String
+    ): Result<Unit>
 
     suspend fun confirmOrder(accessToken: String): ProductsInBasketResponse
 
     suspend fun fastAddToCart(
         accessToken: String,
-        request: ChangeProductCountInCartRequest
-    ): BaseResponse
+        idGoodsInventory: String,
+        count: Int,
+        idSellerAmbassador: String
+    ): Result<Unit>
 
     suspend fun getGoodsQuantity(
         accessToken: String,
@@ -60,6 +66,12 @@ interface CartCloudDataSource {
 
     suspend fun addDeliveryToCart(
         acessToken: String,
-        createDeliveryOrderRequest: CreateDeliveryOrderRequest
+        idrgGoodsInventory: String,
+        displayName: String,
+        calculatedPrice: Double,
+        comment: String,
+        methodType: Int,
+        serviceType: Int,
+        pickUpPoint: String
     ): ProductsInBasketResponse
 }

@@ -1,9 +1,8 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.cart.model
 
-
 import com.google.gson.annotations.SerializedName
 
-data class DhSaleHead(
+internal data class DhSaleHead(
     @SerializedName("adressString")
     val adressString: String? = null,
     @SerializedName("beginTimeService")

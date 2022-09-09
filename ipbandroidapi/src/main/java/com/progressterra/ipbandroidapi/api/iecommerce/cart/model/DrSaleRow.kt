@@ -1,9 +1,8 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.cart.model
 
-
 import com.google.gson.annotations.SerializedName
 
-data class DrSaleRow(
+internal data class DrSaleRow(
     @SerializedName("barcodeCodeGoods")
     val barcodeCodeGoods: String? = null,
     @SerializedName("basePrice")

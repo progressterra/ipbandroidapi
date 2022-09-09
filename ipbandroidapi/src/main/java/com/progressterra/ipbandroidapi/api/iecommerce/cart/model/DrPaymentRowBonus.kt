@@ -1,9 +1,8 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.cart.model
 
-
 import com.google.gson.annotations.SerializedName
 
-data class DrPaymentRowBonus(
+internal data class DrPaymentRowBonus(
     @SerializedName("idBonusLife")
     val idBonusLife: String? = null,
     @SerializedName("idBonusLog")

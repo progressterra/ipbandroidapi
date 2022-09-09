@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.utils
+package com.progressterra.ipbandroidapi.ext
 
 import java.text.SimpleDateFormat
 import java.util.*

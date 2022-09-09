@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-interface MoneyOutService {
+internal interface MoneyOutService {
 
     @POST("/moneyout")
     suspend fun removeBonuses(
