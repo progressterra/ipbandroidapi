@@ -1,16 +1,15 @@
 package com.progressterra.ipbandroidapi.api.ambassador
 
-import com.progressterra.ipbandroidapi.api.ambassador.models.AmbassadorStatusResponse
-import com.progressterra.ipbandroidapi.api.ambassador.models.BankInfoResponse
-import com.progressterra.ipbandroidapi.api.ambassador.models.UpdateBankDataRequest
-import com.progressterra.ipbandroidapi.api.ambassador.models.UpdateBankInfoResponse
-import com.progressterra.ipbandroidapi.api.ambassador.models.AmbassadorDataResponse
-import com.progressterra.ipbandroidapi.api.ambassador.models.SetNewPhoneRequest
-import com.progressterra.ipbandroidapi.api.ambassador.models.UploadContractOfAmbassadorRequest
-import com.progressterra.ipbandroidapi.api.ambassador.models.UploadImageUrlRequest
+import com.progressterra.ipbandroidapi.api.ambassador.model.AmbassadorStatusResponse
+import com.progressterra.ipbandroidapi.api.ambassador.model.BankInfoResponse
+import com.progressterra.ipbandroidapi.api.ambassador.model.UpdateBankDataRequest
+import com.progressterra.ipbandroidapi.api.ambassador.model.UpdateBankInfoResponse
+import com.progressterra.ipbandroidapi.api.ambassador.model.AmbassadorDataResponse
+import com.progressterra.ipbandroidapi.api.ambassador.model.SetNewPhoneRequest
+import com.progressterra.ipbandroidapi.api.ambassador.model.UploadContractOfAmbassadorRequest
+import com.progressterra.ipbandroidapi.api.ambassador.model.UploadImageUrlRequest
 import com.progressterra.ipbandroidapi.base.ResultResponse
 import okhttp3.ResponseBody
-import retrofit2.Response
 import retrofit2.http.*
 
 interface AmbassadorService {
@@ -44,7 +43,7 @@ interface AmbassadorService {
 
     @Streaming
     @GET("/ambassador/{AccessToken}/contract/draft")
-    suspend fun getContractOfAmbassador(@Path("AccessToken") accessToken: String): Response<ResponseBody>
+    suspend fun getContractOfAmbassador(@Path("AccessToken") accessToken: String): ResponseBody
 
     @POST("/ambassador/contract/seturlimage")
     suspend fun uploadAmbassadorContractPhotoUrl(

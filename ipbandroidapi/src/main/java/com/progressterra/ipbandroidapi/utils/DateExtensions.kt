@@ -22,10 +22,10 @@ fun String.parseToDate(): Date? {
 
 fun Date?.orNow() = this.orIfNull { Date() }
 
-fun String.convertDate(): String {
-    val date = this.parseToDate()
-    val sdf = SimpleDateFormat("dd.MM", Locale.getDefault())
-    return sdf.format(date!!)
+fun String.convertDate(pattern: String): String {
+    val date = this.parseToDate() ?: return ""
+    val sdf = SimpleDateFormat(pattern, Locale.getDefault())
+    return sdf.format(date)
 }
 
 fun Date.format(pattern: String = "yyyy-MM-dd'T'HH:mm:ss"): String {

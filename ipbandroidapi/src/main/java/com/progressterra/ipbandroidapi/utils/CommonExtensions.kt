@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.utils
 
-import com.progressterra.ipbandroidapi.api.ambassador.CooperationType
+import com.progressterra.ipbandroidapi.api.typecooperation.CooperationType
 import com.progressterra.ipbandroidapi.user.SexType
 
 inline fun <T> T?.orIfNull(onNull: () -> T): T = this ?: onNull.invoke()
