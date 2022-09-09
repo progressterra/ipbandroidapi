@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
 internal data class GoodsQuantityResponse(
-    @SerializedName("data") val data: GoodsQuantityData?=null
+    @SerializedName("data") val data: Data?=null
 ) : BaseResponse() {
 
-    data class GoodsQuantityData(
+    data class Data(
         @SerializedName("count") val count: Int? = null,
         @SerializedName("idrgGoodsInventoty") val idrgGoodsInventory: String?=null
     )

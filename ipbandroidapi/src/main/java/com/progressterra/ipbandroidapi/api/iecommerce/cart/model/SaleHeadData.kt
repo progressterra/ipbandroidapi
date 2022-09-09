@@ -1,7 +1,5 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.cart.model
 
-import com.google.gson.annotations.SerializedName
-
 data class SaleHeadData(
     val adressString: String,
     val beginTimeService: String,
@@ -17,9 +15,9 @@ data class SaleHeadData(
     val dateSyncWithExternalERP: String,
     val dateToSend: String,
     val dateTranssferToSend: String,
-    val drComment: List<DrComment>,
-    val drMetaDHSaleHead: List<DrMetaDHSaleHead>,
-    val drSaleRow: List<DrSaleRow>,
+    val drComment: List<CommentData>,
+    val drMetaDHSaleHead: List<MetaSaleHeadData>,
+    val drSaleRow: List<SaleRowData>,
     val endTimeService: String,
     val fDocumentNumber: Int,
     val fiscalCheckFD: String,
@@ -49,4 +47,54 @@ data class SaleHeadData(
     val statusOrder: Int,
     val systemLevelOfSatisfaction: Int,
     val typeSaleReturn: Int
-)
+) {
+
+    internal constructor(data: DhSaleHead?) : this(
+        data?.adressString ?: "",
+        data?.beginTimeService ?: "",
+        data?.commentClient ?: "",
+        data?.currentPositionInCashCahnge ?: 0,
+        data?.dateClose ?: "",
+        data?.dateCollection ?: "",
+        data?.dateConfirm ?: "",
+        data?.dateCustomerReceived ?: "",
+        data?.dateDoc ?: "",
+        data?.dateStartProcessingDelivery ?: "",
+        data?.dateSync ?: "",
+        data?.dateSyncWithExternalERP ?: "",
+        data?.dateToSend ?: "",
+        data?.dateTranssferToSend ?: "",
+        data?.drComment?.map { CommentData(it) } ?: emptyList(),
+        data?.drMetaDHSaleHead?.map { MetaSaleHeadData(it) } ?: emptyList(),
+        data?.drSaleRow?.map { SaleRowData(it) } ?: emptyList(),
+        data?.endTimeService ?: "",
+        data?.fDocumentNumber ?: 0,
+        data?.fiscalCheckFD ?: "",
+        data?.fiscalCheckFN ?: "",
+        data?.fiscalCheckFP ?: "",
+        data?.fiscalCheckNumber ?: 0,
+        data?.idBayer ?: "",
+        data?.idEmployyeCourier ?: "",
+        data?.idEmployyeOrderPicker ?: "",
+        data?.idEnterprise ?: "",
+        data?.idExtDataAddress ?: "",
+        data?.idExternalERP ?: "",
+        data?.idPreSale ?: "",
+        data?.idUnique ?: "",
+        data?.idrfCashier ?: "",
+        data?.idrfShop ?: "",
+        data?.idrgCashChange ?: "",
+        data?.indexCount ?: 0,
+        data?.levelOfSatisfaction ?: 0,
+        data?.mode ?: 0,
+        data?.number ?: "",
+        data?.posted ?: "",
+        data?.postedAddBonuses ?: "",
+        data?.postedWritingBonuses ?: "",
+        data?.reasonLevelOfSatisfaction ?: "",
+        data?.statusObject ?: 0,
+        data?.statusOrder ?: 0,
+        data?.systemLevelOfSatisfaction ?: 0,
+        data?.typeSaleReturn ?: 0
+    )
+}

@@ -16,7 +16,7 @@ data class BasketData(
     val dateSyncWithExternalERP: String,
     val dateToSend: String,
     val dateTranssferToSend: String,
-    val drSaleRow: List<DrSaleRow>,
+    val drSaleRow: List<SaleRowData>,
     val endTimeService: String,
     val fDocumentNumber: Int,
     val fiscalCheckFD: String,
@@ -64,7 +64,7 @@ data class BasketData(
         data?.dateSyncWithExternalERP ?: "",
         data?.dateToSend ?: "",
         data?.dateTranssferToSend ?: "",
-        data?.drSaleRow: List<DrSaleRow>,
+        data?.drSaleRow?.map { SaleRowData(it) } ?: emptyList(),
         data?.endTimeService ?: "",
         data?.fDocumentNumber ?: 0,
         data?.fiscalCheckFD ?: "",
@@ -91,7 +91,7 @@ data class BasketData(
         data?.postedWritingBonuses ?: "",
         data?.reasonLevelOfSatisfaction ?: "",
         data?.statusObject ?: 0,
-        data?.statusOrder: StatusOrder,
+        data?.statusOrder ?: StatusOrder.ORDER,
         data?.systemLevelOfSatisfaction ?: 0,
         data?.typeSaleReturn ?: 0
     )

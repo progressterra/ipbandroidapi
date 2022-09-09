@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.youmoney
 
-import com.progressterra.ipbandroidapi.api.iecommerce.models.PaymentTokenRequest
-import com.progressterra.ipbandroidapi.api.iecommerce.models.YooMoneyConfirmationResponse
+import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.model.PaymentTokenRequest
+import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.model.YooMoneyConfirmationResponse
 import com.progressterra.ipbandroidapi.base.BaseResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -11,11 +11,11 @@ import retrofit2.http.Path
 /**
  * http://84.201.188.117:6023/docsapi/v1/index.html
  */
-interface YouMoneyService {
+internal interface YouMoneyService {
 
     @POST("iecommercecore/api/v1/yandexcash/payment/{AccessToken}")
     suspend fun sendYooMoneyToken(
-        @Path("AccessToken") AccessToken: String,
+        @Path("AccessToken") accessToken: String,
         @Body data: PaymentTokenRequest
     ): YooMoneyConfirmationResponse
 

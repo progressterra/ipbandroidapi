@@ -7,11 +7,11 @@ interface CartRepository {
     suspend fun implementBonus(
         accessToken: String,
         bonusCount: Int
-    ): ProductsInBasketResponse
+    ): Result<BasketData>
 
-    suspend fun getProductsInCart(accessToken: String): ProductsInBasketResponse
+    suspend fun getProductsInCart(accessToken: String): Result<BasketData>
 
-    suspend fun getOrderById(orderId: String): ProductsInBasketResponse
+    suspend fun getOrderById(orderId: String): Result<BasketData>
 
     suspend fun removeProductFromCart(
         idGoodsInventory: String,
@@ -23,21 +23,21 @@ interface CartRepository {
     suspend fun removeProductFromCartWithFullResponseModel(
         accessToken: String,
         idDrSaleRow: String
-    ): ProductsInBasketResponse
+    ): Result<BasketData>
 
     suspend fun removeNomenclatureFromCart(
         accessToken: String,
         idrfNomenclature: String
-    ): ProductsInBasketResponse
+    ): Result<BasketData>
 
     suspend fun addProductToCart(
         idGoodsInventory: String,
         count: Int,
         idSellerAmbassador: String,
         accessToken: String
-    ): ProductsInBasketResponse
+    ): Result<BasketData>
 
-    suspend fun cancelBonusesImplementation(accessToken: String): ProductsInBasketResponse
+    suspend fun cancelBonusesImplementation(accessToken: String): Result<BasketData>
 
     suspend fun setDeliveryAddress(
         accessToken: String,
@@ -50,7 +50,7 @@ interface CartRepository {
         commentary: String
     ): Result<Unit>
 
-    suspend fun confirmOrder(accessToken: String): ProductsInBasketResponse
+    suspend fun confirmOrder(accessToken: String): Result<BasketData>
 
     suspend fun fastAddToCart(
         accessToken: String,
@@ -62,10 +62,10 @@ interface CartRepository {
     suspend fun getGoodsQuantity(
         accessToken: String,
         idrgGoodsInventory: String
-    ): GoodsQuantityResponse
+    ): Result<GoodsQuantityData>
 
     suspend fun addDeliveryToCart(
-        acessToken: String,
+        accessToken: String,
         idrgGoodsInventory: String,
         displayName: String,
         calculatedPrice: Double,
@@ -73,5 +73,5 @@ interface CartRepository {
         methodType: Int,
         serviceType: Int,
         pickUpPoint: String
-    ): ProductsInBasketResponse
+    ): Result<BasketData>
 }
