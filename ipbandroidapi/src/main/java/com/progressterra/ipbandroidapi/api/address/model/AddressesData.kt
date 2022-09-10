@@ -1,8 +1,5 @@
 package com.progressterra.ipbandroidapi.api.address.model
 
-/**
- * Data model
- */
 data class AddressesData(
     val defaultBillingAddress: AddressData,
     val defaultShippingAddress: AddressData,

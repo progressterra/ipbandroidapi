@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.api.ipbmediadata.model.MediaData
 import okhttp3.MultipartBody
 import java.io.InputStream
 
-interface IPBMediaDataCoreRepository {
+interface IPBMediaDataRepository {
 
     suspend fun uploadImage(
         accessToken: String,

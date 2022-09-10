@@ -7,9 +7,9 @@ import com.progressterra.ipbandroidapi.exception.BadRequestException
 import okhttp3.MultipartBody
 import java.io.InputStream
 
-internal class BaseIPBMediaDataCoreRepository(
+internal class BaseIPBMediaDataRepository(
     private val cloudDataSource: IPBMediaDataCloudDataSource
-) : AbstractRepository(), IPBMediaDataCoreRepository {
+) : AbstractRepository(), IPBMediaDataRepository {
 
     override suspend fun uploadImage(
         accessToken: String,

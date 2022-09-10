@@ -2,9 +2,6 @@ package com.progressterra.ipbandroidapi.api.address.model
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * API model
- */
 internal data class AddressRaw(
     @SerializedName("apartment")
     val apartment: String?,
