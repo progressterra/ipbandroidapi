@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.base.BaseResponse
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-interface IPBPromoCodeService {
+internal interface IPBPromoCodeService {
 
     @POST("/api/v1/promocode/setpromocode/{AccessToken}/{Promocode}")
     suspend fun setPromoCode(

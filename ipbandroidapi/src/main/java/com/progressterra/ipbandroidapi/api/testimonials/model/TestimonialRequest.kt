@@ -2,10 +2,7 @@ package com.progressterra.ipbandroidapi.api.testimonials.model
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * API model
- */
-data class TestimonialRequest(
+internal data class TestimonialRequest(
     @SerializedName("nickNameClient") val nickNameClient: String,
     @SerializedName("message") val message: String,
     @SerializedName("idEmployye") val idEmployee: String,

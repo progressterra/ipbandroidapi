@@ -1,8 +1,5 @@
 package com.progressterra.ipbandroidapi.api.cities.model
 
-/**
- * Data model
- */
 data class CityData(
     val idUnique: String,
     val latitudeCenter: Float,
@@ -11,7 +8,7 @@ data class CityData(
     val radius: Int
 ) {
 
-    constructor(data: CitiesListResponse.Data) : this(
+    internal constructor(data: CitiesListResponse.Data) : this(
         data.idUnique,
         data.latitudeCenter,
         data.longitudeCenter,

@@ -19,7 +19,7 @@ data class NotificationData(
     val mediaDataLink: String
 ) {
 
-    constructor(data: NotificationsResponse.Data) : this(
+    internal constructor(data: NotificationsResponse.Data) : this(
         data.idUnique ?: "",
         data.idEnterprise ?: "",
         data.idClient ?: "",

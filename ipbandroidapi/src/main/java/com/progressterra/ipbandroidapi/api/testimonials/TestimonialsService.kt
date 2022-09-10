@@ -6,7 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-interface TestimonialsService {
+internal interface TestimonialsService {
 
     @POST("/api/v3/testimonials/{AccessToken}")
     suspend fun addTestimonial(

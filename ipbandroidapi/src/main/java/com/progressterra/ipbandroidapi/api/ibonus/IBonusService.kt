@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.api.ibonus.model.TransactionListResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface IBonusService {
+internal interface IBonusService {
 
     /**
      * Получение информации о бонусах клиента

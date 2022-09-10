@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
-interface AmbassadorInviteService {
+internal interface AmbassadorInviteService {
 
     @GET("/ambassadorinvite/invitedata/{AccessToken}")
     suspend fun getInviteInfo(@Path("AccessToken") accessToken: String): AmbassadorInviteDataResponse

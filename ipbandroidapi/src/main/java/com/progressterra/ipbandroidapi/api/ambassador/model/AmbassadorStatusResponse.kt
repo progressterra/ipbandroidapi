@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.ambassador.model
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-data class AmbassadorStatusResponse(
+internal data class AmbassadorStatusResponse(
     @SerializedName("data")
     val ambassadorInfo: Data,
 ) : BaseResponse() {

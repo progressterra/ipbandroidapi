@@ -8,7 +8,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface SberService {
+internal interface SberService {
 
     @POST("/IPBSberbank/register/{idDHSaleHead}")
     suspend fun registerOrder(@Path("idDHSaleHead") idDHSaleHead: String): RegisterOrderResponse

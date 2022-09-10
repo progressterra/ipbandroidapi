@@ -1,6 +1,7 @@
 package com.progressterra.ipbandroidapi.api
 
-object URL {
+internal object URL {
+
     const val LIKEDISLIKE_ROOT_URL = "https://mp1.iprobonus.com/"
     const val AMBASSADOR_API_URL = "http://84.201.188.117:5093/"
     const val ADDRESSES_ROOT_URL = "http://84.201.188.117:5021/"

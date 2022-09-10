@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.ipbdelivery
+package com.progressterra.ipbandroidapi.api.ipbdelivery.model
 
 enum class DeliveryType {
     COURIER,

@@ -7,7 +7,7 @@ data class AmbassadorStatusData(
     val statusWork: Int
 ) {
 
-    constructor(data: AmbassadorStatusResponse.Data?) : this(
+    internal constructor(data: AmbassadorStatusResponse.Data?) : this(
         AmbassadorDetailsData(data?.dataAmbassador),
         data?.message ?: "",
         data?.statusText ?: "",

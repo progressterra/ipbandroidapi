@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
 /**
-* API model
+ * API model
  */
-data class ListOfAddressesResponse(
+internal data class ListOfAddressesResponse(
     @SerializedName("data")
     val addressInfo: AddressesRaw,
 ) : BaseResponse()

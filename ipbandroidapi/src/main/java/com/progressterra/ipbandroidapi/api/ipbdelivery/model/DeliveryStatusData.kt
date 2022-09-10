@@ -13,7 +13,7 @@ data class DeliveryStatusData(
     val rfOrderStatus: String
 ) {
 
-    constructor(data: ResultDeliveryStatusInfo.Data?) : this(
+    internal constructor(data: ResultDeliveryStatusInfo.Data?) : this(
         data?.rdCreationDate ?: "",
         data?.rdStatusDate ?: "",
         data?.rdDeliveryDate ?: "",

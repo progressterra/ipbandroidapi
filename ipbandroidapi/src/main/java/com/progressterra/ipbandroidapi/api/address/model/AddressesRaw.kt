@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 /**
 * API model
  */
-data class AddressesRaw(
+internal data class AddressesRaw(
     @SerializedName("defaultBillingAddress")
     val defaultBillingAddress: AddressRaw?,
     @SerializedName("defaultShippingAddress")

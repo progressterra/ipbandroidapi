@@ -30,7 +30,7 @@ data class AmbassadorData(
     val urlImageSNILS: String
 ) {
 
-    constructor(data: AmbassadorDataRaw?) : this(
+    internal constructor(data: AmbassadorDataRaw?) : this(
         data?.address ?: "",
         BankAccountDetailsData(data?.bankAccountDetails),
         data?.dataForDirectPayment ?: "",

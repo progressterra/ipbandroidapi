@@ -5,7 +5,7 @@ data class DeliveryData(
     val deliveryServiceName: String
 ) {
 
-    constructor(data: DeliveryRaw?) : this(
+    internal constructor(data: DeliveryRaw?) : this(
         data?.deliveryMethodsList?.map { DeliveryMethodsData(it) } ?: emptyList(),
         data?.deliveryServiceName ?: ""
     )

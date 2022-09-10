@@ -15,7 +15,7 @@ data class AmbassadorDetailsData(
     val urlImagesContract: String,
 ) {
 
-    constructor(data: AmbassadorDetailsRaw?) : this(
+    internal constructor(data: AmbassadorDetailsRaw?) : this(
         BankAccountDetailsData(data?.bankAccountDetails),
         data?.dateLastUpdate ?: "",
         data?.idAmbassadorClient ?: "",

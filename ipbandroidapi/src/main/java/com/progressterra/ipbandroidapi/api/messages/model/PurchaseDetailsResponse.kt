@@ -1,9 +1,8 @@
 package com.progressterra.ipbandroidapi.api.messages.model
 
-
 import com.google.gson.annotations.SerializedName
 
-data class PurchaseDetailsResponse(
+internal data class PurchaseDetailsResponse(
     @SerializedName("data")
     val data: Data? = null
 ) {

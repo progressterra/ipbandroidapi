@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.messages.model
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-data class NotificationsResponse(
+internal data class NotificationsResponse(
     @SerializedName("dataList") val dataList: List<Data>?
 ) : BaseResponse() {
 

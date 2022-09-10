@@ -9,9 +9,9 @@ data class AddressesData(
     val listAddress: List<AddressData>
 ) {
 
-    constructor(data: AddressesRaw) : this(
-        data.defaultBillingAddress?.let { AddressData(it) } ?: AddressData(),
-        data.defaultShippingAddress?.let { AddressData(it) } ?: AddressData(),
-        data.listAddress?.map { AddressData(it) } ?: emptyList()
+    internal constructor(data: AddressesRaw?) : this(
+        AddressData(data?.defaultBillingAddress),
+        AddressData(data?.defaultShippingAddress),
+        data?.listAddress?.map { AddressData(it) } ?: emptyList()
     )
 }

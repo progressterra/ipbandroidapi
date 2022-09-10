@@ -14,7 +14,7 @@ data class MediaData(
     val urlData: String = ""
 ) {
 
-    constructor(data: MediaRaw) : this(
+    internal constructor(data: MediaRaw) : this(
         data.alias ?: "",
         data.contentType ?: 0,
         data.dataJSON ?: "",

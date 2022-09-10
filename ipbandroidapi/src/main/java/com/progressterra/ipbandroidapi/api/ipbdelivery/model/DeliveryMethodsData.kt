@@ -8,7 +8,7 @@ data class DeliveryMethodsData(
     val rfDeliveryType: String
 ) {
 
-    constructor(data: DeliveryMethodsRaw?) : this(
+    internal constructor(data: DeliveryMethodsRaw?) : this(
         DhPickupPointData(data?.dhPickupPointInfo),
         data?.rdDeliveryTime ?: "",
         data?.rdDestinationPoint ?: "",

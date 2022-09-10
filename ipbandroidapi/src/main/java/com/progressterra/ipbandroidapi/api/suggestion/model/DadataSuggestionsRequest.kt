@@ -2,12 +2,9 @@ package com.progressterra.ipbandroidapi.api.suggestion.model
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * API model
- */
-class DadataSuggestionsRequest(
+internal class DadataSuggestionsRequest(
     @SerializedName("count")
-    val count: Int = 10,
+    val count: Int,
     @SerializedName("query")
     val query: String
 )

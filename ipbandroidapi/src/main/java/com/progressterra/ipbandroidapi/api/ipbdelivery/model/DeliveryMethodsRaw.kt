@@ -2,15 +2,15 @@ package com.progressterra.ipbandroidapi.api.ipbdelivery.model
 
 import com.google.gson.annotations.SerializedName
 
-data class DeliveryMethodsRaw(
+internal data class DeliveryMethodsRaw(
     @SerializedName("dhPickupPointInfo")
-    val dhPickupPointInfo: DhPickupPointRaw? = null,
+    val dhPickupPointInfo: DhPickupPointRaw?,
     @SerializedName("rdDeliveryTime")
-    val rdDeliveryTime: String? = null,
+    val rdDeliveryTime: String?,
     @SerializedName("rdDestinationPoint")
-    val rdDestinationPoint: String? = null,
+    val rdDestinationPoint: String?,
     @SerializedName("rdPrice")
-    val rdPrice: Double? = null,
+    val rdPrice: Double?,
     @SerializedName("rfDeliveryType")
-    val rfDeliveryType: String? = null
+    val rfDeliveryType: String?
 )

@@ -7,7 +7,7 @@ data class OrderData(
     val formUrl: String
 ) {
 
-    constructor(data: RegisterOrderResponse) : this(
+    internal constructor(data: RegisterOrderResponse) : this(
         data.errorCode ?: "",
         data.errorMessage ?: "",
         data.orderId ?: "",

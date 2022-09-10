@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.api.ipbdelivery.model.*
 import com.progressterra.ipbandroidapi.api.ipbdelivery.model.SetDeliveryTypeRequest
 import retrofit2.http.*
 
-interface IPBDeliveryService {
+internal interface IPBDeliveryService {
 
     @GET("Delivery/GetDeliveryList/{AccessToken}")
     suspend fun getDeliveryList(@Path("AccessToken") accessToken: String): ResultDeliveryResponse

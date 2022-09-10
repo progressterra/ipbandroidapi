@@ -2,10 +2,7 @@ package com.progressterra.ipbandroidapi.api.suggestion.model
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * API model
- */
-data class SuggestionExtended(
+internal data class SuggestionExtendedRaw(
     @SerializedName("area")
     val area: String? = null,
     @SerializedName("area_fias_id")
@@ -60,35 +57,4 @@ data class SuggestionExtended(
     val streetFiasId: String? = null,
     @SerializedName("street_kladr_id")
     val streetKladrId: String? = null
-) {
-    fun toSuggestionExtendedInfo(): SuggestionExtendedInfo = SuggestionExtendedInfo(
-        area ?: "",
-        areaFiasId ?: "",
-        areaKladrId ?: "",
-        block ?: "",
-        city ?: "",
-        cityDistrict ?: "",
-        cityDistrictFiasId ?: "",
-        cityDistrictKladrId ?: "",
-        cityFiasId ?: "",
-        cityKladrId ?: "",
-        country ?: "",
-        entrance ?: "",
-        flat ?: "",
-        floor ?: "",
-        geoLat ?: "",
-        geoLon ?: "",
-        house ?: "",
-        houseFiasId ?: "",
-        houseKladrId ?: "",
-        kladrId ?: "",
-        postalCode ?: "",
-        region ?: "",
-        regionFiasId ?: "",
-        regionKladrId ?: "",
-        regionType ?: "",
-        street ?: "",
-        streetFiasId ?: "",
-        streetKladrId ?: ""
-    )
-}
+)

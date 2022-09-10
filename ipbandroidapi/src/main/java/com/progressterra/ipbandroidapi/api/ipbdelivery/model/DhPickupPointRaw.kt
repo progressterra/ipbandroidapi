@@ -2,29 +2,29 @@ package com.progressterra.ipbandroidapi.api.ipbdelivery.model
 
 import com.google.gson.annotations.SerializedName
 
-data class DhPickupPointRaw(
+internal data class DhPickupPointRaw(
     @SerializedName("drrdAddress")
-    val drrdAddress: String? = null,
+    val drrdAddress: String?,
     @SerializedName("drrdSite")
-    val drrdSite: String? = null,
+    val drrdSite: String?,
     @SerializedName("drrdWorkHour")
-    val drrdWorkHour: String? = null,
+    val drrdWorkHour: String?,
     @SerializedName("drrfLatitude")
-    val drrfLatitude: Double? = null,
+    val drrfLatitude: Double?,
     @SerializedName("drrfLongitude")
-    val drrfLongitude: Double? = null,
+    val drrfLongitude: Double?,
     @SerializedName("drrfPickupPointCode")
-    val drrfPickupPointCode: String? = null,
+    val drrfPickupPointCode: String?,
     @SerializedName("drrfType")
-    val drrfType: String? = null,
+    val drrfType: String?,
     @SerializedName("drrfPaymentAvaliable")
-    val drrfPaymentAvaliable: Int? = null,
+    val drrfPaymentAvaliable: Int?,
     @SerializedName("drrdDressingRoom")
-    val drrdDressingRoom: Boolean? = null,
+    val drrdDressingRoom: Boolean?,
     @SerializedName("drrdCanTake")
-    val drrdCanTake: Boolean? = null,
+    val drrdCanTake: Boolean?,
     @SerializedName("drrdWhereIs")
-    val drrdWhereIs: String? = null,
+    val drrdWhereIs: String?,
     @SerializedName("drrdMetroStation")
-    val drrdMetroStation: String? = null
+    val drrdMetroStation: String?
 )

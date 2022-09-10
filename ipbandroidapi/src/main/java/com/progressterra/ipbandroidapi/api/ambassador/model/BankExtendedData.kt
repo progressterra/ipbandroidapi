@@ -11,7 +11,7 @@ data class BankExtendedData(
     val statusWork: Int
 ) {
 
-    constructor(data: UpdateBankInfoResponse.Data?) : this(
+    internal constructor(data: UpdateBankInfoResponse.Data?) : this(
         BankAccountDetailsData(data?.bankAccountDetails),
         data?.dateLastUpdate ?: "",
         data?.idAmbassadorClient ?: "",

@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-interface CityCloudDataSource {
+internal interface CityCloudDataSource {
 
     suspend fun setCity(accessToken: String, cityEntity: AddCityRequest): BaseResponse
 

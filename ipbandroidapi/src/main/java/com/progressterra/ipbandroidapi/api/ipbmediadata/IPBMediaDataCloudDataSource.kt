@@ -8,7 +8,7 @@ import com.progressterra.ipbandroidapi.exception.HandleException
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 
-interface IPBMediaDataCloudDataSource {
+internal interface IPBMediaDataCloudDataSource {
 
     suspend fun uploadImage(
         accessToken: String,

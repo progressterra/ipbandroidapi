@@ -10,7 +10,7 @@ import retrofit2.http.*
 /**
  * http://84.201.188.117:5089/docsapi/v1/index.html
  */
-interface IPBMediaDataService {
+internal interface IPBMediaDataService {
 
     @Multipart
     @POST("/mobile/{AccessToken}/image/{Alias}/{Tag}")

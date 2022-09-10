@@ -9,7 +9,7 @@ import retrofit2.http.Path
 /**
  * http://84.201.188.117:5093/docsapi/v1/index.html
  */
-interface IMessengerService {
+internal interface IMessengerService {
 
     @GET("/messenger/mobile/messages/{dialogId}/{currentPage}")
     suspend fun getMessagesList(

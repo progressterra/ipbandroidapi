@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.api.typecooperation.model.CooperationList
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 
-interface TypeCooperationCloudDataSource {
+internal interface TypeCooperationCloudDataSource {
 
     suspend fun getCooperationTypeList(accessToken: String): CooperationListResponse
 

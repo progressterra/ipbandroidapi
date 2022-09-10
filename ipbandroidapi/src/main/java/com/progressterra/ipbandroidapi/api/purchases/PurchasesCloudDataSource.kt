@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.api.purchases.model.PurchasesListResponse
 import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 
-interface PurchasesCloudDataSource {
+internal interface PurchasesCloudDataSource {
 
     suspend fun getShopList(accessToken: String): PurchasesListResponse
 

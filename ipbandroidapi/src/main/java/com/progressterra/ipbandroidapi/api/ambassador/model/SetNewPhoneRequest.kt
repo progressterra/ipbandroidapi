@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.ambassador.model
 
 import com.google.gson.annotations.SerializedName
 
-data class SetNewPhoneRequest(
+internal data class SetNewPhoneRequest(
     @SerializedName("accessToken")
     val accessToken: String,
     @SerializedName("phone")

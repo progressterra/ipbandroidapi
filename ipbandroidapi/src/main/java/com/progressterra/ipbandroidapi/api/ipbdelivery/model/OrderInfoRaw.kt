@@ -2,11 +2,11 @@ package com.progressterra.ipbandroidapi.api.ipbdelivery.model
 
 import com.google.gson.annotations.SerializedName
 
-data class OrderInfoRaw(
+internal data class OrderInfoRaw(
     @SerializedName("error")
-    val error: String? = null,
+    val error: String?,
     @SerializedName("order")
-    val order: OrderRaw? = null,
+    val order: OrderRaw?,
     @SerializedName("status")
-    val status: String? = null
+    val status: String?
 )

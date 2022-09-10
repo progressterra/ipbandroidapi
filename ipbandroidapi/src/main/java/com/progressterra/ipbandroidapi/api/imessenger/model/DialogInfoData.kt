@@ -9,7 +9,7 @@ data class DialogInfoData(
     val additionalData: String
 ) {
 
-    constructor(data: DialogInfoRaw) : this(
+    internal constructor(data: DialogInfoRaw) : this(
         data.idEnterprise,
         data.idUnique,
         data.dateCreate,

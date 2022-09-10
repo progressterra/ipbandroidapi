@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.api.ambassadorinvite.model.InvitingMember
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 
-interface AmbassadorInviteCloudDataSource {
+internal interface AmbassadorInviteCloudDataSource {
 
     suspend fun getInviteInfo(accessToken: String): AmbassadorInviteDataResponse
 

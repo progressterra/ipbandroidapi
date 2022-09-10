@@ -11,7 +11,7 @@ data class PaymentData(
     val termUrl: String
 ) {
 
-    constructor(data: SendCardDataResponse.Data) : this(
+    internal constructor(data: SendCardDataResponse.Data) : this(
         data.acsUrl ?: "",
         data.error ?: "",
         data.errorCode ?: "",

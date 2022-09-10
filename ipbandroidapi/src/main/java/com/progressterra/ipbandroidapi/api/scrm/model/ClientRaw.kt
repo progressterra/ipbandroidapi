@@ -2,10 +2,7 @@ package com.progressterra.ipbandroidapi.api.scrm.model
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * API model
- */
-data class ClientRaw(
+internal data class ClientRaw(
     @SerializedName("idUnique")
     val idUnique: String,
     @SerializedName("idEnterprise")

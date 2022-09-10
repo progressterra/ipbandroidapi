@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.api.ipbdelivery.model.*
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 
-interface IPBDeliveryCloudDataSource {
+internal interface IPBDeliveryCloudDataSource {
 
     suspend fun getDeliveryList(accessToken: String): ResultDeliveryResponse
 

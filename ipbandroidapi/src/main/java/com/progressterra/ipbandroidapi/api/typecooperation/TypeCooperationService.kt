@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.api.typecooperation.model.CooperationList
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface TypeCooperationService {
+internal interface TypeCooperationService {
 
     @GET("/typecooperation/list/{AccessToken}")
     suspend fun getCooperationTypeList(@Path("AccessToken") accessToken: String): CooperationListResponse

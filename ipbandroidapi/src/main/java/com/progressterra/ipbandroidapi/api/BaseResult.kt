@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api
 
 import com.google.gson.annotations.SerializedName
 
-data class BaseResult(
+internal data class BaseResult(
     @SerializedName("status") val status: Int,
     @SerializedName("message") val message: String?,
     @SerializedName("messageDev") val messageDev: String?,

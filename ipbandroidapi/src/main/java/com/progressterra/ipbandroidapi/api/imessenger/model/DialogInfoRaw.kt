@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.imessenger.model
 
 import com.google.gson.annotations.SerializedName
 
-data class DialogInfoRaw(
+internal data class DialogInfoRaw(
     @SerializedName("idEnterprise")
     val idEnterprise: String,
     @SerializedName("idUnique")

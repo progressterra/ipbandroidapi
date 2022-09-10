@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.imessenger.model
 
 import com.google.gson.annotations.SerializedName
 
-data class DialogInfoRequest(
+internal data class DialogInfoRequest(
     @SerializedName("listId")
     val listId: List<String>,
     @SerializedName("descriptionDialog")

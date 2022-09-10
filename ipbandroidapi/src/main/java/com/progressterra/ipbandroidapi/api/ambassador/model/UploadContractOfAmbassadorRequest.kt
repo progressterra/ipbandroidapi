@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.ambassador.model
 
 import com.google.gson.annotations.SerializedName
 
-data class UploadContractOfAmbassadorRequest(
+internal data class UploadContractOfAmbassadorRequest(
     @SerializedName("accessToken")
     val accessToken: String,
     @SerializedName("urlImage")

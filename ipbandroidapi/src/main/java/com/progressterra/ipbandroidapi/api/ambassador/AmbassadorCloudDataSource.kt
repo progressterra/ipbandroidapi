@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 import okhttp3.ResponseBody
 
-interface AmbassadorCloudDataSource {
+internal interface AmbassadorCloudDataSource {
 
     suspend fun getUserBankInfo(accessToken: String): BankInfoResponse
 

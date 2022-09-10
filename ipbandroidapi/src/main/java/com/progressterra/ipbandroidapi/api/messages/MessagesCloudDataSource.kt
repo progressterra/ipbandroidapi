@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.base.BaseResponse
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 
-interface MessagesCloudDataSource {
+internal interface MessagesCloudDataSource {
 
     suspend fun getInAppMessages(accessToken: String): NotificationsResponse
 

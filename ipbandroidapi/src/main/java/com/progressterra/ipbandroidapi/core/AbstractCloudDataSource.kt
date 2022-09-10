@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.core
 
 import com.progressterra.ipbandroidapi.exception.HandleException
 
-abstract class AbstractCloudDataSource(
+internal abstract class AbstractCloudDataSource(
     private val handleException: HandleException
 ) {
 

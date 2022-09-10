@@ -3,30 +3,30 @@ package com.progressterra.ipbandroidapi.api.ipbdelivery.model
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-data class ResultDeliveryStatusInfo(
-    @SerializedName("data") val data: Data? = null
+internal data class ResultDeliveryStatusInfo(
+    @SerializedName("data") val data: Data?
 ) : BaseResponse() {
 
     data class Data(
         @SerializedName("rdCreationDate")
-        val rdCreationDate: String? = null,
+        val rdCreationDate: String?,
         @SerializedName("rdStatusDate")
-        val rdStatusDate: String? = null,
+        val rdStatusDate: String?,
         @SerializedName("rdDeliveryDate")
-        val rdDeliveryDate: String? = null,
+        val rdDeliveryDate: String?,
         @SerializedName("rfDeliveryService")
-        val rfDeliveryService: String? = null,
+        val rfDeliveryService: String?,
         @SerializedName("rfOrderStatusDescription")
-        val rfOrderStatusDescription: String? = null,
+        val rfOrderStatusDescription: String?,
         @SerializedName("rdNumberPosition")
-        val rdNumberPosition: Int? = null,
+        val rdNumberPosition: Int?,
         @SerializedName("rdAddress")
-        val rdAddress: String? = null,
+        val rdAddress: String?,
         @SerializedName("rdOrderNumber")
-        val rdOrderNumber: String? = null,
+        val rdOrderNumber: String?,
         @SerializedName("rdAmount")
-        val rdAmount: Double? = null,
+        val rdAmount: Double?,
         @SerializedName("rfOrderStatus")
-        val rfOrderStatus: String? = null
+        val rfOrderStatus: String?
     )
 }

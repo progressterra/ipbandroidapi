@@ -15,7 +15,7 @@ data class DhPickupPointData(
     val drrdMetroStation: String
 ) {
 
-    constructor(data: DhPickupPointRaw?) : this(
+    internal constructor(data: DhPickupPointRaw?) : this(
         data?.drrdAddress ?: "",
         data?.drrdSite ?: "",
         data?.drrdWorkHour ?: "",

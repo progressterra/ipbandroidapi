@@ -2,9 +2,9 @@ package com.progressterra.ipbandroidapi.api.ipbdelivery.model
 
 import com.google.gson.annotations.SerializedName
 
-data class DeliveryRaw(
+internal data class DeliveryRaw(
     @SerializedName("deliveryMethodsList")
-    val deliveryMethodsList: List<DeliveryMethodsRaw>? = null,
+    val deliveryMethodsList: List<DeliveryMethodsRaw>?,
     @SerializedName("deliveryServiceName")
-    val deliveryServiceName: String? = null
+    val deliveryServiceName: String?
 )

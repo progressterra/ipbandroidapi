@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.api.cities.model.CitiesListResponse
 import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 
-interface CitiesCloudDataSource {
+internal interface CitiesCloudDataSource {
 
     suspend fun getCities(): CitiesListResponse
 

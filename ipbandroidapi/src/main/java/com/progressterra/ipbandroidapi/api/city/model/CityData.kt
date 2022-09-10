@@ -1,8 +1,5 @@
 package com.progressterra.ipbandroidapi.api.city.model
 
-/**
- * Data model
- */
 data class CityData(
     val idUnique: String = "",
     val idClient: String = "",
@@ -15,15 +12,15 @@ data class CityData(
     val longitude: Double = 0.0
 ) {
 
-    constructor(data: CityResponse.Data) : this(
-        data.idUnique ?: "",
-        data.idClient ?: "",
-        data.dateEvent ?: "",
-        data.idrfCity ?: "",
-        data.cityName ?: "",
-        data.cityFiasIdc ?: "",
-        data.cityKladrId ?: "",
-        data.latitude ?: 0.0,
-        data.longitude ?: 0.0
+    internal constructor(data: CityResponse.Data?) : this(
+        data?.idUnique ?: "",
+        data?.idClient ?: "",
+        data?.dateEvent ?: "",
+        data?.idrfCity ?: "",
+        data?.cityName ?: "",
+        data?.cityFiasIdc ?: "",
+        data?.cityKladrId ?: "",
+        data?.latitude ?: 0.0,
+        data?.longitude ?: 0.0
     )
 }

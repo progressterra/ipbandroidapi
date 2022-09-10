@@ -1,9 +1,8 @@
 package com.progressterra.ipbandroidapi.api.ipbmediadata.model
 
-
 import com.google.gson.annotations.SerializedName
 
-data class MediaRaw(
+internal data class MediaRaw(
         @SerializedName("alias")
         val alias: String? = null,
         @SerializedName("contentType")

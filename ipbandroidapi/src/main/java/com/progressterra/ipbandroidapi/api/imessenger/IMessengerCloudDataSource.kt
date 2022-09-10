@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.api.imessenger.model.*
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 
-interface IMessengerCloudDataSource {
+internal interface IMessengerCloudDataSource {
 
     suspend fun getMessagesList(IDRGDialog: String, page: String): MessagesListResponse
 

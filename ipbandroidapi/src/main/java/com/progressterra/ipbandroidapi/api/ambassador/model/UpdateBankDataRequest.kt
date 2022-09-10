@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.ambassador.model
 
 import com.google.gson.annotations.SerializedName
 
-data class UpdateBankDataRequest(
+internal data class UpdateBankDataRequest(
     @SerializedName("typeName")
     val typeName: String = "",
     @SerializedName("bankName")

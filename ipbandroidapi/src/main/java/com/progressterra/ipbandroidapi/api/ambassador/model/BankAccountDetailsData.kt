@@ -11,7 +11,7 @@ data class BankAccountDetailsData(
     val tinOfClient: String
 ) {
 
-    constructor(data: BankAccountDetailsRaw?) : this(
+    internal constructor(data: BankAccountDetailsRaw?) : this(
         data?.bankName ?: "",
         data?.bik ?: "",
         data?.correspondentAccount ?: "",

@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.api.ibonus.model.TransactionListResponse
 import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 
-interface IBonusCloudDataSource {
+internal interface IBonusCloudDataSource {
 
     suspend fun getGeneralInfo(accessToken: String): GeneralBonusResponse
 

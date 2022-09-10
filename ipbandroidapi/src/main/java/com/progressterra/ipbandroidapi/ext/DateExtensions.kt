@@ -1,7 +1,11 @@
 package com.progressterra.ipbandroidapi.ext
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.TimeZone
+import java.util.Date
+import java.util.Locale
+
+//TODO visibility modifiers on exts?
 
 private const val serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
 private const val serverDateFormatTimeZone = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSXXX"

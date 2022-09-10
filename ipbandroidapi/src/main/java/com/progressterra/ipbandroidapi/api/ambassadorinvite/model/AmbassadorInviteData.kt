@@ -5,7 +5,7 @@ data class AmbassadorInviteData(
     val textInvite: String
 ) {
 
-    constructor(data: AmbassadorInviteDataResponse.Data?) : this(
+    internal constructor(data: AmbassadorInviteDataResponse.Data?) : this(
         data?.promocode ?: "",
         data?.textInvite ?: ""
     )

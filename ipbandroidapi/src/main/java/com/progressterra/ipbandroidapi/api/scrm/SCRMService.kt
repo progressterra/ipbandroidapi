@@ -9,7 +9,7 @@ import com.progressterra.ipbandroidapi.api.scrm.model.DeviceParameters
 import com.progressterra.ipbandroidapi.api.scrm.model.DeviceTokenResponse
 import retrofit2.http.*
 
-interface SCRMService {
+internal interface SCRMService {
 
     @POST("/api/v7/clients/login/start")
     suspend fun verificationChannelBegin(@Body request: VerificationStartRequest): VerificationStartResponse

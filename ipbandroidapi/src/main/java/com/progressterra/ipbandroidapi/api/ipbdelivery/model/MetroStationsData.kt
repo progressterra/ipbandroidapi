@@ -7,7 +7,7 @@ data class MetroStationsData(
     val rdStationName: String
 ) {
 
-    constructor(data: MetroStationsResponse.Data) : this(
+    internal constructor(data: MetroStationsResponse.Data) : this(
         data.rdLatitude ?: 0.0,
         data.rdLineName ?: "",
         data.rdLongtitude ?: 0.0,

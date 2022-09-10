@@ -3,10 +3,7 @@ package com.progressterra.ipbandroidapi.api.city.model
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-/**
- * API model
- */
-data class CityResponse(
+internal data class CityResponse(
     @SerializedName("data") val city: Data? = null
 ) : BaseResponse() {
 

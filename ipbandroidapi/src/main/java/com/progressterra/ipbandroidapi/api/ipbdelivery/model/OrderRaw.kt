@@ -2,25 +2,25 @@ package com.progressterra.ipbandroidapi.api.ipbdelivery.model
 
 import com.google.gson.annotations.SerializedName
 
-data class OrderRaw(
+internal data class OrderRaw(
     @SerializedName("rdAddress")
-    val rdAddress: String? = null,
+    val rdAddress: String?,
     @SerializedName("rdCustomerName")
-    val rdCustomerName: String? = null,
+    val rdCustomerName: String?,
     @SerializedName("rdCustomerPhone")
-    val rdCustomerPhone: String? = null,
+    val rdCustomerPhone: String?,
     @SerializedName("rdDateDelivery")
-    val rdDateDelivery: String? = null,
+    val rdDateDelivery: String?,
     @SerializedName("rdFrom")
-    val rdFrom: String? = null,
+    val rdFrom: String?,
     @SerializedName("rdOrderId")
-    val rdOrderId: String? = null,
+    val rdOrderId: String?,
     @SerializedName("rdTo")
-    val rdTo: String? = null,
+    val rdTo: String?,
     @SerializedName("rdWeight")
-    val rdWeight: Double? = null,
+    val rdWeight: Double?,
     @SerializedName("rfDeliveryMethod")
-    val rfDeliveryMethod: String? = null,
+    val rfDeliveryMethod: String?,
     @SerializedName("rfDeliveryService")
-    val rfDeliveryService: String? = null
+    val rfDeliveryService: String?
 )

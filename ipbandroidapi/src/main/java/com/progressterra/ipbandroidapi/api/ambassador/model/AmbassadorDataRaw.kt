@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.ambassador.model
 
 import com.google.gson.annotations.SerializedName
 
-data class AmbassadorDataRaw(
+internal data class AmbassadorDataRaw(
     @SerializedName("address")
     val address: String?,
     @SerializedName("bankAccountDetails")

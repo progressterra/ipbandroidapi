@@ -5,7 +5,7 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import kotlin.Exception
 
-interface HandleException {
+internal interface HandleException {
 
     fun handle(exception: Exception): Exception
 

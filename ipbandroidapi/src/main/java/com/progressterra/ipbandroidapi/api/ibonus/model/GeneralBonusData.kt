@@ -1,8 +1,5 @@
 package com.progressterra.ipbandroidapi.api.ibonus.model
 
-/**
- * Data model
- */
 data class GeneralBonusData(
     val currentQuantity: Double,
     val dateBurning: String,
@@ -10,7 +7,7 @@ data class GeneralBonusData(
     val typeBonusName: String
 ) {
 
-    constructor(data: GeneralBonusResponse.Data) : this(
+    internal constructor(data: GeneralBonusResponse.Data) : this(
         data.currentQuantity,
         data.dateBurning,
         data.forBurningQuantity,

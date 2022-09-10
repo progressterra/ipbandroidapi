@@ -5,7 +5,7 @@ data class InvitedData(
     val listSuccessfulInvite: List<String>
 ) {
 
-    constructor(data: InviteByPhoneResponse.Data?) : this(
+    internal constructor(data: InviteByPhoneResponse.Data?) : this(
         data?.listRejectedInvite ?: emptyList(),
         data?.listSuccessfulInvite ?: emptyList()
     )

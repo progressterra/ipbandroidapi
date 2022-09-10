@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.base.ResultResponse
 
-interface AddressCloudDataSource {
+internal interface AddressCloudDataSource {
 
     suspend fun setClientAddress(accessToken: String, modifyClientAddressRequest: AddressRaw): ResultResponse
 

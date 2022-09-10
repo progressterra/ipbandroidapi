@@ -12,7 +12,7 @@ import com.progressterra.ipbandroidapi.base.ResultResponse
 import okhttp3.ResponseBody
 import retrofit2.http.*
 
-interface AmbassadorService {
+internal interface AmbassadorService {
 
     @GET("/ambassador/bankdata/{AccessToken}")
     suspend fun getUserBankInfo(@Path("AccessToken") accessToken: String): BankInfoResponse
@@ -61,4 +61,3 @@ interface AmbassadorService {
         @Body newPhoneRequest: SetNewPhoneRequest
     ): AmbassadorDataResponse
 }
-

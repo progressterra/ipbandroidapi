@@ -1,8 +1,5 @@
 package com.progressterra.ipbandroidapi.api.ibonus.model
 
-/**
- * Data model
- */
 data class TransactionData(
     val dateEvent: String,
     val quantity: Double,
@@ -10,8 +7,7 @@ data class TransactionData(
     val typeOperation: Int
 ) {
 
-
-    constructor(data: TransactionListResponse.Data) : this(
+    internal constructor(data: TransactionListResponse.Data) : this(
         data.dateEvent,
         data.quantity,
         data.typeBonusName ?: "",

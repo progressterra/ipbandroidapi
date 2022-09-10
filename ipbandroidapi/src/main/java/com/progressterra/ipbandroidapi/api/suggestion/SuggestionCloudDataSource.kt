@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.api.suggestion.model.DadataSuggestionsReq
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 
-interface SuggestionCloudDataSource {
+internal interface SuggestionCloudDataSource {
 
     suspend fun getSuggestionsAddressFromDadata(dadataSuggestionsRequest: DadataSuggestionsRequest): DadataSuggestionResponse
 

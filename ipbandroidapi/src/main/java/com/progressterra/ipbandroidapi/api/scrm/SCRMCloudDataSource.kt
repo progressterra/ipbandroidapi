@@ -13,7 +13,7 @@ import com.progressterra.ipbandroidapi.api.scrm.model.ClientInfoRequest
 import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 
-interface SCRMCloudDataSource {
+internal interface SCRMCloudDataSource {
 
     suspend fun verificationChannelBegin(request: VerificationStartRequest): VerificationStartResponse
 

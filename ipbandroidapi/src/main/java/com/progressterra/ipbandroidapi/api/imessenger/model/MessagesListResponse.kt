@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.imessenger.model
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-data class MessagesListResponse(
+internal data class MessagesListResponse(
     @SerializedName("countPage")
     val countPage: Int,
     @SerializedName("dataList")

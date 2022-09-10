@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.api.city.model.CityResponse
 import com.progressterra.ipbandroidapi.base.BaseResponse
 import retrofit2.http.*
 
-interface CityService {
+internal interface CityService {
 
     @POST("/api/v1/clientcity/{AccessToken}")
     @Headers("Content-Type: application/json")

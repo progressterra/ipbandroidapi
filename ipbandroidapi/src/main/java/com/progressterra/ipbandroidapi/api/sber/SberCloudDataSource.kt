@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.api.sber.model.SendCardDataResponse
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 
-interface SberCloudDataSource {
+internal interface SberCloudDataSource {
 
     suspend fun registerOrder(idDHSaleHead: String): RegisterOrderResponse
 

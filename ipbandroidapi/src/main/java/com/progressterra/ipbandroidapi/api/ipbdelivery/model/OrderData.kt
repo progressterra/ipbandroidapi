@@ -13,7 +13,7 @@ data class OrderData(
     val rfDeliveryService: String
 ) {
 
-    constructor(data: OrderRaw?) : this(
+    internal constructor(data: OrderRaw?) : this(
         data?.rdAddress ?: "",
         data?.rdCustomerName ?: "",
         data?.rdCustomerPhone ?: "",

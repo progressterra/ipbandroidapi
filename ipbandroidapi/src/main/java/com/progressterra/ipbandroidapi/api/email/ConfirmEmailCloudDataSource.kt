@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-interface ConfirmEmailCloudDataSource {
+internal interface ConfirmEmailCloudDataSource {
 
     suspend fun confirmEmail(confirmEmailRequest: ConfirmEmailRequest): BaseResponse
 

@@ -17,7 +17,8 @@ data class MessageData(
     val idUnique: String,
     val timeDisappearing: Boolean
 ) {
-    constructor(data: MessagesListResponse.Data) : this(
+
+    internal constructor(data: MessagesListResponse.Data) : this(
         data.agileAttachmentContent ?: "",
         data.agileDataQuotedMessage ?: "",
         data.agileListReactionData ?: "",

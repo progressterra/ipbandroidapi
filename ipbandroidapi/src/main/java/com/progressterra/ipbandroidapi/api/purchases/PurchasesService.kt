@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.api.purchases.model.PurchasesListResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface PurchasesService {
+internal interface PurchasesService {
 
     @GET("/api/v1/clientpurchase/{AccessToken}")
     suspend fun getShopList(@Path("AccessToken") accessToken: String): PurchasesListResponse

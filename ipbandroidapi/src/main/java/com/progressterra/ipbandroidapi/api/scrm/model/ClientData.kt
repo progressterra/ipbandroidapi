@@ -1,14 +1,10 @@
 package com.progressterra.ipbandroidapi.api.scrm.model
 
-import com.progressterra.ipbandroidapi.user.SexType
 import com.progressterra.ipbandroidapi.ext.toSex
 import com.progressterra.ipbandroidapi.ext.orNow
 import com.progressterra.ipbandroidapi.ext.parseToDate
-import java.util.*
+import java.util.Date
 
-/**
- * Data model
- */
 data class ClientData(
     val idUnique: String = "",
     val idEnterprise: String = "",
@@ -21,7 +17,7 @@ data class ClientData(
     val comment: String = ""
 ) {
 
-    constructor(data: ClientRaw) : this(
+    internal constructor(data: ClientRaw) : this(
         data.idUnique,
         data.idEnterprise,
         data.name ?: "",

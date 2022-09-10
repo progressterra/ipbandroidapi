@@ -2,10 +2,7 @@ package com.progressterra.ipbandroidapi.api.email.model
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * API model
- */
-data class ConfirmEmailRequest(
+internal data class ConfirmEmailRequest(
     @SerializedName("accessToken")
     val accessToken: String,
     @SerializedName("email")

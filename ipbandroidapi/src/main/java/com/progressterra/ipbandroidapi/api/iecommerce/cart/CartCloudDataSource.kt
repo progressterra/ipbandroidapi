@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.iecommerce.cart
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.*
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-interface CartCloudDataSource {
+internal interface CartCloudDataSource {
 
     suspend fun implementBonus(
         accessToken: String,

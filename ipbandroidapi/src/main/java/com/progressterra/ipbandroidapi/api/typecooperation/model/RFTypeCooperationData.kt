@@ -1,6 +1,5 @@
 package com.progressterra.ipbandroidapi.api.typecooperation.model
 
-import com.progressterra.ipbandroidapi.api.ambassador.CooperationType
 import com.progressterra.ipbandroidapi.ext.toCooperationType
 
 data class RFTypeCooperationData(

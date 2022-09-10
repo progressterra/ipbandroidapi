@@ -5,7 +5,7 @@ import com.progressterra.ipbandroidapi.exception.HandleException
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-interface TestimonialsCloudDataSource {
+internal interface TestimonialsCloudDataSource {
 
     suspend fun addTestimonial(accessToken: String, testimonialRequest: TestimonialRequest): BaseResponse
 

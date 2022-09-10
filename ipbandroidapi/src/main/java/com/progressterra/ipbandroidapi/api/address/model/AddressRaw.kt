@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 /**
  * API model
  */
-data class AddressRaw(
+internal data class AddressRaw(
     @SerializedName("apartment")
     val apartment: String?,
     @SerializedName("building")

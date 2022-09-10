@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-interface NetworkService {
+internal interface NetworkService {
 
     fun <T> createService(apiClass: Class<T>, baseUrl: String): T
 

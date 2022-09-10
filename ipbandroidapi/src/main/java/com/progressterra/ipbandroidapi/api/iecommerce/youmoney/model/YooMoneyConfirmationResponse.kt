@@ -1,6 +1,5 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.youmoney.model
 
-
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 

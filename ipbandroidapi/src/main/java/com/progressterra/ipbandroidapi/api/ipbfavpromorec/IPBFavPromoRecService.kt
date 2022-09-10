@@ -9,7 +9,7 @@ import retrofit2.http.Path
 /**
  * http://84.201.188.117:5095/docsapi/v1/index.html
  */
-interface IPBFavPromoRecService {
+internal interface IPBFavPromoRecService {
 
     @GET("/promo/mobile/list/{IDKindOf}")
     suspend fun getIDKindOf(@Path("IDKindOf") iDKindOf: String): IDKindOfResponse
