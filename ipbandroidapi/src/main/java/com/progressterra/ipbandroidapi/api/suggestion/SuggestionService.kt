@@ -6,6 +6,9 @@ import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
+/**
+ * [Docs](https://suggestions.dadata.ru/)
+ */
 internal interface SuggestionService {
 
     //TODO move out token

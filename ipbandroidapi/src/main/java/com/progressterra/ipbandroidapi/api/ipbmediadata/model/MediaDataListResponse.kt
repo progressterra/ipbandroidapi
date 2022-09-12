@@ -5,5 +5,5 @@ import com.progressterra.ipbandroidapi.base.BaseResponse
 
 internal data class MediaDataListResponse(
     @SerializedName("dataList")
-    val mediaDataList: List<MediaRaw>? = null,
+    val mediaDataList: List<MediaRaw>?,
 ) : BaseResponse()

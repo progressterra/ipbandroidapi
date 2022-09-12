@@ -5,13 +5,13 @@ import com.progressterra.ipbandroidapi.base.BaseResponse
 
 internal data class AmbassadorInviteDataResponse(
     @SerializedName("data")
-    val inviteData: Data? = null
+    val inviteData: Data?
 ) : BaseResponse() {
 
     data class Data(
         @SerializedName("promocode")
-        val promocode: String? = null,
+        val promocode: String?,
         @SerializedName("textInvite")
-        val textInvite: String? = null
+        val textInvite: String?
     )
 }

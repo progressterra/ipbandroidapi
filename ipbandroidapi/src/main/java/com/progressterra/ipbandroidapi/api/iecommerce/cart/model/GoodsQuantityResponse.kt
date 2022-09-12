@@ -8,7 +8,7 @@ internal data class GoodsQuantityResponse(
 ) : BaseResponse() {
 
     data class Data(
-        @SerializedName("count") val count: Int? = null,
+        @SerializedName("count") val count: Int?,
         @SerializedName("idrgGoodsInventoty") val idrgGoodsInventory: String?=null
     )
 }

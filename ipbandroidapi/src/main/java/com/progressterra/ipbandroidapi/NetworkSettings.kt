@@ -22,6 +22,7 @@ object NetworkSettings {
      */
     const val NETWORK_WRITE_TIMEOUT: Long = 20 * 1000
 
+    //TODO maybe worth delete
     /**
      *  Дефолтный айди
      */

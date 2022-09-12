@@ -10,16 +10,16 @@ internal data class PurchasesListResponse(
 
     data class Data(
         @SerializedName("addedBonusesSum")
-        val addedBonusesSum: Int? = null,
+        val addedBonusesSum: Int?,
         @SerializedName("purchaseDate")
-        val purchaseDate: String? = null,
+        val purchaseDate: String?,
         @SerializedName("purchaseId")
-        val purchaseId: String? = null,
+        val purchaseId: String?,
         @SerializedName("purchaseSum")
-        val purchaseSum: Int? = null,
+        val purchaseSum: Int?,
         @SerializedName("shopName")
-        val shopName: String? = null,
+        val shopName: String?,
         @SerializedName("spentBonusesSum")
-        val spentBonusesSum: Double? = null
+        val spentBonusesSum: Double?
     )
 }

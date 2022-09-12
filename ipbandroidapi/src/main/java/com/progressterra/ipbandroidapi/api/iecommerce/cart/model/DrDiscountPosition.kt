@@ -4,23 +4,23 @@ import com.google.gson.annotations.SerializedName
 
 internal data class DrDiscountPosition(
     @SerializedName("idUnique")
-    val idUnique: String? = null,
+    val idUnique: String?,
     @SerializedName("iddhSaleHead")
-    val iddhSaleHead: String? = null,
+    val iddhSaleHead: String?,
     @SerializedName("iddrDiscountSaleHead")
-    val iddrDiscountSaleHead: String? = null,
+    val iddrDiscountSaleHead: String?,
     @SerializedName("iddrSaleRow")
-    val iddrSaleRow: String? = null,
+    val iddrSaleRow: String?,
     @SerializedName("idrfTypeDiscount")
-    val idrfTypeDiscount: String? = null,
+    val idrfTypeDiscount: String?,
     @SerializedName("percentValue")
-    val percentValue: Int? = null,
+    val percentValue: Int?,
     @SerializedName("reasonDiscounts")
-    val reasonDiscounts: String? = null,
+    val reasonDiscounts: String?,
     @SerializedName("sumDiscount")
-    val sumDiscount: Int? = null,
+    val sumDiscount: Int?,
     @SerializedName("sumValue")
-    val sumValue: Int? = null,
+    val sumValue: Int?,
     @SerializedName("typeDiscount")
-    val typeDiscount: Int? = null
+    val typeDiscount: Int?
 )

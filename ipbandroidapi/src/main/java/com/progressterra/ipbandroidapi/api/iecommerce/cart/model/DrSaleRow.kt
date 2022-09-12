@@ -4,61 +4,61 @@ import com.google.gson.annotations.SerializedName
 
 internal data class DrSaleRow(
     @SerializedName("barcodeCodeGoods")
-    val barcodeCodeGoods: String? = null,
+    val barcodeCodeGoods: String?,
     @SerializedName("basePrice")
-    val basePrice: Int? = null,
+    val basePrice: Int?,
     @SerializedName("beginPrice")
-    val beginPrice: Double? = null,
+    val beginPrice: Double?,
     @SerializedName("datePickingFirst")
-    val datePickingFirst: String? = null,
+    val datePickingFirst: String?,
     @SerializedName("datePickingSecond")
-    val datePickingSecond: String? = null,
+    val datePickingSecond: String?,
     @SerializedName("defectName")
-    val defectName: String? = null,
+    val defectName: String?,
     @SerializedName("dhSaleHead")
-    val dhSaleHead: DhSaleHead? = null,
+    val dhSaleHead: DhSaleHead?,
     @SerializedName("drAddedBonus")
-    val drAddedBonus: List<DrAddedBonus>? = null,
+    val drAddedBonus: List<DrAddedBonus>?,
     @SerializedName("drDiscountPosition")
-    val drDiscountPosition: List<DrDiscountPosition>? = null,
+    val drDiscountPosition: List<DrDiscountPosition>?,
     @SerializedName("drPaymentPositionSale")
-    val drPaymentPositionSale: List<DrPaymentPositionSale>? = null,
+    val drPaymentPositionSale: List<DrPaymentPositionSale>?,
     @SerializedName("drPaymentRowBonus")
-    val drPaymentRowBonus: List<DrPaymentRowBonus>? = null,
+    val drPaymentRowBonus: List<DrPaymentRowBonus>?,
     @SerializedName("endPrice")
-    val endPrice: Double? = null,
+    val endPrice: Double?,
     @SerializedName("idDiscountBasisForBeginPrice")
-    val idDiscountBasisForBeginPrice: String? = null,
+    val idDiscountBasisForBeginPrice: String?,
     @SerializedName("idFeature")
-    val idFeature: String? = null,
+    val idFeature: String?,
     @SerializedName("idSeller")
-    val idSeller: String? = null,
+    val idSeller: String?,
     @SerializedName("idUnique")
-    val idUnique: String? = null,
+    val idUnique: String?,
     @SerializedName("iddhSaleHead")
-    val iddhSaleHead: String? = null,
+    val iddhSaleHead: String?,
     @SerializedName("iddrRetrun")
-    val iddrRetrun: String? = null,
+    val iddrRetrun: String?,
     @SerializedName("iddrSaleForReturn")
-    val iddrSaleForReturn: String? = null,
+    val iddrSaleForReturn: String?,
     @SerializedName("idrfNomnclatura")
-    val idrfNomnclatura: String? = null,
+    val idrfNomnclatura: String?,
     @SerializedName("idrfReasonReturn")
-    val idrfReasonReturn: String? = null,
+    val idrfReasonReturn: String?,
     @SerializedName("idrgGoodsInventory")
-    val idrgGoodsInventory: String? = null,
+    val idrgGoodsInventory: String?,
     @SerializedName("imageJSONData")
-    val imageJSONData: String? = null,
+    val imageJSONData: String?,
     @SerializedName("indexInCheck")
-    val indexInCheck: Int? = null,
+    val indexInCheck: Int?,
     @SerializedName("kiz")
-    val kiz: String? = null,
+    val kiz: String?,
     @SerializedName("nameGoods")
-    val nameGoods: String? = null,
+    val nameGoods: String?,
     @SerializedName("priceCost")
-    val priceCost: Int? = null,
+    val priceCost: Int?,
     @SerializedName("reasonReturnText")
-    val reasonReturnText: String? = null,
+    val reasonReturnText: String?,
     @SerializedName("saleType")
-    val saleType: Int? = null
+    val saleType: Int?
 )

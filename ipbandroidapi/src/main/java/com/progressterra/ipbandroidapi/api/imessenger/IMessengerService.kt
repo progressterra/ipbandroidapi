@@ -7,7 +7,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 /**
- * http://84.201.188.117:5093/docsapi/v1/index.html
+ * [Docs](http://84.201.188.117:5093/docsapi/v1/index.html)
  */
 internal interface IMessengerService {
 

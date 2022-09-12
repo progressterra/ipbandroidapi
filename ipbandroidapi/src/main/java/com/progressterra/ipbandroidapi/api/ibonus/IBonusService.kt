@@ -6,6 +6,9 @@ import com.progressterra.ipbandroidapi.api.ibonus.model.TransactionListResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
+/**
+ * [Docs](http://84.201.188.117:7003/docsapi/v7/index.html)
+ */
 internal interface IBonusService {
 
     /**

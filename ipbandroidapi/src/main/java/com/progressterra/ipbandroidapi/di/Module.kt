@@ -3,6 +3,9 @@ package com.progressterra.ipbandroidapi.di
 import com.progressterra.ipbandroidapi.api.URL.ADDRESS_URL
 import com.progressterra.ipbandroidapi.api.URL.AMBASSADOR_INVITE_URL
 import com.progressterra.ipbandroidapi.api.URL.AMBASSADOR_URL
+import com.progressterra.ipbandroidapi.api.URL.CITIES_URL
+import com.progressterra.ipbandroidapi.api.URL.CITY_URL
+import com.progressterra.ipbandroidapi.api.URL.CONFIRM_EMAIL_URL
 import com.progressterra.ipbandroidapi.api.URL.IPB_DELIVERY_URL
 import com.progressterra.ipbandroidapi.api.URL.IPB_FAV_PROMO_REC_URL
 import com.progressterra.ipbandroidapi.api.URL.IPB_MEDIA_DATA_URL
@@ -10,9 +13,13 @@ import com.progressterra.ipbandroidapi.api.URL.IPB_PROMO_CODE_URL
 import com.progressterra.ipbandroidapi.api.URL.I_BONUS_URL
 import com.progressterra.ipbandroidapi.api.URL.I_ECOMMERCE_URL
 import com.progressterra.ipbandroidapi.api.URL.I_MESSENGER_URL
+import com.progressterra.ipbandroidapi.api.URL.MESSAGES_URL
 import com.progressterra.ipbandroidapi.api.URL.MONEY_OUT_URL
+import com.progressterra.ipbandroidapi.api.URL.PURCHASES_URL
+import com.progressterra.ipbandroidapi.api.URL.SBER_URL
 import com.progressterra.ipbandroidapi.api.URL.SCRM_URL
 import com.progressterra.ipbandroidapi.api.URL.SUGGESTION_URL
+import com.progressterra.ipbandroidapi.api.URL.TESTIMONIALS_URL
 import com.progressterra.ipbandroidapi.api.URL.TYPE_COOPERATION_URL
 import com.progressterra.ipbandroidapi.api.address.AddressCloudDataSource
 import com.progressterra.ipbandroidapi.api.address.AddressRepository
@@ -26,6 +33,18 @@ import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteClou
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteRepository
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteService
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.BaseAmbassadorInviteRepository
+import com.progressterra.ipbandroidapi.api.cities.BaseCitiesRepository
+import com.progressterra.ipbandroidapi.api.cities.CitiesCloudDataSource
+import com.progressterra.ipbandroidapi.api.cities.CitiesRepository
+import com.progressterra.ipbandroidapi.api.cities.CitiesService
+import com.progressterra.ipbandroidapi.api.city.BaseCityRepository
+import com.progressterra.ipbandroidapi.api.city.CityCloudDataSource
+import com.progressterra.ipbandroidapi.api.city.CityRepository
+import com.progressterra.ipbandroidapi.api.city.CityService
+import com.progressterra.ipbandroidapi.api.email.BaseConfirmEmailRepository
+import com.progressterra.ipbandroidapi.api.email.ConfirmEmailCloudDataSource
+import com.progressterra.ipbandroidapi.api.email.ConfirmEmailRepository
+import com.progressterra.ipbandroidapi.api.email.ConfirmEmailService
 import com.progressterra.ipbandroidapi.api.ibonus.BaseIBonusRepository
 import com.progressterra.ipbandroidapi.api.ibonus.IBonusCloudDataSource
 import com.progressterra.ipbandroidapi.api.ibonus.IBonusRepository
@@ -34,6 +53,14 @@ import com.progressterra.ipbandroidapi.api.iecommerce.cart.*
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.BaseCartCloudDataSource
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.BaseCartRepository
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.CartService
+import com.progressterra.ipbandroidapi.api.iecommerce.core.BaseIECommerceCoreCloudDataSource
+import com.progressterra.ipbandroidapi.api.iecommerce.core.BaseIECommerceCoreRepository
+import com.progressterra.ipbandroidapi.api.iecommerce.core.IECommerceCoreRepository
+import com.progressterra.ipbandroidapi.api.iecommerce.core.IECommerceCoreService
+import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.BaseYouMoneyRepository
+import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.YouMoneyCloudDataSource
+import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.YouMoneyRepository
+import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.YouMoneyService
 import com.progressterra.ipbandroidapi.api.imessenger.BaseIMessengerRepository
 import com.progressterra.ipbandroidapi.api.imessenger.IMessengerCloudDataSource
 import com.progressterra.ipbandroidapi.api.imessenger.IMessengerRepository
@@ -54,6 +81,10 @@ import com.progressterra.ipbandroidapi.api.ipbpromocode.BaseIPBPromoCodeReposito
 import com.progressterra.ipbandroidapi.api.ipbpromocode.IPBPromoCodeCloudDataSource
 import com.progressterra.ipbandroidapi.api.ipbpromocode.IPBPromoCodeRepository
 import com.progressterra.ipbandroidapi.api.ipbpromocode.IPBPromoCodeService
+import com.progressterra.ipbandroidapi.api.messages.BaseMessagesRepository
+import com.progressterra.ipbandroidapi.api.messages.MessagesCloudDataSource
+import com.progressterra.ipbandroidapi.api.messages.MessagesRepository
+import com.progressterra.ipbandroidapi.api.messages.MessagesService
 import com.progressterra.ipbandroidapi.api.moneyout.BaseMoneyOutRepository
 import com.progressterra.ipbandroidapi.api.moneyout.MoneyOutCloudDataSource
 import com.progressterra.ipbandroidapi.api.moneyout.MoneyOutRepository
@@ -74,6 +105,10 @@ import com.progressterra.ipbandroidapi.api.suggestion.BaseSuggestionRepository
 import com.progressterra.ipbandroidapi.api.suggestion.SuggestionCloudDataSource
 import com.progressterra.ipbandroidapi.api.suggestion.SuggestionRepository
 import com.progressterra.ipbandroidapi.api.suggestion.SuggestionService
+import com.progressterra.ipbandroidapi.api.testimonials.BaseTestimonialsRepository
+import com.progressterra.ipbandroidapi.api.testimonials.TestimonialsCloudDataSource
+import com.progressterra.ipbandroidapi.api.testimonials.TestimonialsRepository
+import com.progressterra.ipbandroidapi.api.testimonials.TestimonialsService
 import com.progressterra.ipbandroidapi.api.typecooperation.BaseTypeCooperationRepository
 import com.progressterra.ipbandroidapi.api.typecooperation.TypeCooperationCloudDataSource
 import com.progressterra.ipbandroidapi.api.typecooperation.TypeCooperationRepository
@@ -132,12 +167,60 @@ val iPBAndroidAPIModule = module {
         )
     }
 
+    single<CityRepository> {
+        BaseCityRepository(
+            CityCloudDataSource.Base(
+                NetworkService.Base().createService(
+                    CityService::class.java,
+                    CITY_URL
+                ),
+                HandleException.Base()
+            )
+        )
+    }
+
+    single<ConfirmEmailRepository> {
+        BaseConfirmEmailRepository(
+            ConfirmEmailCloudDataSource.Base(
+                NetworkService.Base().createService(
+                    ConfirmEmailService::class.java,
+                    CONFIRM_EMAIL_URL
+                ),
+                HandleException.Base()
+            )
+        )
+    }
+
+    single<TestimonialsRepository> {
+        BaseTestimonialsRepository(
+            TestimonialsCloudDataSource.Base(
+                NetworkService.Base().createService(
+                    TestimonialsService::class.java,
+                    TESTIMONIALS_URL
+                ),
+                HandleException.Base()
+            )
+        )
+    }
+
+    single<CitiesRepository> {
+        BaseCitiesRepository(
+            CitiesCloudDataSource.Base(
+                NetworkService.Base().createService(
+                    CitiesService::class.java,
+                    CITIES_URL
+                ),
+                HandleException.Base()
+            )
+        )
+    }
+
     single<PurchasesRepository> {
         BasePurchasesRepository(
             PurchasesCloudDataSource.Base(
                 NetworkService.Base().createService(
                     PurchasesService::class.java,
-                    TODO()
+                    PURCHASES_URL
                 ),
                 HandleException.Base()
             )
@@ -149,7 +232,19 @@ val iPBAndroidAPIModule = module {
             SberCloudDataSource.Base(
                 NetworkService.Base().createService(
                     SberService::class.java,
-                    TODO()
+                    SBER_URL
+                ),
+                HandleException.Base()
+            )
+        )
+    }
+
+    single<MessagesRepository> {
+        BaseMessagesRepository(
+            MessagesCloudDataSource.Base(
+                NetworkService.Base().createService(
+                    MessagesService::class.java,
+                    MESSAGES_URL
                 ),
                 HandleException.Base()
             )
@@ -185,6 +280,30 @@ val iPBAndroidAPIModule = module {
             BaseCartCloudDataSource(
                 NetworkService.Base().createService(
                     CartService::class.java,
+                    I_ECOMMERCE_URL
+                ),
+                HandleException.Base()
+            )
+        )
+    }
+
+    single<YouMoneyRepository> {
+        BaseYouMoneyRepository(
+            YouMoneyCloudDataSource.Base(
+                NetworkService.Base().createService(
+                    YouMoneyService::class.java,
+                    I_ECOMMERCE_URL
+                ),
+                HandleException.Base()
+            )
+        )
+    }
+
+    single<IECommerceCoreRepository> {
+        BaseIECommerceCoreRepository(
+            BaseIECommerceCoreCloudDataSource(
+                NetworkService.Base().createService(
+                    IECommerceCoreService::class.java,
                     I_ECOMMERCE_URL
                 ),
                 HandleException.Base()

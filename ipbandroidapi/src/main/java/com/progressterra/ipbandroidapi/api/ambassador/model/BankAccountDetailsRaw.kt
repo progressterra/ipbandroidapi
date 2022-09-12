@@ -4,19 +4,19 @@ import com.google.gson.annotations.SerializedName
 
 internal data class BankAccountDetailsRaw(
     @SerializedName("bankName")
-    val bankName: String? = null,
+    val bankName: String?,
     @SerializedName("bik")
-    val bik: String? = null,
+    val bik: String?,
     @SerializedName("correspondentAccount")
-    val correspondentAccount: String? = null,
+    val correspondentAccount: String?,
     @SerializedName("kppBank")
-    val kppBank: String? = null,
+    val kppBank: String?,
     @SerializedName("numberAccount")
-    val numberAccount: String? = null,
+    val numberAccount: String?,
     @SerializedName("tinOfBank")
-    val tinOfBank: String? = null,
+    val tinOfBank: String?,
     @SerializedName("typeName")
-    val typeName: String? = null,
+    val typeName: String?,
     @SerializedName("tinOfClient")
-    val tinOfClient: String? = null
+    val tinOfClient: String?
 )

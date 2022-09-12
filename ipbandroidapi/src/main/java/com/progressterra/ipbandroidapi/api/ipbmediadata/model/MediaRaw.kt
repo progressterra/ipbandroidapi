@@ -4,25 +4,25 @@ import com.google.gson.annotations.SerializedName
 
 internal data class MediaRaw(
         @SerializedName("alias")
-        val alias: String? = null,
+        val alias: String?,
         @SerializedName("contentType")
-        val contentType: Int? = null,
+        val contentType: Int?,
         @SerializedName("dataJSON")
-        val dataJSON: String? = null,
+        val dataJSON: String?,
         @SerializedName("dateEvent")
-        val dateEvent: String? = null,
+        val dateEvent: String?,
         @SerializedName("idUnique")
-        val idUnique: String? = null,
+        val idUnique: String?,
         @SerializedName("order")
-        val order: Int? = null,
+        val order: Int?,
         @SerializedName("previewText")
-        val previewText: String? = null,
+        val previewText: String?,
         @SerializedName("size")
-        val size: Int? = null,
+        val size: Int?,
         @SerializedName("stringData")
-        val stringData: String? = null,
+        val stringData: String?,
         @SerializedName("tag")
-        val tag: Int? = null,
+        val tag: Int?,
         @SerializedName("urlData")
-        val urlData: String? = null
+        val urlData: String?
 )

@@ -9,6 +9,9 @@ import com.progressterra.ipbandroidapi.api.scrm.model.DeviceParameters
 import com.progressterra.ipbandroidapi.api.scrm.model.DeviceTokenResponse
 import retrofit2.http.*
 
+/**
+ * [Docs](http://84.201.188.117:7021/docsapi/v7/index.html)
+ */
 internal interface SCRMService {
 
     @POST("/api/v7/clients/login/start")

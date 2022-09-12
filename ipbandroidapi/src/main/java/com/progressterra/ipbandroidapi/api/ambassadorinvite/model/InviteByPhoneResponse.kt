@@ -5,13 +5,13 @@ import com.progressterra.ipbandroidapi.base.BaseResponse
 
 internal data class InviteByPhoneResponse(
     @SerializedName("data")
-    val dataInviteByPhone: Data? = null,
+    val dataInviteByPhone: Data?,
 ) : BaseResponse() {
 
     data class Data(
         @SerializedName("listRejectedInvite")
-        val listRejectedInvite: List<String>? = null,
+        val listRejectedInvite: List<String>?,
         @SerializedName("listSuccessfulInvite")
-        val listSuccessfulInvite: List<String>? = null
+        val listSuccessfulInvite: List<String>?
     )
 }

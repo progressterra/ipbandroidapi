@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 internal data class DrMetaDHSaleHead(
     @SerializedName("idUnique")
-    val idUnique: String? = null,
+    val idUnique: String?,
     @SerializedName("iddhSaleHead")
-    val iddhSaleHead: String? = null,
+    val iddhSaleHead: String?,
     @SerializedName("key")
-    val key: String? = null,
+    val key: String?,
     @SerializedName("value")
-    val value: String? = null
+    val value: String?
 )

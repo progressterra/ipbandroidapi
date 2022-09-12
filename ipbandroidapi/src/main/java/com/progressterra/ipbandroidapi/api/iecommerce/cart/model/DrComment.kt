@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 internal data class DrComment(
     @SerializedName("comment")
-    val comment: String? = null,
+    val comment: String?,
     @SerializedName("dateComment")
-    val dateComment: String? = null,
+    val dateComment: String?,
     @SerializedName("idUnique")
-    val idUnique: String? = null,
+    val idUnique: String?,
     @SerializedName("idUser")
-    val idUser: String? = null,
+    val idUser: String?,
     @SerializedName("iddhSaleHead")
-    val iddhSaleHead: String? = null,
+    val iddhSaleHead: String?,
     @SerializedName("messageForClient")
-    val messageForClient: String? = null,
+    val messageForClient: String?,
     @SerializedName("userString")
-    val userString: String? = null
+    val userString: String?
 )

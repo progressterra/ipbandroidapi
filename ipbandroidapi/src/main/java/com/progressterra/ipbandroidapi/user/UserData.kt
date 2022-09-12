@@ -6,6 +6,7 @@ import com.progressterra.ipbandroidapi.api.scrm.model.ClientAdditionalData
 import com.progressterra.ipbandroidapi.api.scrm.model.ClientData
 
 object UserData : KotprefModel() {
+
     var registerAccessToken by stringPref("")
     var accessToken by stringPref("")
     var androidId by stringPref("")

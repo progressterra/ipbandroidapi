@@ -1,6 +1,8 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.cart
 
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.*
+import com.progressterra.ipbandroidapi.api.ipbdelivery.model.DeliveryType
+import com.progressterra.ipbandroidapi.api.ipbdelivery.model.ServiceType
 
 interface CartRepository {
 
@@ -66,12 +68,12 @@ interface CartRepository {
 
     suspend fun addDeliveryToCart(
         accessToken: String,
-        idrgGoodsInventory: String,
+        deliveryService: DeliveryService,
         displayName: String,
         calculatedPrice: Double,
         comment: String,
-        methodType: Int,
-        serviceType: Int,
+        deliveryType: DeliveryType,
+        serviceType: ServiceType,
         pickUpPoint: String
     ): Result<BasketData>
 }

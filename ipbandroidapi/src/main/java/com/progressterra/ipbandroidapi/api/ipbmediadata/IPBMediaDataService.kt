@@ -8,7 +8,7 @@ import okhttp3.ResponseBody
 import retrofit2.http.*
 
 /**
- * http://84.201.188.117:5089/docsapi/v1/index.html
+ * [Docs](http://84.201.188.117:5089/docsapi/v1/index.html)
  */
 internal interface IPBMediaDataService {
 

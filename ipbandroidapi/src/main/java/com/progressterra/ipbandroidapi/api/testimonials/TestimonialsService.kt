@@ -6,6 +6,10 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Path
 
+
+/**
+ * [Docs](http://84.201.188.117:5021/docsapi/v3/index.html)
+ */
 internal interface TestimonialsService {
 
     @POST("/api/v3/testimonials/{AccessToken}")

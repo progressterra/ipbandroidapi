@@ -5,11 +5,11 @@ import com.progressterra.ipbandroidapi.base.BaseResponse
 
 internal data class RegisterOrderResponse(
     @SerializedName("errorCode")
-    val errorCode: String? = null,
+    val errorCode: String?,
     @SerializedName("errorMessage")
-    val errorMessage: String? = null,
+    val errorMessage: String?,
     @SerializedName("orderId")
-    val orderId: String? = null,
+    val orderId: String?,
     @SerializedName("formUrl")
-    val formUrl: String? = null
+    val formUrl: String?
 ) : BaseResponse()

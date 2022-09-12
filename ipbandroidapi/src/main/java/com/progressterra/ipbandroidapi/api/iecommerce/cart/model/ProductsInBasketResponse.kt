@@ -5,99 +5,99 @@ import com.progressterra.ipbandroidapi.base.BaseResponse
 
 internal data class ProductsInBasketResponse(
     @SerializedName("data")
-    val basketInfo: Data? = null,
+    val basketInfo: Data?,
 ) : BaseResponse() {
 
     data class Data(
         @SerializedName("adAvailablePaymentBonus")
-        val adAvailablePaymentBonus: Int? = null,
+        val adAvailablePaymentBonus: Int?,
         @SerializedName("adressString")
-        val adressString: String? = null,
+        val adressString: String?,
         @SerializedName("beginTimeService")
-        val beginTimeService: String? = null,
+        val beginTimeService: String?,
         @SerializedName("commentClient")
-        val commentClient: String? = null,
+        val commentClient: String?,
         @SerializedName("currentPositionInCashCahnge")
-        val currentPositionInCashCahnge: Int? = null,
+        val currentPositionInCashCahnge: Int?,
         @SerializedName("dateClose")
-        val dateClose: String? = null,
+        val dateClose: String?,
         @SerializedName("dateCollection")
-        val dateCollection: String? = null,
+        val dateCollection: String?,
         @SerializedName("dateConfirm")
-        val dateConfirm: String? = null,
+        val dateConfirm: String?,
         @SerializedName("dateCustomerReceived")
-        val dateCustomerReceived: String? = null,
+        val dateCustomerReceived: String?,
         @SerializedName("dateDoc")
-        val dateDoc: String? = null,
+        val dateDoc: String?,
         @SerializedName("dateStartProcessingDelivery")
-        val dateStartProcessingDelivery: String? = null,
+        val dateStartProcessingDelivery: String?,
         @SerializedName("dateSync")
-        val dateSync: String? = null,
+        val dateSync: String?,
         @SerializedName("dateSyncWithExternalERP")
-        val dateSyncWithExternalERP: String? = null,
+        val dateSyncWithExternalERP: String?,
         @SerializedName("dateToSend")
-        val dateToSend: String? = null,
+        val dateToSend: String?,
         @SerializedName("dateTranssferToSend")
-        val dateTranssferToSend: String? = null,
+        val dateTranssferToSend: String?,
         @SerializedName("drSaleRow")
-        val drSaleRow: List<DrSaleRow>? = null,
+        val drSaleRow: List<DrSaleRow>?,
         @SerializedName("endTimeService")
-        val endTimeService: String? = null,
+        val endTimeService: String?,
         @SerializedName("fDocumentNumber")
-        val fDocumentNumber: Int? = null,
+        val fDocumentNumber: Int?,
         @SerializedName("fiscalCheckFD")
-        val fiscalCheckFD: String? = null,
+        val fiscalCheckFD: String?,
         @SerializedName("fiscalCheckFN")
-        val fiscalCheckFN: String? = null,
+        val fiscalCheckFN: String?,
         @SerializedName("fiscalCheckFP")
-        val fiscalCheckFP: String? = null,
+        val fiscalCheckFP: String?,
         @SerializedName("fiscalCheckNumber")
-        val fiscalCheckNumber: Int? = null,
+        val fiscalCheckNumber: Int?,
         @SerializedName("idBayer")
-        val idBayer: String? = null,
+        val idBayer: String?,
         @SerializedName("idEmployyeCourier")
-        val idEmployyeCourier: String? = null,
+        val idEmployyeCourier: String?,
         @SerializedName("idEmployyeOrderPicker")
-        val idEmployyeOrderPicker: String? = null,
+        val idEmployyeOrderPicker: String?,
         @SerializedName("idEnterprise")
-        val idEnterprise: String? = null,
+        val idEnterprise: String?,
         @SerializedName("idExtDataAddress")
-        val idExtDataAddress: String? = null,
+        val idExtDataAddress: String?,
         @SerializedName("idExternalERP")
-        val idExternalERP: String? = null,
+        val idExternalERP: String?,
         @SerializedName("idPreSale")
-        val idPreSale: String? = null,
+        val idPreSale: String?,
         @SerializedName("idUnique")
-        val idUnique: String? = null,
+        val idUnique: String?,
         @SerializedName("idrfCashier")
-        val idrfCashier: String? = null,
+        val idrfCashier: String?,
         @SerializedName("idrfShop")
-        val idrfShop: String? = null,
+        val idrfShop: String?,
         @SerializedName("idrgCashChange")
-        val idrgCashChange: String? = null,
+        val idrgCashChange: String?,
         @SerializedName("indexCount")
-        val indexCount: Int? = null,
+        val indexCount: Int?,
         @SerializedName("levelOfSatisfaction")
-        val levelOfSatisfaction: Int? = null,
+        val levelOfSatisfaction: Int?,
         @SerializedName("mode")
-        val mode: Int? = null,
+        val mode: Int?,
         @SerializedName("number")
-        val number: String? = null,
+        val number: String?,
         @SerializedName("posted")
-        val posted: String? = null,
+        val posted: String?,
         @SerializedName("postedAddBonuses")
-        val postedAddBonuses: String? = null,
+        val postedAddBonuses: String?,
         @SerializedName("postedWritingBonuses")
-        val postedWritingBonuses: String? = null,
+        val postedWritingBonuses: String?,
         @SerializedName("reasonLevelOfSatisfaction")
-        val reasonLevelOfSatisfaction: String? = null,
+        val reasonLevelOfSatisfaction: String?,
         @SerializedName("statusObject")
-        val statusObject: Int? = null,
+        val statusObject: Int?,
         @SerializedName("statusOrder")
-        val statusOrder: StatusOrder? = null,
+        val statusOrder: StatusOrder?,
         @SerializedName("systemLevelOfSatisfaction")
-        val systemLevelOfSatisfaction: Int? = null,
+        val systemLevelOfSatisfaction: Int?,
         @SerializedName("typeSaleReturn")
-        val typeSaleReturn: Int? = null
+        val typeSaleReturn: Int?
     )
 }

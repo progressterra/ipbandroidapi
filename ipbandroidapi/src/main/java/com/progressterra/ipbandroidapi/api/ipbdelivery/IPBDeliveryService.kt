@@ -4,6 +4,9 @@ import com.progressterra.ipbandroidapi.api.ipbdelivery.model.*
 import com.progressterra.ipbandroidapi.api.ipbdelivery.model.SetDeliveryTypeRequest
 import retrofit2.http.*
 
+/**
+ * [Docs](http://84.201.188.117:1955/docsapi/v1/index.html)
+ */
 internal interface IPBDeliveryService {
 
     @GET("Delivery/GetDeliveryList/{AccessToken}")

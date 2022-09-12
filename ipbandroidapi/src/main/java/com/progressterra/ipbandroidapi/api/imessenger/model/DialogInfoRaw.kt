@@ -10,9 +10,9 @@ internal data class DialogInfoRaw(
     @SerializedName("dateCreate")
     val dateCreate: String,
     @SerializedName("description")
-    val description: String? = null,
+    val description: String?,
     @SerializedName("additionalDataJSON")
-    val additionalDataJSON: String? = null,
+    val additionalDataJSON: String?,
     @SerializedName("additionalData")
-    val additionalData: String? = null
+    val additionalData: String?
 )

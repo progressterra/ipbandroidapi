@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 internal data class ConfirmationRaw(
     @SerializedName("confirmation_url")
-    val confirmationUrl: String? = null,
+    val confirmationUrl: String?,
     @SerializedName("type")
-    val type: String? = null
+    val type: String?
 )

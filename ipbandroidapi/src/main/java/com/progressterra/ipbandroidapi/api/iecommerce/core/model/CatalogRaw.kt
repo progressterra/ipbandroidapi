@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.iecommerce.core.model
 
 import com.google.gson.annotations.SerializedName
 
-data class CatalogInfo(
+internal data class CatalogRaw(
     @SerializedName("name")
     val name: String?
 )

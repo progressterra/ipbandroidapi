@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 internal data class ResultResponse(
 
     @SerializedName("messageDev")
-    val messageDev: String? = null,
+    val messageDev: String?,
     @SerializedName("codeResult")
-    val codeResult: Int? = null,
+    val codeResult: Int?,
     @SerializedName("idLog")
-    val idLog: String? = null
+    val idLog: String?
 ) : BaseResponse()

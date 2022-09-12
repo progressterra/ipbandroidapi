@@ -7,9 +7,9 @@ import com.progressterra.ipbandroidapi.api.iecommerce.core.model.ProductSetRespo
 import retrofit2.http.*
 
 /**
- * http://84.201.188.117:6023/docsapi/v1/index.html
+ * [Docs](http://84.201.188.117:6023/docsapi/v1/index.html)
  */
-interface IECommerceCoreService {
+internal interface IECommerceCoreService {
 
     @GET("/iecommercecore/api/v1/productset/{Artikul}/{IDFeature}/size")
     suspend fun getProductSizeSet(

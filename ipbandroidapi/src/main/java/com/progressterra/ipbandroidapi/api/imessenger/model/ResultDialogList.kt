@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
 internal data class ResultDialogList(
-    @SerializedName("dataList") val dataList: List<DialogInfoRaw>? = null
+    @SerializedName("dataList") val dataList: List<DialogInfoRaw>?
 ) : BaseResponse()

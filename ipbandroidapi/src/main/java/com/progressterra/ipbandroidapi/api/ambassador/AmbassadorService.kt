@@ -12,6 +12,9 @@ import com.progressterra.ipbandroidapi.base.ResultResponse
 import okhttp3.ResponseBody
 import retrofit2.http.*
 
+/**
+ * [Docs](http://84.201.188.117:5087/docsapi/v1/index.html)
+ */
 internal interface AmbassadorService {
 
     @GET("/ambassador/bankdata/{AccessToken}")

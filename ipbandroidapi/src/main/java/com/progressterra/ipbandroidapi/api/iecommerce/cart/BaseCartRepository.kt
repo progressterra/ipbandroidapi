@@ -4,6 +4,8 @@ import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.*
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.ChangeProductCountInCartRequest
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.ImplementBonusRequest
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.SetDeliveryAddressRequest
+import com.progressterra.ipbandroidapi.api.ipbdelivery.model.DeliveryType
+import com.progressterra.ipbandroidapi.api.ipbdelivery.model.ServiceType
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
 
@@ -158,23 +160,24 @@ internal class BaseCartRepository(
 
     override suspend fun addDeliveryToCart(
         accessToken: String,
-        idrgGoodsInventory: String,
+        deliveryService: DeliveryService,
         displayName: String,
         calculatedPrice: Double,
         comment: String,
-        methodType: Int,
-        serviceType: Int,
+        deliveryType: DeliveryType,
+        serviceType: ServiceType,
         pickUpPoint: String
     ): Result<BasketData> = handle {
         val response = cloudDataSource.addDeliveryToCart(
             accessToken,
             CreateDeliveryOrderRequest(
-                idrgGoodsInventory,
+                deliveryService.id,
                 displayName,
                 calculatedPrice,
                 comment,
-                methodType,
-                serviceType
+                deliveryType.ordinal,
+                serviceType.ordinal,
+                pickUpPoint
             )
         )
         if (response.status != 0)

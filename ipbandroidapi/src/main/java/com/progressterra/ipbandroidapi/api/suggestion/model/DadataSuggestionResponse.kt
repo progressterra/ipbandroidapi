@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 internal data class DadataSuggestionResponse(
     @SerializedName("suggestions")
-    val suggestions: List<SuggestionRaw>? = null
+    val suggestions: List<SuggestionRaw>?
 )

@@ -10,20 +10,20 @@ internal data class SendCardDataResponse(
 
     data class Data(
         @SerializedName("acsUrl")
-        val acsUrl: String? = null,
+        val acsUrl: String?,
         @SerializedName("error")
-        val error: String? = null,
+        val error: String?,
         @SerializedName("errorCode")
-        val errorCode: String? = null,
+        val errorCode: String?,
         @SerializedName("errorMessage")
-        val errorMessage: String? = null,
+        val errorMessage: String?,
         @SerializedName("info")
-        val info: String? = null,
+        val info: String?,
         @SerializedName("paReq")
-        val paReq: String? = null,
+        val paReq: String?,
         @SerializedName("redirect")
-        val redirect: String? = null,
+        val redirect: String?,
         @SerializedName("termUrl")
-        val termUrl: String? = null
+        val termUrl: String?
     )
 }

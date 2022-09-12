@@ -4,19 +4,19 @@ import com.google.gson.annotations.SerializedName
 
 internal data class DrPaymentRowBonus(
     @SerializedName("idBonusLife")
-    val idBonusLife: String? = null,
+    val idBonusLife: String?,
     @SerializedName("idBonusLog")
-    val idBonusLog: String? = null,
+    val idBonusLog: String?,
     @SerializedName("idBonusType")
-    val idBonusType: Int? = null,
+    val idBonusType: Int?,
     @SerializedName("idUnique")
-    val idUnique: String? = null,
+    val idUnique: String?,
     @SerializedName("iddhSaleHead")
-    val iddhSaleHead: String? = null,
+    val iddhSaleHead: String?,
     @SerializedName("iddrSaleRow")
-    val iddrSaleRow: String? = null,
+    val iddrSaleRow: String?,
     @SerializedName("nameBonusType")
-    val nameBonusType: String? = null,
+    val nameBonusType: String?,
     @SerializedName("sumBonus")
-    val sumBonus: Int? = null
+    val sumBonus: Int?
 )

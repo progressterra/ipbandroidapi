@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 internal data class DrPaymentPositionSale(
     @SerializedName("idUnique")
-    val idUnique: String? = null,
+    val idUnique: String?,
     @SerializedName("iddhSaleHead")
-    val iddhSaleHead: String? = null,
+    val iddhSaleHead: String?,
     @SerializedName("iddrPaymentSaleHead")
-    val iddrPaymentSaleHead: String? = null,
+    val iddrPaymentSaleHead: String?,
     @SerializedName("iddrSaleRow")
-    val iddrSaleRow: String? = null,
+    val iddrSaleRow: String?,
     @SerializedName("idrfTypePaymentMethod")
-    val idrfTypePaymentMethod: String? = null,
+    val idrfTypePaymentMethod: String?,
     @SerializedName("relationData")
-    val relationData: String? = null,
+    val relationData: String?,
     @SerializedName("sumPayment")
-    val sumPayment: Int? = null
+    val sumPayment: Int?
 )

@@ -1,6 +1,7 @@
 package com.progressterra.ipbandroidapi.api.purchases
 
 import com.progressterra.ipbandroidapi.api.purchases.model.PurchaseData
+import com.progressterra.ipbandroidapi.api.purchases.model.PurchaseDetailsData
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
 
@@ -19,4 +20,10 @@ internal class BasePurchasesRepository(
                 PurchaseData(it)
             }
         }
+
+    override suspend fun getPurchaseDetails(purchaseId: String): Result<PurchaseDetailsData> = handle {
+        cloudDataSource.getPurchaseDetails(purchaseId)
+    }.map {
+        PurchaseDetailsData(it.data)
+    }
 }

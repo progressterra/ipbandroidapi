@@ -16,6 +16,6 @@ internal class CreateDeliveryOrderRequest(
     @SerializedName("serviceType")
     val serviceType: Int,
     @SerializedName("pickUpPoint")
-    val pickUpPoint: String? = null
+    val pickUpPoint: String?
 )
 
