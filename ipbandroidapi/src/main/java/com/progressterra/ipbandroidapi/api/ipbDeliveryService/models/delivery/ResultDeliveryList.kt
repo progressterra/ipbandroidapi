@@ -1,20 +1,12 @@
 package com.progressterra.ipbandroidapi.api.ipbDeliveryService.models.delivery
 
-
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.remoteData.models.base.BaseResponse
 
 data class ResultDeliveryList(
-    @SerializedName("dataList")
-    val deliveryInfoList: List<DeliveryInfo>? = null,
+    @SerializedName("data")
+    val deliveryInfoList: List<DeliveryMethods>? = null,
 ) : BaseResponse() {
-
-    data class DeliveryInfo(
-        @SerializedName("deliveryMethodsList")
-        val deliveryMethodsList: List<DeliveryMethods>? = null,
-        @SerializedName("deliveryServiceName")
-        val deliveryServiceName: String? = null
-    )
 
     data class DeliveryMethods(
         @SerializedName("dhPickupPointInfo")

@@ -8,7 +8,7 @@ import retrofit2.http.*
 
 /**
  * http://84.201.188.117:5025/docsapi/v1/index.html
- * http://84.201.188.97:1955/docsapi/v1/index.html
+ * http://84.201.188.117:1955/docsapi/v1/index.html
  */
 internal interface IpbDeliveryServiceApi {
     interface IPBSberbank {
