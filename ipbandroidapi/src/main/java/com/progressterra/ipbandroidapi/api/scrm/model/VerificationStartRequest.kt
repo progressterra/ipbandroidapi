@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 internal data class VerificationStartRequest(
     @SerializedName("channelType") val channelType: Int,
-    @SerializedName("channelData") val channelData: String
+    @SerializedName("channelData") val channelData: String?
 )
