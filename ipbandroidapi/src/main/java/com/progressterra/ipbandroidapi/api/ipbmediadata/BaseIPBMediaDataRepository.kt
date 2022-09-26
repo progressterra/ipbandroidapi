@@ -21,7 +21,7 @@ internal class BaseIPBMediaDataRepository(
         if (response.status != 0)
             throw BadRequestException()
         response
-    }.map { MediaData(it.uploadImageData ?: MediaRaw()) }
+    }.map { MediaData(it.uploadImageData) }
 
     override suspend fun getMediaDataListByEntity(idEntity: String): Result<List<MediaData>> = handle {
         val response = cloudDataSource.getMediaDataListByEntity(idEntity)
@@ -35,7 +35,7 @@ internal class BaseIPBMediaDataRepository(
         if (response.status != 0)
             throw BadRequestException()
         response
-    }.map { MediaData(it.mediaData ?: MediaRaw()) }
+    }.map { MediaData(it.mediaData) }
 
     override suspend fun downloadFile(url: String): Result<InputStream> = handle {
         cloudDataSource.downloadFile(url)

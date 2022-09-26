@@ -14,17 +14,17 @@ data class MediaData(
     val urlData: String = ""
 ) {
 
-    internal constructor(data: MediaRaw) : this(
-        data.alias ?: "",
-        data.contentType ?: 0,
-        data.dataJSON ?: "",
-        data.dateEvent ?: "",
-        data.idUnique ?: "",
-        data.order ?: 0,
-        data.previewText ?: "",
-        data.size ?: 0,
-        data.stringData ?: "",
-        data.tag ?: 0,
-        data.urlData ?: ""
+    internal constructor(data: MediaRaw?) : this(
+        data?.alias ?: "",
+        data?.contentType ?: 0,
+        data?.dataJSON ?: "",
+        data?.dateEvent ?: "",
+        data?.idUnique ?: "",
+        data?.order ?: 0,
+        data?.previewText ?: "",
+        data?.size ?: 0,
+        data?.stringData ?: "",
+        data?.tag ?: 0,
+        data?.urlData ?: ""
     )
 }

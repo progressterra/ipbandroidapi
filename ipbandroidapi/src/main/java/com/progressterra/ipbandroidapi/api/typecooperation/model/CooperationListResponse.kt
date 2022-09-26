@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.typecooperation.model
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.base.BaseResponse
 
-data class CooperationListResponse(
+internal data class CooperationListResponse(
     @SerializedName("dataList")
     val dataList: List<Data>?
 ): BaseResponse() {

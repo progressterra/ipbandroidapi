@@ -15,7 +15,7 @@ data class RFTypeCooperationData(
     val type: CooperationType
 ) {
 
-    constructor(data: CooperationListResponse.Data?) : this(
+    internal constructor(data: CooperationListResponse.Data?) : this(
         data?.idTypeCooperationRecomendates ?: "",
         data?.idUnique ?: "",
         data?.isEnabled ?: false,
