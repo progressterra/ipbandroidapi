@@ -1,7 +1,6 @@
 package com.progressterra.ipbandroidapi.api.ipbmediadata
 
 import com.progressterra.ipbandroidapi.api.ipbmediadata.model.MediaData
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.MediaRaw
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
 import okhttp3.MultipartBody
@@ -23,12 +22,13 @@ internal class BaseIPBMediaDataRepository(
         response
     }.map { MediaData(it.uploadImageData) }
 
-    override suspend fun getMediaDataListByEntity(idEntity: String): Result<List<MediaData>> = handle {
-        val response = cloudDataSource.getMediaDataListByEntity(idEntity)
-        if (response.status != 0)
-            throw BadRequestException()
-        response
-    }.map { data -> data.mediaDataList?.map { MediaData(it) } ?: emptyList() }
+    override suspend fun getMediaDataListByEntity(idEntity: String): Result<List<MediaData>> =
+        handle {
+            val response = cloudDataSource.getMediaDataListByEntity(idEntity)
+            if (response.status != 0)
+                throw BadRequestException()
+            response
+        }.map { data -> data.mediaDataList?.map { MediaData(it) } ?: emptyList() }
 
     override suspend fun getMediaDataById(mediaDataId: String): Result<MediaData> = handle {
         val response = cloudDataSource.getMediaDataById(mediaDataId)

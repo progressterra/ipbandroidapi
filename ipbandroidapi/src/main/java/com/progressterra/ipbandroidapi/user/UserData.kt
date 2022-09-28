@@ -11,17 +11,14 @@ object UserData : KotprefModel() {
     var deviceId by stringPref("")
     var clientExist by booleanPref(false)
     var phone by stringPref("")
-//    var clientAlreadyCreated by booleanPref(false)
     var clientInfo by gsonPref(ClientData())
     var clientAdditionalInfo by gsonPref(ClientAdditionalData())
 
-    fun clearUser(): Boolean {
+    fun clearUser() {
         deviceId = ""
         clientExist = false
         phone = ""
-//        clientAlreadyCreated = false
         clientInfo = ClientData()
         clientAdditionalInfo = ClientAdditionalData()
-        return true
     }
 }

@@ -1,14 +1,12 @@
 package com.progressterra.ipbandroidapi.api.scrm
 
-import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.api.scrm.model.ClientGeneralData
 import com.progressterra.ipbandroidapi.api.scrm.model.VerificationType
 
 interface SCRMRepository {
 
     suspend fun startVerificationChannel(
-        type: VerificationType = VerificationType.PHONE,
-        value: String = ""
+        type: VerificationType = VerificationType.PHONE, value: String = ""
     ): Result<Unit>
 
     suspend fun finishVerificationChannel(
@@ -22,7 +20,9 @@ interface SCRMRepository {
 
     suspend fun getDeviceIdByToken(accessToken: String = ""): Result<String>
 
-    suspend fun getAccessToken(deviceId: String, latitude: Float = 0f, longitude: Float = 0f): Result<String>
+    suspend fun getAccessToken(
+        deviceId: String, latitude: Float = 0f, longitude: Float = 0f
+    ): Result<String>
 
     suspend fun setPersonalInfo(
         accessToken: String,
@@ -37,8 +37,6 @@ interface SCRMRepository {
     suspend fun setEmail(accessToken: String, email: String): Result<Unit>
 
     suspend fun setDeviceToken(
-        accessToken: String,
-        idDevice: String,
-        deviceToken: String
+        accessToken: String, idDevice: String, deviceToken: String
     ): Result<Unit>
 }
