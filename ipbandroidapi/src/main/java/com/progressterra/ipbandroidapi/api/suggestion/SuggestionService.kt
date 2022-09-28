@@ -11,7 +11,6 @@ import retrofit2.http.POST
  */
 internal interface SuggestionService {
 
-    //TODO move out token
     @Headers("Authorization: Token 444220bc01c3cb6a7bd102bdfb72175a2deee88e")
     @POST("suggestions/api/4_1/rs/suggest/address")
     suspend fun getSuggestionsAddressFromDadata(@Body dadataSuggestionsRequest: DadataSuggestionsRequest): DadataSuggestionResponse

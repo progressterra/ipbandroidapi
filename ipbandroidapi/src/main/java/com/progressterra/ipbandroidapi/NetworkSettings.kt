@@ -22,12 +22,6 @@ object NetworkSettings {
      */
     const val NETWORK_WRITE_TIMEOUT: Long = 20 * 1000
 
-    //TODO maybe worth delete
-    /**
-     *  Дефолтный айди
-     */
-    const val DEFAULT_ID = "00000000-0000-0000-0000-000000000000"
-
     /**
      * Ключ доступа
      */
