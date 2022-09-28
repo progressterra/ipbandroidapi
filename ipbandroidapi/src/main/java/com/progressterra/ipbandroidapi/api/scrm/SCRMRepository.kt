@@ -21,16 +21,18 @@ interface SCRMRepository {
 
     suspend fun getDeviceIdByToken(accessToken: String = ""): Result<String>
 
-    suspend fun getAccessToken(latitude: Float = 0f, longitude: Float = 0f): Result<String>
+    suspend fun getAccessToken(deviceId: String, latitude: Float = 0f, longitude: Float = 0f): Result<String>
 
     suspend fun setPersonalInfo(
         accessToken: String = "",
         data: ClientGeneralData
     ): Result<ClientGeneralData>
 
-    suspend fun setEmail(accessToken: String = "", email: String = ""): Result<Unit>
+    suspend fun setEmail(accessToken: String, email: String): Result<Unit>
 
     suspend fun setDeviceToken(
-        accessToken: String = ""
+        accessToken: String,
+        idDevice: String,
+        deviceToken: String
     ): Result<Unit>
 }

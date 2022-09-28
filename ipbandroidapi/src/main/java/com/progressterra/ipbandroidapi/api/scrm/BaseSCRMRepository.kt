@@ -10,7 +10,6 @@ import com.progressterra.ipbandroidapi.api.scrm.model.VerificationStartRequest
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
 import com.progressterra.ipbandroidapi.ext.format
-import com.progressterra.ipbandroidapi.user.UserData
 
 internal class BaseSCRMRepository(
     private val sCRMCloudDataSource: SCRMCloudDataSource
@@ -47,7 +46,6 @@ internal class BaseSCRMRepository(
             )
             if (response.result.status != 0)
                 throw BadRequestException()
-            UserData.deviceId = response.data.idDevice
             response
         }.map { response -> response.data.idDevice }
 
@@ -71,11 +69,11 @@ internal class BaseSCRMRepository(
         response
     }.map { it.deviceId }
 
-    override suspend fun getAccessToken(latitude: Float, longitude: Float): Result<String> =
+    override suspend fun getAccessToken(deviceId: String, latitude: Float, longitude: Float): Result<String> =
         handle {
             val response = sCRMCloudDataSource.accessToken(
                 AccessTokenRequest(
-                    UserData.deviceId,
+                    deviceId,
                     latitude,
                     longitude
                 )
@@ -117,11 +115,13 @@ internal class BaseSCRMRepository(
         }
 
     override suspend fun setDeviceToken(
-        accessToken: String
+        accessToken: String,
+        idDevice: String,
+        deviceToken: String
     ): Result<Unit> = handle {
         val response = sCRMCloudDataSource.setDeviceToken(
             accessToken, DeviceParameters(
-                UserData.deviceId, UserData.androidId
+                idDevice, deviceToken
             )
         )
         if (response.result.status != 0)
