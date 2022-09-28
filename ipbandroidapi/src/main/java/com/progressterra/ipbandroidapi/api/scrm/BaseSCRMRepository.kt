@@ -85,16 +85,16 @@ internal class BaseSCRMRepository(
 
     override suspend fun setPersonalInfo(
         accessToken: String,
-        data: ClientGeneralData
+        sex: Int,
+        soname: String,
+        name: String,
+        patronymic: String,
+        dateOfBirth: String,
+        comment: String
     ): Result<ClientGeneralData> = handle {
         val response = sCRMCloudDataSource.setPersonalInfo(
             accessToken, ClientInfoRequest(
-                data.client.sex.ordinal,
-                data.client.soname,
-                data.client.name,
-                data.client.patronymic,
-                data.client.dateOfBirth.format(),
-                data.client.comment
+                sex, soname, name, patronymic, dateOfBirth, comment
             )
         )
         if (response.result.status != 0)

@@ -1,5 +1,6 @@
 package com.progressterra.ipbandroidapi.api.scrm
 
+import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.api.scrm.model.ClientGeneralData
 import com.progressterra.ipbandroidapi.api.scrm.model.VerificationType
 
@@ -24,8 +25,13 @@ interface SCRMRepository {
     suspend fun getAccessToken(deviceId: String, latitude: Float = 0f, longitude: Float = 0f): Result<String>
 
     suspend fun setPersonalInfo(
-        accessToken: String = "",
-        data: ClientGeneralData
+        accessToken: String,
+        sex: Int = 0,
+        soname: String = "",
+        name: String = "",
+        patronymic: String = "",
+        dateOfBirth: String = "",
+        comment: String = ""
     ): Result<ClientGeneralData>
 
     suspend fun setEmail(accessToken: String, email: String): Result<Unit>
