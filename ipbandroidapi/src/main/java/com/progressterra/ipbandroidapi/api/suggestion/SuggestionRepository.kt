@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.suggestion
 
 import com.progressterra.ipbandroidapi.api.suggestion.model.SuggestionData
 
-internal interface SuggestionRepository {
+interface SuggestionRepository {
 
     suspend fun getSuggestionsAddressFromLocation(
         latitude: Float, longitude: Float
