@@ -59,7 +59,7 @@ internal interface CartCloudDataSource {
     ): GoodsQuantityResponse
 
     suspend fun addDeliveryToCart(
-        acessToken: String,
+        accessToken: String,
         createDeliveryOrderRequest: CreateDeliveryOrderRequest
     ): ProductsInBasketResponse
 }

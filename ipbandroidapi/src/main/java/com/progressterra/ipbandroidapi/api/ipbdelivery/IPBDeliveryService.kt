@@ -21,7 +21,7 @@ internal interface IPBDeliveryService {
     @GET("/api/Metro/GetMetroStations/{AccessToken}")
     suspend fun getMetroStations(@Path("AccessToken") accessToken: String): MetroStationsResponse
 
-    @GET("/Delivery/GetOrderStatusInfo/{RDOrderId}/{RFServiceType}")
+    @GET("Delivery/GetOrderStatusInfo/{RDOrderId}/{RFServiceType}")
     suspend fun getOrderStatus(
         @Path("RDOrderId") rdOrderId: String,
         @Path("RFServiceType") rfServiceType: String

@@ -92,9 +92,9 @@ internal class BaseCartCloudDataSource(
     }
 
     override suspend fun addDeliveryToCart(
-        acessToken: String,
+        accessToken: String,
         createDeliveryOrderRequest: CreateDeliveryOrderRequest
     ): ProductsInBasketResponse = handle {
-        service.addDeliveryToCart(acessToken, createDeliveryOrderRequest)
+        service.addDeliveryToCart(accessToken, createDeliveryOrderRequest)
     }
 }

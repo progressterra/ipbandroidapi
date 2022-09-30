@@ -9,17 +9,22 @@ internal class BaseSuggestionRepository(
     private val cloudDataSource: SuggestionCloudDataSource
 ) : AbstractRepository(), SuggestionRepository {
 
-    override suspend fun getSuggestionsAddressFromDadata(keyword: String): Result<List<SuggestionData>> =
-        handle {
-            cloudDataSource.getSuggestionsAddressFromDadata(DadataSuggestionsRequest(keyword))
-        }.map { response -> response.suggestions?.map { SuggestionData(it) } ?: emptyList() }
+    override suspend fun getSuggestionsAddressFromDadata(
+        keyword: String, count: Int
+    ): Result<List<SuggestionData>> = handle {
+        cloudDataSource.getSuggestionsAddressFromDadata(
+            DadataSuggestionsRequest(
+                keyword, count
+            )
+        )
+    }.map { response -> response.suggestions?.map { SuggestionData(it) } ?: emptyList() }
 
     override suspend fun getSuggestionsAddressFromLocation(
-        latitude: Float, longitude: Float
+        latitude: Float, longitude: Float, count: Int
     ): Result<List<SuggestionData>> = handle {
         cloudDataSource.getSuggestionsAddressFromLocation(
             DadataSuggestionsFromLocationRequest(
-                latitude, longitude
+                latitude, longitude, count
             )
         )
     }.map { response -> response.suggestions?.map { SuggestionData(it) } ?: emptyList() }
