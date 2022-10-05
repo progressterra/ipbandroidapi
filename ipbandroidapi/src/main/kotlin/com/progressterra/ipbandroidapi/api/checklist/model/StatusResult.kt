@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.checklist.model
 
 /**
  *
- * Values: _0,_1,_2,_3
+ * Values: 0,1,2,3
  */
 @Suppress("unused")
 enum class StatusResult(val value: Int) {
