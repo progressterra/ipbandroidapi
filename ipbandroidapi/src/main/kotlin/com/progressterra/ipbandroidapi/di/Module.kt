@@ -124,6 +124,10 @@ import org.koin.dsl.module
 @Suppress("unused")
 val iPBAndroidAPIModule = module {
 
+    single<HandleException> {
+        HandleException.Base()
+    }
+
     single<AddressRepository> {
         BaseAddressRepository(
             AddressCloudDataSource.Base(
@@ -352,10 +356,6 @@ val iPBAndroidAPIModule = module {
                 ), get()
             )
         )
-    }
-
-    single<HandleException> {
-        HandleException.Base()
     }
 
     single<ChecklistRepository> {
