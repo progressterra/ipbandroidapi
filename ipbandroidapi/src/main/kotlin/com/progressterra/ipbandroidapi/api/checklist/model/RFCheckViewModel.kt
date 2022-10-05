@@ -16,7 +16,7 @@ import java.util.*
  * @param dateUpdated Дата обновления записи
  * @param dateSoftRemoved Если дата установлена, то сущность помечена на удаление. Физически данные не удаляются  Функции Delete лишь помечают сущность на удаление устанавливая дату вызова метода
  */
-internal data class RFCheckViewModel(
+data class RFCheckViewModel(
 
     val language: String?,
     val name: String?,

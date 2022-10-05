@@ -9,7 +9,7 @@ package com.progressterra.ipbandroidapi.api.checklist.model
  * @param skip
  * @param take
  */
-internal data class FilterAndSort(
+data class FilterAndSort(
 
     val listFields: List<FieldForFilter>?,
     val sort: SortData?,

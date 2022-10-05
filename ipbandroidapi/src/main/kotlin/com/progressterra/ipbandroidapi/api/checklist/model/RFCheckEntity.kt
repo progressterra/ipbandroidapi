@@ -8,7 +8,7 @@ package com.progressterra.ipbandroidapi.api.checklist.model
  * @param urlImage
  * @param urlVideo
  */
-internal data class RFCheckEntity(
+data class RFCheckEntity(
 
     val language: String?,
     val name: String?,

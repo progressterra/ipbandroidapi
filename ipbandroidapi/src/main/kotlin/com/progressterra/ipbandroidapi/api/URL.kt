@@ -23,4 +23,5 @@ internal object URL {
     const val PURCHASES_URL = "https://mp1.iprobonus.com/"
     const val SBER_URL = "https://84.201.188.117:5099/"
     const val MESSAGES_URL = "https://mp1.iprobonus.com/"
+    const val CHECKLIST_URL = "http://84.201.188.117:5105/"
 }

@@ -20,7 +20,7 @@ import java.util.*
  * @param idClient Кто ответил на вопрос. Избыточная информация, т.к. ее можно получить через DHCheckPerformed, но позволяет получить более легкую группировку и фильтрацию
  * @param idrfCheck Чек лист. Избыточная информация, т.к. ее можно получить через DHCheckPerformed, но позволяет получить более легкую группировку и фильтрацию
  */
-internal data class DRAnswerChekListItemViewModel(
+data class DRAnswerChekListItemViewModel(
 
     val yesNo: Boolean?,
     val comments: String?,

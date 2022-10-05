@@ -20,7 +20,7 @@ import java.util.*
  * @param dateUpdated Дата обновления записи
  * @param dateSoftRemoved Если дата установлена, то сущность помечена на удаление. Физически данные не удаляются  Функции Delete лишь помечают сущность на удаление устанавливая дату вызова метода
  */
-internal data class DHCheckPerformedViewModel(
+data class DHCheckPerformedViewModel(
 
     val idClient: UUID?,
     val idrfCheck: UUID?,

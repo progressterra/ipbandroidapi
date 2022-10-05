@@ -14,7 +14,7 @@ import java.util.*
  * @param geoPoint Геоточка в которой была проведена проверка
  * @param finalComments Комментарий пользователя при окончании проверки
  */
-internal data class DHCheckPerformedEntity(
+data class DHCheckPerformedEntity(
 
     val idClient: UUID?,
     val idrfCheck: UUID?,
@@ -25,5 +25,4 @@ internal data class DHCheckPerformedEntity(
     val targetGeoPoint: String?,
     val geoPoint: String?,
     val finalComments: String?
-) {
-}
+)

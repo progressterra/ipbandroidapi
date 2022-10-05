@@ -12,7 +12,7 @@ import java.util.*
  * @param iddhCheckPerformed Документ в рамках которого идет проверка
  * @param iddrCheckListItem Конкретный элемент списка
  */
-internal data class DRAnswerChekListItemEntity(
+data class DRAnswerChekListItemEntity(
 
     val yesNo: Boolean?,
     val comments: String?,

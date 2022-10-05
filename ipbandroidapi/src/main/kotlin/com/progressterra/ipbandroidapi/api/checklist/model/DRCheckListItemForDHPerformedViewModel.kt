@@ -23,7 +23,7 @@ import java.util.*
  * @param nameCategory
  * @param answerCheckList
  */
-internal data class DRCheckListItemForDHPerformedViewModel(
+data class DRCheckListItemForDHPerformedViewModel(
 
     val idRegistrar: UUID?,
     val iddrCheckListItemEntityTemplate: UUID?,

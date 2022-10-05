@@ -6,7 +6,7 @@ package com.progressterra.ipbandroidapi.api.checklist.model
  * @param data
  * @param totalNumberRecords
  */
-internal data class RFCheckResultData(
+data class RFCheckResultData(
 
     val result: ResultOperation?,
     val data: RFCheck?,

@@ -20,7 +20,7 @@ import java.util.*
  * @param countAvailableRFCheck Количество доступных для данного места чек листов
  * @param countDHCheckPerformedForExecution Количество документов к выполнению
  */
-internal data class ComPlaceWithData(
+data class ComPlaceWithData(
     val idUnique: UUID?,
     val idEnterprise: UUID?,
     val name: String?,

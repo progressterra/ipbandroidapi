@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.di
 import com.progressterra.ipbandroidapi.api.URL.ADDRESS_URL
 import com.progressterra.ipbandroidapi.api.URL.AMBASSADOR_INVITE_URL
 import com.progressterra.ipbandroidapi.api.URL.AMBASSADOR_URL
+import com.progressterra.ipbandroidapi.api.URL.CHECKLIST_URL
 import com.progressterra.ipbandroidapi.api.URL.CITIES_URL
 import com.progressterra.ipbandroidapi.api.URL.CITY_URL
 import com.progressterra.ipbandroidapi.api.URL.CONFIRM_EMAIL_URL
@@ -33,6 +34,9 @@ import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteClou
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteRepository
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteService
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.BaseAmbassadorInviteRepository
+import com.progressterra.ipbandroidapi.api.checklist.ChecklistCloudDataSource
+import com.progressterra.ipbandroidapi.api.checklist.ChecklistRepository
+import com.progressterra.ipbandroidapi.api.checklist.ChecklistService
 import com.progressterra.ipbandroidapi.api.cities.BaseCitiesRepository
 import com.progressterra.ipbandroidapi.api.cities.CitiesCloudDataSource
 import com.progressterra.ipbandroidapi.api.cities.CitiesRepository
@@ -49,9 +53,9 @@ import com.progressterra.ipbandroidapi.api.ibonus.BaseIBonusRepository
 import com.progressterra.ipbandroidapi.api.ibonus.IBonusCloudDataSource
 import com.progressterra.ipbandroidapi.api.ibonus.IBonusRepository
 import com.progressterra.ipbandroidapi.api.ibonus.IBonusService
-import com.progressterra.ipbandroidapi.api.iecommerce.cart.*
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.BaseCartCloudDataSource
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.BaseCartRepository
+import com.progressterra.ipbandroidapi.api.iecommerce.cart.CartRepository
 import com.progressterra.ipbandroidapi.api.iecommerce.cart.CartService
 import com.progressterra.ipbandroidapi.api.iecommerce.core.BaseIECommerceCoreCloudDataSource
 import com.progressterra.ipbandroidapi.api.iecommerce.core.BaseIECommerceCoreRepository
@@ -117,16 +121,15 @@ import com.progressterra.ipbandroidapi.core.NetworkService
 import com.progressterra.ipbandroidapi.exception.HandleException
 import org.koin.dsl.module
 
+@Suppress("unused")
 val iPBAndroidAPIModule = module {
 
     single<AddressRepository> {
         BaseAddressRepository(
             AddressCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    AddressService::class.java,
-                    ADDRESS_URL
-                ),
-                HandleException.Base()
+                    AddressService::class.java, ADDRESS_URL
+                ), get()
             )
         )
     }
@@ -135,10 +138,8 @@ val iPBAndroidAPIModule = module {
         BaseAmbassadorRepository(
             AmbassadorCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    AmbassadorService::class.java,
-                    AMBASSADOR_URL
-                ),
-                HandleException.Base()
+                    AmbassadorService::class.java, AMBASSADOR_URL
+                ), get()
             )
         )
     }
@@ -147,10 +148,8 @@ val iPBAndroidAPIModule = module {
         BaseAmbassadorInviteRepository(
             AmbassadorInviteCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    AmbassadorInviteService::class.java,
-                    AMBASSADOR_INVITE_URL
-                ),
-                HandleException.Base()
+                    AmbassadorInviteService::class.java, AMBASSADOR_INVITE_URL
+                ), get()
             )
         )
     }
@@ -159,10 +158,8 @@ val iPBAndroidAPIModule = module {
         BaseMoneyOutRepository(
             MoneyOutCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    MoneyOutService::class.java,
-                    MONEY_OUT_URL
-                ),
-                HandleException.Base()
+                    MoneyOutService::class.java, MONEY_OUT_URL
+                ), get()
             )
         )
     }
@@ -171,10 +168,8 @@ val iPBAndroidAPIModule = module {
         BaseCityRepository(
             CityCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    CityService::class.java,
-                    CITY_URL
-                ),
-                HandleException.Base()
+                    CityService::class.java, CITY_URL
+                ), get()
             )
         )
     }
@@ -183,10 +178,8 @@ val iPBAndroidAPIModule = module {
         BaseConfirmEmailRepository(
             ConfirmEmailCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    ConfirmEmailService::class.java,
-                    CONFIRM_EMAIL_URL
-                ),
-                HandleException.Base()
+                    ConfirmEmailService::class.java, CONFIRM_EMAIL_URL
+                ), get()
             )
         )
     }
@@ -195,10 +188,8 @@ val iPBAndroidAPIModule = module {
         BaseTestimonialsRepository(
             TestimonialsCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    TestimonialsService::class.java,
-                    TESTIMONIALS_URL
-                ),
-                HandleException.Base()
+                    TestimonialsService::class.java, TESTIMONIALS_URL
+                ), get()
             )
         )
     }
@@ -207,10 +198,8 @@ val iPBAndroidAPIModule = module {
         BaseCitiesRepository(
             CitiesCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    CitiesService::class.java,
-                    CITIES_URL
-                ),
-                HandleException.Base()
+                    CitiesService::class.java, CITIES_URL
+                ), get()
             )
         )
     }
@@ -219,10 +208,8 @@ val iPBAndroidAPIModule = module {
         BasePurchasesRepository(
             PurchasesCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    PurchasesService::class.java,
-                    PURCHASES_URL
-                ),
-                HandleException.Base()
+                    PurchasesService::class.java, PURCHASES_URL
+                ), get()
             )
         )
     }
@@ -231,10 +218,8 @@ val iPBAndroidAPIModule = module {
         BaseSberRepository(
             SberCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    SberService::class.java,
-                    SBER_URL
-                ),
-                HandleException.Base()
+                    SberService::class.java, SBER_URL
+                ), get()
             )
         )
     }
@@ -243,10 +228,8 @@ val iPBAndroidAPIModule = module {
         BaseMessagesRepository(
             MessagesCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    MessagesService::class.java,
-                    MESSAGES_URL
-                ),
-                HandleException.Base()
+                    MessagesService::class.java, MESSAGES_URL
+                ), get()
             )
         )
     }
@@ -255,10 +238,8 @@ val iPBAndroidAPIModule = module {
         BaseTypeCooperationRepository(
             TypeCooperationCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    TypeCooperationService::class.java,
-                    TYPE_COOPERATION_URL
-                ),
-                HandleException.Base()
+                    TypeCooperationService::class.java, TYPE_COOPERATION_URL
+                ), get()
             )
         )
     }
@@ -267,10 +248,8 @@ val iPBAndroidAPIModule = module {
         BaseSCRMRepository(
             SCRMCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    SCRMService::class.java,
-                    SCRM_URL
-                ),
-                HandleException.Base()
+                    SCRMService::class.java, SCRM_URL
+                ), get()
             )
         )
     }
@@ -279,10 +258,8 @@ val iPBAndroidAPIModule = module {
         BaseCartRepository(
             BaseCartCloudDataSource(
                 NetworkService.Base().createService(
-                    CartService::class.java,
-                    I_ECOMMERCE_URL
-                ),
-                HandleException.Base()
+                    CartService::class.java, I_ECOMMERCE_URL
+                ), get()
             )
         )
     }
@@ -291,10 +268,8 @@ val iPBAndroidAPIModule = module {
         BaseYouMoneyRepository(
             YouMoneyCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    YouMoneyService::class.java,
-                    I_ECOMMERCE_URL
-                ),
-                HandleException.Base()
+                    YouMoneyService::class.java, I_ECOMMERCE_URL
+                ), get()
             )
         )
     }
@@ -303,10 +278,8 @@ val iPBAndroidAPIModule = module {
         BaseIECommerceCoreRepository(
             BaseIECommerceCoreCloudDataSource(
                 NetworkService.Base().createService(
-                    IECommerceCoreService::class.java,
-                    I_ECOMMERCE_URL
-                ),
-                HandleException.Base()
+                    IECommerceCoreService::class.java, I_ECOMMERCE_URL
+                ), get()
             )
         )
     }
@@ -315,10 +288,8 @@ val iPBAndroidAPIModule = module {
         BaseIBonusRepository(
             IBonusCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    IBonusService::class.java,
-                    I_BONUS_URL
-                ),
-                HandleException.Base()
+                    IBonusService::class.java, I_BONUS_URL
+                ), get()
             )
         )
     }
@@ -327,10 +298,8 @@ val iPBAndroidAPIModule = module {
         BaseIPBDeliveryRepository(
             IPBDeliveryCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    IPBDeliveryService::class.java,
-                    IPB_DELIVERY_URL
-                ),
-                HandleException.Base()
+                    IPBDeliveryService::class.java, IPB_DELIVERY_URL
+                ), get()
             )
         )
     }
@@ -339,10 +308,8 @@ val iPBAndroidAPIModule = module {
         BaseIPBPromoCodeRepository(
             IPBPromoCodeCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    IPBPromoCodeService::class.java,
-                    IPB_PROMO_CODE_URL
-                ),
-                HandleException.Base()
+                    IPBPromoCodeService::class.java, IPB_PROMO_CODE_URL
+                ), get()
             )
         )
     }
@@ -351,10 +318,8 @@ val iPBAndroidAPIModule = module {
         BaseIPBFavPromoRecRepository(
             IPBFavPromoRecCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    IPBFavPromoRecService::class.java,
-                    IPB_FAV_PROMO_REC_URL
-                ),
-                HandleException.Base()
+                    IPBFavPromoRecService::class.java, IPB_FAV_PROMO_REC_URL
+                ), get()
             )
         )
     }
@@ -363,10 +328,8 @@ val iPBAndroidAPIModule = module {
         BaseSuggestionRepository(
             SuggestionCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    SuggestionService::class.java,
-                    SUGGESTION_URL
-                ),
-                HandleException.Base()
+                    SuggestionService::class.java, SUGGESTION_URL
+                ), get()
             )
         )
     }
@@ -375,10 +338,8 @@ val iPBAndroidAPIModule = module {
         BaseIMessengerRepository(
             IMessengerCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    IMessengerService::class.java,
-                    I_MESSENGER_URL
-                ),
-                HandleException.Base()
+                    IMessengerService::class.java, I_MESSENGER_URL
+                ), get()
             )
         )
     }
@@ -387,10 +348,22 @@ val iPBAndroidAPIModule = module {
         BaseIPBMediaDataRepository(
             IPBMediaDataCloudDataSource.Base(
                 NetworkService.Base().createService(
-                    IPBMediaDataService::class.java,
-                    IPB_MEDIA_DATA_URL
-                ),
-                HandleException.Base()
+                    IPBMediaDataService::class.java, IPB_MEDIA_DATA_URL
+                ), get()
+            )
+        )
+    }
+
+    single<HandleException> {
+        HandleException.Base()
+    }
+
+    single<ChecklistRepository> {
+        ChecklistRepository.Base(
+            ChecklistCloudDataSource.Base(
+                NetworkService.Base().createService(
+                    ChecklistService::class.java, CHECKLIST_URL
+                ), get()
             )
         )
     }

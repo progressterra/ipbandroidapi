@@ -12,7 +12,7 @@ import java.util.*
  * @param idLog
  * @param xRequestId
  */
-internal data class ResultOperation(
+data class ResultOperation(
 
     val status: StatusResult?,
     val message: String?,

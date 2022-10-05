@@ -8,7 +8,7 @@ package com.progressterra.ipbandroidapi.api.checklist.model
  * @param specificMeaning Конкретное значение с возоможностью дробного ввода. Например остаток конкртеного товара
  * @param specificFreeMeaning Конкретное значение в виде строки. Например свой ответ на вопрос
  */
-internal data class DRAnswerChekListItemUpdated(
+data class DRAnswerChekListItemUpdated(
 
     val yesNo: Boolean?,
     val comments: String?,

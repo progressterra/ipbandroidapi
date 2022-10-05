@@ -6,7 +6,7 @@ package com.progressterra.ipbandroidapi.api.checklist.model
  * @param dataList
  * @param totalNumberRecords
  */
-internal data class DRCheckListItemForDHPerformedViewModelResultDataList(
+data class DRCheckListItemForDHPerformedViewModelResultDataList(
 
     val result: ResultOperation?,
     val dataList: List<DRCheckListItemForDHPerformedViewModel>?,
