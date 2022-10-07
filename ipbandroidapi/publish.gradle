@@ -14,7 +14,7 @@ afterEvaluate {
         }
         publications {
             releaseAndroidLibrary(MavenPublication) {
-                from components.release
+                from components.debug
 
                 groupId = ARTIFACT_PACKAGE
                 //ARTIFACT_NAME_TEST for publish test library flavor, ARTIFACT_NAME_RELEASE for release one
