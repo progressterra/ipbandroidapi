@@ -14,7 +14,7 @@ import java.util.*
  */
 data class ResultOperation(
 
-    val status: StatusResult?,
+    val status: Int?,
     val message: String?,
     val messageDev: String?,
     val codeResult: Int?,
