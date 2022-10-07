@@ -14,17 +14,13 @@ internal interface NetworkService {
 
     class Base : NetworkService {
 
+
         private val clientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
             .callTimeout(NetworkSettings.NETWORK_CALL_TIMEOUT, TimeUnit.MILLISECONDS)
             .connectTimeout(NetworkSettings.NETWORK_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
             .readTimeout(NetworkSettings.NETWORK_READ_TIMEOUT, TimeUnit.MILLISECONDS)
             .writeTimeout(NetworkSettings.NETWORK_WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                if (BuildConfig.DEBUG)
-                    setLevel(HttpLoggingInterceptor.Level.BODY)
-                else
-                    setLevel(HttpLoggingInterceptor.Level.NONE)
-            })
+            .addInterceptor(loggingInterceptor())
             .addInterceptor {
                 val request = it.request().newBuilder()
                     .addHeader("AccessKey", NetworkSettings.ACCESS_KEY)
@@ -39,6 +35,15 @@ internal interface NetworkService {
                 .client(clientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
             return retrofitBuilder.build().create(apiClass)
+        }
+
+        private fun loggingInterceptor() : HttpLoggingInterceptor {
+            val interceptor = HttpLoggingInterceptor()
+            if (BuildConfig.DEBUG)
+                interceptor.level = HttpLoggingInterceptor.Level.BODY
+            else
+                interceptor.level = HttpLoggingInterceptor.Level.NONE
+            return interceptor
         }
     }
 }
