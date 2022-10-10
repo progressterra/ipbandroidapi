@@ -55,6 +55,11 @@ interface ChecklistService {
         @Body request: RGComPlaceRFCheckEntity
     ): EmptyResultOperationResultData
 
+    @POST("/dhcheckperformed/list")
+    suspend fun allDocuments(
+        @Header("AccessToken") accessToken: String,
+        @Body request: FilterAndSort
+    ) : DHCheckPerformedFullDataViewModelResultDataList
 
     @POST("/dhcheckperformed")
     suspend fun createDoc(

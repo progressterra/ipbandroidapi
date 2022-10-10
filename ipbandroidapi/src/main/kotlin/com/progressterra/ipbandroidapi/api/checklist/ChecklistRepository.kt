@@ -1,9 +1,6 @@
 package com.progressterra.ipbandroidapi.api.checklist
 
 import com.progressterra.ipbandroidapi.api.checklist.model.*
-import com.progressterra.ipbandroidapi.api.checklist.model.DHCheckPerformedEntityCreate
-import com.progressterra.ipbandroidapi.api.checklist.model.DHCheckPerformedFullDataViewModel
-import com.progressterra.ipbandroidapi.api.checklist.model.RGComPlaceRFCheckEntity
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
 import com.progressterra.ipbandroidapi.ext.orIfNull
@@ -56,9 +53,25 @@ interface ChecklistRepository {
         accessToken: String, idDH: String
     ): Result<List<DRCheckListItemForDHPerformedViewModel>>
 
+    suspend fun allDocuments(
+        accessToken: String,
+        request: FilterAndSort
+    ): Result<List<DHCheckPerformedFullDataViewModel>>
+
     class Base(
         private val cloudDataSource: ChecklistCloudDataSource
     ) : AbstractRepository(), ChecklistRepository {
+
+        override suspend fun allDocuments(
+            accessToken: String,
+            request: FilterAndSort
+        ): Result<List<DHCheckPerformedFullDataViewModel>> = handle {
+            val response = cloudDataSource.allDocuments(accessToken, request)
+            if (response.result?.status != 0) throw BadRequestException()
+            response
+        }.map {
+            it.dataList.orIfNull { throw BadRequestException() }
+        }
 
         override suspend fun createOrUpdateAnswer(
             accessToken: String, request: DRAnswerChekListItemEntity
