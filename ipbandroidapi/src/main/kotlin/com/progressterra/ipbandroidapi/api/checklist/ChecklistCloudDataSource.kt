@@ -6,7 +6,7 @@ import com.progressterra.ipbandroidapi.exception.HandleException
 
 interface ChecklistCloudDataSource {
 
-    suspend fun createAnswer(
+    suspend fun createOrUpdateAnswer(
         accessToken: String,
         request: DRAnswerChekListItemEntity
     ): DRCheckListItemForDHPerformedViewModelResultData
@@ -21,13 +21,13 @@ interface ChecklistCloudDataSource {
         request: FilterAndSort
     ): RFCheckResultDataList
 
-    suspend fun checklistList(
+    suspend fun checklistsForPlace(
         accessToken: String,
         idRFComPlace: String,
         request: FilterAndSort
     ): RFCheckResultDataList
 
-    suspend fun availableChecklists(accessToken: String): ComPlaceWithDataResultDataList
+    suspend fun availableChecklistsAndDocs(accessToken: String): ComPlaceWithDataResultDataList
 
     suspend fun availableChecklistsForPlace(
         accessToken: String,
@@ -70,11 +70,11 @@ interface ChecklistCloudDataSource {
         private val service: ChecklistService,
         handleException: HandleException
     ) : AbstractCloudDataSource(handleException), ChecklistCloudDataSource {
-        override suspend fun createAnswer(
+        override suspend fun createOrUpdateAnswer(
             accessToken: String,
             request: DRAnswerChekListItemEntity
         ): DRCheckListItemForDHPerformedViewModelResultData = handle {
-            service.createAnswer(accessToken, request)
+            service.createOrUpdateAnswer(accessToken, request)
         }
 
         override suspend fun createChecklist(
@@ -91,17 +91,17 @@ interface ChecklistCloudDataSource {
             service.checklists(accessToken, request)
         }
 
-        override suspend fun checklistList(
+        override suspend fun checklistsForPlace(
             accessToken: String,
             idRFComPlace: String,
             request: FilterAndSort
         ): RFCheckResultDataList = handle {
-            service.checklistList(accessToken, idRFComPlace, request)
+            service.checklistsForPlace(accessToken, idRFComPlace, request)
         }
 
-        override suspend fun availableChecklists(accessToken: String): ComPlaceWithDataResultDataList =
+        override suspend fun availableChecklistsAndDocs(accessToken: String): ComPlaceWithDataResultDataList =
             handle {
-                service.availableChecklists(accessToken)
+                service.availableChecklistsAndDocs(accessToken)
             }
 
         override suspend fun availableChecklistsForPlace(

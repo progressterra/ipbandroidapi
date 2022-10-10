@@ -10,7 +10,7 @@ import com.progressterra.ipbandroidapi.ext.orIfNull
 
 interface ChecklistRepository {
 
-    suspend fun createAnswer(
+    suspend fun createOrUpdateAnswer(
         accessToken: String, request: DRAnswerChekListItemEntity
     ): Result<DRCheckListItemForDHPerformedViewModel>
 
@@ -22,11 +22,11 @@ interface ChecklistRepository {
         accessToken: String, request: FilterAndSort
     ): Result<List<RFCheck>>
 
-    suspend fun checklistList(
+    suspend fun checklistsForPlace(
         accessToken: String, idRFComPlace: String, request: FilterAndSort
     ): Result<List<RFCheck>>
 
-    suspend fun availableChecklists(accessToken: String): Result<List<ComPlaceWithData>>
+    suspend fun availableChecklistsAndDocs(accessToken: String): Result<List<ComPlaceWithData>>
 
     suspend fun availableChecklistsForPlace(
         accessToken: String, idComPlace: String
@@ -60,10 +60,10 @@ interface ChecklistRepository {
         private val cloudDataSource: ChecklistCloudDataSource
     ) : AbstractRepository(), ChecklistRepository {
 
-        override suspend fun createAnswer(
+        override suspend fun createOrUpdateAnswer(
             accessToken: String, request: DRAnswerChekListItemEntity
         ): Result<DRCheckListItemForDHPerformedViewModel> = handle {
-            val response = cloudDataSource.createAnswer(accessToken, request)
+            val response = cloudDataSource.createOrUpdateAnswer(accessToken, request)
             if (response.result?.status != 0) throw BadRequestException()
             response
         }.map {
@@ -90,19 +90,19 @@ interface ChecklistRepository {
             it.dataList.orIfNull { throw  BadRequestException() }
         }
 
-        override suspend fun checklistList(
+        override suspend fun checklistsForPlace(
             accessToken: String, idRFComPlace: String, request: FilterAndSort
         ): Result<List<RFCheck>> = handle {
-            val response = cloudDataSource.checklistList(accessToken, idRFComPlace, request)
+            val response = cloudDataSource.checklistsForPlace(accessToken, idRFComPlace, request)
             if (response.result?.status != 0) throw BadRequestException()
             response
         }.map {
             it.dataList.orIfNull { throw  BadRequestException() }
         }
 
-        override suspend fun availableChecklists(accessToken: String): Result<List<ComPlaceWithData>> =
+        override suspend fun availableChecklistsAndDocs(accessToken: String): Result<List<ComPlaceWithData>> =
             handle {
-                val response = cloudDataSource.availableChecklists(accessToken)
+                val response = cloudDataSource.availableChecklistsAndDocs(accessToken)
                 if (response.result?.status != 0) throw BadRequestException()
                 response
             }.map {

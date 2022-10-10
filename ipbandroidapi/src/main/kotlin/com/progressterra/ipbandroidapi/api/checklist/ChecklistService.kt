@@ -9,7 +9,7 @@ import retrofit2.http.*
 interface ChecklistService {
 
     @POST("/answerchecklistitem")
-    suspend fun createAnswer(
+    suspend fun createOrUpdateAnswer(
         @Header("AccessToken") accessToken: String,
         @Body request: DRAnswerChekListItemEntity
     ): DRCheckListItemForDHPerformedViewModelResultData
@@ -27,14 +27,14 @@ interface ChecklistService {
     ): RFCheckResultDataList
 
     @POST("/rfcheck/complace/{idRFComPlace}/list")
-    suspend fun checklistList(
+    suspend fun checklistsForPlace(
         @Header("AccessToken") accessToken: String,
         @Path("idRFComPlace") idRFComPlace: String,
         @Body request: FilterAndSort
     ): RFCheckResultDataList
 
     @GET("/place/list")
-    suspend fun availableChecklists(@Header("AccessToken") accessToken: String): ComPlaceWithDataResultDataList
+    suspend fun availableChecklistsAndDocs(@Header("AccessToken") accessToken: String): ComPlaceWithDataResultDataList
 
     @GET("/place/{idComPlace}/rfcheck/list")
     suspend fun availableChecklistsForPlace(
