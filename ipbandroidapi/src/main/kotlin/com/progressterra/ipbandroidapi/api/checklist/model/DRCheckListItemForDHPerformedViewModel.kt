@@ -1,7 +1,6 @@
 package com.progressterra.ipbandroidapi.api.checklist.model
 
 import java.time.LocalDateTime
-import java.util.*
 
 /**
  *
@@ -20,14 +19,14 @@ import java.util.*
  * @param dateAdded Дата добавления записи
  * @param dateUpdated Дата обновления записи
  * @param dateSoftRemoved Если дата установлена, то сущность помечена на удаление. Физически данные не удаляются  Функции Delete лишь помечают сущность на удаление устанавливая дату вызова метода
- * @param nameCategory
+ * @param parameter
  * @param answerCheckList
  */
-data class DRCheckListItemForDHPerformedViewModel(
+data class DRCheckListItemForDHPerformedViewModel (
 
-    val idRegistrar: UUID?,
-    val iddrCheckListItemEntityTemplate: UUID?,
-    val idrfTestParameters: UUID?,
+    val idRegistrar: String?,
+    val iddrCheckListItemEntityTemplate: String?,
+    val idrfTestParameters: String?,
     val description: String?,
     val shortDescription: String?,
     val needPhoto: Boolean?,
@@ -35,11 +34,11 @@ data class DRCheckListItemForDHPerformedViewModel(
     val needComments: Boolean?,
     val needDecimalSpecificMeaning: Boolean?,
     val needSpecificFreeMeaning: Boolean?,
-    val idUnique: UUID?,
-    val idEnterprise: UUID?,
+    val idUnique: String?,
+    val idEnterprise: String?,
     val dateAdded: LocalDateTime?,
     val dateUpdated: LocalDateTime?,
     val dateSoftRemoved: LocalDateTime?,
-    val nameCategory: String?,
+    val parameter: RFTestParameters?,
     val answerCheckList: DRAnswerChekListItemViewModel?
 )

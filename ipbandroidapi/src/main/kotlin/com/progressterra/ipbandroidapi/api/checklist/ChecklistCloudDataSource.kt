@@ -3,103 +3,156 @@ package com.progressterra.ipbandroidapi.api.checklist
 import com.progressterra.ipbandroidapi.api.checklist.model.*
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
-import java.util.*
 
 interface ChecklistCloudDataSource {
 
-    suspend fun createAnswer(request: DRAnswerChekListItemEntity): DRCheckListItemForDHPerformedViewModelResultData
-
-    suspend fun updateAnswer(
-        idRG: UUID, request: DRAnswerChekListItemUpdated
+    suspend fun createAnswer(
+        accessToken: String,
+        request: DRAnswerChekListItemEntity
     ): DRCheckListItemForDHPerformedViewModelResultData
 
-    suspend fun createChecklist(request: RFCheckEntity): RFCheckResultData
+    suspend fun createChecklist(
+        accessToken: String,
+        request: RFCheckEntity
+    ): RFCheckResultData
 
-    suspend fun checklists(request: FilterAndSort): RFCheckResultDataList
-
-    suspend fun checklistList(
-        idRFComPlace: UUID, request: FilterAndSort
+    suspend fun checklists(
+        accessToken: String,
+        request: FilterAndSort
     ): RFCheckResultDataList
 
-    suspend fun availableChecklists(): ComPlaceWithDataResultDataList
+    suspend fun checklistList(
+        accessToken: String,
+        idRFComPlace: String,
+        request: FilterAndSort
+    ): RFCheckResultDataList
 
-    suspend fun availableChecklistsForPlace(idComPlace: UUID): RFCheckViewModelResultDataList
+    suspend fun availableChecklists(accessToken: String): ComPlaceWithDataResultDataList
+
+    suspend fun availableChecklistsForPlace(
+        accessToken: String,
+        idComPlace: String
+    ): RFCheckViewModelResultDataList
 
     suspend fun availableDocsForPlace(
-        idComPlace: UUID, request: FilterAndSort
-    ): DHCheckPerformedViewModelResultDataList
+        accessToken: String,
+        idComPlace: String,
+        request: FilterAndSort
+    ): DHCheckPerformedFullDataViewModelResultDataList
 
-    suspend fun createDoc(request: DHCheckPerformedEntity): DHCheckPerformedViewModelResultData
+    suspend fun addChecklistToPlace(
+        accessToken: String,
+        request: RGComPlaceRFCheckEntity
+    ): EmptyResultOperationResultData
 
-    suspend fun startCheck(idDH: UUID): DHCheckPerformedViewModelResultData
+    suspend fun createDoc(
+        accessToken: String,
+        request: DHCheckPerformedEntityCreate
+    ): DHCheckPerformedFullDataViewModelResultData
 
-    suspend fun finishCheck(idDH: UUID, value: String): DHCheckPerformedViewModelResultData
+    suspend fun startCheck(
+        accessToken: String,
+        idDH: String
+    ): DHCheckPerformedFullDataViewModelResultData
 
-    suspend fun checklistForDoc(idDH: UUID): DRCheckListItemForDHPerformedViewModelResultDataList
+    suspend fun finishCheck(
+        accessToken: String,
+        idDH: String,
+        request: FinalCommentsInput
+    ): DHCheckPerformedFullDataViewModelResultData
+
+    suspend fun checklistForDoc(
+        accessToken: String,
+        idDH: String
+    ): DRCheckListItemForDHPerformedViewModelResultDataList
 
     class Base(
         private val service: ChecklistService,
         handleException: HandleException
     ) : AbstractCloudDataSource(handleException), ChecklistCloudDataSource {
-
-        override suspend fun createAnswer(request: DRAnswerChekListItemEntity): DRCheckListItemForDHPerformedViewModelResultData = handle {
-            service.createAnswer(request)
-        }
-
-        override suspend fun updateAnswer(
-            idRG: UUID,
-            request: DRAnswerChekListItemUpdated
+        override suspend fun createAnswer(
+            accessToken: String,
+            request: DRAnswerChekListItemEntity
         ): DRCheckListItemForDHPerformedViewModelResultData = handle {
-            service.updateAnswer(idRG, request)
+            service.createAnswer(accessToken, request)
         }
 
-        override suspend fun createChecklist(request: RFCheckEntity): RFCheckResultData = handle {
-            service.createChecklist(request)
+        override suspend fun createChecklist(
+            accessToken: String,
+            request: RFCheckEntity
+        ): RFCheckResultData = handle {
+            service.createChecklist(accessToken, request)
         }
 
-        override suspend fun checklists(request: FilterAndSort): RFCheckResultDataList = handle {
-            service.checklists(request)
+        override suspend fun checklists(
+            accessToken: String,
+            request: FilterAndSort
+        ): RFCheckResultDataList = handle {
+            service.checklists(accessToken, request)
         }
 
         override suspend fun checklistList(
-            idRFComPlace: UUID,
+            accessToken: String,
+            idRFComPlace: String,
             request: FilterAndSort
         ): RFCheckResultDataList = handle {
-            service.checklistList(idRFComPlace, request)
+            service.checklistList(accessToken, idRFComPlace, request)
         }
 
-        override suspend fun availableChecklists(): ComPlaceWithDataResultDataList = handle {
-            service.availableChecklists()
-        }
+        override suspend fun availableChecklists(accessToken: String): ComPlaceWithDataResultDataList =
+            handle {
+                service.availableChecklists(accessToken)
+            }
 
-        override suspend fun availableChecklistsForPlace(idComPlace: UUID): RFCheckViewModelResultDataList = handle {
-            service.availableChecklistsForPlace(idComPlace)
+        override suspend fun availableChecklistsForPlace(
+            accessToken: String,
+            idComPlace: String
+        ): RFCheckViewModelResultDataList = handle {
+            service.availableChecklistsForPlace(accessToken, idComPlace)
         }
 
         override suspend fun availableDocsForPlace(
-            idComPlace: UUID,
+            accessToken: String,
+            idComPlace: String,
             request: FilterAndSort
-        ): DHCheckPerformedViewModelResultDataList = handle {
-            service.availableDocsForPlace(idComPlace, request)
+        ): DHCheckPerformedFullDataViewModelResultDataList = handle {
+            service.availableDocsForPlace(accessToken, idComPlace, request)
         }
 
-        override suspend fun createDoc(request: DHCheckPerformedEntity): DHCheckPerformedViewModelResultData = handle {
-            service.createDoc(request)
+        override suspend fun addChecklistToPlace(
+            accessToken: String,
+            request: RGComPlaceRFCheckEntity
+        ): EmptyResultOperationResultData = handle {
+            service.addChecklistToPlace(accessToken, request)
         }
 
-        override suspend fun startCheck(idDH: UUID): DHCheckPerformedViewModelResultData = handle {
-            service.startCheck(idDH)
+        override suspend fun createDoc(
+            accessToken: String,
+            request: DHCheckPerformedEntityCreate
+        ): DHCheckPerformedFullDataViewModelResultData = handle {
+            service.createDoc(accessToken, request)
+        }
+
+        override suspend fun startCheck(
+            accessToken: String,
+            idDH: String
+        ): DHCheckPerformedFullDataViewModelResultData = handle {
+            service.startCheck(accessToken, idDH)
         }
 
         override suspend fun finishCheck(
-            idDH: UUID,
-            value: String
-        ): DHCheckPerformedViewModelResultData = handle {
-            service.finishCheck(idDH, value)
+            accessToken: String,
+            idDH: String,
+            request: FinalCommentsInput
+        ): DHCheckPerformedFullDataViewModelResultData = handle {
+            service.finishCheck(accessToken, idDH, request)
         }
 
-        override suspend fun checklistForDoc(idDH: UUID): DRCheckListItemForDHPerformedViewModelResultDataList = handle {
-            service.checklistForDoc(idDH)
+        override suspend fun checklistForDoc(
+            accessToken: String,
+            idDH: String
+        ): DRCheckListItemForDHPerformedViewModelResultDataList = handle {
+            service.checklistForDoc(accessToken, idDH)
         }
     }
 }

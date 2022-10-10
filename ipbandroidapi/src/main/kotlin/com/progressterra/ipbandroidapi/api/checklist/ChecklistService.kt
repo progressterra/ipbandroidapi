@@ -2,7 +2,6 @@ package com.progressterra.ipbandroidapi.api.checklist
 
 import com.progressterra.ipbandroidapi.api.checklist.model.*
 import retrofit2.http.*
-import java.util.*
 
 /**
  * [Docs](http://84.201.188.117:5105/swagger/index.html)
@@ -10,47 +9,75 @@ import java.util.*
 interface ChecklistService {
 
     @POST("/answerchecklistitem")
-    suspend fun createAnswer(@Body request: DRAnswerChekListItemEntity): DRCheckListItemForDHPerformedViewModelResultData
-
-    @PATCH("/answerchecklistitem/{idRG}")
-    suspend fun updateAnswer(
-        @Path("idRG") idRG: UUID,
-        @Body request: DRAnswerChekListItemUpdated
+    suspend fun createAnswer(
+        @Header("AccessToken") accessToken: String,
+        @Body request: DRAnswerChekListItemEntity
     ): DRCheckListItemForDHPerformedViewModelResultData
 
     @POST("/rfcheck")
-    suspend fun createChecklist(@Body request: RFCheckEntity): RFCheckResultData
+    suspend fun createChecklist(
+        @Header("AccessToken") accessToken: String,
+        @Body request: RFCheckEntity
+    ): RFCheckResultData
 
     @POST("/rfcheck/list")
-    suspend fun checklists(@Body request: FilterAndSort): RFCheckResultDataList
+    suspend fun checklists(
+        @Header("AccessToken") accessToken: String,
+        @Body request: FilterAndSort
+    ): RFCheckResultDataList
 
     @POST("/rfcheck/complace/{idRFComPlace}/list")
     suspend fun checklistList(
-        @Path("idRFComPlace") idRFComPlace: UUID,
+        @Header("AccessToken") accessToken: String,
+        @Path("idRFComPlace") idRFComPlace: String,
         @Body request: FilterAndSort
     ): RFCheckResultDataList
 
     @GET("/place/list")
-    suspend fun availableChecklists(): ComPlaceWithDataResultDataList
+    suspend fun availableChecklists(@Header("AccessToken") accessToken: String): ComPlaceWithDataResultDataList
 
     @GET("/place/{idComPlace}/rfcheck/list")
-    suspend fun availableChecklistsForPlace(@Path("idComPlace") idComPlace: UUID): RFCheckViewModelResultDataList
+    suspend fun availableChecklistsForPlace(
+        @Header("AccessToken") accessToken: String,
+        @Path("idComPlace") idComPlace: String
+    ): RFCheckViewModelResultDataList
 
     @POST("/place/{idComPlace}/dhcheckperformed/list")
     suspend fun availableDocsForPlace(
-        @Path("idComPlace") idComPlace: UUID,
+        @Header("AccessToken") accessToken: String,
+        @Path("idComPlace") idComPlace: String,
         @Body request: FilterAndSort
-    ): DHCheckPerformedViewModelResultDataList
+    ): DHCheckPerformedFullDataViewModelResultDataList
+
+    @POST("/place/rgcomplacerfcheck")
+    suspend fun addChecklistToPlace(
+        @Header("AccessToken") accessToken: String,
+        @Body request: RGComPlaceRFCheckEntity
+    ): EmptyResultOperationResultData
+
 
     @POST("/dhcheckperformed")
-    suspend fun createDoc(@Body request: DHCheckPerformedEntity): DHCheckPerformedViewModelResultData
+    suspend fun createDoc(
+        @Header("AccessToken") accessToken: String,
+        @Body request: DHCheckPerformedEntityCreate
+    ): DHCheckPerformedFullDataViewModelResultData
 
     @POST("/dhcheckperformed/start/{idDH}")
-    suspend fun startCheck(@Path("idDH") idDH: UUID): DHCheckPerformedViewModelResultData
+    suspend fun startCheck(
+        @Header("AccessToken") accessToken: String,
+        @Path("idDH") idDH: String
+    ): DHCheckPerformedFullDataViewModelResultData
 
     @POST("/dhcheckperformed/finish/{idDH}")
-    suspend fun finishCheck(@Path("idDH") idDH: UUID, @Body value: String): DHCheckPerformedViewModelResultData
+    suspend fun finishCheck(
+        @Header("AccessToken") accessToken: String,
+        @Path("idDH") idDH: String,
+        @Body request: FinalCommentsInput
+    ): DHCheckPerformedFullDataViewModelResultData
 
     @GET("/dhcheckperformed/item/{idDH}/list")
-    suspend fun checklistForDoc(@Path("idDH") idDH: UUID): DRCheckListItemForDHPerformedViewModelResultDataList
+    suspend fun checklistForDoc(
+        @Header("AccessToken") accessToken: String,
+        @Path("idDH") idDH: String
+    ): DRCheckListItemForDHPerformedViewModelResultDataList
 }

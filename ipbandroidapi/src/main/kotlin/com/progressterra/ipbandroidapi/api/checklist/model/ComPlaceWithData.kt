@@ -1,7 +1,6 @@
 package com.progressterra.ipbandroidapi.api.checklist.model
 
 import java.time.LocalDateTime
-import java.util.*
 
 /**
  *
@@ -21,13 +20,13 @@ import java.util.*
  * @param countDHCheckPerformedForExecution Количество документов к выполнению
  */
 data class ComPlaceWithData(
-    val idUnique: UUID?,
-    val idEnterprise: UUID?,
+    val idUnique: String?,
+    val idEnterprise: String?,
     val name: String?,
     val address: String?,
     val dateOpen: LocalDateTime?,
     val dateClose: LocalDateTime?,
-    val idCtiy: UUID?,
+    val idCtiy: String?,
     val contacts: String?,
     val latitude: Double?,
     val longitude: Double?,

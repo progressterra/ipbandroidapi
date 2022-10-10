@@ -1,7 +1,6 @@
 package com.progressterra.ipbandroidapi.api.checklist.model
 
 import java.time.LocalDateTime
-import java.util.*
 
 /**
  *
@@ -23,8 +22,8 @@ data class RFCheckViewModel(
     val description: String?,
     val urlImage: String?,
     val urlVideo: String?,
-    val idUnique: UUID?,
-    val idEnterprise: UUID?,
+    val idUnique: String?,
+    val idEnterprise: String?,
     val dateAdded: LocalDateTime?,
     val dateUpdated: LocalDateTime?,
     val dateSoftRemoved: LocalDateTime?

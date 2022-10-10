@@ -1,7 +1,5 @@
 package com.progressterra.ipbandroidapi.api.checklist.model
 
-import java.util.*
-
 /**
  *
  * @param status
@@ -19,6 +17,6 @@ data class ResultOperation(
     val messageDev: String?,
     val codeResult: Int?,
     val duration: Double?,
-    val idLog: UUID?,
+    val idLog: String?,
     val xRequestId: String?
 )
