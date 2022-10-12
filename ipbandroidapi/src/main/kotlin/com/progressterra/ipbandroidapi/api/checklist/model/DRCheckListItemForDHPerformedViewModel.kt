@@ -1,7 +1,5 @@
 package com.progressterra.ipbandroidapi.api.checklist.model
 
-import java.time.LocalDateTime
-
 /**
  *
  * @param idRegistrar Идентфиикатор RFCheck - если это элемент шаблона чек листа или DHCheckPerformed если это строка документа проверки/задания
@@ -36,9 +34,9 @@ data class DRCheckListItemForDHPerformedViewModel (
     val needSpecificFreeMeaning: Boolean?,
     val idUnique: String?,
     val idEnterprise: String?,
-    val dateAdded: LocalDateTime?,
-    val dateUpdated: LocalDateTime?,
-    val dateSoftRemoved: LocalDateTime?,
+    val dateAdded: String?,
+    val dateUpdated: String?,
+    val dateSoftRemoved: String?,
     val parameter: RFTestParameters?,
     val answerCheckList: DRAnswerChekListItemViewModel?
 )

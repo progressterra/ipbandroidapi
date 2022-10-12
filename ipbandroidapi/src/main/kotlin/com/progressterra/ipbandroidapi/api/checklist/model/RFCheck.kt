@@ -1,7 +1,5 @@
 package com.progressterra.ipbandroidapi.api.checklist.model
 
-import java.time.LocalDateTime
-
 /**
  * Справочник проверок/тестов
  * @param language
@@ -24,7 +22,7 @@ data class RFCheck(
     val urlVideo: String?,
     val idUnique: String?,
     val idEnterprise: String?,
-    val dateAdded: LocalDateTime?,
-    val dateUpdated: LocalDateTime?,
-    val dateSoftRemoved: LocalDateTime?
+    val dateAdded: String?,
+    val dateUpdated: String?,
+    val dateSoftRemoved: String?
 )

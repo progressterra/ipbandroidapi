@@ -1,6 +1,6 @@
 package com.progressterra.ipbandroidapi.api.checklist.model
 
-import java.time.LocalDateTime
+import com.google.gson.annotations.SerializedName
 
 /**
  *
@@ -20,18 +20,18 @@ import java.time.LocalDateTime
  * @param countDHCheckPerformedForExecution Количество документов к выполнению
  */
 data class ComPlaceWithData(
-    val idUnique: String?,
-    val idEnterprise: String?,
-    val name: String?,
-    val address: String?,
-    val dateOpen: LocalDateTime?,
-    val dateClose: LocalDateTime?,
-    val idCtiy: String?,
-    val contacts: String?,
-    val latitude: Double?,
-    val longitude: Double?,
-    val imageURL: String?,
-    val shopType: TypeShop?,
-    val countAvailableRFCheck: Int?,
-    val countDHCheckPerformedForExecution: Int?
+    @SerializedName("idUnique") val idUnique: String?,
+    @SerializedName("idEnterprise") val idEnterprise: String?,
+    @SerializedName("name") val name: String?,
+    @SerializedName("address") val address: String?,
+    @SerializedName("dateOpen") val dateOpen: String?,
+    @SerializedName("dateClose") val dateClose: String?,
+    @SerializedName("idCtiy") val idCtiy: String?,
+    @SerializedName("contacts") val contacts: String?,
+    @SerializedName("latitude") val latitude: Double?,
+    @SerializedName("longitude") val longitude: Double?,
+    @SerializedName("imageURL") val imageURL: String?,
+    @SerializedName("shopType") val shopType: TypeShop?,
+    @SerializedName("countAvailableRFCheck") val countAvailableRFCheck: Int?,
+    @SerializedName("countDHCheckPerformedForExecution") val countDHCheckPerformedForExecution: Int?
 )

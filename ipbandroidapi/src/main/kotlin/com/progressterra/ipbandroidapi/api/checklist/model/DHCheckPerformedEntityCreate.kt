@@ -1,7 +1,5 @@
 package com.progressterra.ipbandroidapi.api.checklist.model
 
-import java.time.LocalDateTime
-
 /**
  * 
  * @param idrfCheck Идентификатор чек листа шаблона (RFCheck), на основе которого прездаполняются строки и рассчитываются параметры
@@ -16,7 +14,7 @@ data class DHCheckPerformedEntityCreate (
     val idrfCheck: String?,
     val idBase: String?,
     val idrfComPlace: String?,
-    val dateStart: LocalDateTime?,
+    val dateStart: String?,
     val targetGeoPoint: String?,
     val geoPoint: String?
 )

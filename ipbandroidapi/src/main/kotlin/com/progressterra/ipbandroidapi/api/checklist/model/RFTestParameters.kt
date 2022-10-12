@@ -1,7 +1,5 @@
 package com.progressterra.ipbandroidapi.api.checklist.model
 
-import java.time.LocalDateTime
-
 /**
  * Универсальная структура, которая позволяет разбивать тесты на показатели и производить универсальное представление по языкам
  * @param idrfCheck Какому чек листу/тесту принадлежит параметр
@@ -20,7 +18,7 @@ data class RFTestParameters (
     val internalName: String?,
     val idUnique: String?,
     val idEnterprise: String?,
-    val dateAdded: LocalDateTime?,
-    val dateUpdated: LocalDateTime?,
-    val dateSoftRemoved: LocalDateTime?
+    val dateAdded: String?,
+    val dateUpdated: String?,
+    val dateSoftRemoved: String?
 )

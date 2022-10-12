@@ -1,5 +1,7 @@
 package com.progressterra.ipbandroidapi.api.checklist.model
 
+import com.google.gson.annotations.SerializedName
+
 /**
  *
  * @param result
@@ -8,7 +10,7 @@ package com.progressterra.ipbandroidapi.api.checklist.model
  */
 data class ComPlaceWithDataResultDataList(
 
-    val result: ResultOperation?,
-    val dataList: List<ComPlaceWithData>?,
-    val totalNumberRecords: Int?
+    @SerializedName("result") val result: ResultOperation?,
+    @SerializedName("dataList") val dataList: List<ComPlaceWithData>?,
+    @SerializedName("totalNumberRecords") val totalNumberRecords: Int?
 )
