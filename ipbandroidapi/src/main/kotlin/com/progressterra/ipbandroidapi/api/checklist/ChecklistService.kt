@@ -33,6 +33,13 @@ interface ChecklistService {
         @Body request: FilterAndSort
     ): RFCheckResultDataList
 
+    @POST("/rfcheck/{idRFCheck}/item/list")
+    suspend fun checklistElements(
+        @Header("AccessToken") accessToken: String,
+        @Path("idRFCheck") idRFCheck: String,
+        @Body request: FilterAndSort
+    ) : DRCheckListItemViewModelResultDataList
+
     @GET("/place/list")
     suspend fun availableChecklistsAndDocs(@Header("AccessToken") accessToken: String): ComPlaceWithDataResultDataList
 

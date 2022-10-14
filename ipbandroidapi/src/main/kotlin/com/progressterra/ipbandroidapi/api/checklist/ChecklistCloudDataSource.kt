@@ -71,6 +71,12 @@ interface ChecklistCloudDataSource {
         idDH: String
     ): DRCheckListItemForDHPerformedViewModelResultDataList
 
+    suspend fun checklistElements(
+        accessToken: String,
+        idRFCheck: String,
+        request: FilterAndSort
+    ): DRCheckListItemViewModelResultDataList
+
     class Base(
         private val service: ChecklistService,
         handleException: HandleException
@@ -166,6 +172,14 @@ interface ChecklistCloudDataSource {
             idDH: String
         ): DRCheckListItemForDHPerformedViewModelResultDataList = handle {
             service.checklistForDoc(accessToken, idDH)
+        }
+
+        override suspend fun checklistElements(
+            accessToken: String,
+            idRFCheck: String,
+            request: FilterAndSort
+        ): DRCheckListItemViewModelResultDataList = handle {
+            service.checklistElements(accessToken, idRFCheck, request)
         }
     }
 }

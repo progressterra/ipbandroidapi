@@ -58,6 +58,12 @@ interface ChecklistRepository {
         request: FilterAndSort
     ): Result<List<DHCheckPerformedFullDataViewModel>>
 
+    suspend fun checklistElements(
+        accessToken: String,
+        idRFCheck: String,
+        request: FilterAndSort
+    ): Result<List<DRCheckListItemViewModel>>
+
     class Base(
         private val cloudDataSource: ChecklistCloudDataSource
     ) : AbstractRepository(), ChecklistRepository {
@@ -183,6 +189,18 @@ interface ChecklistRepository {
             accessToken: String, idDH: String
         ): Result<List<DRCheckListItemForDHPerformedViewModel>> = handle {
             val response = cloudDataSource.checklistForDoc(accessToken, idDH)
+            if (response.result?.status != 0) throw BadRequestException()
+            response
+        }.map {
+            it.dataList.orIfNull { throw  BadRequestException() }
+        }
+
+        override suspend fun checklistElements(
+            accessToken: String,
+            idRFCheck: String,
+            request: FilterAndSort
+        ): Result<List<DRCheckListItemViewModel>> = handle {
+            val response = cloudDataSource.checklistElements(accessToken, idRFCheck, request)
             if (response.result?.status != 0) throw BadRequestException()
             response
         }.map {
