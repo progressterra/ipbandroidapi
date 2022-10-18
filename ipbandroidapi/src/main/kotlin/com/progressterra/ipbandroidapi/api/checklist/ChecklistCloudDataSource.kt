@@ -77,10 +77,24 @@ interface ChecklistCloudDataSource {
         request: FilterAndSort
     ): DRCheckListItemViewModelResultDataList
 
+    suspend fun activeDoc(
+        accessToken: String,
+        placeId: String,
+        checklistId: String
+    ): DHCheckPerformedFullDataViewModelResultData
+
     class Base(
         private val service: ChecklistService,
         handleException: HandleException
     ) : AbstractCloudDataSource(handleException), ChecklistCloudDataSource {
+
+        override suspend fun activeDoc(
+            accessToken: String,
+            placeId: String,
+            checklistId: String
+        ): DHCheckPerformedFullDataViewModelResultData = handle {
+            service.activeDoc(accessToken, placeId, checklistId)
+        }
 
         override suspend fun createOrUpdateAnswer(
             accessToken: String,

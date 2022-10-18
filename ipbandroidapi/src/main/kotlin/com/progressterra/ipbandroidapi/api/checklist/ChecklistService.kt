@@ -74,6 +74,13 @@ interface ChecklistService {
         @Body request: DHCheckPerformedEntityCreate
     ): DHCheckPerformedFullDataViewModelResultData
 
+    @POST("/dhcheckperformed/active")
+    suspend fun activeDoc(
+        @Header("AccessToken") accessToken: String,
+        @Query("idRFComPlace") placeId: String,
+        @Query("idRFCheck") checklistId: String
+    ): DHCheckPerformedFullDataViewModelResultData
+
     @POST("/dhcheckperformed/start/{idDH}")
     suspend fun startCheck(
         @Header("AccessToken") accessToken: String,
