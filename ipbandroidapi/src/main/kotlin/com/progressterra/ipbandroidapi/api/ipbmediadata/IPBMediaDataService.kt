@@ -1,8 +1,7 @@
 package com.progressterra.ipbandroidapi.api.ipbmediadata
 
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.MediaDataListResponse
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.MediaDataResponse
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.UploadImageResponse
+import com.progressterra.ipbandroidapi.api.ipbmediadata.model.DataMediaDataResultData
+import com.progressterra.ipbandroidapi.api.ipbmediadata.model.DataMediaDataResultDataList
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.http.*
@@ -12,20 +11,20 @@ import retrofit2.http.*
  */
 internal interface IPBMediaDataService {
 
-    @Multipart
-    @POST("/mobile/{AccessToken}/image/{Alias}/{Tag}")
-    suspend fun uploadImage(
-        @Path("AccessToken") accessToken: String,
-        @Path("Alias") alias: String,
-        @Path("Tag") tag: String,
-        @Part image: MultipartBody.Part
-    ): UploadImageResponse
+    @POST("/v7/mobile/entity")
+    suspend fun attachToEntity(
+        @Query("idEntity") idEntity: String,
+        @Query("typeContent") typeContent: Int,
+        @Query("entityTypeName") entityTypeName: String,
+        @Query("alias") alias: String,
+        @Query("tag") tag: Int,
+        @Part file: MultipartBody.Part
+    ): DataMediaDataResultData
 
-    @GET("/mobile/{IDEntity}/list")
-    suspend fun getMediaDataListByEntity(@Path("IDEntity") idEntity: String): MediaDataListResponse
-
-    @GET("/mobile/{IDRGEntitytMediaData}")
-    suspend fun getMediaDataById(@Path("IDRGEntitytMediaData") mediaDataId: String): MediaDataResponse
+    @GET("/v7/mobile/{IDEntity}/list")
+    suspend fun attachedToEntity(
+        @Path("IDEntity") idEntity: String
+    ): DataMediaDataResultDataList
 
     @Streaming
     @GET

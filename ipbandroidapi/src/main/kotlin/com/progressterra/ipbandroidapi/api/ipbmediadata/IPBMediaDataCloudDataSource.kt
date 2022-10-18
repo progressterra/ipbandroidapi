@@ -1,8 +1,7 @@
 package com.progressterra.ipbandroidapi.api.ipbmediadata
 
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.MediaDataListResponse
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.MediaDataResponse
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.UploadImageResponse
+import com.progressterra.ipbandroidapi.api.ipbmediadata.model.DataMediaDataResultData
+import com.progressterra.ipbandroidapi.api.ipbmediadata.model.DataMediaDataResultDataList
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 import okhttp3.MultipartBody
@@ -10,16 +9,17 @@ import okhttp3.ResponseBody
 
 internal interface IPBMediaDataCloudDataSource {
 
-    suspend fun uploadImage(
-        accessToken: String,
+    suspend fun attachToEntity(
+        idEntity: String,
+        typeContent: Int, entityTypeName: String,
         alias: String,
-        tag: String,
-        image: MultipartBody.Part
-    ): UploadImageResponse
+        tag: Int,
+        file: MultipartBody.Part
+    ): DataMediaDataResultData
 
-    suspend fun getMediaDataListByEntity(idEntity: String): MediaDataListResponse
-
-    suspend fun getMediaDataById(mediaDataId: String): MediaDataResponse
+    suspend fun attachedToEntity(
+        idEntity: String
+    ): DataMediaDataResultDataList
 
     suspend fun downloadFile(url: String): ResponseBody
 
@@ -28,22 +28,21 @@ internal interface IPBMediaDataCloudDataSource {
         handleException: HandleException
     ) : IPBMediaDataCloudDataSource, AbstractCloudDataSource(handleException) {
 
-        override suspend fun uploadImage(
-            accessToken: String,
+        override suspend fun attachToEntity(
+            idEntity: String,
+            typeContent: Int,
+            entityTypeName: String,
             alias: String,
-            tag: String,
-            image: MultipartBody.Part
-        ): UploadImageResponse = handle {
-            service.uploadImage(accessToken, alias, tag, image)
+            tag: Int,
+            file: MultipartBody.Part
+        ): DataMediaDataResultData = handle {
+            service.attachToEntity(idEntity, typeContent, entityTypeName, alias, tag, file)
         }
 
-        override suspend fun getMediaDataListByEntity(idEntity: String): MediaDataListResponse = handle {
-            service.getMediaDataListByEntity(idEntity)
-        }
-
-        override suspend fun getMediaDataById(mediaDataId: String): MediaDataResponse = handle {
-            service.getMediaDataById(mediaDataId)
-        }
+        override suspend fun attachedToEntity(idEntity: String): DataMediaDataResultDataList =
+            handle {
+                service.attachedToEntity(idEntity)
+            }
 
         override suspend fun downloadFile(url: String): ResponseBody = handle {
             service.downloadFile(url)
