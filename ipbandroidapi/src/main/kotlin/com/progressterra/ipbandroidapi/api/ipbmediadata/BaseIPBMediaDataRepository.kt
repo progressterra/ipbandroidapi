@@ -11,6 +11,7 @@ internal class BaseIPBMediaDataRepository(
 ) : AbstractRepository(), IPBMediaDataRepository {
 
     override suspend fun attachToEntity(
+        accessToken: String,
         idEntity: String,
         typeContent: Int,
         entityTypeName: String,
@@ -18,7 +19,16 @@ internal class BaseIPBMediaDataRepository(
         tag: Int,
         file: MultipartBody.Part
     ): Result<DataMediaData?> = handle {
-        val response = cloudDataSource.attachToEntity(idEntity, typeContent, entityTypeName, alias, tag, file)
+        val response =
+            cloudDataSource.attachToEntity(
+                accessToken,
+                idEntity,
+                typeContent,
+                entityTypeName,
+                alias,
+                tag,
+                file
+            )
         if (response.result?.status != 0)
             throw BadRequestException()
         response
@@ -26,8 +36,11 @@ internal class BaseIPBMediaDataRepository(
         it.data
     }
 
-    override suspend fun attachedToEntity(idEntity: String): Result<List<DataMediaData>?> = handle {
-        val response = cloudDataSource.attachedToEntity(idEntity)
+    override suspend fun attachedToEntity(
+        accessToken: String,
+        idEntity: String
+    ): Result<List<DataMediaData>?> = handle {
+        val response = cloudDataSource.attachedToEntity(accessToken, idEntity)
         if (response.result?.status != 0)
             throw BadRequestException()
         response
@@ -35,7 +48,10 @@ internal class BaseIPBMediaDataRepository(
         it.dataList
     }
 
-    override suspend fun downloadFile(url: String): Result<InputStream> = handle {
-        cloudDataSource.downloadFile(url)
-    }.map { it.byteStream() }
+    override suspend fun downloadFile(accessToken: String, url: String): Result<InputStream> =
+        handle {
+            cloudDataSource.downloadFile(accessToken, url)
+        }.map { it.byteStream() }
 }
+
+//TODO is access token necessary?

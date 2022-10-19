@@ -10,6 +10,7 @@ import okhttp3.ResponseBody
 internal interface IPBMediaDataCloudDataSource {
 
     suspend fun attachToEntity(
+        accessToken: String,
         idEntity: String,
         typeContent: Int, entityTypeName: String,
         alias: String,
@@ -18,10 +19,14 @@ internal interface IPBMediaDataCloudDataSource {
     ): DataMediaDataResultData
 
     suspend fun attachedToEntity(
+        accessToken: String,
         idEntity: String
     ): DataMediaDataResultDataList
 
-    suspend fun downloadFile(url: String): ResponseBody
+    suspend fun downloadFile(
+        accessToken: String,
+        url: String
+    ): ResponseBody
 
     class Base(
         private val service: IPBMediaDataService,
@@ -29,6 +34,7 @@ internal interface IPBMediaDataCloudDataSource {
     ) : IPBMediaDataCloudDataSource, AbstractCloudDataSource(handleException) {
 
         override suspend fun attachToEntity(
+            accessToken: String,
             idEntity: String,
             typeContent: Int,
             entityTypeName: String,
@@ -36,16 +42,27 @@ internal interface IPBMediaDataCloudDataSource {
             tag: Int,
             file: MultipartBody.Part
         ): DataMediaDataResultData = handle {
-            service.attachToEntity(idEntity, typeContent, entityTypeName, alias, tag, file)
+            service.attachToEntity(
+                accessToken,
+                idEntity,
+                typeContent,
+                entityTypeName,
+                alias,
+                tag,
+                file
+            )
         }
 
-        override suspend fun attachedToEntity(idEntity: String): DataMediaDataResultDataList =
+        override suspend fun attachedToEntity(
+            accessToken: String,
+            idEntity: String
+        ): DataMediaDataResultDataList =
             handle {
-                service.attachedToEntity(idEntity)
+                service.attachedToEntity(accessToken, idEntity)
             }
 
-        override suspend fun downloadFile(url: String): ResponseBody = handle {
-            service.downloadFile(url)
+        override suspend fun downloadFile(accessToken: String, url: String): ResponseBody = handle {
+            service.downloadFile(accessToken, url)
         }
     }
 }

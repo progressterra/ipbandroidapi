@@ -7,6 +7,7 @@ import java.io.InputStream
 interface IPBMediaDataRepository {
 
     suspend fun attachToEntity(
+        accessToken: String,
         idEntity: String,
         typeContent: Int, entityTypeName: String,
         alias: String,
@@ -15,8 +16,11 @@ interface IPBMediaDataRepository {
     ): Result<DataMediaData?>
 
     suspend fun attachedToEntity(
+        accessToken: String,
         idEntity: String
     ): Result<List<DataMediaData>?>
 
-    suspend fun downloadFile(url: String): Result<InputStream>
+    suspend fun downloadFile(
+        accessToken: String, url: String
+    ): Result<InputStream>
 }
