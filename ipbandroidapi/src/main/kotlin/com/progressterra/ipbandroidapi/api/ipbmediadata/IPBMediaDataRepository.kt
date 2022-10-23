@@ -23,4 +23,9 @@ interface IPBMediaDataRepository {
     suspend fun downloadFile(
         accessToken: String, url: String
     ): Result<InputStream>
+
+    suspend fun deleteMediaData(
+        accessToken: String,
+        idRGEntitytMediaData: String
+    ): Result<Unit>
 }

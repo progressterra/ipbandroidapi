@@ -1,11 +1,14 @@
 package com.progressterra.ipbandroidapi.api.ipbmediadata
 
+import com.progressterra.ipbandroidapi.api.checklist.model.EmptyResultOperationResultData
 import com.progressterra.ipbandroidapi.api.ipbmediadata.model.DataMediaDataResultData
 import com.progressterra.ipbandroidapi.api.ipbmediadata.model.DataMediaDataResultDataList
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
+import retrofit2.http.Header
+import retrofit2.http.Path
 
 internal interface IPBMediaDataCloudDataSource {
 
@@ -28,10 +31,22 @@ internal interface IPBMediaDataCloudDataSource {
         url: String
     ): ResponseBody
 
+    suspend fun deleteMediaData(
+        accessToken: String,
+        idRGEntitytMediaData: String
+    ): EmptyResultOperationResultData
+
     class Base(
         private val service: IPBMediaDataService,
         handleException: HandleException
     ) : IPBMediaDataCloudDataSource, AbstractCloudDataSource(handleException) {
+
+        override suspend fun deleteMediaData(
+            accessToken: String,
+            idRGEntitytMediaData: String
+        ): EmptyResultOperationResultData = handle {
+            service.deleteMediaData(accessToken, idRGEntitytMediaData)
+        }
 
         override suspend fun attachToEntity(
             accessToken: String,

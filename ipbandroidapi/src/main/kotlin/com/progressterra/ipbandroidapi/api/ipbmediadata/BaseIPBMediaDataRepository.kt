@@ -1,14 +1,22 @@
 package com.progressterra.ipbandroidapi.api.ipbmediadata
 
 import com.progressterra.ipbandroidapi.api.ipbmediadata.model.DataMediaData
-import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
 import okhttp3.MultipartBody
 import java.io.InputStream
 
 internal class BaseIPBMediaDataRepository(
     private val cloudDataSource: IPBMediaDataCloudDataSource
-) : AbstractRepository(), IPBMediaDataRepository {
+) : IPBMediaDataRepository {
+
+    override suspend fun deleteMediaData(
+        accessToken: String,
+        idRGEntitytMediaData: String
+    ): Result<Unit> = runCatching {
+        val response = cloudDataSource.deleteMediaData(accessToken, idRGEntitytMediaData)
+        if (response.result?.status != 0)
+            throw BadRequestException()
+    }
 
     override suspend fun attachToEntity(
         accessToken: String,
@@ -18,7 +26,7 @@ internal class BaseIPBMediaDataRepository(
         alias: String,
         tag: Int,
         file: MultipartBody.Part
-    ): Result<DataMediaData?> = handle {
+    ): Result<DataMediaData?> = runCatching {
         val response =
             cloudDataSource.attachToEntity(
                 accessToken,
@@ -39,7 +47,7 @@ internal class BaseIPBMediaDataRepository(
     override suspend fun attachedToEntity(
         accessToken: String,
         idEntity: String
-    ): Result<List<DataMediaData>?> = handle {
+    ): Result<List<DataMediaData>?> = runCatching {
         val response = cloudDataSource.attachedToEntity(accessToken, idEntity)
         if (response.result?.status != 0)
             throw BadRequestException()
@@ -49,7 +57,7 @@ internal class BaseIPBMediaDataRepository(
     }
 
     override suspend fun downloadFile(accessToken: String, url: String): Result<InputStream> =
-        handle {
+        runCatching {
             cloudDataSource.downloadFile(accessToken, url)
         }.map { it.byteStream() }
 }
