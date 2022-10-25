@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 internal data class ClientInfoRequest(
     @SerializedName("sex")
-    val sex: Int,
+    val sex: Int?,
     @SerializedName("soname")
     val soname: String?,
     @SerializedName("name")
@@ -12,7 +12,7 @@ internal data class ClientInfoRequest(
     @SerializedName("patronymic")
     val patronymic: String?,
     @SerializedName("dateOfBirth")
-    val dateOfBirth: String,
+    val dateOfBirth: String?,
     @SerializedName("comment")
     val comment: String?
 )

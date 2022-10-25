@@ -62,12 +62,12 @@ internal class BaseSCRMRepository(
 
     override suspend fun setPersonalInfo(
         accessToken: String,
-        sex: Int,
-        soname: String,
-        name: String,
-        patronymic: String,
-        dateOfBirth: String,
-        comment: String
+        sex: Int?,
+        soname: String?,
+        name: String?,
+        patronymic: String?,
+        dateOfBirth: String?,
+        comment: String?
     ): Result<ClientGeneralData> = handle {
         val response = sCRMCloudDataSource.setPersonalInfo(
             accessToken, ClientInfoRequest(

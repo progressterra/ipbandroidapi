@@ -26,12 +26,12 @@ interface SCRMRepository {
 
     suspend fun setPersonalInfo(
         accessToken: String,
-        sex: Int = 0,
-        soname: String = "",
-        name: String = "",
-        patronymic: String = "",
-        dateOfBirth: String = "",
-        comment: String = ""
+        sex: Int?,
+        soname: String?,
+        name: String?,
+        patronymic: String?,
+        dateOfBirth: String?,
+        comment: String?
     ): Result<ClientGeneralData>
 
     suspend fun setEmail(accessToken: String, email: String): Result<Unit>
