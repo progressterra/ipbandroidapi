@@ -2,18 +2,24 @@ package com.progressterra.ipbandroidapi.api.scrm.model
 
 import com.google.gson.annotations.SerializedName
 
-internal data class ClientInfoRequest(
+data class ClientDataIncome (
+
     @SerializedName("sex")
-    val sex: Int?,
+    val sex: Long? = null,
+
     @SerializedName("soname")
-    val soname: String?,
+    val soname: String? = null,
+
     @SerializedName("name")
-    val name: String?,
+    val name: String? = null,
+
     @SerializedName("patronymic")
-    val patronymic: String?,
+    val patronymic: String? = null,
+
     @SerializedName("dateOfBirth")
-    val dateOfBirth: String?,
+    val dateOfBirth: String? = null,
+
     @SerializedName("comment")
-    val comment: String?
+    val comment: String? = null
 )
 

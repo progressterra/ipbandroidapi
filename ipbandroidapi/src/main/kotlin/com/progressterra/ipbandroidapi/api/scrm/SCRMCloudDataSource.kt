@@ -1,80 +1,88 @@
 package com.progressterra.ipbandroidapi.api.scrm
 
-import com.progressterra.ipbandroidapi.api.scrm.model.*
-import com.progressterra.ipbandroidapi.api.scrm.model.AccessTokenRequest
-import com.progressterra.ipbandroidapi.api.scrm.model.AccessTokenResponse
-import com.progressterra.ipbandroidapi.api.scrm.model.ClientInfoResponse
-import com.progressterra.ipbandroidapi.api.scrm.model.DeviceIdResponse
-import com.progressterra.ipbandroidapi.api.scrm.model.DeviceParameters
-import com.progressterra.ipbandroidapi.api.scrm.model.DeviceTokenResponse
-import com.progressterra.ipbandroidapi.api.scrm.model.EmailRequest
-import com.progressterra.ipbandroidapi.api.scrm.model.EmailResponse
-import com.progressterra.ipbandroidapi.api.scrm.model.ClientInfoRequest
-import com.progressterra.ipbandroidapi.exception.HandleException
+import com.progressterra.ipbandroidapi.api.scrm.model.ClientDataIncome
+import com.progressterra.ipbandroidapi.api.scrm.model.ClientFullDataResultData
+import com.progressterra.ipbandroidapi.api.scrm.model.DeviceDataResultData
+import com.progressterra.ipbandroidapi.api.scrm.model.EmptyResultOperationResultData
+import com.progressterra.ipbandroidapi.api.scrm.model.IncomeChannelData
+import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataCreateAccessToken
+import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataEmail
+import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataForEndLogin
+import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDeviceParameters
+import com.progressterra.ipbandroidapi.api.scrm.model.StringResultData
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal interface SCRMCloudDataSource {
 
-    suspend fun verificationChannelBegin(request: VerificationStartRequest): VerificationStartResponse
+    suspend fun verificationChannelBegin(request: IncomeChannelData): EmptyResultOperationResultData
 
-    suspend fun verificationChannelEnd(request: VerificationEndRequest): VerificationEndResponse
+    suspend fun verificationChannelEnd(request: IncomeDataForEndLogin): DeviceDataResultData
 
-    suspend fun clientInfoByToken(accessToken: String): ClientInfoResponse
+    suspend fun clientInfoByToken(
+        accessToken: String,
+    ): ClientFullDataResultData
 
-    suspend fun deviceIdByToken(accessToken: String): DeviceIdResponse
+    suspend fun accessToken(request: IncomeDataCreateAccessToken): StringResultData
 
-    suspend fun accessToken(request: AccessTokenRequest): AccessTokenResponse
+    suspend fun setPersonalInfo(
+        accessToken: String,
+        request: ClientDataIncome
+    ): ClientFullDataResultData
 
-    suspend fun setPersonalInfo(accessToken: String, request: ClientInfoRequest): ClientInfoResponse
+    suspend fun setEmail(
+        accessToken: String,
+        request: IncomeDataEmail
+    ): EmptyResultOperationResultData
 
-    suspend fun setEmail(accessToken: String, request: EmailRequest): EmailResponse
-
-    suspend fun setDeviceToken(accessToken: String, request: DeviceParameters): DeviceTokenResponse
+    suspend fun setDeviceToken(
+        accessToken: String,
+        request: IncomeDeviceParameters
+    ): EmptyResultOperationResultData
 
     class Base(
         private val service: SCRMService,
         handleException: HandleException
     ) : SCRMCloudDataSource, AbstractCloudDataSource(handleException) {
 
-        override suspend fun verificationChannelBegin(request: VerificationStartRequest): VerificationStartResponse =
+        override suspend fun verificationChannelBegin(request: IncomeChannelData): EmptyResultOperationResultData =
             handle {
                 service.verificationChannelBegin(request)
             }
 
-        override suspend fun verificationChannelEnd(request: VerificationEndRequest): VerificationEndResponse =
+        override suspend fun verificationChannelEnd(request: IncomeDataForEndLogin): DeviceDataResultData =
             handle {
                 service.verificationChannelEnd(request)
             }
 
-        override suspend fun clientInfoByToken(accessToken: String): ClientInfoResponse = handle {
-            service.clientInfoByToken(accessToken)
-        }
+        override suspend fun clientInfoByToken(accessToken: String): ClientFullDataResultData =
+            handle {
+                service.clientInfoByToken(accessToken)
+            }
 
-        override suspend fun deviceIdByToken(accessToken: String): DeviceIdResponse = handle {
-            service.deviceIdByToken(accessToken)
-        }
-
-        override suspend fun accessToken(request: AccessTokenRequest): AccessTokenResponse =
+        override suspend fun accessToken(request: IncomeDataCreateAccessToken): StringResultData =
             handle {
                 service.accessToken(request)
             }
 
         override suspend fun setPersonalInfo(
             accessToken: String,
-            request: ClientInfoRequest
-        ): ClientInfoResponse = handle {
+            request: ClientDataIncome
+        ): ClientFullDataResultData = handle {
             service.setPersonalInfo(accessToken, request)
         }
 
-        override suspend fun setEmail(accessToken: String, request: EmailRequest): EmailResponse =
-            handle {
-                service.setEmail(accessToken, request)
-            }
+        override suspend fun setEmail(
+            accessToken: String,
+            request: IncomeDataEmail
+        ): EmptyResultOperationResultData = handle {
+            service.setEmail(accessToken, request)
+        }
 
         override suspend fun setDeviceToken(
             accessToken: String,
-            request: DeviceParameters
-        ): DeviceTokenResponse = handle {
+            request: IncomeDeviceParameters
+        ): EmptyResultOperationResultData = handle {
             service.setDeviceToken(accessToken, request)
         }
     }

@@ -2,23 +2,33 @@ package com.progressterra.ipbandroidapi.api.scrm.model
 
 import com.google.gson.annotations.SerializedName
 
-internal data class ClientRaw(
+data class Clients (
+
     @SerializedName("idUnique")
-    val idUnique: String,
+    val idUnique: String? = null,
+
     @SerializedName("idEnterprise")
-    val idEnterprise: String,
+    val idEnterprise: String? = null,
+
     @SerializedName("name")
-    val name: String?,
+    val name: String? = null,
+
     @SerializedName("soname")
-    val soname: String?,
+    val soname: String? = null,
+
     @SerializedName("patronymic")
-    val patronymic: String?,
+    val patronymic: String? = null,
+
     @SerializedName("sex")
-    val sex: Int?,
+    val sex: Int? = null,
+
     @SerializedName("dateOfBirth")
-    val dateOfBirth: String?,
+    val dateOfBirth: String? = null,
+
     @SerializedName("dateOfRegister")
-    val dateOfRegister: String,
+    val dateOfRegister: String? = null,
+
     @SerializedName("comment")
-    val comment: String?
+    val comment: String? = null
 )
+

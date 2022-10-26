@@ -2,13 +2,18 @@ package com.progressterra.ipbandroidapi.api.scrm.model
 
 import com.google.gson.annotations.SerializedName
 
-internal data class ClientAdditionalRaw(
+data class ClietnsAddtionalInfo (
+
     @SerializedName("additionalInfo")
-    val additionalInfo: String?,
+    val additionalInfo: String? = null,
+
     @SerializedName("statusCompletion")
-    val statusCompletion: Int,
+    val statusCompletion: Int? = null,
+
     @SerializedName("eMailGeneral")
-    val eMailGeneral: String?,
+    val eMailGeneral: String? = null,
+
     @SerializedName("phoneGeneral")
-    val phoneGeneral: String?
+    val phoneGeneral: String? = null
 )
+

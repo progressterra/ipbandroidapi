@@ -1,13 +1,19 @@
 package com.progressterra.ipbandroidapi.api.scrm
 
-import com.progressterra.ipbandroidapi.api.scrm.model.*
-import com.progressterra.ipbandroidapi.api.scrm.model.EmailRequest
-import com.progressterra.ipbandroidapi.api.scrm.model.EmailResponse
-import com.progressterra.ipbandroidapi.api.scrm.model.ClientInfoResponse
-import com.progressterra.ipbandroidapi.api.scrm.model.DeviceIdResponse
-import com.progressterra.ipbandroidapi.api.scrm.model.DeviceParameters
-import com.progressterra.ipbandroidapi.api.scrm.model.DeviceTokenResponse
-import retrofit2.http.*
+import com.progressterra.ipbandroidapi.api.scrm.model.ClientDataIncome
+import com.progressterra.ipbandroidapi.api.scrm.model.ClientFullDataResultData
+import com.progressterra.ipbandroidapi.api.scrm.model.DeviceDataResultData
+import com.progressterra.ipbandroidapi.api.scrm.model.EmptyResultOperationResultData
+import com.progressterra.ipbandroidapi.api.scrm.model.IncomeChannelData
+import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataCreateAccessToken
+import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataEmail
+import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataForEndLogin
+import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDeviceParameters
+import com.progressterra.ipbandroidapi.api.scrm.model.StringResultData
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 /**
  * [Docs](http://84.201.188.117:7021/docsapi/v7/index.html)
@@ -15,41 +21,36 @@ import retrofit2.http.*
 internal interface SCRMService {
 
     @POST("/api/v7/clients/login/start")
-    suspend fun verificationChannelBegin(@Body request: VerificationStartRequest): VerificationStartResponse
+    suspend fun verificationChannelBegin(@Body request: IncomeChannelData): EmptyResultOperationResultData
 
     @POST("/api/v7/clients/login/end")
-    suspend fun verificationChannelEnd(@Body request: VerificationEndRequest): VerificationEndResponse
+    suspend fun verificationChannelEnd(@Body request: IncomeDataForEndLogin): DeviceDataResultData
 
     @GET("/api/v7/clients/{AccessToken}/fulldata")
     suspend fun clientInfoByToken(
         @Path("AccessToken") accessToken: String,
-    ): ClientInfoResponse
-
-    @GET("/api/v7/clients/{AccessToken}")
-    suspend fun deviceIdByToken(
-        @Path("AccessToken") accessToken: String,
-    ): DeviceIdResponse
+    ): ClientFullDataResultData
 
     @POST("api/v7/clients/accesstoken")
-    suspend fun accessToken(@Body request: AccessTokenRequest): AccessTokenResponse
+    suspend fun accessToken(@Body request: IncomeDataCreateAccessToken): StringResultData
 
     @POST("/api/v7/clients/personalinfo/{AccessToken}")
     suspend fun setPersonalInfo(
         @Path("AccessToken") accessToken: String,
-        @Body request: ClientInfoRequest
-    ): ClientInfoResponse
+        @Body request: ClientDataIncome
+    ): ClientFullDataResultData
 
     @POST("/api/v7/clients/email/{AccessToken}")
     suspend fun setEmail(
         @Path("AccessToken") accessToken: String,
-        @Body request: EmailRequest
-    ): EmailResponse
+        @Body request: IncomeDataEmail
+    ): EmptyResultOperationResultData
 
     @POST("/api/v7/clients/devicetoken/{AccessToken}")
     suspend fun setDeviceToken(
         @Path("AccessToken") accessToken: String,
-        @Body request: DeviceParameters
-    ): DeviceTokenResponse
+        @Body request: IncomeDeviceParameters
+    ): EmptyResultOperationResultData
 }
 
 
