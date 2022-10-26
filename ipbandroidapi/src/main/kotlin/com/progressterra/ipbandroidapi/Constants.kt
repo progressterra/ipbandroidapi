@@ -4,6 +4,5 @@ object Constants {
 
     const val EMPTY_ID = "00000000-0000-0000-0000-000000000000"
 
-    //TODO not working
-    const val EMPTY_DATE = "0000-00-00T00:00:00"
+    const val EMPTY_DATE = "0000-00-00T00:00:00Z"
 }
