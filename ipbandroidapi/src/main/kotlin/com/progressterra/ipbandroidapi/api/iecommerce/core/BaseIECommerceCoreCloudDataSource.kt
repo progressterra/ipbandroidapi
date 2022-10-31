@@ -1,28 +1,31 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.core
 
-import com.progressterra.ipbandroidapi.api.iecommerce.core.model.CatalogInfoResponse
-import com.progressterra.ipbandroidapi.api.iecommerce.core.model.CatalogResponse
-import com.progressterra.ipbandroidapi.api.iecommerce.core.model.ProductPageResponse
-import com.progressterra.ipbandroidapi.api.iecommerce.core.model.ProductSetResponse
+import com.progressterra.ipbandroidapi.api.iecommerce.model.CatalogResult
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ResultListRFCatalog
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ResultProductSet
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ResultProducts
 import com.progressterra.ipbandroidapi.core.AbstractCloudDataSource
 import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseIECommerceCoreCloudDataSource(
-    private val service: IECommerceCoreService,
-    handleException: HandleException
+    private val service: IECommerceCoreService, handleException: HandleException
 ) : AbstractCloudDataSource(handleException), IECommerceCoreCloudDataSource {
 
-    override suspend fun getProductSizeSet(artikul: String, idFeature: String): ProductSetResponse = handle {
-        service.getProductSizeSet(artikul, idFeature)
-    }
+    override suspend fun getProductSizeSet(artikul: String, idFeature: String): ResultProductSet =
+        handle {
+            service.getProductSizeSet(artikul, idFeature)
+        }
 
-    override suspend fun getProductsByIds(accessToken: String, idsList: List<String>): ProductPageResponse = handle {
+    override suspend fun getProductsByIds(
+        accessToken: String, idsList: List<String>
+    ): ResultProducts = handle {
         service.getProductsByIds(accessToken, idsList)
     }
 
-    override suspend fun getProductDetailByIDRG(idrgGoodsInventory: String): ProductPageResponse = handle {
-        service.getProductDetailByIDRG(idrgGoodsInventory)
-    }
+    override suspend fun getProductDetailByIDRG(idrgGoodsInventory: String): ResultProducts =
+        handle {
+            service.getProductDetailByIDRG(idrgGoodsInventory)
+        }
 
     override suspend fun getProductsByCategory(
         accessToken: String,
@@ -31,14 +34,9 @@ internal class BaseIECommerceCoreCloudDataSource(
         pageSizeIncome: Int,
         sortingField: Int,
         sortingOrder: Int
-    ): ProductPageResponse = handle {
+    ): ResultProducts = handle {
         service.getProductsByCategory(
-            accessToken,
-            idCategory,
-            pageNumberIncome,
-            pageSizeIncome,
-            sortingField,
-            sortingOrder
+            accessToken, idCategory, pageNumberIncome, pageSizeIncome, sortingField, sortingOrder
         )
     }
 
@@ -50,7 +48,7 @@ internal class BaseIECommerceCoreCloudDataSource(
         pageSizeIncome: Int,
         sortingField: Int,
         sortingOrder: Int
-    ): ProductPageResponse = handle {
+    ): ResultProducts = handle {
         service.searchProductsByCategory(
             accessToken,
             searchString,
@@ -70,7 +68,7 @@ internal class BaseIECommerceCoreCloudDataSource(
         pageSizeIncome: Int,
         sortingField: Int,
         sortingOrder: Int
-    ): ProductPageResponse = handle {
+    ): ResultProducts = handle {
         service.searchProductsByCategoryCollapsed(
             accessToken,
             searchString,
@@ -89,36 +87,29 @@ internal class BaseIECommerceCoreCloudDataSource(
         pageSizeIncome: Int,
         sortingField: Int,
         sortingOrder: Int
-    ): ProductPageResponse = handle {
+    ): ResultProducts = handle {
         service.getProductsByCategoryCollapsed(
-            accessToken,
-            idCategory,
-            pageNumberIncome,
-            pageSizeIncome,
-            sortingField,
-            sortingOrder
+            accessToken, idCategory, pageNumberIncome, pageSizeIncome, sortingField, sortingOrder
         )
     }
 
-    override suspend fun getProductByNomenklatura(nomenclatura: String, idrfShop: String): ProductPageResponse =
-        handle {
-            service.getProductByNomenklatura(nomenclatura, idrfShop)
-        }
+    override suspend fun getProductByNomenklatura(
+        nomenclatura: String, idrfShop: String
+    ): ResultProducts = handle {
+        service.getProductByNomenklatura(nomenclatura, idrfShop)
+    }
 
     override suspend fun getPartnersGoods(
-        idShop: String,
-        idEnterprise: String,
-        pageNumber: Int,
-        pageSize: Int
-    ): ProductPageResponse = handle {
+        idShop: String, idEnterprise: String, pageNumber: Int, pageSize: Int
+    ): ResultProducts = handle {
         service.getPartnersGoods(idShop, idEnterprise, pageNumber, pageSize)
     }
 
-    override suspend fun getCatalog(accessToken: String): CatalogResponse = handle {
+    override suspend fun getCatalog(accessToken: String): CatalogResult = handle {
         service.getCatalog(accessToken)
     }
 
-    override suspend fun getCategoryInfo(ids: List<String>): CatalogInfoResponse = handle {
+    override suspend fun getCategoryInfo(ids: List<String>): ResultListRFCatalog = handle {
         service.getCategoryInfo(ids)
     }
 }

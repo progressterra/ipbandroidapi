@@ -1,11 +1,12 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.cart
 
-import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.*
-import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.ChangeProductCountInCartRequest
-import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.ImplementBonusRequest
-import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.SetDeliveryAddressRequest
-import com.progressterra.ipbandroidapi.api.ipbdelivery.model.DeliveryType
-import com.progressterra.ipbandroidapi.api.ipbdelivery.model.ServiceType
+import com.progressterra.ipbandroidapi.api.iecommerce.model.DataRowInCart
+import com.progressterra.ipbandroidapi.api.iecommerce.model.DeliveryData
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ExtDHSaleHead
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamForAddAddress
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamForAndComment
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamGoodsToECommers
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamImplementBonusV3
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
 
@@ -13,175 +14,134 @@ internal class BaseCartRepository(
     private val cloudDataSource: CartCloudDataSource
 ) : AbstractRepository(), CartRepository {
 
-    override suspend fun implementBonus(accessToken: String, bonusCount: Int): Result<BasketData> =
-        handle {
-            val response =
-                cloudDataSource.implementBonus(accessToken, ImplementBonusRequest(bonusCount))
-            if (response.status != 0)
+    override suspend fun implementBonus(
+        accessToken: String, request: ParamImplementBonusV3
+    ): Result<ExtDHSaleHead?> = runCatching {
+        val response = cloudDataSource.implementBonus(accessToken, request)
+        if (response.result?.status != 0) {
+            throw BadRequestException()
+        }
+        response.data
+    }
+
+    override suspend fun getProductsInCart(accessToken: String): Result<ExtDHSaleHead?> =
+        runCatching {
+            val response = cloudDataSource.getProductsInCart(accessToken)
+            if (response.result?.status != 0) {
                 throw BadRequestException()
-            response
-        }.map { BasketData(it.basketInfo) }
+            }
+            response.data
+        }
 
-    override suspend fun getProductsInCart(accessToken: String): Result<BasketData> = handle {
-        val response = cloudDataSource.getProductsInCart(accessToken)
-        if (response.status != 0)
-            throw BadRequestException()
-        response
-    }.map { BasketData(it.basketInfo) }
-
-    override suspend fun getOrderById(orderId: String): Result<BasketData> = handle {
+    override suspend fun getOrderById(orderId: String): Result<ExtDHSaleHead?> = runCatching {
         val response = cloudDataSource.getOrderById(orderId)
-        if (response.status != 0)
+        if (response.result?.status != 0) {
             throw BadRequestException()
-        response
-    }.map { BasketData(it.basketInfo) }
+        }
+        response.data
+    }
 
     override suspend fun removeProductFromCart(
-        idGoodsInventory: String,
-        count: Int,
-        idSellerAmbassador: String,
-        accessToken: String
-    ): Result<Unit> = handle {
-        val response = cloudDataSource.removeProductFromCart(
-            ChangeProductCountInCartRequest(
-                idGoodsInventory,
-                count,
-                idSellerAmbassador
-            ), accessToken
-        )
-        if (response.status != 0)
+        request: ParamGoodsToECommers, accessToken: String
+    ): Result<Unit> = runCatching {
+        val response = cloudDataSource.removeProductFromCart(request, accessToken)
+        if (response.status != 0) {
             throw BadRequestException()
+        }
     }
 
     override suspend fun removeProductFromCartWithFullResponseModel(
-        accessToken: String,
-        idDrSaleRow: String
-    ): Result<BasketData> = handle {
+        accessToken: String, IDDRSaleRow: String
+    ): Result<ExtDHSaleHead?> = runCatching {
         val response =
-            cloudDataSource.removeProductFromCartWithFullResponseModel(accessToken, idDrSaleRow)
-        if (response.status != 0)
+            cloudDataSource.removeProductFromCartWithFullResponseModel(accessToken, IDDRSaleRow)
+        if (response.result?.status != 0) {
             throw BadRequestException()
-        response
-    }.map { BasketData(it.basketInfo) }
+        }
+        response.data
+    }
 
     override suspend fun removeNomenclatureFromCart(
-        accessToken: String,
-        idrfNomenclature: String
-    ): Result<BasketData> = handle {
+        accessToken: String, idrfNomenclature: String
+    ): Result<ExtDHSaleHead?> = runCatching {
         val response = cloudDataSource.removeNomenclatureFromCart(accessToken, idrfNomenclature)
-        if (response.status != 0)
+        if (response.result?.status != 0) {
             throw BadRequestException()
-        response
-    }.map { BasketData(it.basketInfo) }
+        }
+        response.data
+    }
 
     override suspend fun addProductToCart(
-        idGoodsInventory: String,
-        count: Int,
-        idSellerAmbassador: String,
-        accessToken: String
-    ): Result<BasketData> = handle {
-        val response = cloudDataSource.addProductToCart(
-            ChangeProductCountInCartRequest(
-                idGoodsInventory,
-                count,
-                idSellerAmbassador
-            ), accessToken
-        )
-        if (response.status != 0)
+        request: ParamGoodsToECommers, accessToken: String
+    ): Result<ExtDHSaleHead?> = runCatching {
+        val response = cloudDataSource.addProductToCart(request, accessToken)
+        if (response.result?.status != 0) {
             throw BadRequestException()
-        response
-    }.map { BasketData(it.basketInfo) }
+        }
+        response.data
+    }
 
-    override suspend fun cancelBonusesImplementation(accessToken: String): Result<BasketData> =
-        handle {
+    override suspend fun cancelBonusesImplementation(accessToken: String): Result<ExtDHSaleHead?> =
+        runCatching {
             val response = cloudDataSource.cancelBonusesImplementation(accessToken)
-            if (response.status != 0)
+            if (response.result?.status != 0) {
                 throw BadRequestException()
-            response
-        }.map { BasketData(it.basketInfo) }
+            }
+            response.data
+        }
 
     override suspend fun setDeliveryAddress(
-        accessToken: String,
-        idAddress: String,
-        addressString: String
-    ): Result<Unit> = handle {
-        val response = cloudDataSource.setDeliveryAddress(
-            accessToken,
-            SetDeliveryAddressRequest(accessToken, idAddress, addressString)
-        )
-        if (response.status != 0)
+        accessToken: String, request: ParamForAddAddress
+    ): Result<Unit> = runCatching {
+        val response = cloudDataSource.setDeliveryAddress(accessToken, request)
+        if (response.status != 0) {
             throw BadRequestException()
+        }
     }
 
     override suspend fun setDeliveryCommentary(
-        accessToken: String,
-        commentary: String
-    ): Result<Unit> = handle {
-        val response = cloudDataSource.setDeliveryCommentary(
-            accessToken,
-            SetDeliveryCommentaryRequest(commentary)
-        )
-        if (response.status != 0)
+        accessToken: String, request: ParamForAndComment
+    ): Result<Unit> = runCatching {
+        val response = cloudDataSource.setDeliveryCommentary(accessToken, request)
+        if (response.status != 0) {
             throw BadRequestException()
+        }
     }
 
-    override suspend fun confirmOrder(accessToken: String): Result<BasketData> = handle {
+    override suspend fun confirmOrder(accessToken: String): Result<ExtDHSaleHead?> = runCatching {
         val response = cloudDataSource.confirmOrder(accessToken)
-        if (response.status != 0)
+        if (response.result?.status != 0) {
             throw BadRequestException()
-        response
-    }.map { BasketData(it.basketInfo) }
+        }
+        response.data
+    }
 
     override suspend fun fastAddToCart(
-        accessToken: String,
-        idGoodsInventory: String,
-        count: Int,
-        idSellerAmbassador: String
-    ): Result<Unit> = handle {
-        val response = cloudDataSource.fastAddToCart(
-            accessToken,
-            ChangeProductCountInCartRequest(idGoodsInventory, count, idSellerAmbassador)
-        )
-        if (response.status != 0)
+        accessToken: String, request: ParamGoodsToECommers
+    ): Result<Unit> = runCatching {
+        val response = cloudDataSource.fastAddToCart(accessToken, request)
+        if (response.status != 0) {
             throw BadRequestException()
+        }
     }
 
     override suspend fun getGoodsQuantity(
-        accessToken: String,
-        idrgGoodsInventory: String
-    ): Result<GoodsQuantityData> = handle {
+        accessToken: String, idrgGoodsInventory: String
+    ): Result<DataRowInCart?> = runCatching {
         val response = cloudDataSource.getGoodsQuantity(accessToken, idrgGoodsInventory)
-        if (response.status != 0)
+        if (response.result?.status != 0) {
             throw BadRequestException()
-        response
-    }.map {
-        GoodsQuantityData(it.data)
+        }
+        response.data
     }
 
     override suspend fun addDeliveryToCart(
-        accessToken: String,
-        deliveryService: DeliveryService,
-        displayName: String,
-        calculatedPrice: Double,
-        comment: String,
-        deliveryType: DeliveryType,
-        serviceType: ServiceType,
-        pickUpPoint: String
-    ): Result<BasketData> = handle {
-        val response = cloudDataSource.addDeliveryToCart(
-            accessToken,
-            CreateDeliveryOrderRequest(
-                deliveryService.id,
-                displayName,
-                calculatedPrice,
-                comment,
-                deliveryType.ordinal,
-                serviceType.ordinal,
-                pickUpPoint
-            )
-        )
-        if (response.status != 0)
+        acessToken: String, request: DeliveryData
+    ): Result<ExtDHSaleHead?> = runCatching {
+        val response = cloudDataSource.addDeliveryToCart(acessToken, request)
+        if (response.result?.status != 0) {
             throw BadRequestException()
-        response
-    }.map { BasketData(it.basketInfo) }
+        }
+        response.data
+    }
 }

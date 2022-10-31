@@ -1,65 +1,61 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.cart
 
-import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.*
-import com.progressterra.ipbandroidapi.base.BaseResponse
+import com.progressterra.ipbandroidapi.api.iecommerce.model.DeliveryData
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamForAddAddress
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamForAndComment
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamGoodsToECommers
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamImplementBonusV3
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ResultCart
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ResultCountInCart
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ResultOperation
 
 internal interface CartCloudDataSource {
 
     suspend fun implementBonus(
-        accessToken: String,
-        implementBonusRequest: ImplementBonusRequest
-    ): ProductsInBasketResponse
+        accessToken: String, request: ParamImplementBonusV3
+    ): ResultCart
 
-    suspend fun getProductsInCart(accessToken: String): ProductsInBasketResponse
+    suspend fun getProductsInCart(accessToken: String): ResultCart
 
-    suspend fun getOrderById(orderId: String): ProductsInBasketResponse
+    suspend fun getOrderById(orderId: String): ResultCart
 
     suspend fun removeProductFromCart(
-        changeProductCountInCartRequest: ChangeProductCountInCartRequest,
-        accessToken: String
-    ): BaseResponse
+        request: ParamGoodsToECommers, accessToken: String
+    ): ResultOperation
 
     suspend fun removeProductFromCartWithFullResponseModel(
-        accessToken: String,
-        idDrSaleRow: String
-    ): ProductsInBasketResponse
+        accessToken: String, IDDRSaleRow: String
+    ): ResultCart
 
     suspend fun removeNomenclatureFromCart(
-        accessToken: String,
-        idrfNomenclature: String
-    ): ProductsInBasketResponse
+        accessToken: String, idrfNomenclature: String
+    ): ResultCart
 
     suspend fun addProductToCart(
-        changeProductCountInCartRequest: ChangeProductCountInCartRequest,
-        accessToken: String
-    ): ProductsInBasketResponse
+        request: ParamGoodsToECommers, accessToken: String
+    ): ResultCart
 
-    suspend fun cancelBonusesImplementation(accessToken: String): ProductsInBasketResponse
+    suspend fun cancelBonusesImplementation(accessToken: String): ResultCart
 
     suspend fun setDeliveryAddress(
-        accessToken: String,
-        setDeliveryAddressRequest: SetDeliveryAddressRequest
-    ): BaseResponse
+        accessToken: String, request: ParamForAddAddress
+    ): ResultOperation
 
     suspend fun setDeliveryCommentary(
-        accessToken: String,
-        setDeliveryCommentaryRequest: SetDeliveryCommentaryRequest
-    ): BaseResponse
+        accessToken: String, request: ParamForAndComment
+    ): ResultOperation
 
-    suspend fun confirmOrder(accessToken: String): ProductsInBasketResponse
+    suspend fun confirmOrder(accessToken: String): ResultCart
 
     suspend fun fastAddToCart(
-        accessToken: String,
-        request: ChangeProductCountInCartRequest
-    ): BaseResponse
+        accessToken: String, request: ParamGoodsToECommers
+    ): ResultOperation
 
     suspend fun getGoodsQuantity(
-        accessToken: String,
-        idrgGoodsInventory: String
-    ): GoodsQuantityResponse
+        accessToken: String, idrgGoodsInventory: String
+    ): ResultCountInCart
 
     suspend fun addDeliveryToCart(
-        accessToken: String,
-        createDeliveryOrderRequest: CreateDeliveryOrderRequest
-    ): ProductsInBasketResponse
+        acessToken: String, request: DeliveryData
+    ): ResultCart
 }

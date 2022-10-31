@@ -1,79 +1,60 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.cart
 
-import com.progressterra.ipbandroidapi.api.iecommerce.cart.model.*
-import com.progressterra.ipbandroidapi.api.ipbdelivery.model.DeliveryType
-import com.progressterra.ipbandroidapi.api.ipbdelivery.model.ServiceType
+import com.progressterra.ipbandroidapi.api.iecommerce.model.DataRowInCart
+import com.progressterra.ipbandroidapi.api.iecommerce.model.DeliveryData
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ExtDHSaleHead
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamForAddAddress
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamForAndComment
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamGoodsToECommers
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ParamImplementBonusV3
 
 interface CartRepository {
 
     suspend fun implementBonus(
-        accessToken: String,
-        bonusCount: Int
-    ): Result<BasketData>
+        accessToken: String, request: ParamImplementBonusV3
+    ): Result<ExtDHSaleHead?>
 
-    suspend fun getProductsInCart(accessToken: String): Result<BasketData>
+    suspend fun getProductsInCart(accessToken: String): Result<ExtDHSaleHead?>
 
-    suspend fun getOrderById(orderId: String): Result<BasketData>
+    suspend fun getOrderById(orderId: String): Result<ExtDHSaleHead?>
 
     suspend fun removeProductFromCart(
-        idGoodsInventory: String,
-        count: Int,
-        idSellerAmbassador: String,
-        accessToken: String
+        request: ParamGoodsToECommers, accessToken: String
     ): Result<Unit>
 
     suspend fun removeProductFromCartWithFullResponseModel(
-        accessToken: String,
-        idDrSaleRow: String
-    ): Result<BasketData>
+        accessToken: String, IDDRSaleRow: String
+    ): Result<ExtDHSaleHead?>
 
     suspend fun removeNomenclatureFromCart(
-        accessToken: String,
-        idrfNomenclature: String
-    ): Result<BasketData>
+        accessToken: String, idrfNomenclature: String
+    ): Result<ExtDHSaleHead?>
 
     suspend fun addProductToCart(
-        idGoodsInventory: String,
-        count: Int,
-        idSellerAmbassador: String,
-        accessToken: String
-    ): Result<BasketData>
+        request: ParamGoodsToECommers, accessToken: String
+    ): Result<ExtDHSaleHead?>
 
-    suspend fun cancelBonusesImplementation(accessToken: String): Result<BasketData>
+    suspend fun cancelBonusesImplementation(accessToken: String): Result<ExtDHSaleHead?>
 
     suspend fun setDeliveryAddress(
-        accessToken: String,
-        idAddress: String,
-        addressString: String
+        accessToken: String, request: ParamForAddAddress
     ): Result<Unit>
 
     suspend fun setDeliveryCommentary(
-        accessToken: String,
-        commentary: String
+        accessToken: String, request: ParamForAndComment
     ): Result<Unit>
 
-    suspend fun confirmOrder(accessToken: String): Result<BasketData>
+    suspend fun confirmOrder(accessToken: String): Result<ExtDHSaleHead?>
 
     suspend fun fastAddToCart(
-        accessToken: String,
-        idGoodsInventory: String,
-        count: Int,
-        idSellerAmbassador: String
+        accessToken: String, request: ParamGoodsToECommers
     ): Result<Unit>
 
     suspend fun getGoodsQuantity(
-        accessToken: String,
-        idrgGoodsInventory: String
-    ): Result<GoodsQuantityData>
+        accessToken: String, idrgGoodsInventory: String
+    ): Result<DataRowInCart?>
 
     suspend fun addDeliveryToCart(
-        accessToken: String,
-        deliveryService: DeliveryService,
-        displayName: String,
-        calculatedPrice: Double,
-        comment: String,
-        deliveryType: DeliveryType,
-        serviceType: ServiceType,
-        pickUpPoint: String
-    ): Result<BasketData>
+        acessToken: String, request: DeliveryData
+    ): Result<ExtDHSaleHead?>
 }

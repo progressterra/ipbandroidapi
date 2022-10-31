@@ -1,17 +1,23 @@
 package com.progressterra.ipbandroidapi.api.iecommerce.core
 
-import com.progressterra.ipbandroidapi.api.iecommerce.core.model.CatalogInfoResponse
-import com.progressterra.ipbandroidapi.api.iecommerce.core.model.CatalogResponse
-import com.progressterra.ipbandroidapi.api.iecommerce.core.model.ProductPageResponse
-import com.progressterra.ipbandroidapi.api.iecommerce.core.model.ProductSetResponse
+import com.progressterra.ipbandroidapi.api.iecommerce.model.CatalogResult
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ResultListRFCatalog
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ResultProductSet
+import com.progressterra.ipbandroidapi.api.iecommerce.model.ResultProducts
 
 internal interface IECommerceCoreCloudDataSource {
 
-    suspend fun getProductSizeSet(artikul: String, idFeature: String): ProductSetResponse
+    suspend fun getProductSizeSet(
+        artikul: String, idFeature: String
+    ): ResultProductSet
 
-    suspend fun getProductsByIds(accessToken: String, idsList: List<String>): ProductPageResponse
+    suspend fun getProductsByIds(
+        accessToken: String, idsList: List<String>
+    ): ResultProducts
 
-    suspend fun getProductDetailByIDRG(idrgGoodsInventory: String): ProductPageResponse
+    suspend fun getProductDetailByIDRG(
+        idrgGoodsInventory: String
+    ): ResultProducts
 
     suspend fun getProductsByCategory(
         accessToken: String,
@@ -20,7 +26,7 @@ internal interface IECommerceCoreCloudDataSource {
         pageSizeIncome: Int,
         sortingField: Int,
         sortingOrder: Int
-    ): ProductPageResponse
+    ): ResultProducts
 
     suspend fun searchProductsByCategory(
         accessToken: String,
@@ -30,7 +36,7 @@ internal interface IECommerceCoreCloudDataSource {
         pageSizeIncome: Int,
         sortingField: Int,
         sortingOrder: Int
-    ): ProductPageResponse
+    ): ResultProducts
 
     suspend fun searchProductsByCategoryCollapsed(
         accessToken: String,
@@ -40,7 +46,7 @@ internal interface IECommerceCoreCloudDataSource {
         pageSizeIncome: Int,
         sortingField: Int,
         sortingOrder: Int
-    ): ProductPageResponse
+    ): ResultProducts
 
     suspend fun getProductsByCategoryCollapsed(
         accessToken: String,
@@ -49,18 +55,20 @@ internal interface IECommerceCoreCloudDataSource {
         pageSizeIncome: Int,
         sortingField: Int,
         sortingOrder: Int
-    ): ProductPageResponse
+    ): ResultProducts
 
-    suspend fun getProductByNomenklatura(nomenclatura: String, idrfShop: String): ProductPageResponse
+    suspend fun getProductByNomenklatura(
+        nomenclatura: String, idrfShop: String
+    ): ResultProducts
 
     suspend fun getPartnersGoods(
         idShop: String,
         idEnterprise: String,
         pageNumber: Int,
         pageSize: Int
-    ): ProductPageResponse
+    ): ResultProducts
 
-    suspend fun getCatalog(accessToken: String): CatalogResponse
+    suspend fun getCatalog(accessToken: String): CatalogResult
 
-    suspend fun getCategoryInfo(ids: List<String>): CatalogInfoResponse
+    suspend fun getCategoryInfo(ids: List<String>): ResultListRFCatalog
 }
