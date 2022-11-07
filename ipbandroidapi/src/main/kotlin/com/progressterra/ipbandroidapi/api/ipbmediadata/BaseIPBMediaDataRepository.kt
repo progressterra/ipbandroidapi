@@ -1,19 +1,22 @@
 package com.progressterra.ipbandroidapi.api.ipbmediadata
 
 import com.progressterra.ipbandroidapi.api.ipbmediadata.model.DataMediaData
+import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 import okhttp3.MultipartBody
 import java.io.InputStream
 
 internal class BaseIPBMediaDataRepository(
-    private val cloudDataSource: IPBMediaDataCloudDataSource
-) : IPBMediaDataRepository {
+    handleException: HandleException,
+    private val service: IPBMediaDataService
+) : IPBMediaDataRepository, AbstractRepository(handleException) {
 
     override suspend fun deleteMediaData(
         accessToken: String,
         idRGEntitytMediaData: String
-    ): Result<Unit> = runCatching {
-        val response = cloudDataSource.deleteMediaData(accessToken, idRGEntitytMediaData)
+    ): Result<Unit> = handle {
+        val response = service.deleteMediaData(accessToken, idRGEntitytMediaData)
         if (response.result?.status != 0)
             throw BadRequestException()
     }
@@ -26,9 +29,9 @@ internal class BaseIPBMediaDataRepository(
         alias: String,
         tag: Int,
         file: MultipartBody.Part
-    ): Result<DataMediaData?> = runCatching {
+    ): Result<DataMediaData?> = handle {
         val response =
-            cloudDataSource.attachToEntity(
+            service.attachToEntity(
                 accessToken,
                 idEntity,
                 typeContent,
@@ -47,8 +50,8 @@ internal class BaseIPBMediaDataRepository(
     override suspend fun attachedToEntity(
         accessToken: String,
         idEntity: String
-    ): Result<List<DataMediaData>?> = runCatching {
-        val response = cloudDataSource.attachedToEntity(accessToken, idEntity)
+    ): Result<List<DataMediaData>?> = handle {
+        val response = service.attachedToEntity(accessToken, idEntity)
         if (response.result?.status != 0)
             throw BadRequestException()
         response
@@ -57,8 +60,8 @@ internal class BaseIPBMediaDataRepository(
     }
 
     override suspend fun downloadFile(accessToken: String, url: String): Result<InputStream> =
-        runCatching {
-            cloudDataSource.downloadFile(accessToken, url)
+        handle {
+            service.downloadFile(accessToken, url)
         }.map { it.byteStream() }
 }
 

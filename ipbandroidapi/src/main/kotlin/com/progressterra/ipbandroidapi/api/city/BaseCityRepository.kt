@@ -4,15 +4,19 @@ import com.progressterra.ipbandroidapi.api.city.model.AddCityRequest
 import com.progressterra.ipbandroidapi.api.city.model.CityData
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
-internal class BaseCityRepository(private val cloudDataSource: CityCloudDataSource) : CityRepository,
-    AbstractRepository() {
+internal class BaseCityRepository(
+    handleException: HandleException,
+    private val service: CityService
+) : CityRepository,
+    AbstractRepository(handleException) {
 
     override suspend fun setCity(
         accessToken: String,
         cityData: CityData
     ): Result<Unit> = handle {
-        val response = cloudDataSource.setCity(
+        val response = service.setCity(
             accessToken, AddCityRequest(
                 cityData.cityFiasIdc,
                 cityData.cityKladrId,
@@ -27,7 +31,7 @@ internal class BaseCityRepository(private val cloudDataSource: CityCloudDataSour
     }
 
     override suspend fun getCity(accessToken: String): Result<CityData> = handle {
-        val response = cloudDataSource.clientCity(accessToken)
+        val response = service.clientCity(accessToken)
         if (response.result?.status != 0)
             throw BadRequestException()
         response

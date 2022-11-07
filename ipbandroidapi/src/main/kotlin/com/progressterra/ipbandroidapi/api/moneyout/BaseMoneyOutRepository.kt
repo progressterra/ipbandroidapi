@@ -5,10 +5,12 @@ import com.progressterra.ipbandroidapi.api.moneyout.model.RemoveBonusesData
 import com.progressterra.ipbandroidapi.api.moneyout.model.RemoveBonusesRequest
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseMoneyOutRepository(
-    private val cloudDataSource: MoneyOutCloudDataSource
-) : AbstractRepository(), MoneyOutRepository {
+    handleException: HandleException,
+    private val service: MoneyOutService
+) : AbstractRepository(handleException), MoneyOutRepository {
 
     override suspend fun removeBonuses(
         accessToken: String,
@@ -16,7 +18,7 @@ internal class BaseMoneyOutRepository(
         sum: Int
     ): Result<RemoveBonusesData> =
         handle {
-            val response = cloudDataSource.removeBonuses(
+            val response = service.removeBonuses(
                 RemoveBonusesRequest(
                     accessToken, outType, sum
                 )
@@ -27,14 +29,14 @@ internal class BaseMoneyOutRepository(
         }.map { RemoveBonusesData(it.data) }
 
     override suspend fun getConfirmedApplications(accessToken: String): Result<List<ApplicationData>> = handle {
-        val response = cloudDataSource.getConfirmedApplications(accessToken)
+        val response = service.getConfirmedApplications(accessToken)
         if (response.status != 0)
             throw BadRequestException()
         response
     }.map { data -> data.dataList?.map { ApplicationData(it) } ?: emptyList() }
 
     override suspend fun getNotConfirmedApplications(accessToken: String): Result<List<ApplicationData>> = handle {
-        val response = cloudDataSource.getNotConfirmedApplications(accessToken)
+        val response = service.getNotConfirmedApplications(accessToken)
         if (response.status != 0)
             throw BadRequestException()
         response

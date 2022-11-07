@@ -4,20 +4,22 @@ import com.progressterra.ipbandroidapi.api.sber.model.OrderData
 import com.progressterra.ipbandroidapi.api.sber.model.OrderStatus
 import com.progressterra.ipbandroidapi.api.sber.model.PaymentData
 import com.progressterra.ipbandroidapi.core.AbstractRepository
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseSberRepository(
-    private val cloudDataSource: SberCloudDataSource
-) : AbstractRepository(), SberRepository {
+    handleException: HandleException,
+    private val service: SberService
+) : AbstractRepository(handleException), SberRepository {
 
     override suspend fun registerOrder(idDHSaleHead: String): Result<OrderData> = handle {
-        cloudDataSource.registerOrder(idDHSaleHead)
+        service.registerOrder(idDHSaleHead)
     }.map { OrderData(it) }
 
     override suspend fun sendCardData(idDHSaleHead: String, seToken: String): Result<PaymentData> = handle {
-        cloudDataSource.sendCardData(idDHSaleHead, seToken)
+        service.sendCardData(idDHSaleHead, seToken)
     }.map { PaymentData(it.data) }
 
     override suspend fun getOrderStatus(idDHSaleHead: String): Result<OrderStatus> = handle {
-        cloudDataSource.getOrderStatus(idDHSaleHead)
+        service.getOrderStatus(idDHSaleHead)
     }.map { it.orderStatus }
 }

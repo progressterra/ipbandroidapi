@@ -7,13 +7,15 @@ import com.progressterra.ipbandroidapi.api.ambassador.model.UploadContractOfAmba
 import com.progressterra.ipbandroidapi.api.ambassador.model.UploadImageUrlRequest
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseAmbassadorRepository(
-    private val cloudDataSource: AmbassadorCloudDataSource
-) : AbstractRepository(), AmbassadorRepository {
+    handleException: HandleException,
+    private val service: AmbassadorService
+) : AbstractRepository(handleException), AmbassadorRepository {
 
     override suspend fun getUserBankInfo(accessToken: String): Result<BankAccountDetailsData> = handle {
-        val response = cloudDataSource.getUserBankInfo(accessToken)
+        val response = service.getUserBankInfo(accessToken)
         if (response.status != 0)
             throw BadRequestException()
         response
@@ -32,7 +34,7 @@ internal class BaseAmbassadorRepository(
         tinOfClient: String,
         accessToken: String
     ): Result<BankExtendedData> = handle {
-        val response = cloudDataSource.updateBankClientInfo(
+        val response = service.updateBankClientInfo(
             UpdateBankDataRequest(
                 typeName,
                 bankName,
@@ -52,7 +54,7 @@ internal class BaseAmbassadorRepository(
     }
 
     override suspend fun getAmbassadorStatus(accessToken: String): Result<AmbassadorStatusData> = handle {
-        val response = cloudDataSource.getAmbassadorStatus(accessToken)
+        val response = service.getAmbassadorStatus(accessToken)
         if (response.status != 0)
             throw BadRequestException()
         response
@@ -61,7 +63,7 @@ internal class BaseAmbassadorRepository(
     }
 
     override suspend fun becomeSelfEmployed(accessToken: String): Result<AmbassadorStatusData> = handle {
-        val response = cloudDataSource.becomeSelfEmployed(accessToken)
+        val response = service.becomeSelfEmployed(accessToken)
         if (response.status != 0)
             throw BadRequestException()
         response
@@ -73,24 +75,24 @@ internal class BaseAmbassadorRepository(
         accessToken: String,
         urlImage: String
     ): Result<Unit> = handle {
-        val response = cloudDataSource.uploadPassportPhotoUrl(accessToken, UploadImageUrlRequest(urlImage))
+        val response = service.uploadPassportPhotoUrl(accessToken, UploadImageUrlRequest(urlImage))
         if (response.status != 0)
             throw BadRequestException()
     }
 
     override suspend fun uploadSnilsPhotoUrl(accessToken: String, urlImage: String): Result<Unit> = handle {
-        val response = cloudDataSource.uploadSnilsPhotoUrl(accessToken, UploadImageUrlRequest(urlImage))
+        val response = service.uploadSnilsPhotoUrl(accessToken, UploadImageUrlRequest(urlImage))
         if (response.status != 0)
             throw BadRequestException()
     }
 
     override suspend fun getContractOfAmbassador(accessToken: String): Result<Unit> = handle {
-        cloudDataSource.getContractOfAmbassador(accessToken)
+        service.getContractOfAmbassador(accessToken)
     }
 
     override suspend fun uploadAmbassadorContractPhotoUrl(accessToken: String, urlImage: String): Result<Unit> =
         handle {
-            val response = cloudDataSource.uploadAmbassadorContractPhotoUrl(
+            val response = service.uploadAmbassadorContractPhotoUrl(
                 UploadContractOfAmbassadorRequest(
                     accessToken,
                     urlImage
@@ -101,7 +103,7 @@ internal class BaseAmbassadorRepository(
         }
 
     override suspend fun setDirectPaymentCooperationType(accessToken: String): Result<AmbassadorData> = handle {
-        val response = cloudDataSource.setDirectPaymentCooperationType(accessToken)
+        val response = service.setDirectPaymentCooperationType(accessToken)
         if (response.status != 0)
             throw BadRequestException()
         response
@@ -115,7 +117,7 @@ internal class BaseAmbassadorRepository(
         verifiedChannelCode: String
     ): Result<AmbassadorData> = handle {
         val response =
-            cloudDataSource.setNewNumber(accessToken, SetNewPhoneRequest(accessToken, phone, verifiedChannelCode))
+            service.setNewNumber(accessToken, SetNewPhoneRequest(accessToken, phone, verifiedChannelCode))
         if (response.status != 0)
             throw BadRequestException()
         response

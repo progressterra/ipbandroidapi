@@ -8,21 +8,24 @@ import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataCreateAccessToke
 import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataEmail
 import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataForEndLogin
 import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDeviceParameters
+import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseSCRMRepository(
-    private val cloudDataSource: SCRMCloudDataSource
-) : SCRMRepository {
+    handleException: HandleException,
+    private val cloudDataSource: SCRMService
+) : SCRMRepository, AbstractRepository(handleException) {
 
     override suspend fun verificationChannelBegin(request: IncomeChannelData): Result<Unit> =
-        runCatching {
+        handle {
             val response = cloudDataSource.verificationChannelBegin(request)
             if (response.result?.status != 0)
                 throw BadRequestException()
         }
 
     override suspend fun verificationChannelEnd(request: IncomeDataForEndLogin): Result<DeviceData?> =
-        runCatching {
+        handle {
             val response = cloudDataSource.verificationChannelEnd(request)
             if (response.result?.status != 0)
                 throw BadRequestException()
@@ -30,7 +33,7 @@ internal class BaseSCRMRepository(
         }
 
     override suspend fun clientInfoByToken(accessToken: String): Result<ClientFullData?> =
-        runCatching {
+        handle {
             val response = cloudDataSource.clientInfoByToken(accessToken)
             if (response.result?.status != 0)
                 throw BadRequestException()
@@ -38,7 +41,7 @@ internal class BaseSCRMRepository(
         }
 
     override suspend fun accessToken(request: IncomeDataCreateAccessToken): Result<String?> =
-        runCatching {
+        handle {
             val response = cloudDataSource.accessToken(request)
             if (response.result?.status != 0)
                 throw BadRequestException()
@@ -48,7 +51,7 @@ internal class BaseSCRMRepository(
     override suspend fun setPersonalInfo(
         accessToken: String,
         request: ClientDataIncome
-    ): Result<ClientFullData?> = runCatching {
+    ): Result<ClientFullData?> = handle {
         val response = cloudDataSource.setPersonalInfo(accessToken, request)
         if (response.result?.status != 0)
             throw BadRequestException()
@@ -56,7 +59,7 @@ internal class BaseSCRMRepository(
     }
 
     override suspend fun setEmail(accessToken: String, request: IncomeDataEmail): Result<Unit> =
-        runCatching {
+        handle {
             val response = cloudDataSource.setEmail(accessToken, request)
             if (response.result?.status != 0)
                 throw BadRequestException()
@@ -65,7 +68,7 @@ internal class BaseSCRMRepository(
     override suspend fun setDeviceToken(
         accessToken: String,
         request: IncomeDeviceParameters
-    ): Result<Unit> = runCatching {
+    ): Result<Unit> = handle {
         val response = cloudDataSource.setDeviceToken(accessToken, request)
         if (response.result?.status != 0)
             throw BadRequestException()

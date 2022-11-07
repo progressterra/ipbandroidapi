@@ -4,13 +4,15 @@ import com.progressterra.ipbandroidapi.api.ipbdelivery.model.*
 import com.progressterra.ipbandroidapi.api.ipbdelivery.model.SetDeliveryTypeRequest
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseIPBDeliveryRepository(
-    private val cloudDataSource: IPBDeliveryCloudDataSource
-) : AbstractRepository(), IPBDeliveryRepository {
+    handleException: HandleException,
+    private val service: IPBDeliveryService
+) : AbstractRepository(handleException), IPBDeliveryRepository {
 
     override suspend fun getDeliveryList(accessToken: String): Result<List<DeliveryData>> = handle {
-        val response = cloudDataSource.getDeliveryList(accessToken)
+        val response = service.getDeliveryList(accessToken)
         if (response.status != 0)
             throw BadRequestException()
         response
@@ -24,7 +26,7 @@ internal class BaseIPBDeliveryRepository(
         rdPickUpPoint: String,
         accessToken: String
     ): Result<OrderInfoData> = handle {
-        val response = cloudDataSource.createDeliveryOrder(
+        val response = service.createDeliveryOrder(
             SetDeliveryTypeRequest(
                 methodType.ordinal,
                 serviceType.ordinal,
@@ -40,7 +42,7 @@ internal class BaseIPBDeliveryRepository(
     }
 
     override suspend fun getMetroStations(accessToken: String): Result<List<MetroStationsData>> = handle {
-        val response = cloudDataSource.getMetroStations(accessToken)
+        val response = service.getMetroStations(accessToken)
         if (response.status != 0)
             throw BadRequestException()
         response
@@ -50,7 +52,7 @@ internal class BaseIPBDeliveryRepository(
 
     override suspend fun getOrderStatus(rdOrderId: String, rfServiceType: String): Result<DeliveryStatusData> =
         handle {
-            val response = cloudDataSource.getOrderStatus(rdOrderId, rfServiceType)
+            val response = service.getOrderStatus(rdOrderId, rfServiceType)
             if (response.status != 0)
                 throw BadRequestException()
             response

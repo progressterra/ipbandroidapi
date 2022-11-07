@@ -5,13 +5,15 @@ import com.progressterra.ipbandroidapi.api.ibonus.model.GeneralBonusData
 import com.progressterra.ipbandroidapi.api.ibonus.model.TransactionData
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseIBonusRepository(
-    private val cloudDataSource: IBonusCloudDataSource
-) : IBonusRepository, AbstractRepository() {
+    handleException: HandleException,
+    private val service: IBonusService
+) : IBonusRepository, AbstractRepository(handleException) {
 
     override suspend fun getGeneralInfo(accessToken: String): Result<GeneralBonusData> = handle {
-        val response = cloudDataSource.getGeneralInfo(accessToken)
+        val response = service.getGeneralInfo(accessToken)
         if (response.result.status != 0)
             throw BadRequestException()
         response
@@ -19,7 +21,7 @@ internal class BaseIBonusRepository(
 
     override suspend fun getTransactionsList(accessToken: String): Result<List<TransactionData>> =
         handle {
-            val response = cloudDataSource.getTransactionsList(accessToken)
+            val response = service.getTransactionsList(accessToken)
             if (response.result.status != 0)
                 throw BadRequestException()
             response
@@ -27,7 +29,7 @@ internal class BaseIBonusRepository(
 
     override suspend fun getBonusMessagesList(accessToken: String): Result<List<BonusData>> =
         handle {
-            val response = cloudDataSource.getBonusMessagesList(accessToken)
+            val response = service.getBonusMessagesList(accessToken)
             if (response.result.status != 0)
                 throw BadRequestException()
             response

@@ -3,10 +3,12 @@ package com.progressterra.ipbandroidapi.api.testimonials
 import com.progressterra.ipbandroidapi.api.testimonials.model.TestimonialRequest
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseTestimonialsRepository(
-    private val testimonialsCloudDataSource: TestimonialsCloudDataSource
-) : TestimonialsRepository, AbstractRepository() {
+    handleException: HandleException,
+    private val service: TestimonialsService
+) : TestimonialsRepository, AbstractRepository(handleException) {
 
     override suspend fun addTestimonial(
         accessToken: String,
@@ -18,7 +20,7 @@ internal class BaseTestimonialsRepository(
         rating: Int,
         typeMessage: String
     ): Result<Unit> = handle {
-        val response = testimonialsCloudDataSource.addTestimonial(
+        val response = service.addTestimonial(
             accessToken, TestimonialRequest(
                 nickNameClient, message, idEmployee, idOrder, idShop, rating, typeMessage
             )

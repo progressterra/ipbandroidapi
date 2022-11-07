@@ -4,15 +4,17 @@ import com.progressterra.ipbandroidapi.api.suggestion.model.DadataSuggestionsFro
 import com.progressterra.ipbandroidapi.api.suggestion.model.DadataSuggestionsRequest
 import com.progressterra.ipbandroidapi.api.suggestion.model.SuggestionData
 import com.progressterra.ipbandroidapi.core.AbstractRepository
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseSuggestionRepository(
-    private val cloudDataSource: SuggestionCloudDataSource
-) : AbstractRepository(), SuggestionRepository {
+    handleException: HandleException,
+    private val service: SuggestionService
+) : AbstractRepository(handleException), SuggestionRepository {
 
     override suspend fun getSuggestionsAddressFromDadata(
         keyword: String, count: Int
     ): Result<List<SuggestionData>> = handle {
-        cloudDataSource.getSuggestionsAddressFromDadata(
+        service.getSuggestionsAddressFromDadata(
             DadataSuggestionsRequest(
                 keyword, count
             )
@@ -22,7 +24,7 @@ internal class BaseSuggestionRepository(
     override suspend fun getSuggestionsAddressFromLocation(
         latitude: Float, longitude: Float, count: Int
     ): Result<List<SuggestionData>> = handle {
-        cloudDataSource.getSuggestionsAddressFromLocation(
+        service.getSuggestionsAddressFromLocation(
             DadataSuggestionsFromLocationRequest(
                 latitude, longitude, count
             )

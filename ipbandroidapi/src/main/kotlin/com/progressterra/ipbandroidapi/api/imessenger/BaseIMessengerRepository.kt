@@ -6,13 +6,15 @@ import com.progressterra.ipbandroidapi.api.imessenger.model.MessageData
 import com.progressterra.ipbandroidapi.api.imessenger.model.MessageSendingRequest
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseIMessengerRepository(
-    private val cloudDataSource: IMessengerCloudDataSource
-) : AbstractRepository(), IMessengerRepository {
+    handleException: HandleException,
+    private val service: IMessengerService
+) : AbstractRepository(handleException), IMessengerRepository {
 
     override suspend fun getMessagesList(idRgDialog: String, page: String): Result<List<MessageData>> = handle {
-        val response = cloudDataSource.getMessagesList(idRgDialog, page)
+        val response = service.getMessagesList(idRgDialog, page)
         if (response.status != 0)
             throw BadRequestException()
         response
@@ -25,7 +27,7 @@ internal class BaseIMessengerRepository(
         accessToken: String,
         contentText: String
     ): Result<List<MessageData>> = handle {
-        val response = cloudDataSource.sendMessage(
+        val response = service.sendMessage(
             MessageSendingRequest(
                 idrgDialog,
                 accessToken,
@@ -45,7 +47,7 @@ internal class BaseIMessengerRepository(
         additionalData: String,
         additionalDataJSON: String
     ): Result<DialogInfoData> = handle {
-        val response = cloudDataSource.getDialogInfo(
+        val response = service.getDialogInfo(
             DialogInfoRequest(
                 listId,
                 descriptionDialog,
@@ -61,7 +63,7 @@ internal class BaseIMessengerRepository(
     }
 
     override suspend fun getDialogList(accessToken: String): Result<List<DialogInfoData>> = handle {
-        val response = cloudDataSource.getDialogList(accessToken)
+        val response = service.getDialogList(accessToken)
         if (response.status != 0)
             throw BadRequestException()
         response

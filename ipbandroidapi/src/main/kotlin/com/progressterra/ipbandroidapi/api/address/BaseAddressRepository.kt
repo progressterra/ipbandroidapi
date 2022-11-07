@@ -5,13 +5,15 @@ import com.progressterra.ipbandroidapi.api.address.model.AddressRaw
 import com.progressterra.ipbandroidapi.api.address.model.AddressesData
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseAddressRepository(
-    private val cloudDataSource: AddressCloudDataSource
-) : AddressRepository, AbstractRepository() {
+    handleException: HandleException,
+    private val service: AddressService
+) : AddressRepository, AbstractRepository(handleException) {
 
     override suspend fun getAddressList(accessToken: String): Result<AddressesData> = handle {
-        val response = cloudDataSource.getAddressList(accessToken)
+        val response = service.getAddressList(accessToken)
         if (response.result?.status != 0)
             throw BadRequestException()
         response
@@ -21,7 +23,7 @@ internal class BaseAddressRepository(
         accessToken: String,
         addressData: AddressData
     ): Result<Unit> = handle {
-        val response = cloudDataSource.setClientAddress(accessToken, AddressRaw(addressData))
+        val response = service.setClientAddress(accessToken, AddressRaw(addressData))
         if (response.result?.status != 0)
             throw BadRequestException()
     }

@@ -4,14 +4,16 @@ import com.progressterra.ipbandroidapi.api.purchases.model.PurchaseData
 import com.progressterra.ipbandroidapi.api.purchases.model.PurchaseDetailsData
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BasePurchasesRepository(
-    private val cloudDataSource: PurchasesCloudDataSource
-) : PurchasesRepository, AbstractRepository() {
+    handleException: HandleException,
+    private val service: PurchasesService
+) : PurchasesRepository, AbstractRepository(handleException) {
 
     override suspend fun getShopList(accessToken: String): Result<List<PurchaseData>> =
         handle {
-            val response = cloudDataSource.getShopList(accessToken)
+            val response = service.getShopList(accessToken)
             if (response.status != 0)
                 throw BadRequestException()
             response
@@ -22,7 +24,7 @@ internal class BasePurchasesRepository(
         }
 
     override suspend fun getPurchaseDetails(purchaseId: String): Result<PurchaseDetailsData> = handle {
-        cloudDataSource.getPurchaseDetails(purchaseId)
+        service.getPurchaseDetails(purchaseId)
     }.map {
         PurchaseDetailsData(it.data)
     }

@@ -1,12 +1,12 @@
 package com.progressterra.ipbandroidapi.core
 
-abstract class AbstractRepository {
+import com.progressterra.ipbandroidapi.exception.HandleException
 
-    //TODO remove error print
+abstract class AbstractRepository(private val handleException: HandleException) {
+
     protected suspend fun <T> handle(block: suspend () -> T): Result<T> = try {
         Result.success(block.invoke())
     } catch (exception: Exception) {
-        exception.printStackTrace()
-        Result.failure(exception)
+        Result.failure(handleException.handle(exception))
     }
 }

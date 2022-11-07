@@ -5,13 +5,15 @@ import com.progressterra.ipbandroidapi.api.ambassadorinvite.model.InvitedData
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.model.InvitingMembersRequest
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseAmbassadorInviteRepository(
-    private val cloudDataSource: AmbassadorInviteCloudDataSource
-) : AbstractRepository(), AmbassadorInviteRepository {
+    handleException: HandleException,
+    private val service: AmbassadorInviteService
+) : AbstractRepository(handleException), AmbassadorInviteRepository {
 
     override suspend fun getInviteInfo(accessToken: String): Result<AmbassadorInviteData> = handle {
-        val response = cloudDataSource.getInviteInfo(accessToken)
+        val response = service.getInviteInfo(accessToken)
         if (response.status != 0)
             throw BadRequestException()
         response
@@ -23,7 +25,7 @@ internal class BaseAmbassadorInviteRepository(
         accessTokenAmbassador: String,
         listPhones: List<String>
     ): Result<InvitedData> = handle {
-        val response = cloudDataSource.sendInvites(InvitingMembersRequest(accessTokenAmbassador, listPhones))
+        val response = service.sendInvites(InvitingMembersRequest(accessTokenAmbassador, listPhones))
         if (response.status != 0)
             throw BadRequestException()
         response

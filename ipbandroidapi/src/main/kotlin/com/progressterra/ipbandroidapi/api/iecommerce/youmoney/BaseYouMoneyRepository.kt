@@ -4,17 +4,19 @@ import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.model.PaymentResu
 import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.model.PaymentTokenRequest
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseYouMoneyRepository(
-    private val cloudDataSource: YouMoneyCloudDataSource
-) : AbstractRepository(), YouMoneyRepository {
+    handleException: HandleException,
+    private val service: YouMoneyService
+) : AbstractRepository(handleException), YouMoneyRepository {
 
     override suspend fun sendYooMoneyToken(
         accessToken: String,
         amountPayment: Double,
         paymentToken: String
     ): Result<PaymentResultData> = handle {
-        val response = cloudDataSource.sendYooMoneyToken(
+        val response = service.sendYooMoneyToken(
             accessToken,
             PaymentTokenRequest(amountPayment, paymentToken)
         )
@@ -26,7 +28,7 @@ internal class BaseYouMoneyRepository(
     }
 
     override suspend fun getPaymentConfirmation(cartId: String): Result<Unit> = handle {
-        val response = cloudDataSource.getPaymentConfirmation(cartId)
+        val response = service.getPaymentConfirmation(cartId)
         if (response.status != 0)
             throw BadRequestException()
     }
