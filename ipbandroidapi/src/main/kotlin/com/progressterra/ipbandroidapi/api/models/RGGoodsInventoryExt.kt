@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.product.models
+package com.progressterra.ipbandroidapi.api.models
 
 
 import com.google.gson.annotations.SerializedName

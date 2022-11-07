@@ -4,6 +4,7 @@
 package com.progressterra.ipbandroidapi.api.product.models
 
 import com.google.gson.annotations.SerializedName
+import com.progressterra.ipbandroidapi.api.models.RGGoodsInventoryExt
 
 /**
  * 
