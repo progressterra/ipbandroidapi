@@ -1,4 +1,8 @@
+
+
+
 package com.progressterra.ipbandroidapi.api.product.models
+
 
 import com.google.gson.annotations.SerializedName
 
@@ -9,14 +13,20 @@ import com.google.gson.annotations.SerializedName
  * @param hexCode 16-й код цвета
  * @param url ссылка на изображение цвета
  */
-data class ColorData(
+
+data class ColorData (
+
     /* Имя цвета1 */
     @SerializedName("colorName")
     val colorName: String? = null,
+
     /* 16-й код цвета */
     @SerializedName("hexCode")
     val hexCode: String? = null,
+
     /* ссылка на изображение цвета */
     @SerializedName("url")
     val url: String? = null
+
 )
+
