@@ -21,7 +21,7 @@ internal interface IpbMediaDataCoreApi {
     @GET("/mobile/{IDEntity}/list")
     suspend fun getMediaDataListByEntity(@Path("IDEntity") idEntity: String): MediaDataListResponse
 
-    @GET("/mobile/{IDRGEntitytMediaData}")
+    @GET("/v7/mobile/{IDRGEntitytMediaData}")
     suspend fun getMediaDataById(@Path("IDRGEntitytMediaData") mediaDataId: String): MediaDataResponse
 
     @Streaming
