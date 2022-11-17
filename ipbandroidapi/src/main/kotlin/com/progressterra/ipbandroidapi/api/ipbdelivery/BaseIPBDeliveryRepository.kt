@@ -8,7 +8,7 @@ import com.progressterra.ipbandroidapi.api.ipbdelivery.models.StatusResult
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
 import com.progressterra.ipbandroidapi.exception.HandleException
-import org.openapitools.client.models.DeliveryMethod
+import com.progressterra.ipbandroidapi.api.ipbdelivery.models.DeliveryMethod
 
 internal class BaseIPBDeliveryRepository(
     handleException: HandleException,

@@ -1,7 +1,6 @@
-package org.openapitools.client.models
+package com.progressterra.ipbandroidapi.api.ipbdelivery.models
 
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.api.ipbdelivery.models.PickupPoint
 
 /**
  * Способ доставки
@@ -32,6 +31,4 @@ data class DeliveryMethod(
 
     @SerializedName("dhPickupPointInfo")
     val dhPickupPointInfo: PickupPoint? = null
-
 )
-
