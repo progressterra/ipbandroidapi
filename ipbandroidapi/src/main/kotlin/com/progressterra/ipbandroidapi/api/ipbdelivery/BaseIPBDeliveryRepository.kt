@@ -1,62 +1,53 @@
 package com.progressterra.ipbandroidapi.api.ipbdelivery
 
-import com.progressterra.ipbandroidapi.api.ipbdelivery.model.*
-import com.progressterra.ipbandroidapi.api.ipbdelivery.model.SetDeliveryTypeRequest
+import com.progressterra.ipbandroidapi.api.ipbdelivery.models.DeliveryResponse
+import com.progressterra.ipbandroidapi.api.ipbdelivery.models.MetroStation
+import com.progressterra.ipbandroidapi.api.ipbdelivery.models.OrderStatusInfo
+import com.progressterra.ipbandroidapi.api.ipbdelivery.models.RGDeliveryParams
+import com.progressterra.ipbandroidapi.api.ipbdelivery.models.StatusResult
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.exception.BadRequestException
 import com.progressterra.ipbandroidapi.exception.HandleException
+import org.openapitools.client.models.DeliveryMethod
 
 internal class BaseIPBDeliveryRepository(
     handleException: HandleException,
     private val service: IPBDeliveryService
 ) : AbstractRepository(handleException), IPBDeliveryRepository {
 
-    override suspend fun getDeliveryList(accessToken: String): Result<List<DeliveryData>> = handle {
-        val response = service.getDeliveryList(accessToken)
-        if (response.status != 0)
-            throw BadRequestException()
-        response
-    }.map {
-        it.deliveryInfoList?.map { data -> DeliveryData(data) } ?: emptyList()
-    }
+    override suspend fun getDeliveryList(accessToken: String): Result<List<DeliveryMethod>?> =
+        handle {
+            val response = service.getDeliveryList(accessToken)
+            if (response.result?.status != StatusResult.ZERO)
+                throw BadRequestException()
+            response.data
+        }
 
     override suspend fun createDeliveryOrder(
-        methodType: DeliveryType,
-        serviceType: ServiceType,
-        rdPickUpPoint: String,
-        accessToken: String
-    ): Result<OrderInfoData> = handle {
-        val response = service.createDeliveryOrder(
-            SetDeliveryTypeRequest(
-                methodType.ordinal,
-                serviceType.ordinal,
-                rdPickUpPoint
-            ),
-            accessToken
-        )
-        if (response.status != 0)
+        setDeliveryTypeRequest: RGDeliveryParams, accessToken: String
+    ): Result<DeliveryResponse?> = runCatching {
+        val response = service.createDeliveryOrder(setDeliveryTypeRequest, accessToken)
+        if (response.result?.status != StatusResult.ZERO)
             throw BadRequestException()
-        response
-    }.map {
-        OrderInfoData(it.deliveryInfo)
+        response.data
     }
 
-    override suspend fun getMetroStations(accessToken: String): Result<List<MetroStationsData>> = handle {
-        val response = service.getMetroStations(accessToken)
-        if (response.status != 0)
-            throw BadRequestException()
-        response
-    }.map {
-        it.metroDataList?.map { data -> MetroStationsData(data) } ?: emptyList()
-    }
+    override suspend fun getMetroStations(accessToken: String): Result<List<MetroStation>?> =
+        handle {
+            val response = service.getMetroStations(accessToken)
+            if (response.result?.status != StatusResult.ZERO)
+                throw BadRequestException()
+            response.dataList
+        }
 
-    override suspend fun getOrderStatus(rdOrderId: String, rfServiceType: String): Result<DeliveryStatusData> =
+    override suspend fun getOrderStatus(
+        rdOrderId: String,
+        rfServiceType: String
+    ): Result<OrderStatusInfo?> =
         handle {
             val response = service.getOrderStatus(rdOrderId, rfServiceType)
-            if (response.status != 0)
+            if (response.result?.status != StatusResult.ZERO)
                 throw BadRequestException()
-            response
-        }.map {
-            DeliveryStatusData(it.data)
+            response.data
         }
 }
