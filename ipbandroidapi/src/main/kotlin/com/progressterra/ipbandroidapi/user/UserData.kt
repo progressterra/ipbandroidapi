@@ -12,6 +12,7 @@ object UserData : KotprefModel() {
     var clientExist by booleanPref()
     var phone by stringPref()
     var email by stringPref()
+    var address by stringPref()
     var sex by enumOrdinalPref(SexType.NONE)
     var userName by gsonPref(UserName())
     var dateOfBirthday by longPref()
