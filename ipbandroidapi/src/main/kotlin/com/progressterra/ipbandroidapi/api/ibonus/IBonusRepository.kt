@@ -1,12 +1,11 @@
 package com.progressterra.ipbandroidapi.api.ibonus
 
-import com.progressterra.ipbandroidapi.api.ibonus.model.*
+import com.progressterra.ipbandroidapi.api.ibonus.models.BonusTransaction
+import com.progressterra.ipbandroidapi.api.ibonus.models.DataInfoByAvailableBonusesGeneral
 
 interface IBonusRepository {
 
-    suspend fun getGeneralInfo(accessToken: String): Result<GeneralBonusData>
+    suspend fun getGeneralInfo(accessToken: String): Result<DataInfoByAvailableBonusesGeneral?>
 
-    suspend fun getTransactionsList(accessToken: String): Result<List<TransactionData>>
-
-    suspend fun getBonusMessagesList(accessToken: String): Result<List<BonusData>>
+    suspend fun getTransactionsList(accessToken: String): Result<List<BonusTransaction>?>
 }
