@@ -145,7 +145,7 @@ data class ExtDHSaleHead(
     val mode: Int? = null,
 
     @SerializedName("statusOrder")
-    val statusOrder: Int? = null,
+    val statusOrder: StatusOrder? = null,
 
     /* Статус документа 1 - документ проведен. Для выгрузки во внешнюю систему передаются документы со значение 1 */
     @SerializedName("statusObject")
