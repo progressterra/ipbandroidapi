@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.purchases.model
 
 import com.google.gson.annotations.SerializedName
 
-internal data class ProductsInfoRaw(
+data class ProductsInfo(
     @SerializedName("addedBonusesSum")
     val addedBonusesSum: Double?,
     @SerializedName("beginPrice")

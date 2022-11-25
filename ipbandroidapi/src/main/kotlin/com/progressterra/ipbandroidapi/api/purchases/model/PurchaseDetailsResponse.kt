@@ -2,14 +2,14 @@ package com.progressterra.ipbandroidapi.api.purchases.model
 
 import com.google.gson.annotations.SerializedName
 
-internal data class PurchaseDetailsResponse(
+data class PurchaseDetailsResponse(
     @SerializedName("data")
     val data: Data?
 ) {
 
     data class Data(
         @SerializedName("productsInfo")
-        val productsInfo: List<ProductsInfoRaw>?,
+        val productsInfo: List<ProductsInfo>?,
         @SerializedName("purchaseDate")
         val purchaseDate: String?,
         @SerializedName("purchaseId")
