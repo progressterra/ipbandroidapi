@@ -1,30 +1,54 @@
 package com.progressterra.ipbandroidapi.api.address
 
-import com.progressterra.ipbandroidapi.api.address.model.AddressData
-import com.progressterra.ipbandroidapi.api.address.model.AddressRaw
-import com.progressterra.ipbandroidapi.api.address.model.AddressesData
-import com.progressterra.ipbandroidapi.core.AbstractRepository
+import com.progressterra.ipbandroidapi.api.address.models.DataAddress
+import com.progressterra.ipbandroidapi.api.address.models.RGAddress
+import com.progressterra.ipbandroidapi.api.address.models.StatusResult
 import com.progressterra.ipbandroidapi.exception.BadRequestException
-import com.progressterra.ipbandroidapi.exception.HandleException
 
 internal class BaseAddressRepository(
-    handleException: HandleException,
     private val service: AddressService
-) : AddressRepository, AbstractRepository(handleException) {
+) : AddressRepository {
 
-    override suspend fun getAddressList(accessToken: String): Result<AddressesData> = handle {
-        val response = service.getAddressList(accessToken)
-        if (response.result?.status != 0)
-            throw BadRequestException()
-        response
-    }.map { AddressesData(it.addressInfo) }
-
-    override suspend fun setClientAddress(
+    override suspend fun uploadClientAddress(
         accessToken: String,
-        addressData: AddressData
-    ): Result<Unit> = handle {
-        val response = service.setClientAddress(accessToken, AddressRaw(addressData))
-        if (response.result?.status != 0)
+        request: RGAddress
+    ): Result<Unit> = runCatching {
+        val response = service.uploadClientAddress(accessToken, request)
+        if (response.status != StatusResult.ZERO)
             throw BadRequestException()
+    }
+
+    override suspend fun updateClientAddress(
+        accessToken: String,
+        request: RGAddress
+    ): Result<Unit> = runCatching {
+        val response = service.updateClientAddress(accessToken, request)
+        if (response.status != StatusResult.ZERO)
+            throw BadRequestException()
+    }
+
+    override suspend fun addressList(accessToken: String): Result<DataAddress?> = runCatching {
+        val response = service.addressList(accessToken)
+        if (response.result?.status != StatusResult.ZERO)
+            throw BadRequestException()
+        response.data
+    }
+
+    override suspend fun defaultShippingAddress(
+        accessToken: String
+    ): Result<RGAddress?> = runCatching {
+        val response = service.defaultShippingAddress(accessToken)
+        if (response.result?.status != StatusResult.ZERO)
+            throw BadRequestException()
+        response.data
+    }
+
+    override suspend fun defaultBillingAddress(
+        accessToken: String
+    ): Result<RGAddress?> = runCatching {
+        val response = service.defaultBillingAddress(accessToken)
+        if (response.result?.status != StatusResult.ZERO)
+            throw BadRequestException()
+        response.data
     }
 }

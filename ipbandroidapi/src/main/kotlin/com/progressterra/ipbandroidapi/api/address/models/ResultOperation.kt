@@ -1,19 +1,18 @@
-package com.progressterra.ipbandroidapi.api.ipbdelivery.models
+package com.progressterra.ipbandroidapi.api.address.models
 
 import com.google.gson.annotations.SerializedName
 
 /**
+ * 
  *
- *
- * @param status
- * @param message
- * @param messageDev
- * @param codeResult
- * @param duration
- * @param idLog
- * @param xRequestId
+ * @param status 
+ * @param message 
+ * @param messageDev 
+ * @param codeResult 
+ * @param duration 
+ * @param idLog 
  */
-data class ResultOperation(
+data class ResultOperation (
 
     @SerializedName("status")
     val status: StatusResult? = null,
@@ -31,8 +30,5 @@ data class ResultOperation(
     val duration: Double? = null,
 
     @SerializedName("idLog")
-    val idLog: String? = null,
-
-    @SerializedName("x-request-id")
-    val xRequestId: String? = null
+    val idLog: String? = null
 )

@@ -1,14 +1,23 @@
 package com.progressterra.ipbandroidapi.api.address
 
-import com.progressterra.ipbandroidapi.api.address.model.AddressData
-import com.progressterra.ipbandroidapi.api.address.model.AddressesData
+import com.progressterra.ipbandroidapi.api.address.models.DataAddress
+import com.progressterra.ipbandroidapi.api.address.models.RGAddress
 
 interface AddressRepository {
 
-    suspend fun setClientAddress(
+    suspend fun uploadClientAddress(
         accessToken: String,
-        addressData: AddressData
+        request: RGAddress
     ): Result<Unit>
 
-    suspend fun getAddressList(accessToken: String): Result<AddressesData>
+    suspend fun updateClientAddress(
+        accessToken: String,
+        request: RGAddress
+    ): Result<Unit>
+
+    suspend fun addressList(accessToken: String): Result<DataAddress?>
+
+    suspend fun defaultShippingAddress(accessToken: String): Result<RGAddress?>
+
+    suspend fun defaultBillingAddress(accessToken: String): Result<RGAddress?>
 }

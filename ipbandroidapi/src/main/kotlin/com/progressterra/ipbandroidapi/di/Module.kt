@@ -109,7 +109,6 @@ val iPBAndroidAPIModule = module {
 
     single<AddressRepository> {
         BaseAddressRepository(
-            get(),
             NetworkService.Base().createService(
                 AddressService::class.java, ADDRESS_URL
             )
