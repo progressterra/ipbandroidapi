@@ -1,12 +1,13 @@
 package com.progressterra.ipbandroidapi.api.suggestion.model
 
+
 import com.google.gson.annotations.SerializedName
 
-internal data class SuggestionRaw(
+data class Suggestion(
     @SerializedName("data")
-    val suggestionExtended: SuggestionExtendedRaw?,
+    val suggestionExtendedInfo: SuggestionExtendedInfo? = null,
     @SerializedName("unrestricted_value")
-    val unrestrictedValue: String?,
+    val unrestrictedValue: String? = null,
     @SerializedName("value")
-    val previewOfSuggestion: String?
+    val previewOfSuggestion: String? = null
 )

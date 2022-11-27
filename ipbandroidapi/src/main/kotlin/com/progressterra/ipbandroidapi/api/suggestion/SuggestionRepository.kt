@@ -1,12 +1,12 @@
 package com.progressterra.ipbandroidapi.api.suggestion
 
-import com.progressterra.ipbandroidapi.api.suggestion.model.SuggestionData
+import com.progressterra.ipbandroidapi.api.suggestion.model.DadataSuggestionsFromLocationRequest
+import com.progressterra.ipbandroidapi.api.suggestion.model.DadataSuggestionsRequest
+import com.progressterra.ipbandroidapi.api.suggestion.model.Suggestion
 
 interface SuggestionRepository {
 
-    suspend fun getSuggestionsAddressFromLocation(
-        latitude: Float, longitude: Float, count: Int
-    ): Result<List<SuggestionData>>
+    suspend fun getSuggestionsAddressFromDadata(dadataSuggestionsRequest: DadataSuggestionsRequest): Result<List<Suggestion>?>
 
-    suspend fun getSuggestionsAddressFromDadata(keyword: String, count: Int): Result<List<SuggestionData>>
+    suspend fun getSuggestionsAddressFromLocation(dadataSuggestionsRequest: DadataSuggestionsFromLocationRequest): Result<List<Suggestion>?>
 }
