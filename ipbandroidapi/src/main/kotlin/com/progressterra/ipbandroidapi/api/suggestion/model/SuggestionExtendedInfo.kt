@@ -41,6 +41,7 @@ data class SuggestionExtendedInfo(
     val houseFiasId: String? = null,
     @SerializedName("house_kladr_id")
     val houseKladrId: String? = null,
+    @SerializedName("kladr_id")
     val kladrId: String? = null,
     @SerializedName("postal_code")
     val postalCode: String? = null,
@@ -52,6 +53,7 @@ data class SuggestionExtendedInfo(
     val regionKladrId: String? = null,
     @SerializedName("region_type")
     val regionType: String? = null,
+    @SerializedName("street")
     val street: String? = null,
     @SerializedName("street_fias_id")
     val streetFiasId: String? = null,
