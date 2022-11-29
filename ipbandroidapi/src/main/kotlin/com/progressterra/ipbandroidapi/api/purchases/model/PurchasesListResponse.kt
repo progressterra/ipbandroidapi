@@ -8,7 +8,7 @@ import com.progressterra.ipbandroidapi.base.BaseResponse
 data class PurchasesListResponse(
     @SerializedName("listdata")
     val listdata: List<Data>,
-) : BaseResponse() {
+) {
 
     data class Data(
         @SerializedName("addedBonusesSum")
