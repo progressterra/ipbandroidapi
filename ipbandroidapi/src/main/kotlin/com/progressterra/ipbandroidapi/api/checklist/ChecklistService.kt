@@ -8,6 +8,13 @@ import retrofit2.http.*
  */
 interface ChecklistService {
 
+    @POST("/dhcheckperformed/{idDH}/send/{email}")
+    suspend fun sendOnEmail(
+        @Header("AccessToken") accessToken: String,
+        @Path("idDH") idDH: String,
+        @Path("email") email: String
+    ): EmptyResultOperationResultData
+
     @POST("/answerchecklistitem")
     suspend fun createOrUpdateAnswer(
         @Header("AccessToken") accessToken: String,

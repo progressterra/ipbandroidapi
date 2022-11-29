@@ -18,6 +18,12 @@ import com.progressterra.ipbandroidapi.exception.HandleException
 
 interface ChecklistRepository {
 
+    suspend fun sendOnEmail(
+        accessToken: String,
+        idDH: String,
+        email: String
+    ): Result<Unit>
+
     suspend fun createOrUpdateAnswer(
         accessToken: String, request: DRAnswerChekListItemEntity
     ): Result<DRCheckListItemForDHPerformedViewModel?>
@@ -86,155 +92,136 @@ interface ChecklistRepository {
         private val service: ChecklistService,
     ) : AbstractRepository(handleException), ChecklistRepository {
 
+        override suspend fun sendOnEmail(
+            accessToken: String,
+            idDH: String,
+            email: String
+        ): Result<Unit> = runCatching {
+            val response = service.sendOnEmail(accessToken, idDH, email)
+            if (response.result?.status != 0) throw BadRequestException()
+        }
+
         override suspend fun activeDoc(
             accessToken: String,
             placeId: String,
             checklistId: String
-        ): Result<DHCheckPerformedFullDataViewModel?> = handle {
+        ): Result<DHCheckPerformedFullDataViewModel?> = runCatching {
             val response = service.activeDoc(accessToken, placeId, checklistId)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.data
+            response.data
         }
 
         override suspend fun allDocuments(
             accessToken: String,
             request: FilterAndSort
-        ): Result<List<DHCheckPerformedFullDataViewModel>?> = handle {
+        ): Result<List<DHCheckPerformedFullDataViewModel>?> = runCatching {
             val response = service.allDocuments(accessToken, request)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.dataList
+            response.dataList
         }
 
         override suspend fun createOrUpdateAnswer(
             accessToken: String, request: DRAnswerChekListItemEntity
-        ): Result<DRCheckListItemForDHPerformedViewModel?> = handle {
+        ): Result<DRCheckListItemForDHPerformedViewModel?> = runCatching {
             val response = service.createOrUpdateAnswer(accessToken, request)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.data
+            response.data
         }
 
         override suspend fun createChecklist(
             accessToken: String, request: RFCheckEntity
-        ): Result<RFCheck?> = handle {
+        ): Result<RFCheck?> = runCatching {
             val response = service.createChecklist(accessToken, request)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.data
+            response.data
         }
 
         override suspend fun checklists(
             accessToken: String, request: FilterAndSort
-        ): Result<List<RFCheck>?> = handle {
+        ): Result<List<RFCheck>?> = runCatching {
             val response = service.checklists(accessToken, request)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.dataList
+            response.dataList
         }
 
         override suspend fun checklistsForPlace(
             accessToken: String, idRFComPlace: String, request: FilterAndSort
-        ): Result<List<RFCheck>?> = handle {
+        ): Result<List<RFCheck>?> = runCatching {
             val response = service.checklistsForPlace(accessToken, idRFComPlace, request)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.dataList
+            response.dataList
         }
 
         override suspend fun availableChecklistsAndDocs(accessToken: String): Result<List<ComPlaceWithData>?> =
-            handle {
+            runCatching {
                 val response = service.availableChecklistsAndDocs(accessToken)
                 if (response.result?.status != 0) throw BadRequestException()
-                response
-            }.map {
-                it.dataList
+                response.dataList
             }
 
         override suspend fun availableChecklistsForPlace(
             accessToken: String, idComPlace: String
-        ): Result<List<RFCheckViewModel>?> = handle {
+        ): Result<List<RFCheckViewModel>?> = runCatching {
             val response = service.availableChecklistsForPlace(accessToken, idComPlace)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.dataList
+            response.dataList
         }
 
         override suspend fun availableDocsForPlace(
             accessToken: String, idComPlace: String, request: FilterAndSort
-        ): Result<List<DHCheckPerformedFullDataViewModel>?> = handle {
+        ): Result<List<DHCheckPerformedFullDataViewModel>?> = runCatching {
             val response = service.availableDocsForPlace(accessToken, idComPlace, request)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.dataList
+            response.dataList
         }
 
         override suspend fun addChecklistToPlace(
             accessToken: String, request: RGComPlaceRFCheckEntity
-        ): Result<Unit> = handle {
+        ): Result<Unit> = runCatching {
             val response = service.addChecklistToPlace(accessToken, request)
             if (response.result?.status != 0) throw BadRequestException()
         }
 
         override suspend fun createDoc(
             accessToken: String, request: DHCheckPerformedEntityCreate
-        ): Result<DHCheckPerformedFullDataViewModel?> = handle {
+        ): Result<DHCheckPerformedFullDataViewModel?> = runCatching {
             val response = service.createDoc(accessToken, request)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.data
+            response.data
         }
 
         override suspend fun startCheck(
             accessToken: String, idDH: String
-        ): Result<DHCheckPerformedFullDataViewModel?> = handle {
+        ): Result<DHCheckPerformedFullDataViewModel?> = runCatching {
             val response = service.startCheck(accessToken, idDH)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.data
+            response.data
         }
 
         override suspend fun finishCheck(
             accessToken: String, idDH: String, request: FinalCommentsInput
-        ): Result<DHCheckPerformedFullDataViewModel?> = handle {
+        ): Result<DHCheckPerformedFullDataViewModel?> = runCatching {
             val response = service.finishCheck(accessToken, idDH, request)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.data
+            response.data
         }
 
         override suspend fun checklistForDoc(
             accessToken: String, idDH: String
-        ): Result<List<DRCheckListItemForDHPerformedViewModel>?> = handle {
+        ): Result<List<DRCheckListItemForDHPerformedViewModel>?> = runCatching {
             val response = service.checklistForDoc(accessToken, idDH)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.dataList
+            response.dataList
         }
 
         override suspend fun checklistElements(
             accessToken: String,
             idRFCheck: String,
             request: FilterAndSort
-        ): Result<List<DRCheckListItemViewModel>?> = handle {
+        ): Result<List<DRCheckListItemViewModel>?> = runCatching {
             val response = service.checklistElements(accessToken, idRFCheck, request)
             if (response.result?.status != 0) throw BadRequestException()
-            response
-        }.map {
-            it.dataList
+            response.dataList
         }
     }
 }
