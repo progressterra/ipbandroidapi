@@ -41,8 +41,8 @@ android {
 }
 
 dependencies {
-    api project(":core")
-    api project(":message")
+    implementation project(":core")
+    implementation project(":message")
 
     api "com.chibatching.kotpref:kotpref:2.13.2"
     api "com.chibatching.kotpref:initializer:2.13.2"
