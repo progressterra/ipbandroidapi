@@ -1,32 +1,29 @@
 apply plugin: "maven-publish"
 
-afterEvaluate {
-    publishing {
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/" + COMPANY + "/" + REPOSITORY_NAME)
-                credentials {
-                    username = project.findProperty("gpr.user")
-                    password = project.findProperty("gpr.key")
+subprojects {
+    afterEvaluate {
+        publishing {
+            repositories {
+                maven {
+                    name = "GitHubPackages"
+                    url = uri("https://maven.pkg.github.com/" + COMPANY + "/" + REPOSITORY_NAME)
+                    credentials {
+                        username = project.findProperty("gpr.user")
+                        password = project.findProperty("gpr.key")
+                    }
+                }
+            }
+            //ARTIFACT_NAME_TEST for publish test library flavor, ARTIFACT_NAME_RELEASE for release one
+            publications {
+                release(MavenPublication) {
+                    from components.release
+                    artifactId = "$project.name"
+                }
+                debug(MavenPublication) {
+                    from components.debug
+                    artifactId = "$project.name" + "test"
                 }
             }
         }
-        //ARTIFACT_NAME_TEST for publish test library flavor, ARTIFACT_NAME_RELEASE for release one
-        publications {
-            release(MavenPublication) {
-                from components.release
-                groupId = ARTIFACT_PACKAGE
-                artifactId = ARTIFACT_NAME_RELEASE
-                version = "${major}.${generateMinorVersionCode(null)}"
-            }
-            debug(MavenPublication) {
-                from components.debug
-                groupId = ARTIFACT_PACKAGE
-                artifactId = ARTIFACT_NAME_TEST
-                version = "${major}.${generateMinorVersionCode(null)}"
-            }
-        }
-        println("${major}.${generateMinorVersionCode()}")
     }
 }
