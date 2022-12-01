@@ -14,7 +14,7 @@ buildscript {
 }
 
 allprojects {
-    group = "com.progressterra"
+    group = "com.progressterra.ipbandroidapi"
     version = "${major}.${generateMinorVersionCode(null)}"
 
     repositories {
