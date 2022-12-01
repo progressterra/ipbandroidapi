@@ -1,9 +1,9 @@
 package com.progressterra.ipbandroidapi.api.testimonials
 
 import com.progressterra.ipbandroidapi.api.testimonials.model.TestimonialRequest
-import com.progressterra.core.AbstractRepository
-import com.progressterra.core.BadRequestException
-import com.progressterra.core.HandleException
+import com.progressterra.ipbandroidapi.core.AbstractRepository
+import com.progressterra.ipbandroidapi.core.BadRequestException
+import com.progressterra.ipbandroidapi.core.HandleException
 
 internal class BaseTestimonialsRepository(
     handleException: HandleException,

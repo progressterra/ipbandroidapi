@@ -1,7 +1,7 @@
 
 package org.openapitools.client.models
 
-import com.progressterra.message.models.StatusResult
+import com.progressterra.ipbandroidapi.api.message.models.StatusResult
 
 import com.google.gson.annotations.SerializedName
 

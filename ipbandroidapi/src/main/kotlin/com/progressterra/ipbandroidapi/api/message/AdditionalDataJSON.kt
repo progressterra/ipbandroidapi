@@ -1,4 +1,4 @@
-package com.progressterra.message
+package com.progressterra.ipbandroidapi.api.message
 
 import com.google.gson.annotations.SerializedName
 

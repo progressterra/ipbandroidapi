@@ -1,9 +1,9 @@
-package com.progressterra.message
+package com.progressterra.ipbandroidapi.api.message
 
-import com.progressterra.message.models.IncomeDataGetOrCreateDialog
-import com.progressterra.message.models.IncomeMessagesTextData
-import com.progressterra.message.models.RGDialogs
-import com.progressterra.message.models.RGMessages
+import com.progressterra.ipbandroidapi.api.message.models.IncomeDataGetOrCreateDialog
+import com.progressterra.ipbandroidapi.api.message.models.IncomeMessagesTextData
+import com.progressterra.ipbandroidapi.api.message.models.RGDialogs
+import com.progressterra.ipbandroidapi.api.message.models.RGMessages
 
 interface IMessengerRepository {
 

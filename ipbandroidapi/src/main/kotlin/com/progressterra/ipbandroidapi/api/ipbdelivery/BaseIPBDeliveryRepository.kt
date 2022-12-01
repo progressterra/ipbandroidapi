@@ -5,9 +5,9 @@ import com.progressterra.ipbandroidapi.api.ipbdelivery.models.MetroStation
 import com.progressterra.ipbandroidapi.api.ipbdelivery.models.OrderStatusInfo
 import com.progressterra.ipbandroidapi.api.ipbdelivery.models.RGDeliveryParams
 import com.progressterra.ipbandroidapi.api.ipbdelivery.models.StatusResult
-import com.progressterra.core.AbstractRepository
-import com.progressterra.core.BadRequestException
-import com.progressterra.core.HandleException
+import com.progressterra.ipbandroidapi.core.AbstractRepository
+import com.progressterra.ipbandroidapi.core.BadRequestException
+import com.progressterra.ipbandroidapi.core.HandleException
 import com.progressterra.ipbandroidapi.api.ipbdelivery.models.DeliveryMethod
 
 internal class BaseIPBDeliveryRepository(

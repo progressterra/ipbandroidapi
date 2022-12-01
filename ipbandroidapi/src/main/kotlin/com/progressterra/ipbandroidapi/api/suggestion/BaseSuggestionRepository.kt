@@ -3,8 +3,8 @@ package com.progressterra.ipbandroidapi.api.suggestion
 import com.progressterra.ipbandroidapi.api.suggestion.model.DadataSuggestionsFromLocationRequest
 import com.progressterra.ipbandroidapi.api.suggestion.model.DadataSuggestionsRequest
 import com.progressterra.ipbandroidapi.api.suggestion.model.Suggestion
-import com.progressterra.core.AbstractRepository
-import com.progressterra.core.HandleException
+import com.progressterra.ipbandroidapi.core.AbstractRepository
+import com.progressterra.ipbandroidapi.core.HandleException
 
 internal class BaseSuggestionRepository(
     handleException: HandleException,

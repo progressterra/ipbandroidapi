@@ -1,4 +1,4 @@
-package com.progressterra.core
+package com.progressterra.ipbandroidapi.core
 
 abstract class AbstractRepository(private val handleException: HandleException) {
 

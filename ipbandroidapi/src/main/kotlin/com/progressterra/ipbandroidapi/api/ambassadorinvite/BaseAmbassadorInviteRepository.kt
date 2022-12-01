@@ -3,9 +3,9 @@ package com.progressterra.ipbandroidapi.api.ambassadorinvite
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.model.AmbassadorInviteData
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.model.InvitedData
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.model.InvitingMembersRequest
-import com.progressterra.core.AbstractRepository
-import com.progressterra.core.BadRequestException
-import com.progressterra.core.HandleException
+import com.progressterra.ipbandroidapi.core.AbstractRepository
+import com.progressterra.ipbandroidapi.core.BadRequestException
+import com.progressterra.ipbandroidapi.core.HandleException
 
 internal class BaseAmbassadorInviteRepository(
     handleException: HandleException,
