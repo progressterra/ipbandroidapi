@@ -6,8 +6,8 @@ import com.progressterra.ipbandroidapi.api.product.models.FiltersGoods
 import com.progressterra.ipbandroidapi.api.product.models.IncomeDataForFilterAndSort
 import com.progressterra.ipbandroidapi.api.product.models.StatusResult
 import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.exception.BadRequestException
-import com.progressterra.ipbandroidapi.exception.HandleException
+import com.progressterra.ipbandroidapi.core.BadRequestException
+import com.progressterra.ipbandroidapi.core.HandleException
 
 interface ProductRepository {
 

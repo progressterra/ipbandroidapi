@@ -5,8 +5,8 @@ import com.progressterra.ipbandroidapi.api.iecommerce.model.ProductPage
 import com.progressterra.ipbandroidapi.api.iecommerce.model.ProductSet
 import com.progressterra.ipbandroidapi.api.iecommerce.model.RFCatalog
 import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.exception.BadRequestException
-import com.progressterra.ipbandroidapi.exception.HandleException
+import com.progressterra.ipbandroidapi.core.BadRequestException
+import com.progressterra.ipbandroidapi.core.HandleException
 
 internal class BaseIECommerceCoreRepository(
     handleException: HandleException,

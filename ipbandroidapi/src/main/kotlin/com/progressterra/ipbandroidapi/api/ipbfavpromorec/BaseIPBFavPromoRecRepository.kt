@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.ipbfavpromorec
 
 import com.progressterra.ipbandroidapi.api.ipbfavpromorec.model.TypeOfEntity
 import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.exception.HandleException
+import com.progressterra.ipbandroidapi.core.HandleException
 
 internal class BaseIPBFavPromoRecRepository(
     handleException: HandleException,

@@ -2,8 +2,8 @@ package com.progressterra.ipbandroidapi.api.cities
 
 import com.progressterra.ipbandroidapi.api.cities.model.CityData
 import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.exception.BadRequestException
-import com.progressterra.ipbandroidapi.exception.HandleException
+import com.progressterra.ipbandroidapi.core.BadRequestException
+import com.progressterra.ipbandroidapi.core.HandleException
 
 internal class BaseCitiesRepository(
     handleException: HandleException,

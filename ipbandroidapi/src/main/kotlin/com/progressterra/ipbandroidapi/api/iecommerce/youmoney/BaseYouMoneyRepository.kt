@@ -3,8 +3,8 @@ package com.progressterra.ipbandroidapi.api.iecommerce.youmoney
 import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.model.PaymentResultData
 import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.model.PaymentTokenRequest
 import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.exception.BadRequestException
-import com.progressterra.ipbandroidapi.exception.HandleException
+import com.progressterra.ipbandroidapi.core.BadRequestException
+import com.progressterra.ipbandroidapi.core.HandleException
 
 internal class BaseYouMoneyRepository(
     handleException: HandleException,

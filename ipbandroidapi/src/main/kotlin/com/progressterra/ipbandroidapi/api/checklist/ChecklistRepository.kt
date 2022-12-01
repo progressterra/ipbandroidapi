@@ -13,8 +13,8 @@ import com.progressterra.ipbandroidapi.api.checklist.model.RFCheckEntity
 import com.progressterra.ipbandroidapi.api.checklist.model.RFCheckViewModel
 import com.progressterra.ipbandroidapi.api.checklist.model.RGComPlaceRFCheckEntity
 import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.exception.BadRequestException
-import com.progressterra.ipbandroidapi.exception.HandleException
+import com.progressterra.ipbandroidapi.core.BadRequestException
+import com.progressterra.ipbandroidapi.core.HandleException
 
 interface ChecklistRepository {
 

@@ -4,8 +4,8 @@ import com.progressterra.ipbandroidapi.api.moneyout.model.ApplicationData
 import com.progressterra.ipbandroidapi.api.moneyout.model.RemoveBonusesData
 import com.progressterra.ipbandroidapi.api.moneyout.model.RemoveBonusesRequest
 import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.exception.BadRequestException
-import com.progressterra.ipbandroidapi.exception.HandleException
+import com.progressterra.ipbandroidapi.core.BadRequestException
+import com.progressterra.ipbandroidapi.core.HandleException
 
 internal class BaseMoneyOutRepository(
     handleException: HandleException,

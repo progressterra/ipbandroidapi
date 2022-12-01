@@ -1,2 +1,4 @@
 rootProject.name = "ipbandroidapi"
 include ':ipbandroidapi'
+include ':message'
+include ':core'

@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.address
 import com.progressterra.ipbandroidapi.api.address.models.DataAddress
 import com.progressterra.ipbandroidapi.api.address.models.RGAddress
 import com.progressterra.ipbandroidapi.api.address.models.StatusResult
-import com.progressterra.ipbandroidapi.exception.BadRequestException
+import com.progressterra.ipbandroidapi.core.BadRequestException
 
 internal class BaseAddressRepository(
     private val service: AddressService

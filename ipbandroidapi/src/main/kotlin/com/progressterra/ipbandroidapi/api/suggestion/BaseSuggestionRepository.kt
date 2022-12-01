@@ -4,7 +4,7 @@ import com.progressterra.ipbandroidapi.api.suggestion.model.DadataSuggestionsFro
 import com.progressterra.ipbandroidapi.api.suggestion.model.DadataSuggestionsRequest
 import com.progressterra.ipbandroidapi.api.suggestion.model.Suggestion
 import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.exception.HandleException
+import com.progressterra.ipbandroidapi.core.HandleException
 
 internal class BaseSuggestionRepository(
     handleException: HandleException,

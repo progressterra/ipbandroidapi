@@ -55,9 +55,6 @@ import com.progressterra.ipbandroidapi.api.iecommerce.core.IECommerceCoreService
 import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.BaseYouMoneyRepository
 import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.YouMoneyRepository
 import com.progressterra.ipbandroidapi.api.iecommerce.youmoney.YouMoneyService
-import com.progressterra.ipbandroidapi.api.imessenger.BaseIMessengerRepository
-import com.progressterra.ipbandroidapi.api.imessenger.IMessengerRepository
-import com.progressterra.ipbandroidapi.api.imessenger.IMessengerService
 import com.progressterra.ipbandroidapi.api.ipbdelivery.BaseIPBDeliveryRepository
 import com.progressterra.ipbandroidapi.api.ipbdelivery.IPBDeliveryRepository
 import com.progressterra.ipbandroidapi.api.ipbdelivery.IPBDeliveryService
@@ -96,8 +93,11 @@ import com.progressterra.ipbandroidapi.api.testimonials.TestimonialsService
 import com.progressterra.ipbandroidapi.api.typecooperation.BaseTypeCooperationRepository
 import com.progressterra.ipbandroidapi.api.typecooperation.TypeCooperationRepository
 import com.progressterra.ipbandroidapi.api.typecooperation.TypeCooperationService
-import com.progressterra.ipbandroidapi.core.NetworkService
-import com.progressterra.ipbandroidapi.exception.HandleException
+import com.progressterra.ipbandroidapi.core.HandleException
+import com.progressterra.ipbandroidapi.base.NetworkService
+import com.progressterra.ipbandroidapi.message.BaseIMessengerRepository
+import com.progressterra.ipbandroidapi.message.IMessengerRepository
+import com.progressterra.ipbandroidapi.message.IMessengerService
 import org.koin.dsl.module
 
 @Suppress("unused")
@@ -302,9 +302,9 @@ val iPBAndroidAPIModule = module {
 
     single<IMessengerRepository> {
         BaseIMessengerRepository(
-            get(),
             NetworkService.Base().createService(
-                IMessengerService::class.java, I_MESSENGER_URL
+                IMessengerService::class.java,
+                I_MESSENGER_URL
             )
         )
     }

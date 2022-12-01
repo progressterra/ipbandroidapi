@@ -3,7 +3,7 @@ package com.progressterra.ipbandroidapi.api.purchases
 import com.progressterra.ipbandroidapi.api.purchases.model.PurchaseDetailsResponse
 import com.progressterra.ipbandroidapi.api.purchases.model.PurchasesListResponse
 import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.exception.HandleException
+import com.progressterra.ipbandroidapi.core.HandleException
 
 internal class BasePurchasesRepository(
     handleException: HandleException,
