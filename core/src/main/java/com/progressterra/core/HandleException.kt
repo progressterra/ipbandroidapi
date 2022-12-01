@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.core
+package com.progressterra.core
 
 import android.util.Log
 import java.net.SocketTimeoutException

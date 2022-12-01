@@ -1,9 +1,9 @@
 package com.progressterra.ipbandroidapi.api.ipbmediadata
 
 import com.progressterra.ipbandroidapi.api.ipbmediadata.model.DataMediaData
-import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.core.BadRequestException
-import com.progressterra.ipbandroidapi.core.HandleException
+import com.progressterra.core.AbstractRepository
+import com.progressterra.core.BadRequestException
+import com.progressterra.core.HandleException
 import okhttp3.MultipartBody
 import java.io.InputStream
 

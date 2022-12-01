@@ -8,9 +8,9 @@ import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataCreateAccessToke
 import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataEmail
 import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataForEndLogin
 import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDeviceParameters
-import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.core.BadRequestException
-import com.progressterra.ipbandroidapi.core.HandleException
+import com.progressterra.core.AbstractRepository
+import com.progressterra.core.BadRequestException
+import com.progressterra.core.HandleException
 
 internal class BaseSCRMRepository(
     handleException: HandleException,

@@ -93,11 +93,11 @@ import com.progressterra.ipbandroidapi.api.testimonials.TestimonialsService
 import com.progressterra.ipbandroidapi.api.typecooperation.BaseTypeCooperationRepository
 import com.progressterra.ipbandroidapi.api.typecooperation.TypeCooperationRepository
 import com.progressterra.ipbandroidapi.api.typecooperation.TypeCooperationService
-import com.progressterra.ipbandroidapi.core.HandleException
+import com.progressterra.core.HandleException
 import com.progressterra.ipbandroidapi.base.NetworkService
-import com.progressterra.ipbandroidapi.message.BaseIMessengerRepository
-import com.progressterra.ipbandroidapi.message.IMessengerRepository
-import com.progressterra.ipbandroidapi.message.IMessengerService
+import com.progressterra.message.BaseIMessengerRepository
+import com.progressterra.message.IMessengerRepository
+import com.progressterra.message.IMessengerService
 import org.koin.dsl.module
 
 @Suppress("unused")

@@ -1,11 +1,11 @@
-package com.progressterra.ipbandroidapi.message
+package com.progressterra.message
 
-import com.progressterra.ipbandroidapi.core.BadRequestException
-import com.progressterra.ipbandroidapi.message.models.IncomeDataGetOrCreateDialog
-import com.progressterra.ipbandroidapi.message.models.IncomeMessagesTextData
-import com.progressterra.ipbandroidapi.message.models.RGDialogs
-import com.progressterra.ipbandroidapi.message.models.RGMessages
-import com.progressterra.ipbandroidapi.message.models.StatusResult
+import com.progressterra.core.BadRequestException
+import com.progressterra.message.models.IncomeDataGetOrCreateDialog
+import com.progressterra.message.models.IncomeMessagesTextData
+import com.progressterra.message.models.RGDialogs
+import com.progressterra.message.models.RGMessages
+import com.progressterra.message.models.StatusResult
 
 
 class BaseIMessengerRepository(

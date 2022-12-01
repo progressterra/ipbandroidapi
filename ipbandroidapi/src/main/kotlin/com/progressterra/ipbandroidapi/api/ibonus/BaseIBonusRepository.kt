@@ -3,9 +3,9 @@ package com.progressterra.ipbandroidapi.api.ibonus
 import com.progressterra.ipbandroidapi.api.ibonus.models.BonusTransaction
 import com.progressterra.ipbandroidapi.api.ibonus.models.DataInfoByAvailableBonusesGeneral
 import com.progressterra.ipbandroidapi.api.ibonus.models.StatusResult
-import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.core.BadRequestException
-import com.progressterra.ipbandroidapi.core.HandleException
+import com.progressterra.core.AbstractRepository
+import com.progressterra.core.BadRequestException
+import com.progressterra.core.HandleException
 
 internal class BaseIBonusRepository(
     handleException: HandleException,

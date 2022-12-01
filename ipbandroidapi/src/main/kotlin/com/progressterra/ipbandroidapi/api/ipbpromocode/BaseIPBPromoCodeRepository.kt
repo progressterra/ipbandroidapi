@@ -1,8 +1,8 @@
 package com.progressterra.ipbandroidapi.api.ipbpromocode
 
-import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.core.BadRequestException
-import com.progressterra.ipbandroidapi.core.HandleException
+import com.progressterra.core.AbstractRepository
+import com.progressterra.core.BadRequestException
+import com.progressterra.core.HandleException
 
 internal class BaseIPBPromoCodeRepository(
     handleException: HandleException,

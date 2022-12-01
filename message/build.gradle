@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.progressterra.ipbandroidapi.message'
+    namespace 'com.progressterra.message'
     compileSdk 33
 
     defaultConfig {
@@ -31,6 +31,5 @@ android {
 }
 
 dependencies {
-
     implementation project(":core")
 }

@@ -1,3 +1,3 @@
-package com.progressterra.ipbandroidapi.core
+package com.progressterra.core
 
 class BadRequestException : Exception("Bad request")

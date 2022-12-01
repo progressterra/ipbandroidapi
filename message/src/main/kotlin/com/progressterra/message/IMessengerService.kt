@@ -1,10 +1,10 @@
-package com.progressterra.ipbandroidapi.message
+package com.progressterra.message
 
-import com.progressterra.ipbandroidapi.message.models.IncomeDataGetOrCreateDialog
-import com.progressterra.ipbandroidapi.message.models.IncomeMessagesTextData
-import com.progressterra.ipbandroidapi.message.models.ResultDialog
-import com.progressterra.ipbandroidapi.message.models.ResultDialogList
-import com.progressterra.ipbandroidapi.message.models.ResultListMessages
+import com.progressterra.message.models.IncomeDataGetOrCreateDialog
+import com.progressterra.message.models.IncomeMessagesTextData
+import com.progressterra.message.models.ResultDialog
+import com.progressterra.message.models.ResultDialogList
+import com.progressterra.message.models.ResultListMessages
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

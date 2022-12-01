@@ -1,9 +1,9 @@
 package com.progressterra.ipbandroidapi.api.email
 
 import com.progressterra.ipbandroidapi.api.email.model.ConfirmEmailRequest
-import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.core.BadRequestException
-import com.progressterra.ipbandroidapi.core.HandleException
+import com.progressterra.core.AbstractRepository
+import com.progressterra.core.BadRequestException
+import com.progressterra.core.HandleException
 
 internal class BaseConfirmEmailRepository(
     handleException: HandleException,

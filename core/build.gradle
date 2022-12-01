@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.progressterra.ipbandroidapi.core'
+    namespace 'com.progressterra.core'
     compileSdk 33
 
     defaultConfig {

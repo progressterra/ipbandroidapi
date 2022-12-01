@@ -3,8 +3,8 @@ package com.progressterra.ipbandroidapi.api.sber
 import com.progressterra.ipbandroidapi.api.sber.model.OrderData
 import com.progressterra.ipbandroidapi.api.sber.model.OrderStatus
 import com.progressterra.ipbandroidapi.api.sber.model.PaymentData
-import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.core.HandleException
+import com.progressterra.core.AbstractRepository
+import com.progressterra.core.HandleException
 
 internal class BaseSberRepository(
     handleException: HandleException,
