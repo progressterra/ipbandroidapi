@@ -126,7 +126,6 @@ val iPBAndroidAPIModule = module {
 
     single<AmbassadorInviteRepository> {
         BaseAmbassadorInviteRepository(
-            get(),
             NetworkService.Base().createService(
                 AmbassadorInviteService::class.java, AMBASSADOR_INVITE_URL
             )
