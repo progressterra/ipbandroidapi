@@ -1,12 +1,11 @@
 package com.progressterra.ipbandroidapi.api.message
 
-import com.progressterra.ipbandroidapi.core.BadRequestException
 import com.progressterra.ipbandroidapi.api.message.models.IncomeDataGetOrCreateDialog
 import com.progressterra.ipbandroidapi.api.message.models.IncomeMessagesTextData
 import com.progressterra.ipbandroidapi.api.message.models.RGDialogs
 import com.progressterra.ipbandroidapi.api.message.models.RGMessages
 import com.progressterra.ipbandroidapi.api.message.models.StatusResult
-
+import com.progressterra.ipbandroidapi.core.BadRequestException
 
 class BaseIMessengerRepository(
     private val service: IMessengerService

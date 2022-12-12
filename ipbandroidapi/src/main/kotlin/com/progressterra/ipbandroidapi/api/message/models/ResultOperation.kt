@@ -1,21 +1,18 @@
-
-package org.openapitools.client.models
-
-import com.progressterra.ipbandroidapi.api.message.models.StatusResult
+package com.progressterra.ipbandroidapi.api.message.models
 
 import com.google.gson.annotations.SerializedName
 
 /**
- * 
  *
- * @param status 
- * @param message 
- * @param messageDev 
- * @param codeResult 
- * @param duration 
- * @param idLog 
+ *
+ * @param status
+ * @param message
+ * @param messageDev
+ * @param codeResult
+ * @param duration
+ * @param idLog
  */
-data class ResultOperation (
+data class ResultOperation(
 
     @SerializedName("status")
     val status: StatusResult? = null,

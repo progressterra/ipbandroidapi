@@ -1,18 +1,18 @@
-package com.progressterra.ipbandroidapi.api.message.models
+package com.progressterra.ipbandroidapi.api.ambassadorinvite.models
 
 import com.google.gson.annotations.SerializedName
 
 /**
+ * 
  *
- *
- * @param result
+ * @param result 
  * @param data
  */
-data class ResultDialog(
+data class ResultInviteByPhone (
 
     @SerializedName("result")
     val result: ResultOperation? = null,
 
     @SerializedName("data")
-    val data: RGDialogs? = null
+    val data: DataInviteByPhone? = null
 )

@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.ibonus.models
+package com.progressterra.ipbandroidapi.api.ambassadorinvite.models
 
 import com.google.gson.annotations.SerializedName
 
@@ -31,6 +31,4 @@ data class ResultOperation (
 
     @SerializedName("idLog")
     val idLog: String? = null
-
 )
-

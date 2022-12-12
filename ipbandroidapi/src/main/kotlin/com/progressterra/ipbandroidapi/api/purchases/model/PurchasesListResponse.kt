@@ -1,7 +1,6 @@
 package com.progressterra.ipbandroidapi.api.purchases.model
 
 import com.google.gson.annotations.SerializedName
-import com.progressterra.ipbandroidapi.base.BaseResponse
 
 //TODO regenerate models
 

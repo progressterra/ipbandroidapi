@@ -1,35 +1,28 @@
 package com.progressterra.ipbandroidapi.api.ambassadorinvite
 
-import com.progressterra.ipbandroidapi.api.ambassadorinvite.model.AmbassadorInviteData
-import com.progressterra.ipbandroidapi.api.ambassadorinvite.model.InvitedData
-import com.progressterra.ipbandroidapi.api.ambassadorinvite.model.InvitingMembersRequest
-import com.progressterra.ipbandroidapi.core.AbstractRepository
+import com.progressterra.ipbandroidapi.api.ambassadorinvite.models.DataInviteByPhone
+import com.progressterra.ipbandroidapi.api.ambassadorinvite.models.IncomeDataInviteByPhone
+import com.progressterra.ipbandroidapi.api.ambassadorinvite.models.InviteData
+import com.progressterra.ipbandroidapi.api.ambassadorinvite.models.StatusResult
 import com.progressterra.ipbandroidapi.core.BadRequestException
-import com.progressterra.ipbandroidapi.core.HandleException
 
 internal class BaseAmbassadorInviteRepository(
-    handleException: HandleException,
     private val service: AmbassadorInviteService
-) : AbstractRepository(handleException), AmbassadorInviteRepository {
+) : AmbassadorInviteRepository {
 
-    override suspend fun getInviteInfo(accessToken: String): Result<AmbassadorInviteData> = handle {
+    override suspend fun getInviteInfo(accessToken: String): Result<InviteData?> = runCatching {
         val response = service.getInviteInfo(accessToken)
-        if (response.status != 0)
+        if (response.result?.status != StatusResult.ZERO)
             throw BadRequestException()
-        response
-    }.map {
-        AmbassadorInviteData(it.inviteData)
+        response.data
     }
 
     override suspend fun sendInvites(
-        accessTokenAmbassador: String,
-        listPhones: List<String>
-    ): Result<InvitedData> = handle {
-        val response = service.sendInvites(InvitingMembersRequest(accessTokenAmbassador, listPhones))
-        if (response.status != 0)
+        invitingMembersRequest: IncomeDataInviteByPhone
+    ): Result<DataInviteByPhone?> = runCatching {
+        val response = service.sendInvites(invitingMembersRequest)
+        if (response.result?.status != StatusResult.ZERO)
             throw BadRequestException()
-        response
-    }.map {
-        InvitedData(it.dataInviteByPhone)
+        response.data
     }
 }

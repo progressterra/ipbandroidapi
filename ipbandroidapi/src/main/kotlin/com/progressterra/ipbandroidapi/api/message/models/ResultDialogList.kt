@@ -1,15 +1,14 @@
 package com.progressterra.ipbandroidapi.api.message.models
 
 import com.google.gson.annotations.SerializedName
-import org.openapitools.client.models.ResultOperation
 
 /**
- * 
  *
- * @param result 
- * @param dataList 
+ *
+ * @param result
+ * @param dataList
  */
-data class ResultDialogList (
+data class ResultDialogList(
 
     @SerializedName("result")
     val result: ResultOperation? = null,
