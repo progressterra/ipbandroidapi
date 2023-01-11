@@ -2,14 +2,14 @@ package com.progressterra.ipbandroidapi.api.ipbdelivery.models
 
 import com.google.gson.annotations.SerializedName
 
-enum class DeliveryMethondTypeEnum(val value: Int) {
+enum class DeliveryMethondTypeEnum {
 
-    @SerializedName(value = "0")
-    ZERO(0),
+    @SerializedName("0")
+    ZERO,
 
-    @SerializedName(value = "1")
-    ONE(1),
+    @SerializedName("1")
+    ONE,
 
-    @SerializedName(value = "2")
-    TWO(2)
+    @SerializedName("2")
+    TWO
 }

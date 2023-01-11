@@ -1,8 +1,8 @@
-package com.progressterra.ipbandroidapi.api.ibonus.models
+package com.progressterra.ipbandroidapi.api.collaboration.models
 
 import com.google.gson.annotations.SerializedName
 
-enum class StatusResult {
+enum class TypeSort {
 
     @SerializedName("0")
     ZERO,
@@ -16,4 +16,3 @@ enum class StatusResult {
     @SerializedName("3")
     THREE
 }
-

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 /**
  * 
  *
- * Values: _0,_1,_2,_3
+ * Values: ZERO,ONE,TWO,_3
  */
 enum class StatusResult {
 

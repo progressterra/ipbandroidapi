@@ -1,8 +1,8 @@
-package com.progressterra.ipbandroidapi.api.ibonus.models
+package com.progressterra.ipbandroidapi.api.collaboration.models
 
 import com.google.gson.annotations.SerializedName
 
-enum class StatusResult {
+enum class TypeEntities {
 
     @SerializedName("0")
     ZERO,
@@ -14,6 +14,8 @@ enum class StatusResult {
     TWO,
 
     @SerializedName("3")
-    THREE
-}
+    THREE,
 
+    @SerializedName("4")
+    FOUR
+}

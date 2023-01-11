@@ -1,22 +1,30 @@
-package com.progressterra.ipbandroidapi.api.iecommerce.model
+package com.progressterra.ipbandroidapi.api.collaboration.models
 
 import com.google.gson.annotations.SerializedName
 
-enum class StatusOrder {
+enum class TypeStatusOrder {
+
     @SerializedName("0")
-    ORDER,
+    ZERO,
+
     @SerializedName("1")
-    CONFIRM_FROM_STORE,
+    ONE,
+
     @SerializedName("2")
-    CONFIRM_FROM_CALL_CENTER,
+    TWO,
+
     @SerializedName("3")
-    SENT_TO_WAREHOUSE,
+    THREE,
+
     @SerializedName("4")
-    SENT_DELIVERY_SERVICE,
+    FOUR,
+
     @SerializedName("5")
-    ON_PICK_UP_POINT,
+    FIVE,
+
     @SerializedName("6")
-    DELIVERED,
+    SIX,
+
     @SerializedName("7")
-    CANCELED
+    SEVEN
 }

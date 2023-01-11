@@ -4,12 +4,12 @@ import com.google.gson.annotations.SerializedName
 
 enum class StatusResult {
 
-    @SerializedName(value = "0")
+    @SerializedName("0")
     ZERO,
 
-    @SerializedName(value = "1")
+    @SerializedName("1")
     ONE,
 
-    @SerializedName(value = "2")
+    @SerializedName("2")
     TWO
 }

@@ -2,9 +2,9 @@ package com.progressterra.ipbandroidapi.api.ipbdelivery.models
 
 import com.google.gson.annotations.SerializedName
 
-enum class DeliverySeriviceTypeEnum(val value: Int) {
+enum class DeliverySeriviceTypeEnum {
 
-    @SerializedName(value = "0")
-    ZERO(0)
+    @SerializedName("0")
+    ZERO
 }
 

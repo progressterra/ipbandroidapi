@@ -6,6 +6,7 @@ import com.progressterra.ipbandroidapi.api.URL.AMBASSADOR_URL
 import com.progressterra.ipbandroidapi.api.URL.CHECKLIST_URL
 import com.progressterra.ipbandroidapi.api.URL.CITIES_URL
 import com.progressterra.ipbandroidapi.api.URL.CITY_URL
+import com.progressterra.ipbandroidapi.api.URL.COLLABORATION_URL
 import com.progressterra.ipbandroidapi.api.URL.CONFIRM_EMAIL_URL
 import com.progressterra.ipbandroidapi.api.URL.IPB_DELIVERY_URL
 import com.progressterra.ipbandroidapi.api.URL.IPB_FAV_PROMO_REC_URL
@@ -40,6 +41,8 @@ import com.progressterra.ipbandroidapi.api.cities.CitiesService
 import com.progressterra.ipbandroidapi.api.city.BaseCityRepository
 import com.progressterra.ipbandroidapi.api.city.CityRepository
 import com.progressterra.ipbandroidapi.api.city.CityService
+import com.progressterra.ipbandroidapi.api.collaboration.CollaborationRepository
+import com.progressterra.ipbandroidapi.api.collaboration.CollaborationService
 import com.progressterra.ipbandroidapi.api.email.BaseConfirmEmailRepository
 import com.progressterra.ipbandroidapi.api.email.ConfirmEmailRepository
 import com.progressterra.ipbandroidapi.api.email.ConfirmEmailService
@@ -67,6 +70,9 @@ import com.progressterra.ipbandroidapi.api.ipbmediadata.IPBMediaDataService
 import com.progressterra.ipbandroidapi.api.ipbpromocode.BaseIPBPromoCodeRepository
 import com.progressterra.ipbandroidapi.api.ipbpromocode.IPBPromoCodeRepository
 import com.progressterra.ipbandroidapi.api.ipbpromocode.IPBPromoCodeService
+import com.progressterra.ipbandroidapi.api.message.BaseIMessengerRepository
+import com.progressterra.ipbandroidapi.api.message.IMessengerRepository
+import com.progressterra.ipbandroidapi.api.message.IMessengerService
 import com.progressterra.ipbandroidapi.api.messages.BaseMessagesRepository
 import com.progressterra.ipbandroidapi.api.messages.MessagesRepository
 import com.progressterra.ipbandroidapi.api.messages.MessagesService
@@ -93,11 +99,8 @@ import com.progressterra.ipbandroidapi.api.testimonials.TestimonialsService
 import com.progressterra.ipbandroidapi.api.typecooperation.BaseTypeCooperationRepository
 import com.progressterra.ipbandroidapi.api.typecooperation.TypeCooperationRepository
 import com.progressterra.ipbandroidapi.api.typecooperation.TypeCooperationService
-import com.progressterra.ipbandroidapi.core.HandleException
 import com.progressterra.ipbandroidapi.base.NetworkService
-import com.progressterra.ipbandroidapi.api.message.BaseIMessengerRepository
-import com.progressterra.ipbandroidapi.api.message.IMessengerRepository
-import com.progressterra.ipbandroidapi.api.message.IMessengerService
+import com.progressterra.ipbandroidapi.core.HandleException
 import org.koin.dsl.module
 
 @Suppress("unused")
@@ -107,54 +110,69 @@ val iPBAndroidAPIModule = module {
         HandleException.Base()
     }
 
+    single<NetworkService> { NetworkService.Base() }
+
     single<AddressRepository> {
+        val networkService: NetworkService = get()
         BaseAddressRepository(
-            NetworkService.Base().createService(
+            networkService.createService(
                 AddressService::class.java, ADDRESS_URL
             )
         )
     }
 
+    single<CollaborationRepository> {
+        val networkService: NetworkService = get()
+        CollaborationRepository.Base(
+            networkService.createService(CollaborationService::class.java, COLLABORATION_URL)
+        )
+    }
+
     single<AmbassadorRepository> {
+        val networkService: NetworkService = get()
         BaseAmbassadorRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 AmbassadorService::class.java, AMBASSADOR_URL
             )
         )
     }
 
     single<AmbassadorInviteRepository> {
+        val networkService: NetworkService = get()
         BaseAmbassadorInviteRepository(
-            NetworkService.Base().createService(
+            networkService.createService(
                 AmbassadorInviteService::class.java, AMBASSADOR_INVITE_URL
             )
         )
     }
 
     single<MoneyOutRepository> {
+        val networkService: NetworkService = get()
         BaseMoneyOutRepository(
-            get(), NetworkService.Base().createService(
+            get(), networkService.createService(
                 MoneyOutService::class.java, MONEY_OUT_URL
             )
         )
     }
 
     single<CityRepository> {
+        val networkService: NetworkService = get()
         BaseCityRepository(
             get(),
 
-            NetworkService.Base().createService(
+            networkService.createService(
                 CityService::class.java, CITY_URL
             )
         )
     }
 
     single<ConfirmEmailRepository> {
+        val networkService: NetworkService = get()
         BaseConfirmEmailRepository(
             get(),
 
-            NetworkService.Base().createService(
+            networkService.createService(
                 ConfirmEmailService::class.java, CONFIRM_EMAIL_URL
             )
 
@@ -162,10 +180,11 @@ val iPBAndroidAPIModule = module {
     }
 
     single<TestimonialsRepository> {
+        val networkService: NetworkService = get()
         BaseTestimonialsRepository(
             get(),
 
-            NetworkService.Base().createService(
+            networkService.createService(
                 TestimonialsService::class.java, TESTIMONIALS_URL
             )
 
@@ -173,9 +192,10 @@ val iPBAndroidAPIModule = module {
     }
 
     single<CitiesRepository> {
+        val networkService: NetworkService = get()
         BaseCitiesRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 CitiesService::class.java, CITIES_URL
             )
 
@@ -183,125 +203,139 @@ val iPBAndroidAPIModule = module {
     }
 
     single<PurchasesRepository> {
+        val networkService: NetworkService = get()
         BasePurchasesRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 PurchasesService::class.java, PURCHASES_URL
             )
         )
     }
 
     single<SberRepository> {
+        val networkService: NetworkService = get()
         BaseSberRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 SberService::class.java, SBER_URL
             )
         )
     }
 
     single<MessagesRepository> {
+        val networkService: NetworkService = get()
         BaseMessagesRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 MessagesService::class.java, MESSAGES_URL
             )
         )
     }
 
     single<TypeCooperationRepository> {
+        val networkService: NetworkService = get()
         BaseTypeCooperationRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 TypeCooperationService::class.java, TYPE_COOPERATION_URL
             )
         )
     }
 
     single<SCRMRepository> {
+        val networkService: NetworkService = get()
         BaseSCRMRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 SCRMService::class.java, SCRM_URL
             )
         )
     }
 
     single<CartRepository> {
+        val networkService: NetworkService = get()
         BaseCartRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 CartService::class.java, I_ECOMMERCE_URL
             )
         )
     }
 
     single<YouMoneyRepository> {
+        val networkService: NetworkService = get()
         BaseYouMoneyRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 YouMoneyService::class.java, I_ECOMMERCE_URL
             )
         )
     }
 
     single<IECommerceCoreRepository> {
+        val networkService: NetworkService = get()
         BaseIECommerceCoreRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 IECommerceCoreService::class.java, I_ECOMMERCE_URL
             )
         )
     }
 
     single<IBonusRepository> {
+        val networkService: NetworkService = get()
         BaseIBonusRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 IBonusService::class.java, I_BONUS_URL
             )
         )
     }
 
     single<IPBDeliveryRepository> {
+        val networkService: NetworkService = get()
         BaseIPBDeliveryRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 IPBDeliveryService::class.java, IPB_DELIVERY_URL
             )
         )
     }
 
     single<IPBPromoCodeRepository> {
+        val networkService: NetworkService = get()
         BaseIPBPromoCodeRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 IPBPromoCodeService::class.java, IPB_PROMO_CODE_URL
             )
         )
     }
 
     single<IPBFavPromoRecRepository> {
+        val networkService: NetworkService = get()
         BaseIPBFavPromoRecRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 IPBFavPromoRecService::class.java, IPB_FAV_PROMO_REC_URL
             )
         )
     }
 
     single<SuggestionRepository> {
+        val networkService: NetworkService = get()
         BaseSuggestionRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 SuggestionService::class.java, SUGGESTION_URL
             )
         )
     }
 
     single<IMessengerRepository> {
+        val networkService: NetworkService = get()
         BaseIMessengerRepository(
-            NetworkService.Base().createService(
+            networkService.createService(
                 IMessengerService::class.java,
                 I_MESSENGER_URL
             )
@@ -309,27 +343,30 @@ val iPBAndroidAPIModule = module {
     }
 
     single<IPBMediaDataRepository> {
+        val networkService: NetworkService = get()
         BaseIPBMediaDataRepository(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 IPBMediaDataService::class.java, IPB_MEDIA_DATA_URL
             )
         )
     }
 
     single<ChecklistRepository> {
+        val networkService: NetworkService = get()
         ChecklistRepository.Base(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 ChecklistService::class.java, CHECKLIST_URL
             )
         )
     }
 
     single<ProductRepository> {
+        val networkService: NetworkService = get()
         ProductRepository.Base(
             get(),
-            NetworkService.Base().createService(
+            networkService.createService(
                 ProductService::class.java, PRODUCT_URL
             )
         )

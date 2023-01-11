@@ -2,17 +2,17 @@ package com.progressterra.ipbandroidapi.api.ipbdelivery.models
 
 import com.google.gson.annotations.SerializedName
 
-enum class PaymentTypeEnum(val value: Int) {
+enum class PaymentTypeEnum{
 
-    @SerializedName(value = "0")
-    ZERO(0),
+    @SerializedName("0")
+    ZERO,
 
-    @SerializedName(value = "1")
-    ONE(1),
+    @SerializedName("1")
+    ONE,
 
-    @SerializedName(value = "2")
-    TWO(2),
+    @SerializedName("2")
+    TWO,
 
-    @SerializedName(value = "3")
-    THREE(3)
+    @SerializedName("3")
+    THREE
 }

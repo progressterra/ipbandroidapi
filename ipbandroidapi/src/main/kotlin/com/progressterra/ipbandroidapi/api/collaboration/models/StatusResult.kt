@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.api.ibonus.models
+package com.progressterra.ipbandroidapi.api.collaboration.models
 
 import com.google.gson.annotations.SerializedName
 
