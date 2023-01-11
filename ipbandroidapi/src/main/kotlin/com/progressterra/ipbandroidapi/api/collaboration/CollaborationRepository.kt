@@ -15,9 +15,26 @@ interface CollaborationRepository {
         accessToken: String, latitude: String, longitude: String, organizationId: String
     ): Result<List<RFShop>?>
 
+    suspend fun organizationById(
+        accessToken: String, latitude: String, longitude: String, organizationId: String
+    ): Result<RGEnterpriseData?>
+
     class Base(
         private val service: CollaborationService
     ) : CollaborationRepository {
+
+        override suspend fun organizationById(
+            accessToken: String,
+            latitude: String,
+            longitude: String,
+            organizationId: String
+        ): Result<RGEnterpriseData?> = runCatching {
+            val response =
+                service.organizationById(accessToken, latitude, longitude, organizationId)
+            if (response.result?.status != StatusResult.ZERO)
+                throw BadRequestException()
+            response.data
+        }
 
         override suspend fun partners(
             accessToken: String,
