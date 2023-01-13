@@ -2,6 +2,7 @@ package com.progressterra.ipbandroidapi.api.collaboration
 
 import com.progressterra.ipbandroidapi.api.collaboration.models.RFShop
 import com.progressterra.ipbandroidapi.api.collaboration.models.RGEnterpriseData
+import com.progressterra.ipbandroidapi.api.collaboration.models.RGOffersExt
 import com.progressterra.ipbandroidapi.api.collaboration.models.StatusResult
 import com.progressterra.ipbandroidapi.core.BadRequestException
 
@@ -18,6 +19,13 @@ interface CollaborationRepository {
     suspend fun organizationById(
         accessToken: String, latitude: String, longitude: String, organizationId: String
     ): Result<RGEnterpriseData?>
+
+    suspend fun offersByOrganization(
+        accessToken: String,
+        latitude: String,
+        longitude: String,
+        organizationId: String
+    ): Result<List<RGOffersExt>?>
 
     class Base(
         private val service: CollaborationService
@@ -55,6 +63,19 @@ interface CollaborationRepository {
         ): Result<List<RFShop>?> = runCatching {
             val response =
                 service.organizationShops(accessToken, latitude, longitude, organizationId)
+            if (response.result?.status != StatusResult.ZERO)
+                throw BadRequestException()
+            response.dataList
+        }
+
+        override suspend fun offersByOrganization(
+            accessToken: String,
+            latitude: String,
+            longitude: String,
+            organizationId: String
+        ): Result<List<RGOffersExt>?> = runCatching {
+            val response =
+                service.offersByOrganization(accessToken, latitude, longitude, organizationId)
             if (response.result?.status != StatusResult.ZERO)
                 throw BadRequestException()
             response.dataList

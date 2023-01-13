@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.api.collaboration
 import com.progressterra.ipbandroidapi.api.collaboration.models.ResultEnterpriseData
 import com.progressterra.ipbandroidapi.api.collaboration.models.ResultListEnterpriseData
 import com.progressterra.ipbandroidapi.api.collaboration.models.ResultListShop
+import com.progressterra.ipbandroidapi.api.collaboration.models.ResultOfferList
 import retrofit2.http.GET
 
 interface CollaborationService {
@@ -21,4 +22,12 @@ interface CollaborationService {
     suspend fun organizationById(
         accessToken: String, latitude: String, longitude: String, organizationId: String
     ): ResultEnterpriseData
+
+    @GET("/collaboration/offers/mobile/list/{AccessToken}/{latitude}/{longitude}/{IDEnterprise}")
+    suspend fun offersByOrganization(
+        accessToken: String,
+        latitude: String,
+        longitude: String,
+        organizationId: String
+    ): ResultOfferList
 }
