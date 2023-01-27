@@ -7,6 +7,9 @@ import com.progressterra.ipbandroidapi.api.collaboration.models.ResultOfferList
 import retrofit2.http.GET
 import retrofit2.http.Path
 
+/**
+ * [Docs](http://84.201.188.117:5091/docsapi/v1/index.html)
+ */
 interface CollaborationService {
 
     @GET("/mobile/enterprise/list/{AccessToken}/{latitude}/{longitude}")
