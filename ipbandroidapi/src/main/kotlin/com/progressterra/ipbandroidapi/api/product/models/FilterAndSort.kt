@@ -1,20 +1,17 @@
-
-
-
 package com.progressterra.ipbandroidapi.api.product.models
 
 import com.google.gson.annotations.SerializedName
 
 /**
- * 
  *
- * @param listFields 
- * @param sort 
- * @param searchString 
- * @param shownotmarkedasdeleted 
+ *
+ * @param listFields
+ * @param sort
+ * @param searchString
+ * @param shownotmarkedasdeleted
  */
 
-data class FilterAndSort (
+data class FilterAndSort(
 
     @SerializedName("listFields")
     val listFields: List<FieldForFilter>? = null,

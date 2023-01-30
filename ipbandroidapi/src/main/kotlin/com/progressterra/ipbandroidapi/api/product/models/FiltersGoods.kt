@@ -1,6 +1,3 @@
-
-
-
 package com.progressterra.ipbandroidapi.api.product.models
 
 import com.google.gson.annotations.SerializedName
@@ -8,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 /**
  * Значенния фильтров для товара
  *
- * @param color 
- * @param collection 
- * @param typeOfGoods 
- * @param sizeOfGoods 
+ * @param color
+ * @param collection
+ * @param typeOfGoods
+ * @param sizeOfGoods
  */
 
-data class FiltersGoods (
+data class FiltersGoods(
 
     @SerializedName("color")
     val color: List<ColorData>? = null,

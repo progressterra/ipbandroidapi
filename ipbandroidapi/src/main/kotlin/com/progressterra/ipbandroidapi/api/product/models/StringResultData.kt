@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api.product.models
 
 import com.google.gson.annotations.SerializedName
 
-data class StringResultData (
+data class StringResultData(
 
     @SerializedName("result")
     val result: ResultOperation? = null,

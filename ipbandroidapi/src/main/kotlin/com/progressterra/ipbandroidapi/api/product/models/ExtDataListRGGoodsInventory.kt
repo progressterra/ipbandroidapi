@@ -1,22 +1,19 @@
-
-
-
 package com.progressterra.ipbandroidapi.api.product.models
 
 import com.google.gson.annotations.SerializedName
 import com.progressterra.ipbandroidapi.api.models.RGGoodsInventoryExt
 
 /**
- * 
  *
- * @param countItemsInPage 
- * @param totalPage 
- * @param numberCurrentPage 
- * @param allQuantityItemsProducts 
- * @param listProducts 
+ *
+ * @param countItemsInPage
+ * @param totalPage
+ * @param numberCurrentPage
+ * @param allQuantityItemsProducts
+ * @param listProducts
  */
 
-data class ExtDataListRGGoodsInventory (
+data class ExtDataListRGGoodsInventory(
 
     @SerializedName("countItemsInPage")
     val countItemsInPage: Int? = null,

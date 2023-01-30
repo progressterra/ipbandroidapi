@@ -1,6 +1,3 @@
-
-
-
 package com.progressterra.ipbandroidapi.api.product.models
 
 
@@ -14,7 +11,7 @@ import com.google.gson.annotations.SerializedName
  * @param url ссылка на изображение цвета
  */
 
-data class ColorData (
+data class ColorData(
 
     /* Имя цвета1 */
     @SerializedName("colorName")

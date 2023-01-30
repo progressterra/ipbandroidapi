@@ -1,18 +1,15 @@
-
-
-
 package com.progressterra.ipbandroidapi.api.product.models
 
 import com.google.gson.annotations.SerializedName
 
 /**
- * 
  *
- * @param result 
- * @param data 
+ *
+ * @param result
+ * @param data
  */
 
-data class FiltersGoodsResultData (
+data class FiltersGoodsResultData(
 
     @SerializedName("result")
     val result: ResultOperation? = null,
