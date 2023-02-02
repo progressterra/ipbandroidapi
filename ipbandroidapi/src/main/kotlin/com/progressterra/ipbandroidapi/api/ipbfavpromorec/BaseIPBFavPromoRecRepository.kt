@@ -1,29 +1,51 @@
 package com.progressterra.ipbandroidapi.api.ipbfavpromorec
 
-import com.progressterra.ipbandroidapi.api.ipbfavpromorec.model.TypeOfEntity
-import com.progressterra.ipbandroidapi.core.AbstractRepository
-import com.progressterra.ipbandroidapi.core.HandleException
+import com.progressterra.ipbandroidapi.api.ipbfavpromorec.model.RFKindOfEntity
+import com.progressterra.ipbandroidapi.api.ipbfavpromorec.model.StatusResult
+import com.progressterra.ipbandroidapi.core.BadRequestException
 
-internal class BaseIPBFavPromoRecRepository(
-    handleException: HandleException,
+class BaseIPBFavPromoRecRepository(
     private val service: IPBFavPromoRecService
-) : AbstractRepository(handleException), IPBFavPromoRecRepository {
+) : IPBFavPromoRecRepository {
 
-    override suspend fun getIDKindOf(iDKindOf: String): Result<List<String>> = handle {
-        service.getIDKindOf(iDKindOf)
-    }.map { it.dataList ?: emptyList() }
+    override suspend fun getIDKindOf(iDKindOf: String): Result<List<String>?> = runCatching {
+        val response = service.getIDKindOf(iDKindOf)
+        if (response.result?.status != StatusResult.ZERO)
+            throw BadRequestException()
+        response.dataList
+    }
 
-    override suspend fun getClientEntityByType(accessToken: String, type: TypeOfEntity): Result<List<String>> =
-        handle {
-            service.getClientEntityByType(accessToken, type.ordinal)
-        }.map { it.dataList ?: emptyList() }
+    override suspend fun getClientEntityByType(
+        accessToken: String,
+        type: Int
+    ): Result<List<String>?> = runCatching {
+        val response = service.getClientEntityByType(accessToken, type)
+        if (response.result?.status != StatusResult.ZERO)
+            throw BadRequestException()
+        response.dataList
+    }
 
-    override suspend fun addToFavorite(accessToken: String, idEntity: String, type: TypeOfEntity): Result<Unit> =
-        handle {
-            service.addToFavorite(accessToken, idEntity, type.ordinal)
+    override suspend fun addToFavorite(
+        accessToken: String,
+        idEntity: String,
+        type: Int
+    ): Result<Unit> = runCatching {
+        val response = service.addToFavorite(accessToken, idEntity, type)
+        if (response.status != StatusResult.ZERO)
+            throw BadRequestException()
+    }
+
+    override suspend fun removeFromFavorite(accessToken: String, idEntity: String): Result<Unit> =
+        runCatching {
+            val response = service.removeFromFavorite(accessToken, idEntity)
+            if (response.status != StatusResult.ZERO)
+                throw BadRequestException()
         }
 
-    override suspend fun removeFromFavorite(accessToken: String, idEntity: String): Result<Unit> = handle {
-        service.removeFromFavorite(accessToken, idEntity)
+    override suspend fun getCategoryInfo(idUnique: String): Result<RFKindOfEntity?> = runCatching {
+        val response = service.getCategoryInfo(idUnique)
+        if (response.result?.status != StatusResult.ZERO)
+            throw BadRequestException()
+        response.data
     }
 }

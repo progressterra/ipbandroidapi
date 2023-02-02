@@ -315,7 +315,6 @@ val iPBAndroidAPIModule = module {
     single<IPBFavPromoRecRepository> {
         val networkService: NetworkService = get()
         BaseIPBFavPromoRecRepository(
-            get(),
             networkService.createService(
                 IPBFavPromoRecService::class.java, IPB_FAV_PROMO_REC_URL
             )
