@@ -2,6 +2,13 @@ package com.progressterra.ipbandroidapi.api.ipbfavpromorec.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * 0 - ENTERPRISE
+ * 1 - PRODUCT
+ * 2 - OFFER
+ * 3 - POST
+ * ???
+ */
 enum class TypeEntities {
 
     @SerializedName(value = "0")
@@ -22,6 +29,7 @@ enum class TypeEntities {
     @SerializedName(value = "5")
     FIVE,
 
+    @SerializedName(value = "6")
     SIX;
 }
 
