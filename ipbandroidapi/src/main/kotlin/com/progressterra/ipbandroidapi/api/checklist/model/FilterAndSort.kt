@@ -4,14 +4,17 @@ package com.progressterra.ipbandroidapi.api.checklist.model
  *
  * @param listFields
  * @param sort
+ * @param searchString
+ * @param shownotmarkedasdeleted
  * @param skip
  * @param take
- * @param searchData
  */
 data class FilterAndSort(
+
     val listFields: List<FieldForFilter>?,
     val sort: SortData?,
-    val searchData: String?,
+    val searchString: String?,
+    val shownotmarkedasdeleted: Boolean?,
     val skip: Int?,
     val take: Int?
 )
