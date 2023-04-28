@@ -11,7 +11,7 @@ internal object URL {
     const val MONEY_OUT_URL = "http://84.201.188.117:5087/"
     const val TYPE_COOPERATION_URL = "http://84.201.188.117:5087/"
     const val AMBASSADOR_INVITE_URL = "http://84.201.188.117:5027/"
-    const val IPB_MEDIA_DATA_URL = "http://84.201.188.117:5089/"
+    const val IPB_MEDIA_DATA_URL = "http://84.201.188.117:7089/"
     const val IPB_PROMO_CODE_URL = "http://84.201.188.117:5025/"
     const val I_ECOMMERCE_URL = "http://84.201.188.117:6023/"
     const val IPB_DELIVERY_URL = "http://84.201.188.117:1955/"
