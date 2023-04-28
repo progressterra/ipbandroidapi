@@ -36,6 +36,11 @@ android {
         jvmTarget = "17"
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
+
     namespace "com.progressterra.ipbandroidapi"
 }
 
