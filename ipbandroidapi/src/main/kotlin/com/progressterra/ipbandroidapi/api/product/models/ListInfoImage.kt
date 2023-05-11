@@ -15,25 +15,21 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.TypeVariantSort
+import org.openapitools.client.models.InfoImage
 
 import com.google.gson.annotations.SerializedName
 
 /**
  * 
  *
- * @param fieldName 
- * @param variantSort 
+ * @param listInfoImage 
  */
 
 
-data class SortData (
+data class ListInfoImage (
 
-    @SerializedName("fieldName")
-    val fieldName: kotlin.String? = null,
-
-    @SerializedName("variantSort")
-    val variantSort: TypeVariantSort? = null
+    @SerializedName("listInfoImage")
+    val listInfoImage: kotlin.collections.List<InfoImage>? = null
 
 )
 

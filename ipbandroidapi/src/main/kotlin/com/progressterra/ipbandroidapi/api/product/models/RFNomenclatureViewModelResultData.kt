@@ -15,6 +15,7 @@
 
 package org.openapitools.client.models
 
+import org.openapitools.client.models.RFNomenclatureViewModel
 import org.openapitools.client.models.ResultOperation
 
 import com.google.gson.annotations.SerializedName
@@ -28,13 +29,13 @@ import com.google.gson.annotations.SerializedName
  */
 
 
-data class StringResultData (
+data class RFNomenclatureViewModelResultData (
 
     @SerializedName("result")
     val result: ResultOperation? = null,
 
     @SerializedName("data")
-    val `data`: kotlin.String? = null,
+    val `data`: RFNomenclatureViewModel? = null,
 
     @SerializedName("totalNumberRecords")
     val totalNumberRecords: kotlin.Int? = null

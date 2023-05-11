@@ -15,6 +15,7 @@
 
 package org.openapitools.client.models
 
+import org.openapitools.client.models.RGSpecificationCharacteristicTypeViewModel
 import org.openapitools.client.models.ResultOperation
 
 import com.google.gson.annotations.SerializedName
@@ -23,18 +24,18 @@ import com.google.gson.annotations.SerializedName
  * 
  *
  * @param result 
- * @param `data` 
+ * @param dataList 
  * @param totalNumberRecords 
  */
 
 
-data class StringResultData (
+data class RGSpecificationCharacteristicTypeViewModelResultDataList (
 
     @SerializedName("result")
     val result: ResultOperation? = null,
 
-    @SerializedName("data")
-    val `data`: kotlin.String? = null,
+    @SerializedName("dataList")
+    val dataList: kotlin.collections.List<RGSpecificationCharacteristicTypeViewModel>? = null,
 
     @SerializedName("totalNumberRecords")
     val totalNumberRecords: kotlin.Int? = null
