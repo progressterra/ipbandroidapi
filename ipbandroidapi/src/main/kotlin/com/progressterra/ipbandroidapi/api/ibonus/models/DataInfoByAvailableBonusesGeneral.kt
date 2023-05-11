@@ -3,14 +3,14 @@ package com.progressterra.ipbandroidapi.api.ibonus.models
 import com.google.gson.annotations.SerializedName
 
 /**
- * 
  *
- * @param typeBonusName 
- * @param currentQuantity 
- * @param forBurningQuantity 
- * @param dateBurning 
+ *
+ * @param typeBonusName
+ * @param currentQuantity
+ * @param forBurningQuantity
+ * @param dateBurning
  */
-data class DataInfoByAvailableBonusesGeneral (
+data class DataInfoByAvailableBonusesGeneral(
 
     @SerializedName("typeBonusName")
     val typeBonusName: String? = null,

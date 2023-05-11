@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.api.product
 
-import org.openapitools.client.models.FilterAndSort
-import org.openapitools.client.models.ProductViewResultDataList
+import com.progressterra.ipbandroidapi.api.product.models.FilterAndSort
+import com.progressterra.ipbandroidapi.api.product.models.ProductViewResultDataList
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -15,5 +15,6 @@ interface ProductService {
     @GET("/product/{idRFNomenclature}")
     suspend fun productByNomenclatureId(@Query("idRFNomenclature") id: String): ProductViewResultDataList
 
-    
+    @GET("/product/rggoodsinventory/{idrggoodsinventory}")
+    suspend fun productByGoodsInventoryId(@Query("idrggoodsinventory") id: String): ProductViewResultDataList
 }

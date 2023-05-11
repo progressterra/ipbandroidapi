@@ -3,13 +3,13 @@ package com.progressterra.ipbandroidapi.api.ibonus.models
 import com.google.gson.annotations.SerializedName
 
 /**
- * 
  *
- * @param result 
+ *
+ * @param result
  * @param data
- * @param totalNumberRecords 
+ * @param totalNumberRecords
  */
-data class BonusTransactionResultDataList (
+data class BonusTransactionResultDataList(
 
     @SerializedName("result")
     val result: ResultOperation? = null,
