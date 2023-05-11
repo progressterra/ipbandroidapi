@@ -15,25 +15,20 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.TypeVariantSort
 
 import com.google.gson.annotations.SerializedName
 
 /**
  * 
  *
- * @param fieldName 
- * @param variantSort 
+ * @param name 
  */
 
 
-data class SortData (
+data class RFSpecificationEntity (
 
-    @SerializedName("fieldName")
-    val fieldName: kotlin.String? = null,
-
-    @SerializedName("variantSort")
-    val variantSort: TypeVariantSort? = null
+    @SerializedName("name")
+    val name: kotlin.String? = null
 
 )
 

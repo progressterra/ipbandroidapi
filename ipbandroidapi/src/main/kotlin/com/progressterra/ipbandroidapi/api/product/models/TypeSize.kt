@@ -19,24 +19,24 @@ package org.openapitools.client.models
 import com.google.gson.annotations.SerializedName
 
 /**
- * 
+ * Тип размера
  *
- * Values: equalsStrong,equalsIgnoreCase,containsStrong,containsIgnoreCase
+ * Values: original,small,medium,large
  */
 
-enum class TypeComparison(val value: kotlin.String) {
+enum class TypeSize(val value: kotlin.String) {
 
-    @SerializedName(value = "equalsStrong")
-    equalsStrong("equalsStrong"),
+    @SerializedName(value = "original")
+    original("original"),
 
-    @SerializedName(value = "equalsIgnoreCase")
-    equalsIgnoreCase("equalsIgnoreCase"),
+    @SerializedName(value = "small")
+    small("small"),
 
-    @SerializedName(value = "containsStrong")
-    containsStrong("containsStrong"),
+    @SerializedName(value = "medium")
+    medium("medium"),
 
-    @SerializedName(value = "containsIgnoreCase")
-    containsIgnoreCase("containsIgnoreCase");
+    @SerializedName(value = "large")
+    large("large");
 
     /**
      * Override toString() to avoid using the enum variable name as the value, and instead use
@@ -51,12 +51,12 @@ enum class TypeComparison(val value: kotlin.String) {
         /**
          * Converts the provided [data] to a [String] on success, null otherwise.
          */
-        fun encode(data: kotlin.Any?): kotlin.String? = if (data is TypeComparison) "$data" else null
+        fun encode(data: kotlin.Any?): kotlin.String? = if (data is TypeSize) "$data" else null
 
         /**
-         * Returns a valid [TypeComparison] for [data], null otherwise.
+         * Returns a valid [TypeSize] for [data], null otherwise.
          */
-        fun decode(data: kotlin.Any?): TypeComparison? = data?.let {
+        fun decode(data: kotlin.Any?): TypeSize? = data?.let {
           val normalizedData = "$it".lowercase()
           values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()
