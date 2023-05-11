@@ -1,8 +1,9 @@
 package com.progressterra.ipbandroidapi.api.ipbmediadata
 
 import com.progressterra.ipbandroidapi.api.checklist.model.EmptyResultOperationResultData
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.DataMediaDataResultData
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.DataMediaDataResultDataList
+import com.progressterra.ipbandroidapi.api.ipbmediadata.model.FilterAndSort
+import com.progressterra.ipbandroidapi.api.ipbmediadata.model.RGEntitytMediaDataViewModelResultData
+import com.progressterra.ipbandroidapi.api.ipbmediadata.model.RGEntitytMediaDataViewModelResultDataList
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.http.*
@@ -13,22 +14,21 @@ import retrofit2.http.*
 internal interface IPBMediaDataService {
 
     @Multipart
-    @POST("/v7/mobile/entity")
+    @POST("/mediadata/client")
     suspend fun attachToEntity(
         @Header("AccessToken") accessToken: String,
-        @Query("idEntity") idEntity: String,
-        @Query("typeContent") typeContent: Int,
-        @Query("entityTypeName") entityTypeName: String,
+        @Query("typeContent") typeContent: String,
         @Query("alias") alias: String,
         @Query("tag") tag: Int,
         @Part file: MultipartBody.Part
-    ): DataMediaDataResultData
+    ): RGEntitytMediaDataViewModelResultData
 
-    @GET("/v7/mobile/{IDEntity}/list")
+    @GET("/mediadata/entity/{iDEntity}/list")
     suspend fun attachedToEntity(
         @Header("AccessToken") accessToken: String,
-        @Path("IDEntity") idEntity: String
-    ): DataMediaDataResultDataList
+        @Path("iDEntity") idEntity: String,
+        @Body filterAndSort: FilterAndSort
+    ): RGEntitytMediaDataViewModelResultDataList
 
     @Streaming
     @GET
@@ -37,7 +37,7 @@ internal interface IPBMediaDataService {
         @Url url: String
     ): ResponseBody
 
-    @DELETE("/v7/mobile/{idRGEntitytMediaData}")
+    @DELETE("/mediadata/{idRGEntitytMediaData}")
     suspend fun deleteMediaData(
         @Header("AccessToken") accessToken: String,
         @Path("idRGEntitytMediaData") idRGEntitytMediaData: String
