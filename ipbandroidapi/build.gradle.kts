@@ -16,10 +16,9 @@ android {
     }
 
     publishing {
-        multipleVariants {
+        singleVariant("release") {
             withSourcesJar()
             withJavadocJar()
-            allVariants()
         }
     }
 
@@ -39,16 +38,11 @@ android {
         jvmTarget = "17"
     }
 
-    buildFeatures {
-        buildConfig = true
-    }
-
     namespace = "com.progressterra.ipbandroidapi"
 }
 
 afterEvaluate {
-    configure<PublishingExtension> {
-        val group = "com.progressterra.ipbandroidapi"
+    publishing {
         repositories {
             maven {
                 name = "GitHubPackages"
@@ -60,15 +54,10 @@ afterEvaluate {
             }
         }
         publications {
-            create<MavenPublication>("release") {
-                from(components.findByName("release"))
-                groupId = group
+            register<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.progressterra.ipbandroidapi"
                 artifactId = "ipbandroidapi"
-            }
-            create<MavenPublication>("debug") {
-                from(components.findByName("debug"))
-                groupId = group
-                artifactId = "ipbandroidapitest"
             }
         }
     }

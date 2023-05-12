@@ -1,7 +1,7 @@
 package com.progressterra.ipbandroidapi.base
 
 import com.progressterra.ipbandroidapi.BuildConfig
-import com.progressterra.ipbandroidapi.NetworkSettings
+import com.progressterra.ipbandroidapi.IpbAndroidApiSettings
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,14 +16,14 @@ interface NetworkService {
 
 
         private val clientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-            .callTimeout(NetworkSettings.NETWORK_CALL_TIMEOUT, TimeUnit.MILLISECONDS)
-            .connectTimeout(NetworkSettings.NETWORK_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
-            .readTimeout(NetworkSettings.NETWORK_READ_TIMEOUT, TimeUnit.MILLISECONDS)
-            .writeTimeout(NetworkSettings.NETWORK_WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
+            .callTimeout(NETWORK_CALL_TIMEOUT, TimeUnit.MILLISECONDS)
+            .connectTimeout(NETWORK_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
+            .readTimeout(NETWORK_READ_TIMEOUT, TimeUnit.MILLISECONDS)
+            .writeTimeout(NETWORK_WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
             .addInterceptor(loggingInterceptor())
             .addInterceptor {
                 val request = it.request().newBuilder()
-                    .addHeader("AccessKey", NetworkSettings.ACCESS_KEY)
+                    .addHeader("AccessKey", IpbAndroidApiSettings.ACCESS_KEY)
                     .build()
                 it.proceed(request)
             }
@@ -39,11 +39,22 @@ interface NetworkService {
 
         private fun loggingInterceptor() : HttpLoggingInterceptor {
             val interceptor = HttpLoggingInterceptor()
-            if (BuildConfig.DEBUG)
+            if (IpbAndroidApiSettings.isDebug)
                 interceptor.level = HttpLoggingInterceptor.Level.BODY
             else
                 interceptor.level = HttpLoggingInterceptor.Level.NONE
             return interceptor
+        }
+
+        companion object {
+
+            const val NETWORK_CALL_TIMEOUT: Long = 20 * 1000
+
+            const val NETWORK_CONNECT_TIMEOUT: Long = 20 * 1000
+
+            const val NETWORK_READ_TIMEOUT: Long = 20 * 1000
+
+            const val NETWORK_WRITE_TIMEOUT: Long = 20 * 1000
         }
     }
 }
