@@ -1,0 +1,83 @@
+plugins {
+    id("com.android.library")
+    id("kotlin-android")
+    id("kotlin-kapt")
+    id("kotlin-parcelize")
+    id("maven-publish")
+}
+
+android {
+    compileSdk = 33
+
+    defaultConfig {
+        minSdk = 21
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    publishing {
+        multipleVariants {
+            withSourcesJar()
+            withJavadocJar()
+            allVariants()
+        }
+    }
+
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    namespace = "com.progressterra.ipbandroidapi"
+}
+
+afterEvaluate {
+    configure<PublishingExtension> {
+        val group = "com.progressterra.ipbandroidapi"
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/progressterra/ipbandroidapi")
+                credentials {
+                    username = project.findProperty("gpr.user") as String?
+                    password = project.findProperty("gpr.key") as String?
+                }
+            }
+        }
+        publications {
+            create<MavenPublication>("release") {
+                from(components.findByName("release"))
+                groupId = group
+                artifactId = "ipbandroidapi"
+            }
+            create<MavenPublication>("debug") {
+                from(components.findByName("debug"))
+                groupId = group
+                artifactId = "ipbandroidapitest"
+            }
+        }
+    }
+}
+
+dependencies {
+    api("com.squareup.retrofit2:retrofit:2.9.0")
+    api("com.squareup.retrofit2:converter-gson:2.9.0")
+    api("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    api("com.google.code.gson:gson:2.10.1")
+    api("io.insert-koin:koin-android:3.4.0")
+}
