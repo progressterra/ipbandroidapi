@@ -53,6 +53,7 @@ afterEvaluate {
         publications {
             register<MavenPublication>("release") {
                 from(components["release"])
+                artifactId = "ipbandroidapi"
             }
         }
     }
