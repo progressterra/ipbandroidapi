@@ -1,6 +1,5 @@
 package com.progressterra.ipbandroidapi.base
 
-import com.progressterra.ipbandroidapi.BuildConfig
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -37,7 +36,7 @@ interface NetworkService {
             return retrofitBuilder.build().create(apiClass)
         }
 
-        private fun loggingInterceptor() : HttpLoggingInterceptor {
+        private fun loggingInterceptor(): HttpLoggingInterceptor {
             val interceptor = HttpLoggingInterceptor()
             if (IpbAndroidApiSettings.isDebug)
                 interceptor.level = HttpLoggingInterceptor.Level.BODY

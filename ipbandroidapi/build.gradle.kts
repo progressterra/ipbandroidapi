@@ -16,10 +16,7 @@ android {
     }
 
     publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
+        singleVariant("release")
     }
 
     buildTypes {
@@ -56,8 +53,6 @@ afterEvaluate {
         publications {
             register<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.progressterra.ipbandroidapi"
-                artifactId = "ipbandroidapi"
             }
         }
     }
