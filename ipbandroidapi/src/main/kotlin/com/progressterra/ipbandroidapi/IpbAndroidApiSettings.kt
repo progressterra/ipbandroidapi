@@ -7,5 +7,5 @@ object IpbAndroidApiSettings {
      */
     var ACCESS_KEY = ""
 
-    var isDebug = false
+    var IS_DEBUG = false
 }
