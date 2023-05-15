@@ -6,7 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.Path
 
 interface ProductService {
 
@@ -19,12 +19,12 @@ interface ProductService {
     @GET("/product/{idRFNomenclature}")
     suspend fun productByNomenclatureId(
         @Header("AccessToken") accessToken: String,
-        @Query("idRFNomenclature") id: String
+        @Path("idRFNomenclature") id: String
     ): ProductViewResultDataList
 
     @GET("/product/rggoodsinventory/{idrgGoodsInventory}")
     suspend fun productByGoodsInventoryId(
         @Header("AccessToken") accessToken: String,
-        @Query("idrgGoodsInventory") id: String
+        @Path("idrgGoodsInventory") id: String
     ): ProductViewResultDataList
 }
