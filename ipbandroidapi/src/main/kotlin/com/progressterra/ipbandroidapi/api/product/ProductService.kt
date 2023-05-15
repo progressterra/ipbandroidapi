@@ -22,9 +22,9 @@ interface ProductService {
         @Query("idRFNomenclature") id: String
     ): ProductViewResultDataList
 
-    @GET("/product/rggoodsinventory/{idrggoodsinventory}")
+    @GET("/product/rggoodsinventory/{idrgGoodsInventory}")
     suspend fun productByGoodsInventoryId(
         @Header("AccessToken") accessToken: String,
-        @Query("idrggoodsinventory") id: String
+        @Query("idrgGoodsInventory") id: String
     ): ProductViewResultDataList
 }
