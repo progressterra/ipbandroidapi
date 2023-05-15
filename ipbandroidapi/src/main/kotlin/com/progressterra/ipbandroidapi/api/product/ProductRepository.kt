@@ -13,12 +13,12 @@ interface ProductRepository {
         filterAndSort: FilterAndSort
     ): Result<List<ProductView>?>
 
-    suspend fun productByNomenclatureId(accessToken: String, id: String): Result<List<ProductView>?>
+    suspend fun productByNomenclatureId(accessToken: String, id: String): Result<ProductView?>
 
     suspend fun productByGoodsInventoryId(
         accessToken: String,
         id: String
-    ): Result<List<ProductView>?>
+    ): Result<ProductView?>
 
 
     class Base(
@@ -40,25 +40,25 @@ interface ProductRepository {
         override suspend fun productByNomenclatureId(
             accessToken: String,
             id: String
-        ): Result<List<ProductView>?> =
+        ): Result<ProductView?> =
             handle {
                 val response = service.productByNomenclatureId(accessToken, id)
                 if (response.result?.status != "success") {
                     throw BadRequestException()
                 }
-                response.dataList
+                response.data
             }
 
         override suspend fun productByGoodsInventoryId(
             accessToken: String,
             id: String
-        ): Result<List<ProductView>?> =
+        ): Result<ProductView?> =
             handle {
                 val response = service.productByGoodsInventoryId(accessToken, id)
                 if (response.result?.status != "success") {
                     throw BadRequestException()
                 }
-                response.dataList
+                response.data
             }
     }
 }

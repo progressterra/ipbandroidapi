@@ -1,6 +1,7 @@
 package com.progressterra.ipbandroidapi.api.product
 
 import com.progressterra.ipbandroidapi.api.product.models.FilterAndSort
+import com.progressterra.ipbandroidapi.api.product.models.ProductViewResultData
 import com.progressterra.ipbandroidapi.api.product.models.ProductViewResultDataList
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,11 +21,11 @@ interface ProductService {
     suspend fun productByNomenclatureId(
         @Header("AccessToken") accessToken: String,
         @Path("idRFNomenclature") id: String
-    ): ProductViewResultDataList
+    ): ProductViewResultData
 
     @GET("/product/rggoodsinventory/{idrgGoodsInventory}")
     suspend fun productByGoodsInventoryId(
         @Header("AccessToken") accessToken: String,
         @Path("idrgGoodsInventory") id: String
-    ): ProductViewResultDataList
+    ): ProductViewResultData
 }
