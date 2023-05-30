@@ -12,7 +12,7 @@ import retrofit2.http.POST
 interface ComPlaceService {
 
     @POST("/complace/list")
-    fun places(
+    suspend fun places(
         @Header("AccessToken") accessToken: String,
         @Body filterAndSort: FilterAndSort
     ): RFComPlaceViewModelResultDataList
