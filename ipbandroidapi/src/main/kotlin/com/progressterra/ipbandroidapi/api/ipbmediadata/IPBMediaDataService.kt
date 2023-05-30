@@ -15,8 +15,20 @@ internal interface IPBMediaDataService {
 
     @Multipart
     @POST("/mediadata/client")
+    suspend fun attachToClient(
+        @Header("AccessToken") accessToken: String,
+        @Query("typeContent") typeContent: String,
+        @Query("alias") alias: String,
+        @Query("tag") tag: Int,
+        @Part file: MultipartBody.Part
+    ): RGEntitytMediaDataViewModelResultData
+
+    @Multipart
+    @POST("/mediadata/entity")
     suspend fun attachToEntity(
         @Header("AccessToken") accessToken: String,
+        @Query("idEntity") idEntity: String,
+        @Query("entityTypeName") entityTypeName: String,
         @Query("typeContent") typeContent: String,
         @Query("alias") alias: String,
         @Query("tag") tag: Int,

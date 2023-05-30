@@ -19,11 +19,29 @@ internal class BaseIPBMediaDataRepository(
         if (response.result?.status != 0) throw BadRequestException()
     }
 
-    override suspend fun attachToEntity(
+    override suspend fun attachToClient(
         accessToken: String, typeContent: String, alias: String, tag: Int, file: MultipartBody.Part
     ): Result<RGEntitytMediaDataViewModel?> = handle {
-        val response = service.attachToEntity(
+        val response = service.attachToClient(
             accessToken, typeContent, alias, tag, file
+        )
+        if (response.result?.status != "success") throw BadRequestException()
+        response
+    }.map {
+        it.data
+    }
+
+    override suspend fun attachToEntity(
+        accessToken: String,
+        idEntity: String,
+        entityTypeName: String,
+        typeContent: String,
+        alias: String,
+        tag: Int,
+        file: MultipartBody.Part
+    ): Result<RGEntitytMediaDataViewModel?> = handle {
+        val response = service.attachToEntity(
+            accessToken, idEntity, entityTypeName, typeContent, alias, tag, file
         )
         if (response.result?.status != "success") throw BadRequestException()
         response

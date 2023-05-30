@@ -2,13 +2,24 @@ package com.progressterra.ipbandroidapi.api.ipbmediadata
 
 import com.progressterra.ipbandroidapi.api.ipbmediadata.model.FilterAndSort
 import com.progressterra.ipbandroidapi.api.ipbmediadata.model.RGEntitytMediaDataViewModel
+import com.progressterra.ipbandroidapi.api.ipbmediadata.model.RGEntitytMediaDataViewModelResultData
 import okhttp3.MultipartBody
 import java.io.InputStream
 
 interface IPBMediaDataRepository {
 
-    suspend fun attachToEntity(
+    suspend fun attachToClient(
         accessToken: String, typeContent: String, alias: String, tag: Int, file: MultipartBody.Part
+    ): Result<RGEntitytMediaDataViewModel?>
+
+    suspend fun attachToEntity(
+        accessToken: String,
+        idEntity: String,
+        entityTypeName: String,
+        typeContent: String,
+        alias: String,
+        tag: Int,
+        file: MultipartBody.Part
     ): Result<RGEntitytMediaDataViewModel?>
 
     suspend fun attachedToEntity(
