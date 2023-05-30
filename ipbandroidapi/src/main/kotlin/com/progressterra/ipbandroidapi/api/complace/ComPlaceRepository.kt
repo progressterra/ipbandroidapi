@@ -25,7 +25,7 @@ interface ComPlaceRepository {
         ): Result<List<RFComPlaceViewModel>?> =
             handle {
                 val response = service.places(accessToken, filterAndSort)
-                if (response.result?.status == StatusResult.SUCCESS) {
+                if (response.result?.status != StatusResult.SUCCESS) {
                     throw BadRequestException()
                 }
                 response.dataList
