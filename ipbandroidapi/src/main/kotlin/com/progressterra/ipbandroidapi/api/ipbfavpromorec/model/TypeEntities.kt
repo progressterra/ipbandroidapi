@@ -11,25 +11,25 @@ import com.google.gson.annotations.SerializedName
  */
 enum class TypeEntities {
 
-    @SerializedName(value = "0")
+    @SerializedName("0")
     ZERO,
 
-    @SerializedName(value = "1")
+    @SerializedName("1")
     ONE,
 
-    @SerializedName(value = "2")
+    @SerializedName("2")
     TWO,
 
-    @SerializedName(value = "3")
+    @SerializedName("3")
     THREE,
 
-    @SerializedName(value = "4")
+    @SerializedName("4")
     FOUR,
 
-    @SerializedName(value = "5")
+    @SerializedName("5")
     FIVE,
 
-    @SerializedName(value = "6")
+    @SerializedName("6")
     SIX;
 }
 
