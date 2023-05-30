@@ -2,6 +2,8 @@ package com.progressterra.ipbandroidapi.api.complace
 
 import com.progressterra.ipbandroidapi.api.complace.models.FilterAndSort
 import com.progressterra.ipbandroidapi.api.complace.models.RFComPlaceViewModelResultDataList
+import retrofit2.http.Body
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 /**
@@ -10,5 +12,8 @@ import retrofit2.http.POST
 interface ComPlaceService {
 
     @POST("/complace/list")
-    fun places(filterAndSort: FilterAndSort) : RFComPlaceViewModelResultDataList
+    fun places(
+        @Header("AccessToken") accessToken: String,
+        @Body filterAndSort: FilterAndSort
+    ): RFComPlaceViewModelResultDataList
 }

@@ -9,16 +9,22 @@ import com.progressterra.ipbandroidapi.core.HandleException
 
 interface ComPlaceRepository {
 
-    suspend fun places(filterAndSort: FilterAndSort): Result<List<RFComPlaceViewModel>?>
+    suspend fun places(
+        accessToken: String,
+        filterAndSort: FilterAndSort
+    ): Result<List<RFComPlaceViewModel>?>
 
     class Base(
         handleException: HandleException,
         private val service: ComPlaceService
     ) : ComPlaceRepository, AbstractRepository(handleException) {
 
-        override suspend fun places(filterAndSort: FilterAndSort): Result<List<RFComPlaceViewModel>?> =
+        override suspend fun places(
+            accessToken: String,
+            filterAndSort: FilterAndSort
+        ): Result<List<RFComPlaceViewModel>?> =
             handle {
-                val response = service.places(filterAndSort)
+                val response = service.places(accessToken, filterAndSort)
                 if (response.result?.status == StatusResult.SUCCESS) {
                     throw BadRequestException()
                 }
