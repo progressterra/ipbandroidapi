@@ -34,7 +34,7 @@ data class RFComPlaceViewModel(
 
     @SerializedName("dateClose") val dateClose: String? = null,
 
-    @SerializedName("idrfCtiy") val idrfCtiy: java.util.UUID? = null,
+    @SerializedName("idrfCtiy") val idrfCtiy: String? = null,
 
     @SerializedName("contacts") val contacts: String? = null,
 
@@ -43,10 +43,10 @@ data class RFComPlaceViewModel(
     @SerializedName("longitude") val longitude: Double? = null,
 
     /* Уникальный идентификатор */
-    @SerializedName("idUnique") val idUnique: java.util.UUID? = null,
+    @SerializedName("idUnique") val idUnique: String? = null,
 
     /* Идентификатор организации, которой принадлежит данная запись */
-    @SerializedName("idEnterprise") val idEnterprise: java.util.UUID? = null,
+    @SerializedName("idEnterprise") val idEnterprise: String? = null,
 
     /* Дата добавления записи */
     @SerializedName("dateAdded") val dateAdded: String? = null,

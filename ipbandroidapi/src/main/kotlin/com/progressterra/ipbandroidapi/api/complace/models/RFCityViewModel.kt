@@ -32,11 +32,11 @@ data class RFCityViewModel (
 
     /* Уникальный идентификатор */
     @SerializedName("idUnique")
-    val idUnique: java.util.UUID? = null,
+    val idUnique: String? = null,
 
     /* Идентификатор организации, которой принадлежит данная запись */
     @SerializedName("idEnterprise")
-    val idEnterprise: java.util.UUID? = null,
+    val idEnterprise: String? = null,
 
     /* Дата добавления записи */
     @SerializedName("dateAdded")

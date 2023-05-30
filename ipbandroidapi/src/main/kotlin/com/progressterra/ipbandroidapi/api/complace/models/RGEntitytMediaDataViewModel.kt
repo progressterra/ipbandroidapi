@@ -27,13 +27,13 @@ import com.google.gson.annotations.SerializedName
 data class RGEntitytMediaDataViewModel(
 
     /* Идентфикатор сущности к которой мы добавляем данные, может быть клиентом, организацией, магазином, продуктом */
-    @SerializedName("idEntity") val idEntity: java.util.UUID? = null,
+    @SerializedName("idEntity") val idEntity: String? = null,
 
     /* Имя типа сущности для которой добавляем данные. Как они идут в IPB */
     @SerializedName("entityTypeName") val entityTypeName: String? = null,
 
     /* Если данный параметр установлен в идентификатор клиента, то данные доступны только данному клиенту. Данные также доступны бизнес пользователям организации, а также специалистам платформы */
-    @SerializedName("privateForClientID") val privateForClientID: java.util.UUID? = null,
+    @SerializedName("privateForClientID") val privateForClientID: String? = null,
 
     /* Ссылка на html документ или ссылка на файл */
     @SerializedName("urlData") val urlData: String? = null,
@@ -60,10 +60,10 @@ data class RGEntitytMediaDataViewModel(
     @SerializedName("size") val propertySize: Long? = null,
 
     /* Уникальный идентификатор */
-    @SerializedName("idUnique") val idUnique: java.util.UUID? = null,
+    @SerializedName("idUnique") val idUnique: String? = null,
 
     /* Идентификатор организации, которой принадлежит данная запись */
-    @SerializedName("idEnterprise") val idEnterprise: java.util.UUID? = null,
+    @SerializedName("idEnterprise") val idEnterprise: String? = null,
 
     /* Дата добавления записи */
     @SerializedName("dateAdded") val dateAdded: String? = null,
