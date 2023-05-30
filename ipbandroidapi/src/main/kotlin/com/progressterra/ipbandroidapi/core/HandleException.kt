@@ -1,5 +1,7 @@
 package com.progressterra.ipbandroidapi.core
 
+import android.util.Log
+import com.progressterra.ipbandroidapi.IpbAndroidApiSettings
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
@@ -10,6 +12,9 @@ interface HandleException {
     class Base : HandleException {
 
         override fun handle(exception: Exception): Exception {
+            if (IpbAndroidApiSettings.IS_DEBUG) {
+                Log.e("API", exception.message, exception)
+            }
             return when (exception) {
                 is UnknownHostException, is SocketTimeoutException -> NoInternetConnectionException()
                 else -> ServiceUnavailableException()
