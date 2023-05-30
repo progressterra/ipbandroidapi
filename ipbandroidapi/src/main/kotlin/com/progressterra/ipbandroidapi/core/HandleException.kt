@@ -17,7 +17,7 @@ interface HandleException {
             }
             return when (exception) {
                 is UnknownHostException, is SocketTimeoutException -> NoInternetConnectionException()
-                else -> ServiceUnavailableException()
+                else -> exception
             }
         }
     }
