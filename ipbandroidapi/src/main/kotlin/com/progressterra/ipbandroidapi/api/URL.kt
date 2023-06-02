@@ -27,4 +27,5 @@ internal object URL {
     const val PRODUCT_URL = "http://51.250.54.134:7023/"
     const val COLLABORATION_URL = "http://84.201.188.117:5091/"
     const val COM_PLACE_URL = "http://51.250.54.134:7019/"
+    const val DOCS_URL = "http://51.250.54.134:7107/"
 }

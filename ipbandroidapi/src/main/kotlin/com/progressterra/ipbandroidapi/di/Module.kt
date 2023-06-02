@@ -9,6 +9,7 @@ import com.progressterra.ipbandroidapi.api.URL.CITY_URL
 import com.progressterra.ipbandroidapi.api.URL.COLLABORATION_URL
 import com.progressterra.ipbandroidapi.api.URL.COM_PLACE_URL
 import com.progressterra.ipbandroidapi.api.URL.CONFIRM_EMAIL_URL
+import com.progressterra.ipbandroidapi.api.URL.DOCS_URL
 import com.progressterra.ipbandroidapi.api.URL.IPB_DELIVERY_URL
 import com.progressterra.ipbandroidapi.api.URL.IPB_FAV_PROMO_REC_URL
 import com.progressterra.ipbandroidapi.api.URL.IPB_MEDIA_DATA_URL
@@ -46,6 +47,8 @@ import com.progressterra.ipbandroidapi.api.collaboration.CollaborationRepository
 import com.progressterra.ipbandroidapi.api.collaboration.CollaborationService
 import com.progressterra.ipbandroidapi.api.complace.ComPlaceRepository
 import com.progressterra.ipbandroidapi.api.complace.ComPlaceService
+import com.progressterra.ipbandroidapi.api.documents.DocumentsRepository
+import com.progressterra.ipbandroidapi.api.documents.DocumentsService
 import com.progressterra.ipbandroidapi.api.email.BaseConfirmEmailRepository
 import com.progressterra.ipbandroidapi.api.email.ConfirmEmailRepository
 import com.progressterra.ipbandroidapi.api.email.ConfirmEmailService
@@ -380,6 +383,16 @@ val iPBAndroidAPIModule = module {
             get(),
             networkService.createService(
                 ComPlaceService::class.java, COM_PLACE_URL
+            )
+        )
+    }
+
+    single<DocumentsRepository> {
+        val networkService: NetworkService = get()
+        DocumentsRepository.Base(
+            get(),
+            networkService.createService(
+                DocumentsService::class.java, DOCS_URL
             )
         )
     }
