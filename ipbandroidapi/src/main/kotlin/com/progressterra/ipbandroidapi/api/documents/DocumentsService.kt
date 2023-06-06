@@ -8,6 +8,7 @@ import com.progressterra.ipbandroidapi.api.documents.models.RFCharacteristicValu
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
@@ -38,6 +39,7 @@ interface DocumentsService {
         @Body incomeData: IncomeDataClientArea
     ): RFCharacteristicValueViewModelResultData
 
+    @Multipart
     @POST("/clientarea/doc/image/{idCharVal}")
     suspend fun setImageForChar(
         @Header("AccessToken") accessToken: String,
