@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName
  * @param fieldName
  * @param variantSort
  */
+
+
 data class SortData(
 
     @SerializedName("fieldName")
@@ -15,4 +17,6 @@ data class SortData(
 
     @SerializedName("variantSort")
     val variantSort: TypeVariantSort? = null
+
 )
+

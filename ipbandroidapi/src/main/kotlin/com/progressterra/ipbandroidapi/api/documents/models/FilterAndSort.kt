@@ -11,6 +11,8 @@ import com.google.gson.annotations.SerializedName
  * @param skip
  * @param take
  */
+
+
 data class FilterAndSort(
 
     @SerializedName("listFields")
@@ -29,3 +31,4 @@ data class FilterAndSort(
     val take: Int? = null
 
 )
+

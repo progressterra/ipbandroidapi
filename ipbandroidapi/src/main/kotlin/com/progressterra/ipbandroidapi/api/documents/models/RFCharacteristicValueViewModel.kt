@@ -25,6 +25,8 @@ import com.google.gson.annotations.SerializedName
  * @param listImages Список изображений
  * @param characteristicType
  */
+
+
 data class RFCharacteristicValueViewModel(
 
     /* Характеристика, к которой относится значение */
@@ -98,4 +100,6 @@ data class RFCharacteristicValueViewModel(
 
     @SerializedName("characteristicType")
     val characteristicType: RFCharacteristicTypeViewModel? = null
+
 )
+

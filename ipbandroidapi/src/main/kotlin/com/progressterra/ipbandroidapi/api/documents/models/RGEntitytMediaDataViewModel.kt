@@ -24,6 +24,8 @@ import com.google.gson.annotations.SerializedName
  * @param dateSoftRemoved Если дата установлена, то сущность помечена на удаление. Физически данные не удаляются  Функции Delete лишь помечают сущность на удаление устанавливая дату вызова метода
  * @param listInfoImage
  */
+
+
 data class RGEntitytMediaDataViewModel(
 
     /* Идентфикатор сущности к которой мы добавляем данные, может быть клиентом, организацией, магазином, продуктом */
@@ -95,3 +97,4 @@ data class RGEntitytMediaDataViewModel(
     val listInfoImage: ListInfoImage? = null
 
 )
+

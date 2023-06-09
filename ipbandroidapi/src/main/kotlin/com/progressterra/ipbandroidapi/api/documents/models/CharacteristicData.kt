@@ -10,6 +10,8 @@ import com.google.gson.annotations.SerializedName
  * @param isMandatory Признак обязательной характеристики, которую нужно обязательно заполнить
  * @param imageRequired Признак того, что требуется фото для документа
  */
+
+
 data class CharacteristicData(
 
     @SerializedName("characteristicType")
@@ -27,3 +29,4 @@ data class CharacteristicData(
     val imageRequired: Boolean? = null
 
 )
+

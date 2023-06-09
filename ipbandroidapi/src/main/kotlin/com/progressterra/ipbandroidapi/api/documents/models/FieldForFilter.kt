@@ -9,6 +9,8 @@ import com.google.gson.annotations.SerializedName
  * @param listValue
  * @param comparison
  */
+
+
 data class FieldForFilter(
 
     @SerializedName("fieldName")
@@ -21,3 +23,4 @@ data class FieldForFilter(
     val comparison: TypeComparison? = null
 
 )
+

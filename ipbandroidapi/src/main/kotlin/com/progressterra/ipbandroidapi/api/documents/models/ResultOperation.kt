@@ -13,6 +13,8 @@ import com.google.gson.annotations.SerializedName
  * @param idLog
  * @param xRequestId
  */
+
+
 data class ResultOperation(
 
     @SerializedName("status")
@@ -35,4 +37,6 @@ data class ResultOperation(
 
     @SerializedName("x-request-id")
     val xRequestId: String? = null
+
 )
+

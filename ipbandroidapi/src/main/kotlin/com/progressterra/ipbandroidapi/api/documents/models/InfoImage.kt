@@ -11,6 +11,8 @@ import com.google.gson.annotations.SerializedName
  * @param height
  * @param propertySize
  */
+
+
 data class InfoImage(
 
     @SerializedName("url")
@@ -29,3 +31,4 @@ data class InfoImage(
     val propertySize: Long? = null
 
 )
+

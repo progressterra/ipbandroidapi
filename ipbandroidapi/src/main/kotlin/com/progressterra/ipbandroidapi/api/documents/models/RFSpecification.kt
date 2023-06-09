@@ -1,5 +1,6 @@
 package com.progressterra.ipbandroidapi.api.documents.models
 
+
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -12,6 +13,8 @@ import com.google.gson.annotations.SerializedName
  * @param dateUpdated Дата обновления записи
  * @param dateSoftRemoved Если дата установлена, то сущность помечена на удаление. Физически данные не удаляются  Функции Delete лишь помечают сущность на удаление устанавливая дату вызова метода
  */
+
+
 data class RFSpecification(
 
     @SerializedName("name")
