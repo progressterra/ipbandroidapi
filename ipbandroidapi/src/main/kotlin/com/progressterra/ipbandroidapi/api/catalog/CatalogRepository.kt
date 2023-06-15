@@ -23,7 +23,7 @@ interface CatalogRepository {
             accessToken: String,
             filterAndSort: FilterAndSort
         ): Result<CatalogItem?> = handle {
-            val result = service.catalog(accessToken, filterAndSort)
+            val result = service.catalog(filterAndSort)
             if (result.result?.status != StatusResult.SUCCESS) {
                 throw BadRequestException()
             }

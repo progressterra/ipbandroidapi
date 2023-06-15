@@ -11,7 +11,6 @@ interface CatalogService {
 
     @POST("/browsing/catalog")
     suspend fun catalog(
-        @Header("AccessToken") accessToken: String,
         @Body filterAndSort: FilterAndSort
     ): CatalogItemResultData
 }
