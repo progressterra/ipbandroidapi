@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.di
 import com.progressterra.ipbandroidapi.api.URL.ADDRESS_URL
 import com.progressterra.ipbandroidapi.api.URL.AMBASSADOR_INVITE_URL
 import com.progressterra.ipbandroidapi.api.URL.AMBASSADOR_URL
+import com.progressterra.ipbandroidapi.api.URL.CATALOG_URL
 import com.progressterra.ipbandroidapi.api.URL.CHECKLIST_URL
 import com.progressterra.ipbandroidapi.api.URL.CITIES_URL
 import com.progressterra.ipbandroidapi.api.URL.CITY_URL
@@ -35,6 +36,8 @@ import com.progressterra.ipbandroidapi.api.ambassador.BaseAmbassadorRepository
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteRepository
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteService
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.BaseAmbassadorInviteRepository
+import com.progressterra.ipbandroidapi.api.catalog.CatalogRepository
+import com.progressterra.ipbandroidapi.api.catalog.CatalogService
 import com.progressterra.ipbandroidapi.api.checklist.ChecklistRepository
 import com.progressterra.ipbandroidapi.api.checklist.ChecklistService
 import com.progressterra.ipbandroidapi.api.cities.BaseCitiesRepository
@@ -393,6 +396,16 @@ val iPBAndroidAPIModule = module {
             get(),
             networkService.createService(
                 DocumentsService::class.java, DOCS_URL
+            )
+        )
+    }
+
+    single<CatalogRepository> {
+        val networkService: NetworkService = get()
+        CatalogRepository.Base(
+            get(),
+            networkService.createService(
+                CatalogService::class.java, CATALOG_URL
             )
         )
     }
