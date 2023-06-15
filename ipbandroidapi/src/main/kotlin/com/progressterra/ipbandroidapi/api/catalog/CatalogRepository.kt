@@ -10,6 +10,7 @@ import com.progressterra.ipbandroidapi.core.HandleException
 interface CatalogRepository {
 
     suspend fun catalog(
+        accessToken: String,
         filterAndSort: FilterAndSort
     ): Result<CatalogItem?>
 
@@ -19,9 +20,10 @@ interface CatalogRepository {
     ) : CatalogRepository, AbstractRepository(handleException) {
 
         override suspend fun catalog(
+            accessToken: String,
             filterAndSort: FilterAndSort
         ): Result<CatalogItem?> = handle {
-            val result = service.catalog(filterAndSort)
+            val result = service.catalog(accessToken, filterAndSort)
             if (result.result?.status != StatusResult.SUCCESS) {
                 throw BadRequestException()
             }
