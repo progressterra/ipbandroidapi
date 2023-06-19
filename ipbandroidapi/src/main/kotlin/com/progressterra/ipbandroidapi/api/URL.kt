@@ -29,4 +29,5 @@ internal object URL {
     const val COM_PLACE_URL = "http://51.250.54.134:7019/"
     const val DOCS_URL = "http://51.250.54.134:7107/"
     const val CATALOG_URL = "http://51.250.54.134:7027/"
+    const val CART_URL = "http://51.250.54.134:7025/"
 }

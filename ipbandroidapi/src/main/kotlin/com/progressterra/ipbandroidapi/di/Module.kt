@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.di
 import com.progressterra.ipbandroidapi.api.URL.ADDRESS_URL
 import com.progressterra.ipbandroidapi.api.URL.AMBASSADOR_INVITE_URL
 import com.progressterra.ipbandroidapi.api.URL.AMBASSADOR_URL
+import com.progressterra.ipbandroidapi.api.URL.CART_URL
 import com.progressterra.ipbandroidapi.api.URL.CATALOG_URL
 import com.progressterra.ipbandroidapi.api.URL.CHECKLIST_URL
 import com.progressterra.ipbandroidapi.api.URL.CITIES_URL
@@ -36,6 +37,8 @@ import com.progressterra.ipbandroidapi.api.ambassador.BaseAmbassadorRepository
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteRepository
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteService
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.BaseAmbassadorInviteRepository
+import com.progressterra.ipbandroidapi.api.cart.CartRepository
+import com.progressterra.ipbandroidapi.api.cart.CartService
 import com.progressterra.ipbandroidapi.api.catalog.CatalogRepository
 import com.progressterra.ipbandroidapi.api.catalog.CatalogService
 import com.progressterra.ipbandroidapi.api.checklist.ChecklistRepository
@@ -58,9 +61,6 @@ import com.progressterra.ipbandroidapi.api.email.ConfirmEmailService
 import com.progressterra.ipbandroidapi.api.ibonus.BaseIBonusRepository
 import com.progressterra.ipbandroidapi.api.ibonus.IBonusRepository
 import com.progressterra.ipbandroidapi.api.ibonus.IBonusService
-import com.progressterra.ipbandroidapi.api.iecommerce.cart.BaseCartRepository
-import com.progressterra.ipbandroidapi.api.iecommerce.cart.CartRepository
-import com.progressterra.ipbandroidapi.api.iecommerce.cart.CartService
 import com.progressterra.ipbandroidapi.api.iecommerce.core.BaseIECommerceCoreRepository
 import com.progressterra.ipbandroidapi.api.iecommerce.core.IECommerceCoreRepository
 import com.progressterra.ipbandroidapi.api.iecommerce.core.IECommerceCoreService
@@ -261,16 +261,6 @@ val iPBAndroidAPIModule = module {
         )
     }
 
-    single<CartRepository> {
-        val networkService: NetworkService = get()
-        BaseCartRepository(
-            get(),
-            networkService.createService(
-                CartService::class.java, I_ECOMMERCE_URL
-            )
-        )
-    }
-
     single<YouMoneyRepository> {
         val networkService: NetworkService = get()
         BaseYouMoneyRepository(
@@ -406,6 +396,16 @@ val iPBAndroidAPIModule = module {
             get(),
             networkService.createService(
                 CatalogService::class.java, CATALOG_URL
+            )
+        )
+    }
+
+    single<CartRepository> {
+        val networkService: NetworkService = get()
+        CartRepository.Base(
+            get(),
+            networkService.createService(
+                CartService::class.java, CART_URL
             )
         )
     }
