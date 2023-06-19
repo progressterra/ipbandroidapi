@@ -1,6 +1,7 @@
 package com.progressterra.ipbandroidapi.api.cart
 
 import com.progressterra.ipbandroidapi.api.cart.models.DHSaleHeadAsOrderViewModel
+import com.progressterra.ipbandroidapi.api.cart.models.FilterAndSort
 import com.progressterra.ipbandroidapi.api.cart.models.IncomeDataAddProductAsInstallmentPlan
 import com.progressterra.ipbandroidapi.api.cart.models.IncomeDataAddProductFullPrice
 import com.progressterra.ipbandroidapi.api.cart.models.IncomeDataComment
@@ -11,6 +12,25 @@ import com.progressterra.ipbandroidapi.core.BadRequestException
 import com.progressterra.ipbandroidapi.core.HandleException
 
 interface CartRepository {
+
+    suspend fun confirmOrder(
+        accessToken: String
+    ): Result<DHSaleHeadAsOrderViewModel?>
+
+    suspend fun orders(
+        accessToken: String,
+        income: FilterAndSort
+    ): Result<List<DHSaleHeadAsOrderViewModel>?>
+
+    suspend fun orderById(
+        accessToken: String,
+        idOrder: String
+    ): Result<DHSaleHeadAsOrderViewModel?>
+
+    suspend fun cancelOrder(
+        accessToken: String,
+        idOrder: String
+    ): Result<DHSaleHeadAsOrderViewModel?>
 
     suspend fun cart(
         accessToken: String
@@ -117,6 +137,51 @@ interface CartRepository {
         override suspend fun cancelBonuses(accessToken: String): Result<DHSaleHeadAsOrderViewModel?> =
             handle {
                 val response = service.cancelBonuses(accessToken)
+                if (response.result?.status != StatusResult.SUCCESS) {
+                    throw BadRequestException()
+                }
+                response.data
+            }
+
+        override suspend fun confirmOrder(accessToken: String): Result<DHSaleHeadAsOrderViewModel?> =
+            handle {
+                val response = service.confirmOrder(accessToken)
+                if (response.result?.status != StatusResult.SUCCESS) {
+                    throw BadRequestException()
+                }
+                response.data
+            }
+
+        override suspend fun orders(
+            accessToken: String,
+            income: FilterAndSort
+        ): Result<List<DHSaleHeadAsOrderViewModel>?> =
+            handle {
+                val response = service.orders(accessToken, income)
+                if (response.result?.status != StatusResult.SUCCESS) {
+                    throw BadRequestException()
+                }
+                response.dataList
+            }
+
+        override suspend fun orderById(
+            accessToken: String,
+            idOrder: String
+        ): Result<DHSaleHeadAsOrderViewModel?> =
+            handle {
+                val response = service.orderById(accessToken, idOrder)
+                if (response.result?.status != StatusResult.SUCCESS) {
+                    throw BadRequestException()
+                }
+                response.data
+            }
+
+        override suspend fun cancelOrder(
+            accessToken: String,
+            idOrder: String
+        ): Result<DHSaleHeadAsOrderViewModel?> =
+            handle {
+                val response = service.cancelOrder(accessToken, idOrder)
                 if (response.result?.status != StatusResult.SUCCESS) {
                     throw BadRequestException()
                 }
