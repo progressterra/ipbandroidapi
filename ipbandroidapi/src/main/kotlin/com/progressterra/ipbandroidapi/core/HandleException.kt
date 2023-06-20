@@ -12,7 +12,7 @@ interface HandleException {
     class Base : HandleException {
 
         override fun handle(exception: Exception): Exception {
-            if (IpbAndroidApiSettings.IS_DEBUG) {
+            if (IpbAndroidApiSettings.DEBUG) {
                 Log.e("API", exception.message, exception)
             }
             return when (exception) {

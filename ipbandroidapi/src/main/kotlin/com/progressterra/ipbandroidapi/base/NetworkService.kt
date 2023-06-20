@@ -38,7 +38,7 @@ interface NetworkService {
 
         private fun loggingInterceptor(): HttpLoggingInterceptor {
             val interceptor = HttpLoggingInterceptor()
-            if (IpbAndroidApiSettings.IS_DEBUG)
+            if (IpbAndroidApiSettings.DEBUG)
                 interceptor.level = HttpLoggingInterceptor.Level.BODY
             else
                 interceptor.level = HttpLoggingInterceptor.Level.NONE
