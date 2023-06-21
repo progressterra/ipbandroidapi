@@ -1,10 +1,13 @@
 package com.progressterra.ipbandroidapi.api.documents
 
-import okhttp3.MultipartBody
 import com.progressterra.ipbandroidapi.api.documents.models.DHDocSetFullDataResultData
 import com.progressterra.ipbandroidapi.api.documents.models.DHDocSetViewModelResultDataList
+import com.progressterra.ipbandroidapi.api.documents.models.FilterAndSort
+import com.progressterra.ipbandroidapi.api.documents.models.IncnomeDataCreateCharValue
 import com.progressterra.ipbandroidapi.api.documents.models.IncomeDataClientArea
 import com.progressterra.ipbandroidapi.api.documents.models.RFCharacteristicValueViewModelResultData
+import com.progressterra.ipbandroidapi.api.documents.models.RFCharacteristicValueViewModelResultDataList
+import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -46,4 +49,16 @@ interface DocumentsService {
         @Path("idCharVal") idCharVal: String,
         @Part file: MultipartBody.Part
     ): RFCharacteristicValueViewModelResultData
+
+    @POST("/clientarea/doc")
+    suspend fun createDoc(
+        @Header("AccessToken") accessToken: String,
+        @Body income: IncnomeDataCreateCharValue
+    ): RFCharacteristicValueViewModelResultData
+
+    @POST("/clientarea/doc/list")
+    suspend fun docs(
+        @Header("AccessToken") accessToken: String,
+        @Body filter: FilterAndSort
+    ): RFCharacteristicValueViewModelResultDataList
 }

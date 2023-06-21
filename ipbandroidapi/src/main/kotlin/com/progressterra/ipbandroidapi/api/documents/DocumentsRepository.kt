@@ -2,6 +2,8 @@ package com.progressterra.ipbandroidapi.api.documents
 
 import com.progressterra.ipbandroidapi.api.documents.models.DHDocSetFullData
 import com.progressterra.ipbandroidapi.api.documents.models.DHDocSetViewModel
+import com.progressterra.ipbandroidapi.api.documents.models.FilterAndSort
+import com.progressterra.ipbandroidapi.api.documents.models.IncnomeDataCreateCharValue
 import com.progressterra.ipbandroidapi.api.documents.models.IncomeDataClientArea
 import com.progressterra.ipbandroidapi.api.documents.models.RFCharacteristicValueViewModel
 import com.progressterra.ipbandroidapi.api.documents.models.StatusResult
@@ -11,6 +13,16 @@ import com.progressterra.ipbandroidapi.core.HandleException
 import okhttp3.MultipartBody
 
 interface DocumentsRepository {
+
+    suspend fun createDoc(
+        accessToken: String,
+        income: IncnomeDataCreateCharValue
+    ): Result<RFCharacteristicValueViewModel?>
+
+    suspend fun docs(
+        accessToken: String,
+        filter: FilterAndSort
+    ): Result<List<RFCharacteristicValueViewModel>?>
 
     suspend fun docsBySpecification(
         accessToken: String, idSpecification: String
@@ -36,6 +48,28 @@ interface DocumentsRepository {
         handleException: HandleException,
         private val service: DocumentsService
     ) : DocumentsRepository, AbstractRepository(handleException) {
+
+        override suspend fun createDoc(
+            accessToken: String,
+            income: IncnomeDataCreateCharValue
+        ): Result<RFCharacteristicValueViewModel?> = handle {
+            val response = service.createDoc(accessToken, income)
+            if (response.result?.status != StatusResult.SUCCESS) {
+                throw BadRequestException()
+            }
+            response.data
+        }
+
+        override suspend fun docs(
+            accessToken: String,
+            filter: FilterAndSort
+        ): Result<List<RFCharacteristicValueViewModel>?> = handle {
+            val response = service.docs(accessToken, filter)
+            if (response.result?.status != StatusResult.SUCCESS) {
+                throw BadRequestException()
+            }
+            response.dataList
+        }
 
         override suspend fun docsBySpecification(
             accessToken: String, idSpecification: String
