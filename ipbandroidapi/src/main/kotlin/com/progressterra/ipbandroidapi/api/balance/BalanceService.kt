@@ -4,15 +4,17 @@ import com.progressterra.ipbandroidapi.api.balance.models.RGMoveDataEntityAmount
 import com.progressterra.ipbandroidapi.api.balance.models.RGMoveDataEntityBase
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface BalanceService {
 
     @GET("/balance/client")
-    suspend fun client(): RGMoveDataEntityAmountResultData
+    suspend fun client(@Header("AccessToken") accessToken: String): RGMoveDataEntityAmountResultData
 
     @POST("/balance")
     suspend fun balance(
+        @Header("AccessToken") accessToken: String,
         @Body income: RGMoveDataEntityBase
     ): RGMoveDataEntityAmountResultData
 }
