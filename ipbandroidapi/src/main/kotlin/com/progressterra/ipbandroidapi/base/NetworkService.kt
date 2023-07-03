@@ -19,13 +19,13 @@ interface NetworkService {
             .connectTimeout(NETWORK_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
             .readTimeout(NETWORK_READ_TIMEOUT, TimeUnit.MILLISECONDS)
             .writeTimeout(NETWORK_WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
-            .addInterceptor(loggingInterceptor())
             .addInterceptor {
                 val request = it.request().newBuilder()
                     .addHeader("AccessKey", IpbAndroidApiSettings.ACCESS_KEY)
                     .build()
                 it.proceed(request)
             }
+            .addInterceptor(loggingInterceptor())
 
 
         override fun <T> createService(apiClass: Class<T>, baseUrl: String): T {
