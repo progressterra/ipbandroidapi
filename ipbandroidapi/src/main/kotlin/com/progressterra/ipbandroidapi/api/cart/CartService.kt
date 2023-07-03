@@ -10,6 +10,7 @@ import com.progressterra.ipbandroidapi.api.cart.models.IncomeDataImplementBonuse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.HTTP
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -27,7 +28,7 @@ interface CartService {
         @Header("AccessToken") accessToken: String, @Body income: IncomeDataAddProductFullPrice
     ): DHSaleHeadAsOrderViewModelResultData
 
-    @DELETE("/cart/salerow")
+    @HTTP(method = "DELETE", path = "/cart/salerow", hasBody = true)
     suspend fun deleteFromCart(
         @Header("AccessToken") accessToken: String, @Body income: IncomeDataAddProductFullPrice
     ): DHSaleHeadAsOrderViewModelResultData
