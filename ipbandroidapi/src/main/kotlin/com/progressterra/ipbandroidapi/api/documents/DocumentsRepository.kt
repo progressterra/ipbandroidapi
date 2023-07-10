@@ -5,6 +5,7 @@ import com.progressterra.ipbandroidapi.api.documents.models.DHDocSetViewModel
 import com.progressterra.ipbandroidapi.api.documents.models.FilterAndSort
 import com.progressterra.ipbandroidapi.api.documents.models.IncnomeDataCreateCharValue
 import com.progressterra.ipbandroidapi.api.documents.models.IncomeDataClientArea
+import com.progressterra.ipbandroidapi.api.documents.models.RFCharacteristicTypeViewModel
 import com.progressterra.ipbandroidapi.api.documents.models.RFCharacteristicValueViewModel
 import com.progressterra.ipbandroidapi.api.documents.models.StatusResult
 import com.progressterra.ipbandroidapi.core.AbstractRepository
@@ -43,6 +44,11 @@ interface DocumentsRepository {
     suspend fun setImageForChar(
         accessToken: String, idCharVal: String, file: MultipartBody.Part
     ): Result<RFCharacteristicValueViewModel?>
+
+    suspend fun typeById(
+        accessToken: String,
+        id: String
+    ): Result<RFCharacteristicTypeViewModel?>
 
     class Base(
         handleException: HandleException,
@@ -114,6 +120,16 @@ interface DocumentsRepository {
             accessToken: String, idCharVal: String, file: MultipartBody.Part
         ): Result<RFCharacteristicValueViewModel?> = handle {
             val response = service.setImageForChar(accessToken, idCharVal, file)
+            if (response.result?.status != StatusResult.SUCCESS) {
+                throw BadRequestException()
+            }
+            response.data
+        }
+
+        override suspend fun typeById(
+            accessToken: String, id: String
+        ): Result<RFCharacteristicTypeViewModel?> = handle {
+            val response = service.typeById(accessToken, id)
             if (response.result?.status != StatusResult.SUCCESS) {
                 throw BadRequestException()
             }

@@ -5,6 +5,7 @@ import com.progressterra.ipbandroidapi.api.documents.models.DHDocSetViewModelRes
 import com.progressterra.ipbandroidapi.api.documents.models.FilterAndSort
 import com.progressterra.ipbandroidapi.api.documents.models.IncnomeDataCreateCharValue
 import com.progressterra.ipbandroidapi.api.documents.models.IncomeDataClientArea
+import com.progressterra.ipbandroidapi.api.documents.models.RFCharacteristicTypeViewModelResultData
 import com.progressterra.ipbandroidapi.api.documents.models.RFCharacteristicValueViewModelResultData
 import com.progressterra.ipbandroidapi.api.documents.models.RFCharacteristicValueViewModelResultDataList
 import okhttp3.MultipartBody
@@ -61,4 +62,10 @@ interface DocumentsService {
         @Header("AccessToken") accessToken: String,
         @Body filter: FilterAndSort
     ): RFCharacteristicValueViewModelResultDataList
+
+    @GET("/characteristic/type/{idEntity}")
+    suspend fun typeById(
+        @Header("AccessToken") accessToken: String,
+        @Path("idEntity") id: String
+    ): RFCharacteristicTypeViewModelResultData
 }
