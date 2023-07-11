@@ -2,6 +2,7 @@ package com.progressterra.ipbandroidapi.api.cart
 
 import com.progressterra.ipbandroidapi.api.cart.models.DHSaleHeadAsOrderViewModel
 import com.progressterra.ipbandroidapi.api.cart.models.FilterAndSort
+import com.progressterra.ipbandroidapi.api.cart.models.IncomdeDataAddress
 import com.progressterra.ipbandroidapi.api.cart.models.IncomeDataAddProductAsInstallmentPlan
 import com.progressterra.ipbandroidapi.api.cart.models.IncomeDataAddProductFullPrice
 import com.progressterra.ipbandroidapi.api.cart.models.IncomeDataComment
@@ -60,6 +61,10 @@ interface CartRepository {
 
     suspend fun cancelBonuses(
         accessToken: String
+    ): Result<DHSaleHeadAsOrderViewModel?>
+
+    suspend fun addAddressToCart(
+        accessToken: String, income: IncomdeDataAddress
     ): Result<DHSaleHeadAsOrderViewModel?>
 
     class Base(
@@ -182,6 +187,18 @@ interface CartRepository {
         ): Result<DHSaleHeadAsOrderViewModel?> =
             handle {
                 val response = service.cancelOrder(accessToken, idOrder)
+                if (response.result?.status != StatusResult.SUCCESS) {
+                    throw BadRequestException()
+                }
+                response.data
+            }
+
+        override suspend fun addAddressToCart(
+            accessToken: String,
+            income: IncomdeDataAddress
+        ): Result<DHSaleHeadAsOrderViewModel?> =
+            handle {
+                val response = service.addAddressToCart(accessToken, income)
                 if (response.result?.status != StatusResult.SUCCESS) {
                     throw BadRequestException()
                 }

@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.api.cart
 import com.progressterra.ipbandroidapi.api.cart.models.DHSaleHeadAsOrderViewModelResultData
 import com.progressterra.ipbandroidapi.api.cart.models.DHSaleHeadAsOrderViewModelResultDataList
 import com.progressterra.ipbandroidapi.api.cart.models.FilterAndSort
+import com.progressterra.ipbandroidapi.api.cart.models.IncomdeDataAddress
 import com.progressterra.ipbandroidapi.api.cart.models.IncomeDataAddProductAsInstallmentPlan
 import com.progressterra.ipbandroidapi.api.cart.models.IncomeDataAddProductFullPrice
 import com.progressterra.ipbandroidapi.api.cart.models.IncomeDataComment
@@ -80,5 +81,10 @@ interface CartService {
     suspend fun cancelOrder(
         @Header("AccessToken") accessToken: String,
         @Query("idOrder") idOrder: String
+    ): DHSaleHeadAsOrderViewModelResultData
+
+    @POST("/cart/address")
+    suspend fun addAddressToCart(
+        @Header("AccessToken") accessToken: String, @Body income: IncomdeDataAddress
     ): DHSaleHeadAsOrderViewModelResultData
 }
