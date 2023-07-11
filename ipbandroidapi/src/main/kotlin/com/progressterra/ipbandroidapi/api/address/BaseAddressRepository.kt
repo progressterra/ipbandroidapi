@@ -12,10 +12,11 @@ internal class BaseAddressRepository(
     override suspend fun uploadClientAddress(
         accessToken: String,
         request: RGAddress
-    ): Result<Unit> = runCatching {
+    ): Result<String?> = runCatching {
         val response = service.uploadClientAddress(accessToken, request)
         if (response.status != StatusResult.ZERO)
             throw BadRequestException()
+        response.messageDev
     }
 
     override suspend fun updateClientAddress(

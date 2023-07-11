@@ -8,7 +8,7 @@ interface AddressRepository {
     suspend fun uploadClientAddress(
         accessToken: String,
         request: RGAddress
-    ): Result<Unit>
+    ): Result<String?>
 
     suspend fun updateClientAddress(
         accessToken: String,
