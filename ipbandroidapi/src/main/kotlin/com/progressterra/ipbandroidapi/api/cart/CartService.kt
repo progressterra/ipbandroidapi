@@ -71,7 +71,7 @@ interface CartService {
         @Body income: FilterAndSort
     ): DHSaleHeadAsOrderViewModelResultDataList
 
-    @POST("/order/{idOrder}")
+    @GET("/order/{idOrder}")
     suspend fun orderById(
         @Header("AccessToken") accessToken: String,
         @Path("idOrder") idOrder: String
