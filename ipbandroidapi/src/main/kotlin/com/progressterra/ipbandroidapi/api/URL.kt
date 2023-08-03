@@ -31,4 +31,5 @@ internal object URL {
     const val CATALOG_URL = "http://51.250.54.134:7027/"
     const val CART_URL = "http://51.250.54.134:7025/"
     const val BALANCE_URL = "http://51.250.54.134:7009/"
+    const val MESSENGER_URL = "http://51.250.54.134:7093/"
 }

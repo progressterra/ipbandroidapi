@@ -21,6 +21,7 @@ import com.progressterra.ipbandroidapi.api.URL.I_BONUS_URL
 import com.progressterra.ipbandroidapi.api.URL.I_ECOMMERCE_URL
 import com.progressterra.ipbandroidapi.api.URL.I_MESSENGER_URL
 import com.progressterra.ipbandroidapi.api.URL.MESSAGES_URL
+import com.progressterra.ipbandroidapi.api.URL.MESSENGER_URL
 import com.progressterra.ipbandroidapi.api.URL.MONEY_OUT_URL
 import com.progressterra.ipbandroidapi.api.URL.PRODUCT_URL
 import com.progressterra.ipbandroidapi.api.URL.PURCHASES_URL
@@ -88,6 +89,8 @@ import com.progressterra.ipbandroidapi.api.message.IMessengerService
 import com.progressterra.ipbandroidapi.api.messages.BaseMessagesRepository
 import com.progressterra.ipbandroidapi.api.messages.MessagesRepository
 import com.progressterra.ipbandroidapi.api.messages.MessagesService
+import com.progressterra.ipbandroidapi.api.messenger.MessengerRepository
+import com.progressterra.ipbandroidapi.api.messenger.MessengerService
 import com.progressterra.ipbandroidapi.api.moneyout.BaseMoneyOutRepository
 import com.progressterra.ipbandroidapi.api.moneyout.MoneyOutRepository
 import com.progressterra.ipbandroidapi.api.moneyout.MoneyOutService
@@ -413,12 +416,22 @@ val iPBAndroidAPIModule = module {
         )
     }
 
-    single<BalanceRepository>{
+    single<BalanceRepository> {
         val networkService: NetworkService = get()
         BalanceRepository.Base(
             get(),
             networkService.createService(
                 BalanceService::class.java, BALANCE_URL
+            )
+        )
+    }
+
+    single<MessengerRepository> {
+        val networkService: NetworkService = get()
+        MessengerRepository.Base(
+            get(),
+            networkService.createService(
+                MessengerService::class.java, MESSENGER_URL
             )
         )
     }
