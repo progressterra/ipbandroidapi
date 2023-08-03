@@ -27,7 +27,7 @@ data class RGMessagesViewModel (
 
     /* Идентификатор диалога в котором находится сообщение */
     @SerializedName("idDialog")
-    val idDialog: java.util.UUID? = null,
+    val idDialog: String? = null,
 
     /* Сам текст сообщения */
     @SerializedName("contentText")
@@ -35,11 +35,11 @@ data class RGMessagesViewModel (
 
     /* Идентификатор сообщения, которое цитируется или на которое отвечается */
     @SerializedName("idQuotedMessage")
-    val idQuotedMessage: java.util.UUID? = null,
+    val idQuotedMessage: String? = null,
 
     /* Идентификатор пользовавтеля, который создал сообщение */
     @SerializedName("idClient")
-    val idClient: java.util.UUID? = null,
+    val idClient: String? = null,
 
     /* Данные текущего пользователя (его никнейм, ссылка на фото аватара). Необходим для того, чтобы каждый раз не обращаться к сервису пользователей за никнеймом */
     @SerializedName("dataClientJSONData")
@@ -59,15 +59,15 @@ data class RGMessagesViewModel (
 
     /* Ссылка на последнее историческое сообщение, если оно было изменено */
     @SerializedName("idLastRRGHistory")
-    val idLastRRGHistory: java.util.UUID? = null,
+    val idLastRRGHistory: String? = null,
 
     /* Уникальный идентификатор */
     @SerializedName("idUnique")
-    val idUnique: java.util.UUID? = null,
+    val idUnique: String? = null,
 
     /* Идентификатор организации, которой принадлежит данная запись */
     @SerializedName("idEnterprise")
-    val idEnterprise: java.util.UUID? = null,
+    val idEnterprise: String? = null,
 
     /* Дата добавления записи */
     @SerializedName("dateAdded")

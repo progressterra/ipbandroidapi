@@ -19,7 +19,6 @@ import com.progressterra.ipbandroidapi.api.URL.IPB_MEDIA_DATA_URL
 import com.progressterra.ipbandroidapi.api.URL.IPB_PROMO_CODE_URL
 import com.progressterra.ipbandroidapi.api.URL.I_BONUS_URL
 import com.progressterra.ipbandroidapi.api.URL.I_ECOMMERCE_URL
-import com.progressterra.ipbandroidapi.api.URL.I_MESSENGER_URL
 import com.progressterra.ipbandroidapi.api.URL.MESSAGES_URL
 import com.progressterra.ipbandroidapi.api.URL.MESSENGER_URL
 import com.progressterra.ipbandroidapi.api.URL.MONEY_OUT_URL
@@ -83,9 +82,6 @@ import com.progressterra.ipbandroidapi.api.ipbmediadata.IPBMediaDataService
 import com.progressterra.ipbandroidapi.api.ipbpromocode.BaseIPBPromoCodeRepository
 import com.progressterra.ipbandroidapi.api.ipbpromocode.IPBPromoCodeRepository
 import com.progressterra.ipbandroidapi.api.ipbpromocode.IPBPromoCodeService
-import com.progressterra.ipbandroidapi.api.message.BaseIMessengerRepository
-import com.progressterra.ipbandroidapi.api.message.IMessengerRepository
-import com.progressterra.ipbandroidapi.api.message.IMessengerService
 import com.progressterra.ipbandroidapi.api.messages.BaseMessagesRepository
 import com.progressterra.ipbandroidapi.api.messages.MessagesRepository
 import com.progressterra.ipbandroidapi.api.messages.MessagesService
@@ -332,16 +328,6 @@ val iPBAndroidAPIModule = module {
             get(),
             networkService.createService(
                 SuggestionService::class.java, SUGGESTION_URL
-            )
-        )
-    }
-
-    single<IMessengerRepository> {
-        val networkService: NetworkService = get()
-        BaseIMessengerRepository(
-            networkService.createService(
-                IMessengerService::class.java,
-                I_MESSENGER_URL
             )
         )
     }

@@ -33,7 +33,7 @@ data class ResultOperation (
     val duration: Double? = null,
 
     @SerializedName("idLog")
-    val idLog: java.util.UUID? = null,
+    val idLog: String? = null,
 
     @SerializedName("x-request-id")
     val xRequestId: String? = null

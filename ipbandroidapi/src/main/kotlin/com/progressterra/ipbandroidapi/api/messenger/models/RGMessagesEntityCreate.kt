@@ -16,7 +16,7 @@ data class RGMessagesEntityCreate (
 
     /* Идентификатор диалога в котором находится сообщение */
     @SerializedName("idDialog")
-    val idDialog: java.util.UUID? = null,
+    val idDialog: String? = null,
 
     /* Сам текст сообщения */
     @SerializedName("contentText")
@@ -24,7 +24,7 @@ data class RGMessagesEntityCreate (
 
     /* Идентификатор сообщения, которое цитируется или на которое отвечается */
     @SerializedName("idQuotedMessage")
-    val idQuotedMessage: java.util.UUID? = null
+    val idQuotedMessage: String? = null
 
 )
 

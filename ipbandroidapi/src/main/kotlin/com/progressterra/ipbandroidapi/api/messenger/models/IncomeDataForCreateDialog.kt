@@ -2,7 +2,6 @@ package com.progressterra.ipbandroidapi.api.messenger.models
 
 
 import com.google.gson.annotations.SerializedName
-import java.util.UUID
 
 /**
  * 
@@ -16,7 +15,7 @@ import java.util.UUID
 data class IncomeDataForCreateDialog (
 
     @SerializedName("listIDClients")
-    val listIDClients: List<UUID>? = null,
+    val listIDClients: List<String>? = null,
 
     @SerializedName("description")
     val description: String? = null,
