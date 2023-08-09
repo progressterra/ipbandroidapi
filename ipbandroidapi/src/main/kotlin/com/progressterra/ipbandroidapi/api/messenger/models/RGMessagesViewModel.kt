@@ -79,7 +79,10 @@ data class RGMessagesViewModel (
 
     /* Если дата установлена, то сущность помечена на удаление. Физически данные не удаляются  Функции Delete лишь помечают сущность на удаление устанавливая дату вызова метода */
     @SerializedName("dateSoftRemoved")
-    val dateSoftRemoved: String? = null
+    val dateSoftRemoved: String? = null,
+
+    @SerializedName("isOwnMessage")
+    val isOwnMessage: Boolean? = null
 
 )
 
