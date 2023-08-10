@@ -3,8 +3,6 @@ package com.progressterra.ipbandroidapi.api.messenger
 import com.progressterra.ipbandroidapi.api.messenger.models.FilterAndSort
 import com.progressterra.ipbandroidapi.api.messenger.models.IncomeDataForCreateDialog
 import com.progressterra.ipbandroidapi.api.messenger.models.RGDialogsViewModel
-import com.progressterra.ipbandroidapi.api.messenger.models.RGMessages
-import com.progressterra.ipbandroidapi.api.messenger.models.RGMessagesEntity
 import com.progressterra.ipbandroidapi.api.messenger.models.RGMessagesEntityCreate
 import com.progressterra.ipbandroidapi.api.messenger.models.RGMessagesViewModel
 import com.progressterra.ipbandroidapi.api.messenger.models.StatusResult
@@ -29,25 +27,10 @@ interface MessengerRepository {
         body: FilterAndSort
     ): Result<List<RGDialogsViewModel>?>
 
-    suspend fun postMessage(
-        accessToken: String,
-        body: RGMessagesEntity
-    ): Result<RGMessagesViewModel?>
-
-    suspend fun patchMessage(
-        accessToken: String,
-        body: RGMessages
-    ): Result<RGMessagesViewModel?>
-
-    suspend fun entityById(
-        accessToken: String,
-        idEntity: String
-    ): Result<RGMessagesViewModel?>
-
-    suspend fun messageList(
+    suspend fun clientAreaMessageList(
         accessToken: String,
         body: FilterAndSort
-    ): Result<List<RGMessages>?>
+    ): Result<List<RGMessagesViewModel>?>
 
     class Base(
         handleException: HandleException,
@@ -87,44 +70,11 @@ interface MessengerRepository {
             response.dataList
         }
 
-        override suspend fun postMessage(
-            accessToken: String,
-            body: RGMessagesEntity
-        ): Result<RGMessagesViewModel?> = handle {
-            val response = service.postMessage(accessToken, body)
-            if (response.result?.status != StatusResult.SUCCESS) {
-                throw BadRequestException()
-            }
-            response.data
-        }
-
-        override suspend fun patchMessage(
-            accessToken: String,
-            body: RGMessages
-        ): Result<RGMessagesViewModel?> = handle {
-            val response = service.patchMessage(accessToken, body)
-            if (response.result?.status != StatusResult.SUCCESS) {
-                throw BadRequestException()
-            }
-            response.data
-        }
-
-        override suspend fun entityById(
-            accessToken: String,
-            idEntity: String
-        ): Result<RGMessagesViewModel?> = handle {
-            val response = service.entityById(accessToken, idEntity)
-            if (response.result?.status != StatusResult.SUCCESS) {
-                throw BadRequestException()
-            }
-            response.data
-        }
-
-        override suspend fun messageList(
+        override suspend fun clientAreaMessageList(
             accessToken: String,
             body: FilterAndSort
-        ): Result<List<RGMessages>?> = handle {
-            val response = service.messageList(accessToken, body)
+        ): Result<List<RGMessagesViewModel>?> = handle {
+            val response = service.clientAreaMessageList(accessToken, body)
             if (response.result?.status != StatusResult.SUCCESS) {
                 throw BadRequestException()
             }

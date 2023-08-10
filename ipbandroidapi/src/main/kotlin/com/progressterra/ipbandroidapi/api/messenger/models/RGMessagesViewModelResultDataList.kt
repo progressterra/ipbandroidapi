@@ -11,13 +11,13 @@ import com.google.gson.annotations.SerializedName
  */
 
 
-data class RGMessagesResultDataList (
+data class RGMessagesViewModelResultDataList (
 
     @SerializedName("result")
     val result: ResultOperation? = null,
 
     @SerializedName("dataList")
-    val dataList: List<RGMessages>? = null,
+    val dataList: List<RGMessagesViewModel>? = null,
 
     @SerializedName("totalNumberRecords")
     val totalNumberRecords: Int? = null
