@@ -22,6 +22,7 @@ import com.progressterra.ipbandroidapi.api.URL.I_ECOMMERCE_URL
 import com.progressterra.ipbandroidapi.api.URL.MESSAGES_URL
 import com.progressterra.ipbandroidapi.api.URL.MESSENGER_URL
 import com.progressterra.ipbandroidapi.api.URL.MONEY_OUT_URL
+import com.progressterra.ipbandroidapi.api.URL.PAYMENT_DATA_URL
 import com.progressterra.ipbandroidapi.api.URL.PRODUCT_URL
 import com.progressterra.ipbandroidapi.api.URL.PURCHASES_URL
 import com.progressterra.ipbandroidapi.api.URL.SBER_URL
@@ -90,6 +91,8 @@ import com.progressterra.ipbandroidapi.api.messenger.MessengerService
 import com.progressterra.ipbandroidapi.api.moneyout.BaseMoneyOutRepository
 import com.progressterra.ipbandroidapi.api.moneyout.MoneyOutRepository
 import com.progressterra.ipbandroidapi.api.moneyout.MoneyOutService
+import com.progressterra.ipbandroidapi.api.paymentdata.PaymentDataRepository
+import com.progressterra.ipbandroidapi.api.paymentdata.PaymentDataService
 import com.progressterra.ipbandroidapi.api.product.ProductRepository
 import com.progressterra.ipbandroidapi.api.product.ProductService
 import com.progressterra.ipbandroidapi.api.purchases.BasePurchasesRepository
@@ -418,6 +421,16 @@ val iPBAndroidAPIModule = module {
             get(),
             networkService.createService(
                 MessengerService::class.java, MESSENGER_URL
+            )
+        )
+    }
+
+    single<PaymentDataRepository> {
+        val networkService: NetworkService = get()
+        PaymentDataRepository.Base(
+            get(),
+            networkService.createService(
+                PaymentDataService::class.java, PAYMENT_DATA_URL
             )
         )
     }
