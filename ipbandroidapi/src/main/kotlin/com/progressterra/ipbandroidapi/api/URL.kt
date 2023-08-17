@@ -32,4 +32,5 @@ internal object URL {
     const val BALANCE_URL = "http://51.250.54.134:7009/"
     const val MESSENGER_URL = "http://51.250.54.134:7093/"
     const val PAYMENT_DATA_URL = "http://51.250.54.134:7095/"
+    const val PAYMENT_URL = "http://51.250.54.134:7097/"
 }
