@@ -41,7 +41,18 @@ data class RFPaymentDataForClientViewModel (
 
     /* Уникальный идентификатор */
     @SerializedName("idUnique")
-    val idUnique: String? = null
+    val idUnique: String? = null,
 
+    @SerializedName("idEnterprise")
+    val idEnterprise: String? = null,
+
+    @SerializedName("dateAdded")
+    val dateAdded: String? = null,
+
+    @SerializedName("dateUpdated")
+    val dateUpdated: String? = null,
+
+    @SerializedName("dateSoftRemoved")
+    val dateSoftRemoved: String? = null,
 )
 
