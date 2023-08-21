@@ -4,9 +4,9 @@ package com.progressterra.ipbandroidapi.api.messenger.models
 import com.google.gson.annotations.SerializedName
 
 /**
+ * 
  *
- *
- * Values: asc,desc
+ * Values: ASC,DESC
  */
 
 enum class TypeVariantSort {

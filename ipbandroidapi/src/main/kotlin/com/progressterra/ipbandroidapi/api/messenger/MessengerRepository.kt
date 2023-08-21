@@ -2,6 +2,7 @@ package com.progressterra.ipbandroidapi.api.messenger
 
 import com.progressterra.ipbandroidapi.api.messenger.models.FilterAndSort
 import com.progressterra.ipbandroidapi.api.messenger.models.IncomeDataForCreateDialog
+import com.progressterra.ipbandroidapi.api.messenger.models.IncomeDataSearchDialog
 import com.progressterra.ipbandroidapi.api.messenger.models.RGDialogsViewModel
 import com.progressterra.ipbandroidapi.api.messenger.models.RGMessagesEntityCreate
 import com.progressterra.ipbandroidapi.api.messenger.models.RGMessagesViewModel
@@ -31,6 +32,11 @@ interface MessengerRepository {
         accessToken: String,
         body: FilterAndSort
     ): Result<List<RGMessagesViewModel>?>
+
+    suspend fun clientAreaDialogSearch(
+        accessToken: String,
+        body: IncomeDataSearchDialog
+    ): Result<RGDialogsViewModel?>
 
     class Base(
         handleException: HandleException,
@@ -79,6 +85,17 @@ interface MessengerRepository {
                 throw BadRequestException()
             }
             response.dataList
+        }
+
+        override suspend fun clientAreaDialogSearch(
+            accessToken: String,
+            body: IncomeDataSearchDialog
+        ): Result<RGDialogsViewModel?> = handle {
+            val response = service.clientAreaDialogSearch(accessToken, body)
+            if (response.result?.status != StatusResult.SUCCESS) {
+                throw BadRequestException()
+            }
+            response.data
         }
     }
 }

@@ -4,9 +4,9 @@ package com.progressterra.ipbandroidapi.api.messenger.models
 import com.google.gson.annotations.SerializedName
 
 /**
+ * 
  *
- *
- * Values: equalsStrong,equalsIgnoreCase,containsStrong,containsIgnoreCase
+ * Values: EQUALS_STRONG,EQUALS_IGNORE_CASE,CONTAINS_STRONG,CONTAINS_IGNORE_CASE
  */
 
 enum class TypeComparison {

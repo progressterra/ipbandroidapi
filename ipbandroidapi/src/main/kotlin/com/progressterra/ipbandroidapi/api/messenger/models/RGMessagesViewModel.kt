@@ -20,6 +20,7 @@ import com.google.gson.annotations.SerializedName
  * @param dateAdded Дата добавления записи
  * @param dateUpdated Дата обновления записи
  * @param dateSoftRemoved Если дата установлена, то сущность помечена на удаление. Физически данные не удаляются  Функции Delete лишь помечают сущность на удаление устанавливая дату вызова метода
+ * @param isOwnMessage Признак того, что это сообщение пользователя, который запросил диалог
  */
 
 
@@ -81,6 +82,7 @@ data class RGMessagesViewModel (
     @SerializedName("dateSoftRemoved")
     val dateSoftRemoved: String? = null,
 
+    /* Признак того, что это сообщение пользователя, который запросил диалог */
     @SerializedName("isOwnMessage")
     val isOwnMessage: Boolean? = null
 

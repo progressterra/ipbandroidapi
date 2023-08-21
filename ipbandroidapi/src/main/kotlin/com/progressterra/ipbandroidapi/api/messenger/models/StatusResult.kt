@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 /**
  * 
  *
- * Values: success,warning,errorServer,errorAuth,errorAccess
+ * Values: SUCCESS,WARNING,ERROR_SERVER,ERROR_AUTH,ERROR_ACCESS
  */
 
 enum class StatusResult {

@@ -1,12 +1,11 @@
 package com.progressterra.ipbandroidapi.api.messenger.models
 
-
 import com.google.gson.annotations.SerializedName
 
 /**
  * 
  *
- * @param listIDClients 
+ * @param listClients 
  * @param description 
  * @param additionalDataJSON 
  */
@@ -14,8 +13,8 @@ import com.google.gson.annotations.SerializedName
 
 data class IncomeDataForCreateDialog (
 
-    @SerializedName("listIDClients")
-    val listIDClients: List<String>? = null,
+    @SerializedName("listClients")
+    val listClients: List<MetaDataClientWithID>? = null,
 
     @SerializedName("description")
     val description: String? = null,
