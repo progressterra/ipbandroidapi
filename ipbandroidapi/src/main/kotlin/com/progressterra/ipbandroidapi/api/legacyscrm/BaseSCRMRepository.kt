@@ -1,13 +1,13 @@
-package com.progressterra.ipbandroidapi.api.scrm
+package com.progressterra.ipbandroidapi.api.legacyscrm
 
-import com.progressterra.ipbandroidapi.api.scrm.model.ClientDataIncome
-import com.progressterra.ipbandroidapi.api.scrm.model.ClientFullData
-import com.progressterra.ipbandroidapi.api.scrm.model.DeviceData
-import com.progressterra.ipbandroidapi.api.scrm.model.IncomeChannelData
-import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataCreateAccessToken
-import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataEmail
-import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataForEndLogin
-import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDeviceParameters
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.ClientDataIncome
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.ClientFullData
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.DeviceData
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.IncomeChannelData
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.IncomeDataCreateAccessToken
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.IncomeDataEmail
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.IncomeDataForEndLogin
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.IncomeDeviceParameters
 import com.progressterra.ipbandroidapi.core.AbstractRepository
 import com.progressterra.ipbandroidapi.core.BadRequestException
 import com.progressterra.ipbandroidapi.core.HandleException

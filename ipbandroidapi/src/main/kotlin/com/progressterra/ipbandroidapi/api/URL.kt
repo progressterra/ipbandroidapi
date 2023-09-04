@@ -2,7 +2,7 @@ package com.progressterra.ipbandroidapi.api
 
 internal object URL {
 
-    const val SCRM_URL = "http://84.201.188.117:7021/"
+    const val SCRM_LEGACY_URL = "http://84.201.188.117:7021/"
     const val IPB_FAV_PROMO_REC_URL = "http://84.201.188.117:5095/"
     const val ADDRESS_URL = "http://84.201.188.117:5021/"
     const val SUGGESTION_URL = "https://suggestions.dadata.ru/"
@@ -33,4 +33,5 @@ internal object URL {
     const val MESSENGER_URL = "http://51.250.54.134:7093/"
     const val PAYMENT_DATA_URL = "http://51.250.54.134:7095/"
     const val PAYMENT_URL = "http://51.250.54.134:7097/"
+    const val SCRM_URL = "http://51.250.54.134:7021/"
 }

@@ -27,6 +27,7 @@ import com.progressterra.ipbandroidapi.api.URL.PAYMENT_URL
 import com.progressterra.ipbandroidapi.api.URL.PRODUCT_URL
 import com.progressterra.ipbandroidapi.api.URL.PURCHASES_URL
 import com.progressterra.ipbandroidapi.api.URL.SBER_URL
+import com.progressterra.ipbandroidapi.api.URL.SCRM_LEGACY_URL
 import com.progressterra.ipbandroidapi.api.URL.SCRM_URL
 import com.progressterra.ipbandroidapi.api.URL.SUGGESTION_URL
 import com.progressterra.ipbandroidapi.api.URL.TESTIMONIALS_URL
@@ -84,6 +85,9 @@ import com.progressterra.ipbandroidapi.api.ipbmediadata.IPBMediaDataService
 import com.progressterra.ipbandroidapi.api.ipbpromocode.BaseIPBPromoCodeRepository
 import com.progressterra.ipbandroidapi.api.ipbpromocode.IPBPromoCodeRepository
 import com.progressterra.ipbandroidapi.api.ipbpromocode.IPBPromoCodeService
+import com.progressterra.ipbandroidapi.api.legacyscrm.BaseSCRMRepository
+import com.progressterra.ipbandroidapi.api.legacyscrm.SCRMRepository
+import com.progressterra.ipbandroidapi.api.legacyscrm.SCRMService
 import com.progressterra.ipbandroidapi.api.messages.BaseMessagesRepository
 import com.progressterra.ipbandroidapi.api.messages.MessagesRepository
 import com.progressterra.ipbandroidapi.api.messages.MessagesService
@@ -104,9 +108,7 @@ import com.progressterra.ipbandroidapi.api.purchases.PurchasesService
 import com.progressterra.ipbandroidapi.api.sber.BaseSberRepository
 import com.progressterra.ipbandroidapi.api.sber.SberRepository
 import com.progressterra.ipbandroidapi.api.sber.SberService
-import com.progressterra.ipbandroidapi.api.scrm.BaseSCRMRepository
-import com.progressterra.ipbandroidapi.api.scrm.SCRMRepository
-import com.progressterra.ipbandroidapi.api.scrm.SCRMService
+import com.progressterra.ipbandroidapi.api.scrm.ScrmService
 import com.progressterra.ipbandroidapi.api.suggestion.BaseSuggestionRepository
 import com.progressterra.ipbandroidapi.api.suggestion.SuggestionRepository
 import com.progressterra.ipbandroidapi.api.suggestion.SuggestionService
@@ -264,7 +266,7 @@ val iPBAndroidAPIModule = module {
         BaseSCRMRepository(
             get(),
             networkService.createService(
-                SCRMService::class.java, SCRM_URL
+                SCRMService::class.java, SCRM_LEGACY_URL
             )
         )
     }
@@ -445,6 +447,13 @@ val iPBAndroidAPIModule = module {
             networkService.createService(
                 PaymentService::class.java, PAYMENT_URL
             )
+        )
+    }
+
+    single {
+        val networkService: NetworkService = get()
+        networkService.createService(
+            ScrmService::class.java, SCRM_URL
         )
     }
 }

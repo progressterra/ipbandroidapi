@@ -1,15 +1,15 @@
-package com.progressterra.ipbandroidapi.api.scrm
+package com.progressterra.ipbandroidapi.api.legacyscrm
 
-import com.progressterra.ipbandroidapi.api.scrm.model.ClientDataIncome
-import com.progressterra.ipbandroidapi.api.scrm.model.ClientFullDataResultData
-import com.progressterra.ipbandroidapi.api.scrm.model.DeviceDataResultData
-import com.progressterra.ipbandroidapi.api.scrm.model.EmptyResultOperationResultData
-import com.progressterra.ipbandroidapi.api.scrm.model.IncomeChannelData
-import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataCreateAccessToken
-import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataEmail
-import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDataForEndLogin
-import com.progressterra.ipbandroidapi.api.scrm.model.IncomeDeviceParameters
-import com.progressterra.ipbandroidapi.api.scrm.model.StringResultData
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.ClientDataIncome
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.ClientFullDataResultData
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.DeviceDataResultData
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.EmptyResultOperationResultData
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.IncomeChannelData
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.IncomeDataCreateAccessToken
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.IncomeDataEmail
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.IncomeDataForEndLogin
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.IncomeDeviceParameters
+import com.progressterra.ipbandroidapi.api.legacyscrm.model.StringResultData
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

@@ -1,11 +1,14 @@
-package com.progressterra.ipbandroidapi.api.scrm.model
+package com.progressterra.ipbandroidapi.api.legacyscrm.model
 
 import com.google.gson.annotations.SerializedName
 
-data class EmptyResultOperationResultData (
+data class DeviceDataResultData (
 
     @SerializedName("result")
     val result: ResultOperation? = null,
+
+    @SerializedName("data")
+    val data: DeviceData? = null,
 
     @SerializedName("totalNumberRecords")
     val totalNumberRecords: Int? = null
