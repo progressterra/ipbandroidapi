@@ -3,6 +3,7 @@ package com.progressterra.ipbandroidapi.di
 import com.progressterra.ipbandroidapi.api.URL.ADDRESS_URL
 import com.progressterra.ipbandroidapi.api.URL.AMBASSADOR_INVITE_URL
 import com.progressterra.ipbandroidapi.api.URL.AMBASSADOR_URL
+import com.progressterra.ipbandroidapi.api.URL.AUTH_URL
 import com.progressterra.ipbandroidapi.api.URL.BALANCE_URL
 import com.progressterra.ipbandroidapi.api.URL.CART_URL
 import com.progressterra.ipbandroidapi.api.URL.CATALOG_URL
@@ -41,6 +42,7 @@ import com.progressterra.ipbandroidapi.api.ambassador.BaseAmbassadorRepository
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteRepository
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.AmbassadorInviteService
 import com.progressterra.ipbandroidapi.api.ambassadorinvite.BaseAmbassadorInviteRepository
+import com.progressterra.ipbandroidapi.api.auth.AuthService
 import com.progressterra.ipbandroidapi.api.balance.BalanceRepository
 import com.progressterra.ipbandroidapi.api.balance.BalanceService
 import com.progressterra.ipbandroidapi.api.cart.CartRepository
@@ -454,6 +456,13 @@ val iPBAndroidAPIModule = module {
         val networkService: NetworkService = get()
         networkService.createService(
             ScrmService::class.java, SCRM_URL
+        )
+    }
+
+    single {
+        val networkService: NetworkService = get()
+        networkService.createService(
+            AuthService::class.java, AUTH_URL
         )
     }
 }

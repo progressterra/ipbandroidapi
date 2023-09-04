@@ -34,4 +34,5 @@ internal object URL {
     const val PAYMENT_DATA_URL = "http://51.250.54.134:7095/"
     const val PAYMENT_URL = "http://51.250.54.134:7097/"
     const val SCRM_URL = "http://51.250.54.134:7021/"
+    const val AUTH_URL = "http://51.250.54.134:7001/"
 }
