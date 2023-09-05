@@ -6,22 +6,23 @@ import com.progressterra.ipbandroidapi.api.auth.models.IncomeDataEndChannelVerif
 import com.progressterra.ipbandroidapi.api.auth.models.IncomeDataStartChannelVerification
 import com.progressterra.ipbandroidapi.api.auth.models.ResultSendCodeForClientResultData
 import com.progressterra.ipbandroidapi.api.auth.models.StringResultData
+import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AuthService {
 
     @POST("/authbyaccesskey/login/start")
     suspend fun loginStart(
-        body: IncomeDataStartChannelVerification
+        @Body body: IncomeDataStartChannelVerification
     ) : ResultSendCodeForClientResultData
 
     @POST("/authbyaccesskey/login/end")
     suspend fun loginEnd(
-        body: IncomeDataEndChannelVerificationForAT
+        @Body body: IncomeDataEndChannelVerificationForAT
     ) : DeviceDataResultData
 
     @POST("/authbyaccesskey/accesstoken")
     suspend fun accessToken(
-        body: IncomeDataCreateAccessToken
+        @Body body: IncomeDataCreateAccessToken
     ) : StringResultData
 }
