@@ -120,7 +120,7 @@ import com.progressterra.ipbandroidapi.api.testimonials.TestimonialsService
 import com.progressterra.ipbandroidapi.api.typecooperation.BaseTypeCooperationRepository
 import com.progressterra.ipbandroidapi.api.typecooperation.TypeCooperationRepository
 import com.progressterra.ipbandroidapi.api.typecooperation.TypeCooperationService
-import com.progressterra.ipbandroidapi.base.NetworkService
+import com.progressterra.ipbandroidapi.core.NetworkService
 import com.progressterra.ipbandroidapi.core.HandleException
 import org.koin.dsl.module
 

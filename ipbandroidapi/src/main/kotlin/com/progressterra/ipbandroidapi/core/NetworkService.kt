@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.base
+package com.progressterra.ipbandroidapi.core
 
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings
 import okhttp3.OkHttpClient

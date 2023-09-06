@@ -1,9 +1,10 @@
 package com.progressterra.ipbandroidapi.ext
 
+import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.TimeZone
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 
 private const val serverDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
 private const val serverDateFormatTimeZone = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSSXXX"
@@ -19,10 +20,12 @@ fun String.parseToDate(): Date? {
     val sdf = SimpleDateFormat(timeFormat, Locale.getDefault()).apply {
         timeZone = serverTimeZone
     }
-    return tryOrNull { sdf.parse(this) }
+    return try {
+        sdf.parse(this)
+    } catch (e: ParseException) {
+        null
+    }
 }
-
-fun Date?.orNow() = this.orIfNull { Date() }
 
 fun Date.format(pattern: String = serverDateFormat): String {
     val sdf = SimpleDateFormat(pattern, Locale.getDefault())
