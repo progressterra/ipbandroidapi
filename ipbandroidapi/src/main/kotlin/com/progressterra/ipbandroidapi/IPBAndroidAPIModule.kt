@@ -1,4 +1,4 @@
-package com.progressterra.ipbandroidapi.di
+package com.progressterra.ipbandroidapi
 
 import com.progressterra.ipbandroidapi.api.URL.AUTH_URL
 import com.progressterra.ipbandroidapi.api.URL.BALANCE_URL
