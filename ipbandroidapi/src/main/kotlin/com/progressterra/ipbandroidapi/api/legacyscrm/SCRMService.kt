@@ -15,6 +15,8 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
+//TODO после миграции хассп удалить
+
 /**
  * [Docs](http://84.201.188.117:7021/docsapi/v7/index.html)
  */

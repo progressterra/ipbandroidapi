@@ -8,6 +8,8 @@ import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.http.*
 
+//TODO после миграции хассп удалить
+
 /**
  * [Docs](http://51.250.54.134:7089/swagger/index.html)
  */
