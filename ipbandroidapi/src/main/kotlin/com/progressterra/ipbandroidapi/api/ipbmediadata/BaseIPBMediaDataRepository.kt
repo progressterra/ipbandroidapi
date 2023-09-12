@@ -12,6 +12,15 @@ internal class BaseIPBMediaDataRepository(
     handleException: HandleException, private val service: IPBMediaDataService
 ) : IPBMediaDataRepository, AbstractRepository(handleException) {
 
+    override suspend fun attachedToClient(
+        accessToken: String,
+        filterAndSort: FilterAndSort
+    ): Result<List<RGEntitytMediaDataViewModel>?> = handle {
+        val response = service.attachedToClient(accessToken, filterAndSort)
+        if (response.result?.status != "success") throw BadRequestException()
+        response.dataList
+    }
+
     override suspend fun deleteMediaData(
         accessToken: String, idRGEntitytMediaData: String
     ): Result<Unit> = handle {

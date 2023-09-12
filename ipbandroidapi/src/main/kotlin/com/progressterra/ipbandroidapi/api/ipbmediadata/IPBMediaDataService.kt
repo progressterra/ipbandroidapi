@@ -44,6 +44,12 @@ internal interface IPBMediaDataService {
         @Body filterAndSort: FilterAndSort
     ): RGEntitytMediaDataViewModelResultDataList
 
+    @GET("/mediadata/client/list")
+    suspend fun attachedToClient(
+        @Header("AccessToken") accessToken: String,
+        @Body filterAndSort: FilterAndSort
+    ): RGEntitytMediaDataViewModelResultDataList
+
     @Streaming
     @GET
     suspend fun downloadFile(
