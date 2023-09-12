@@ -37,14 +37,14 @@ internal interface IPBMediaDataService {
         @Part file: MultipartBody.Part
     ): RGEntitytMediaDataViewModelResultData
 
-    @GET("/mediadata/entity/{iDEntity}/list")
+    @POST("/mediadata/entity/{iDEntity}/list")
     suspend fun attachedToEntity(
         @Header("AccessToken") accessToken: String,
         @Path("iDEntity") idEntity: String,
         @Body filterAndSort: FilterAndSort
     ): RGEntitytMediaDataViewModelResultDataList
 
-    @GET("/mediadata/client/list")
+    @POST("/mediadata/client/list")
     suspend fun attachedToClient(
         @Header("AccessToken") accessToken: String,
         @Body filterAndSort: FilterAndSort
