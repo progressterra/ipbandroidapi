@@ -6,23 +6,25 @@ object IpbAndroidApiSettings {
 
     var DEBUG = false
 
-    var PRODUCT_URL = "http://51.250.54.134:7023/"
+    var PRODUCT_URL = ""
 
-    var DOCS_URL = "http://51.250.54.134:7107/"
+    var DOCS_URL = ""
 
-    var CATALOG_URL = "http://51.250.54.134:7027/"
+    var CATALOG_URL = ""
 
-    var CART_URL = "http://51.250.54.134:7025/"
+    var CART_URL = ""
 
-    var BALANCE_URL = "http://51.250.54.134:7009/"
+    var BALANCE_URL = ""
 
-    var MESSENGER_URL = "http://51.250.54.134:7093/"
+    var MESSENGER_URL = ""
 
-    var PAYMENT_DATA_URL = "http://51.250.54.134:7095/"
+    var PAYMENT_DATA_URL = ""
 
-    var PAYMENT_URL = "http://51.250.54.134:7097/"
+    var PAYMENT_URL = ""
 
-    var SCRM_URL = "http://51.250.54.134:7021/"
+    var SCRM_URL = ""
 
-    var AUTH_URL = "http://51.250.54.134:7001/"
+    var AUTH_URL = ""
+
+    var MEDIA_DATA_URL = ""
 }
