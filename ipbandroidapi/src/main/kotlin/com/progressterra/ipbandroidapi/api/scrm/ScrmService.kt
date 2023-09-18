@@ -6,6 +6,8 @@ import com.progressterra.ipbandroidapi.api.scrm.models.FilterAndSort
 import com.progressterra.ipbandroidapi.api.scrm.models.RGAddressEntity
 import com.progressterra.ipbandroidapi.api.scrm.models.RGAddressResultDataList
 import com.progressterra.ipbandroidapi.api.scrm.models.RGAddressViewModelResultData
+import com.progressterra.ipbandroidapi.api.scrm.models.RGDeviceTokenEntity
+import com.progressterra.ipbandroidapi.api.scrm.models.RGDeviceTokenViewModelResultData
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -49,4 +51,10 @@ interface ScrmService {
     suspend fun getClient(
         @Header("AccessToken") token: String
     ): ClientsViewModelResultData
+
+    @POST("/devicetoken")
+    suspend fun setDeviceToken(
+        @Header("AccessToken") token: String,
+        @Body body: RGDeviceTokenEntity
+    ): RGDeviceTokenViewModelResultData
 }
