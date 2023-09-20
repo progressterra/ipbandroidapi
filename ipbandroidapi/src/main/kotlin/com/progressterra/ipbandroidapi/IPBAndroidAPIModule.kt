@@ -34,7 +34,6 @@ import com.progressterra.ipbandroidapi.api.ipbmediadata.IPBMediaDataService
 import com.progressterra.ipbandroidapi.api.legacyscrm.BaseSCRMRepository
 import com.progressterra.ipbandroidapi.api.legacyscrm.SCRMRepository
 import com.progressterra.ipbandroidapi.api.legacyscrm.SCRMService
-import com.progressterra.ipbandroidapi.api.messenger.MessengerRepository
 import com.progressterra.ipbandroidapi.api.messenger.MessengerService
 import com.progressterra.ipbandroidapi.api.payment.PaymentRepository
 import com.progressterra.ipbandroidapi.api.payment.PaymentService
@@ -159,13 +158,10 @@ val iPBAndroidAPIModule = module {
         )
     }
 
-    single<MessengerRepository> {
+    single {
         val networkService: NetworkService = get()
-        MessengerRepository.Base(
-            get(),
-            networkService.createService(
-                MessengerService::class.java, MESSENGER_URL
-            )
+        networkService.createService(
+            MessengerService::class.java, MESSENGER_URL
         )
     }
 
