@@ -27,4 +27,6 @@ object IpbAndroidApiSettings {
     var AUTH_URL = ""
 
     var MEDIA_DATA_URL = ""
+
+    var IMH_URL = ""
 }

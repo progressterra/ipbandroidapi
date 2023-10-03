@@ -5,6 +5,7 @@ import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.BALANCE_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.CART_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.CATALOG_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.DOCS_URL
+import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.IMH_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.MEDIA_DATA_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.MESSENGER_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.PAYMENT_DATA_URL
@@ -28,6 +29,7 @@ import com.progressterra.ipbandroidapi.api.complace.ComPlaceRepository
 import com.progressterra.ipbandroidapi.api.complace.ComPlaceService
 import com.progressterra.ipbandroidapi.api.documents.DocumentsRepository
 import com.progressterra.ipbandroidapi.api.documents.DocumentsService
+import com.progressterra.ipbandroidapi.api.iamhere.ImhService
 import com.progressterra.ipbandroidapi.api.ipbmediadata.BaseIPBMediaDataRepository
 import com.progressterra.ipbandroidapi.api.ipbmediadata.IPBMediaDataRepository
 import com.progressterra.ipbandroidapi.api.ipbmediadata.IPBMediaDataService
@@ -196,6 +198,13 @@ val iPBAndroidAPIModule = module {
         val networkService: NetworkService = get()
         networkService.createService(
             AuthService::class.java, AUTH_URL
+        )
+    }
+
+    single {
+        val networkService: NetworkService = get()
+        networkService.createService(
+            ImhService::class.java, IMH_URL
         )
     }
 }
