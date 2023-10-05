@@ -5,6 +5,7 @@ import com.progressterra.ipbandroidapi.api.iamhere.models.GeoData
 import com.progressterra.ipbandroidapi.api.iamhere.models.IncomeDataIDRFInterest
 import com.progressterra.ipbandroidapi.api.iamhere.models.IncomeDataStartMeet
 import com.progressterra.ipbandroidapi.api.iamhere.models.RFInterestViewModelResultDataList
+import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataPersonalEntity
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataViewModelResultData
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataViewModelResultDataList
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientInterestResultDataList
@@ -23,6 +24,17 @@ interface ImhService {
         @Path("minMeter") minMeter: Int,
         @Path("maxMeter") maxMeter: Int
     ): RGClientDataViewModelResultDataList
+
+    @POST("clientdata/personal")
+    suspend fun clientDataPersonal(
+        @Header("AccessToken") token: String,
+        @Body body: RGClientDataPersonalEntity
+    ): RGClientDataViewModelResultData
+
+    @GET("clientdata/personal")
+    suspend fun clientDataData(
+        @Header("AccessToken") token: String
+    ): RGClientDataViewModelResultData
 
     @POST("/clientdata/readymeet")
     suspend fun clientDataReadyMeet(
