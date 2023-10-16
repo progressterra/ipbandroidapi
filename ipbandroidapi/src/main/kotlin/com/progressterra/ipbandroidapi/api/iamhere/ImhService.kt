@@ -5,6 +5,7 @@ import com.progressterra.ipbandroidapi.api.iamhere.models.GeoData
 import com.progressterra.ipbandroidapi.api.iamhere.models.IncomeDataIDRFInterest
 import com.progressterra.ipbandroidapi.api.iamhere.models.IncomeDataStartMeet
 import com.progressterra.ipbandroidapi.api.iamhere.models.RFInterestViewModelResultDataList
+import com.progressterra.ipbandroidapi.api.iamhere.models.RFTargetViewModelResultDataList
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataPersonalEntity
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataViewModelResultData
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataViewModelResultDataList
@@ -76,4 +77,10 @@ interface ImhService {
         @Header("AccessToken") token: String,
         @Body body: FilterAndSort
     ): RFInterestViewModelResultDataList
+
+    @POST("/target/list")
+    suspend fun targetList(
+        @Header("AccessToken") token: String,
+        @Body body: FilterAndSort
+    ): RFTargetViewModelResultDataList
 }
