@@ -1,7 +1,10 @@
 package com.progressterra.ipbandroidapi.api.iamhere
 
+import com.progressterra.ipbandroidapi.api.iamhere.models.EmptyResultOperationResultData
 import com.progressterra.ipbandroidapi.api.iamhere.models.FilterAndSort
 import com.progressterra.ipbandroidapi.api.iamhere.models.GeoData
+import com.progressterra.ipbandroidapi.api.iamhere.models.IncomeDataIDClient
+import com.progressterra.ipbandroidapi.api.iamhere.models.IncomeDataIDConnect
 import com.progressterra.ipbandroidapi.api.iamhere.models.IncomeDataIDRFInterest
 import com.progressterra.ipbandroidapi.api.iamhere.models.IncomeDataStartMeet
 import com.progressterra.ipbandroidapi.api.iamhere.models.RFInterestViewModelResultDataList
@@ -10,6 +13,8 @@ import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataPersonalEn
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataViewModelResultData
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataViewModelResultDataList
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientInterestResultDataList
+import com.progressterra.ipbandroidapi.api.iamhere.models.RGConnectViewModelResultData
+import com.progressterra.ipbandroidapi.api.iamhere.models.RGConnectViewModelResultDataList
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -83,4 +88,34 @@ interface ImhService {
         @Header("AccessToken") token: String,
         @Body body: FilterAndSort
     ): RFTargetViewModelResultDataList
+
+    @POST("/connect/approve")
+    suspend fun connectApprove(
+        @Header("AccessToken") token: String,
+        @Body body: IncomeDataIDConnect
+    ): EmptyResultOperationResultData
+
+    @POST("/connect/reject")
+    suspend fun connectReject(
+        @Header("AccessToken") token: String,
+        @Body body: IncomeDataIDConnect
+    ): EmptyResultOperationResultData
+
+    @POST("/connect")
+    suspend fun connect(
+        @Header("AccessToken") token: String,
+        @Body body: IncomeDataIDClient
+    ): RGConnectViewModelResultData
+
+    @POST("/connect/incoming/list")
+    suspend fun connectsIncoming(
+        @Header("AccessToken") token: String,
+        @Body body: FilterAndSort
+    ): RGConnectViewModelResultDataList
+
+    @POST("/connect/outcoming/list")
+    suspend fun connectsOutcoming(
+        @Header("AccessToken") token: String,
+        @Body body: FilterAndSort
+    ): RGConnectViewModelResultDataList
 }
