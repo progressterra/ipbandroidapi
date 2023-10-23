@@ -37,7 +37,7 @@ interface ImhService {
         @Body body: RGClientDataPersonalEntity
     ): RGClientDataViewModelResultData
 
-    @GET("clientdata/personal")
+    @GET("clientdata/data")
     suspend fun clientDataData(
         @Header("AccessToken") token: String
     ): RGClientDataViewModelResultData
