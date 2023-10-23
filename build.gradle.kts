@@ -13,7 +13,7 @@ buildscript {
 
 allprojects {
     group = "com.progressterra.ipbandroidapi"
-    version = "0.5.59"
+    version = "0.5.60"
     repositories {
         google()
         mavenCentral()
