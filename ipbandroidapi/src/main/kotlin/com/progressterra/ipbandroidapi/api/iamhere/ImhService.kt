@@ -21,6 +21,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.HTTP
 
 interface ImhService {
 
@@ -65,7 +66,7 @@ interface ImhService {
         @Body body: IncomeDataIDRFInterest
     ): RGClientDataViewModelResultData
 
-    @DELETE("/clientinterest")
+    @HTTP(method = "DELETE", path = "/clientinterest", hasBody = true)
     suspend fun clientInterestDelete(
         @Header("AccessToken") token: String,
         @Body body: IncomeDataIDRFInterest
