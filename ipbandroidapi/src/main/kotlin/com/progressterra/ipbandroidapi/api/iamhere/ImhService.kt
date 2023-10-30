@@ -54,7 +54,7 @@ interface ImhService {
         @Header("AccessToken") token: String
     ): RGClientDataViewModelResultData
 
-    @POST("/clientdata/readymeet")
+    @POST("/clientdata/geodata")
     suspend fun clientDataGeoData(
         @Header("AccessToken") token: String,
         @Body body: GeoData
