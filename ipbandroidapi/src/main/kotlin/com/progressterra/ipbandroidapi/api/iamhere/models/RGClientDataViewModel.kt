@@ -95,6 +95,9 @@ data class RGClientDataViewModel(
     @SerializedName("idUnique")
     val idUnique: String? = null,
 
+    @SerializedName("age")
+    val age: Int? = null,
+
     /* Идентификатор организации, которой принадлежит данная запись */
     @SerializedName("idEnterprise")
     val idEnterprise: String? = null,
@@ -119,6 +122,9 @@ data class RGClientDataViewModel(
 
     @SerializedName("listInterests")
     val listInterests: List<RFInterestViewModel>? = null,
+
+    @SerializedName("listProfessions")
+    val listProfessions: List<RFInterestViewModel>? = null,
 
     @SerializedName("listImages")
     val listImages: List<RGEntitytMediaDataViewModel>? = null,
