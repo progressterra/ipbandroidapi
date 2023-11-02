@@ -8,7 +8,6 @@ import com.google.gson.annotations.SerializedName
  *
  * Values: ORIGINAL,SMALL,MEDIUM,LARGE
  */
-
 enum class TypeSize {
 
     @SerializedName("original")
@@ -21,6 +20,7 @@ enum class TypeSize {
     MEDIUM,
 
     @SerializedName("large")
-    LARGE
+    LARGE;
+
 }
 

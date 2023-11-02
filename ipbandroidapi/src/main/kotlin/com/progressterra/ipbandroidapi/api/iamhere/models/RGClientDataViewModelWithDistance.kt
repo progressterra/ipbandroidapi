@@ -33,10 +33,11 @@ import com.google.gson.annotations.SerializedName
  * @param listProfessions 
  * @param listImages 
  * @param avatarMediaData 
+ * @param distance 
  */
 
 
-data class RGClientDataViewModel (
+data class RGClientDataViewModelWithDistance (
 
     /* Никнейм, который пользователь устанавливает */
     @SerializedName("nickName")
@@ -134,7 +135,10 @@ data class RGClientDataViewModel (
     val listImages: List<RGEntitytMediaDataViewModel>? = null,
 
     @SerializedName("avatarMediaData")
-    val avatarMediaData: RGEntitytMediaDataViewModel? = null
+    val avatarMediaData: RGEntitytMediaDataViewModel? = null,
+
+    @SerializedName("distance")
+    val distance: Double? = null
 
 )
 

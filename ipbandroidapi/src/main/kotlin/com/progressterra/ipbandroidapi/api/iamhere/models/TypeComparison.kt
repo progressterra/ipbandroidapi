@@ -21,6 +21,6 @@ enum class TypeComparison {
     CONTAINS_STRONG,
 
     @SerializedName("containsIgnoreCase")
-    CONTAINS_IGNORE_CASE
+    CONTAINS_IGNORE_CASE;
 }
 

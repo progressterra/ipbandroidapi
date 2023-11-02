@@ -12,6 +12,7 @@ import com.progressterra.ipbandroidapi.api.iamhere.models.RFTargetViewModelResul
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataPersonalEntity
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataViewModelResultData
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataViewModelResultDataList
+import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientDataViewModelWithDistanceResultDataList
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGClientInterestResultDataList
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGConnectViewModelResultData
 import com.progressterra.ipbandroidapi.api.iamhere.models.RGConnectViewModelResultDataList
@@ -30,7 +31,7 @@ interface ImhService {
         @Header("AccessToken") token: String,
         @Path("minMeter") minMeter: Int,
         @Path("maxMeter") maxMeter: Int
-    ): RGClientDataViewModelResultDataList
+    ): RGClientDataViewModelWithDistanceResultDataList
 
     @POST("clientdata/personal")
     suspend fun clientDataPersonal(

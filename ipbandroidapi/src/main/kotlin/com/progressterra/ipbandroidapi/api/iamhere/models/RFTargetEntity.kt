@@ -6,15 +6,14 @@ import com.google.gson.annotations.SerializedName
 /**
  * 
  *
- * Values: ASC,DESC
+ * @param name 
  */
 
-enum class TypeVariantSort {
 
-    @SerializedName("asc")
-    ASC,
+data class RFTargetEntity (
 
-    @SerializedName("desc")
-    DESC;
-}
+    @SerializedName("name")
+    val name: String? = null
+
+)
 

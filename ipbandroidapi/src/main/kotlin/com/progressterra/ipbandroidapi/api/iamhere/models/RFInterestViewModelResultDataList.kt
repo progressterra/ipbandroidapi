@@ -2,7 +2,17 @@ package com.progressterra.ipbandroidapi.api.iamhere.models
 
 import com.google.gson.annotations.SerializedName
 
-data class RFInterestViewModelResultDataList(
+/**
+ * 
+ *
+ * @param result 
+ * @param dataList 
+ * @param totalNumberRecords 
+ */
+
+
+data class RFInterestViewModelResultDataList (
+
     @SerializedName("result")
     val result: ResultOperation? = null,
 
@@ -11,4 +21,6 @@ data class RFInterestViewModelResultDataList(
 
     @SerializedName("totalNumberRecords")
     val totalNumberRecords: Int? = null
+
 )
+

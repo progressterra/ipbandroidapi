@@ -4,10 +4,11 @@ package com.progressterra.ipbandroidapi.api.iamhere.models
 import com.google.gson.annotations.SerializedName
 
 /**
+ * 
  *
- *
- * Values: wait,success,reject
+ * Values: WAIT,SUCCESS,REJECT
  */
+
 enum class EnumTypeStatusConnect {
 
     @SerializedName("wait")
@@ -17,6 +18,6 @@ enum class EnumTypeStatusConnect {
     SUCCESS,
 
     @SerializedName("reject")
-    REJECT
+    REJECT;
 }
 

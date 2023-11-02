@@ -5,13 +5,9 @@ import com.google.gson.annotations.SerializedName
 /**
  * 
  *
- * @param name 
- * @param idUnique Уникальный идентификатор
- * @param idEnterprise Идентификатор организации, которой принадлежит данная запись
- * @param dateAdded Дата добавления записи
- * @param dateUpdated Дата обновления записи
- * @param dateSoftRemoved Если дата установлена, то сущность помечена на удаление. Физически данные не удаляются  Функции Delete лишь помечают сущность на удаление устанавливая дату вызова метода
- * @param listImages 
+ * @param result 
+ * @param dataList 
+ * @param totalNumberRecords 
  */
 
 
@@ -25,6 +21,6 @@ data class RFTargetViewModelResultDataList (
 
     @SerializedName("totalNumberRecords")
     val totalNumberRecords: Int? = null
-)
 
+)
 

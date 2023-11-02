@@ -4,7 +4,7 @@ package com.progressterra.ipbandroidapi.api.iamhere.models
 import com.google.gson.annotations.SerializedName
 
 /**
- *
+ * 
  *
  * Values: IMAGE,VIDEO,PDF,HTML,HTML_STRING,STRING_DATA,VOICE_DATA
  */
@@ -30,6 +30,6 @@ enum class TypeContent {
     STRING_DATA,
 
     @SerializedName("voiceData")
-    VOICE_DATA
+    VOICE_DATA;
 }
 

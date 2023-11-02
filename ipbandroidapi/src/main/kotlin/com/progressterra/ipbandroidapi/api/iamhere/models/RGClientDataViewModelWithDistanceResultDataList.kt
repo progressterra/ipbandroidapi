@@ -6,18 +6,18 @@ import com.google.gson.annotations.SerializedName
  * 
  *
  * @param result 
- * @param data 
+ * @param dataList 
  * @param totalNumberRecords 
  */
 
 
-data class EmptyResultOperationResultData (
+data class RGClientDataViewModelWithDistanceResultDataList (
 
     @SerializedName("result")
     val result: ResultOperation? = null,
 
-    @SerializedName("data")
-    val data: Any? = null,
+    @SerializedName("dataList")
+    val dataList: List<RGClientDataViewModelWithDistance>? = null,
 
     @SerializedName("totalNumberRecords")
     val totalNumberRecords: Int? = null

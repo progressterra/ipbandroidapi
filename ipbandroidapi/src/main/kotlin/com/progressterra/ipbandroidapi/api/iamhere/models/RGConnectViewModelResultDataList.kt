@@ -3,15 +3,15 @@ package com.progressterra.ipbandroidapi.api.iamhere.models
 import com.google.gson.annotations.SerializedName
 
 /**
+ * 
  *
- *
- * @param result
- * @param dataList
- * @param totalNumberRecords
+ * @param result 
+ * @param dataList 
+ * @param totalNumberRecords 
  */
 
 
-data class RGConnectViewModelResultDataList(
+data class RGConnectViewModelResultDataList (
 
     @SerializedName("result")
     val result: ResultOperation? = null,

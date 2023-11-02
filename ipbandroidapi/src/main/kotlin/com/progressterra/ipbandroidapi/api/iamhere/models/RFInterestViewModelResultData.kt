@@ -11,13 +11,13 @@ import com.google.gson.annotations.SerializedName
  */
 
 
-data class EmptyResultOperationResultData (
+data class RFInterestViewModelResultData (
 
     @SerializedName("result")
     val result: ResultOperation? = null,
 
     @SerializedName("data")
-    val data: Any? = null,
+    val data: RFInterestViewModel? = null,
 
     @SerializedName("totalNumberRecords")
     val totalNumberRecords: Int? = null

@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName
  * 
  *
  * @param name 
+ * @param interestType 
  * @param idUnique Уникальный идентификатор
  * @param idEnterprise Идентификатор организации, которой принадлежит данная запись
  * @param dateAdded Дата добавления записи
@@ -19,6 +20,9 @@ data class RFInterestViewModel (
 
     @SerializedName("name")
     val name: String? = null,
+
+    @SerializedName("interestType")
+    val interestType: TypeInterest? = null,
 
     /* Уникальный идентификатор */
     @SerializedName("idUnique")
