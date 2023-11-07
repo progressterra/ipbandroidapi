@@ -19,7 +19,6 @@ import com.progressterra.ipbandroidapi.api.URL.SUGGESTION_URL
 import com.progressterra.ipbandroidapi.api.auth.AuthService
 import com.progressterra.ipbandroidapi.api.balance.BalanceRepository
 import com.progressterra.ipbandroidapi.api.balance.BalanceService
-import com.progressterra.ipbandroidapi.api.cart.CartRepository
 import com.progressterra.ipbandroidapi.api.cart.CartService
 import com.progressterra.ipbandroidapi.api.catalog.CatalogRepository
 import com.progressterra.ipbandroidapi.api.catalog.CatalogService
@@ -140,13 +139,10 @@ val iPBAndroidAPIModule = module {
         )
     }
 
-    single<CartRepository> {
+    single {
         val networkService: NetworkService = get()
-        CartRepository.Base(
-            get(),
-            networkService.createService(
-                CartService::class.java, CART_URL
-            )
+        networkService.createService(
+            CartService::class.java, CART_URL
         )
     }
 
