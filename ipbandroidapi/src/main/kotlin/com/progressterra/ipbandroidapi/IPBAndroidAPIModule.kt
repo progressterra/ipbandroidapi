@@ -12,6 +12,7 @@ import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.PAYMENT_DATA_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.PAYMENT_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.PRODUCT_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.SCRM_URL
+import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.WORK_WATCH_URL
 import com.progressterra.ipbandroidapi.api.URL.CHECKLIST_URL
 import com.progressterra.ipbandroidapi.api.URL.COM_PLACE_URL
 import com.progressterra.ipbandroidapi.api.URL.SCRM_LEGACY_URL
@@ -46,6 +47,7 @@ import com.progressterra.ipbandroidapi.api.scrm.ScrmService
 import com.progressterra.ipbandroidapi.api.suggestion.BaseSuggestionRepository
 import com.progressterra.ipbandroidapi.api.suggestion.SuggestionRepository
 import com.progressterra.ipbandroidapi.api.suggestion.SuggestionService
+import com.progressterra.ipbandroidapi.api.workwatch.WorkWatchService
 import com.progressterra.ipbandroidapi.core.HandleException
 import com.progressterra.ipbandroidapi.core.NetworkService
 import org.koin.dsl.module
@@ -201,6 +203,13 @@ val iPBAndroidAPIModule = module {
         val networkService: NetworkService = get()
         networkService.createService(
             ImhService::class.java, IMH_URL
+        )
+    }
+
+    single {
+        val networkService: NetworkService = get()
+        networkService.createService(
+            WorkWatchService::class.java, WORK_WATCH_URL
         )
     }
 }

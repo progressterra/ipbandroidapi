@@ -29,4 +29,6 @@ object IpbAndroidApiSettings {
     var MEDIA_DATA_URL = ""
 
     var IMH_URL = ""
+
+    var WORK_WATCH_URL = ""
 }
