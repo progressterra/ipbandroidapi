@@ -8,7 +8,7 @@ import retrofit2.http.POST
 
 interface WorkWatchService {
 
-    @POST
+    @POST("clientarea/tracking")
     suspend fun clientAreaTracking(
         @Header("AccessToken") token: String,
         @Body body: RGTrackingEntity
