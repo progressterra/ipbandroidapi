@@ -6,29 +6,29 @@ object IpbAndroidApiSettings {
 
     var DEBUG = false
 
-    var PRODUCT_URL = ""
+    var PRODUCT_URL = emptyList<String>()
 
-    var DOCS_URL = ""
+    var DOCS_URL = emptyList<String>()
 
-    var CATALOG_URL = ""
+    var CATALOG_URL = emptyList<String>()
 
-    var CART_URL = ""
+    var CART_URL = emptyList<String>()
 
-    var BALANCE_URL = ""
+    var BALANCE_URL = emptyList<String>()
 
-    var MESSENGER_URL = ""
+    var MESSENGER_URL = emptyList<String>()
 
-    var PAYMENT_DATA_URL = ""
+    var PAYMENT_DATA_URL = emptyList<String>()
 
-    var PAYMENT_URL = ""
+    var PAYMENT_URL = emptyList<String>()
 
-    var SCRM_URL = ""
+    var SCRM_URL = emptyList<String>()
 
-    var AUTH_URL = ""
+    var AUTH_URL = emptyList<String>()
 
-    var MEDIA_DATA_URL = ""
+    var MEDIA_DATA_URL = emptyList<String>()
 
-    var IMH_URL = ""
+    var IMH_URL = emptyList<String>()
 
-    var WORK_WATCH_URL = ""
+    var WORK_WATCH_URL = emptyList<String>()
 }

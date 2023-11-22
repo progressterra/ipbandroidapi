@@ -1,7 +1,10 @@
 package com.progressterra.ipbandroidapi.core
 
+import android.util.Log
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -9,31 +12,65 @@ import java.util.concurrent.TimeUnit
 
 interface NetworkService {
 
-    fun <T> createService(apiClass: Class<T>, baseUrl: String): T
+    fun <T> createService(apiClass: Class<T>, url: () -> String?, invalidateUrl: () -> Unit): T
 
     class Base : NetworkService {
 
 
-        private val clientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-            .callTimeout(NETWORK_CALL_TIMEOUT, TimeUnit.MILLISECONDS)
-            .connectTimeout(NETWORK_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
-            .readTimeout(NETWORK_READ_TIMEOUT, TimeUnit.MILLISECONDS)
-            .writeTimeout(NETWORK_WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
-            .addInterceptor {
-                val request = it.request().newBuilder()
-                    .addHeader("AccessKey", IpbAndroidApiSettings.ACCESS_KEY)
-                    .build()
-                it.proceed(request)
-            }
-            .addInterceptor(loggingInterceptor())
+        private fun createClient(url: () -> String?, invalidateUrl: () -> Unit): OkHttpClient =
+            OkHttpClient.Builder()
+                .callTimeout(NETWORK_CALL_TIMEOUT, TimeUnit.MILLISECONDS)
+                .connectTimeout(NETWORK_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
+                .readTimeout(NETWORK_READ_TIMEOUT, TimeUnit.MILLISECONDS)
+                .writeTimeout(NETWORK_WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
+                .addInterceptor {
+                    val request = it.request().newBuilder()
+                        .addHeader("AccessKey", IpbAndroidApiSettings.ACCESS_KEY)
+                        .build()
+                    it.proceed(request)
+                }
+                .addInterceptor(ExceptionInterceptor(url, invalidateUrl))
+                .addInterceptor(loggingInterceptor()).build()
 
 
-        override fun <T> createService(apiClass: Class<T>, baseUrl: String): T {
+        override fun <T> createService(
+            apiClass: Class<T>,
+            url: () -> String?,
+            invalidateUrl: () -> Unit
+        ): T {
+            val firstUrl = url()
+            require(firstUrl != null)
             val retrofitBuilder = Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(clientBuilder.build())
+                .baseUrl(firstUrl)
+                .client(createClient(url, invalidateUrl))
                 .addConverterFactory(GsonConverterFactory.create())
             return retrofitBuilder.build().create(apiClass)
+        }
+
+        private class ExceptionInterceptor(
+            private val url: () -> String?,
+            private val invalidateUrl: () -> Unit
+        ) : Interceptor {
+
+            override fun intercept(chain: Interceptor.Chain): Response {
+                val request = chain.request()
+                val response = chain.proceed(request)
+                if (!response.isSuccessful) {
+                    Log.d("URLS", "intercept detected unsuccess with url ${url()}")
+                    invalidateUrl()
+                    val newUrl = url()
+                    if (newUrl == null) {
+                        Log.d("URLS", "new url is null")
+                        return response
+                    }
+                    val newRequest = request.newBuilder()
+                        .url(newUrl!!)
+                        .build()
+                    Log.d("URLS", "intercept retry with url $newUrl")
+                    return chain.proceed(newRequest)
+                }
+                return response
+            }
         }
 
         private fun loggingInterceptor(): HttpLoggingInterceptor {
