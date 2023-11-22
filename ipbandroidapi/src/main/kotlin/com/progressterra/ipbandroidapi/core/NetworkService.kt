@@ -64,7 +64,7 @@ interface NetworkService {
                         return response
                     }
                     val newRequest = request.newBuilder()
-                        .url(newUrl!!)
+                        .url(newUrl)
                         .build()
                     Log.d("URLS", "intercept retry with url $newUrl")
                     return chain.proceed(newRequest)
