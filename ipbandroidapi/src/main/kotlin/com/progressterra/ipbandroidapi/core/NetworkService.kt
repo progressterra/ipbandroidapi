@@ -53,15 +53,16 @@ interface NetworkService {
 
             override fun intercept(chain: Interceptor.Chain): Response {
                 val request = chain.request()
-                val oldUrl = request.url.toString()
-                val responseDetails = oldUrl.substring(url()!!.length)
+                val baseUrl = url()
+                val richUrl = request.url.toString()
+                val urlDetails = richUrl.substring(baseUrl?.length ?: 0)
                 return try {
                     chain.proceed(request)
                 } catch (e: Exception) {
                     invalidateUrl()
                     val newUrl = url() ?: throw e
                     val newRequest = request.newBuilder()
-                        .url(newUrl + responseDetails)
+                        .url(newUrl + urlDetails)
                         .build()
                     chain.proceed(newRequest)
                 }
