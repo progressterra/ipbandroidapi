@@ -1,6 +1,5 @@
 package com.progressterra.ipbandroidapi.core
 
-import android.util.Log
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -54,22 +53,18 @@ interface NetworkService {
 
             override fun intercept(chain: Interceptor.Chain): Response {
                 val request = chain.request()
-                val response = chain.proceed(request)
-                if (!response.isSuccessful) {
-                    Log.d("URLS", "intercept detected unsuccess with url ${url()}")
+                val oldUrl = request.url.toString()
+                val responseDetails = oldUrl.substring(url()!!.length)
+                return try {
+                    chain.proceed(request)
+                } catch (e: Exception) {
                     invalidateUrl()
-                    val newUrl = url()
-                    if (newUrl == null) {
-                        Log.d("URLS", "new url is null")
-                        return response
-                    }
+                    val newUrl = url() ?: throw e
                     val newRequest = request.newBuilder()
-                        .url(newUrl)
+                        .url(newUrl + responseDetails)
                         .build()
-                    Log.d("URLS", "intercept retry with url $newUrl")
-                    return chain.proceed(newRequest)
+                    chain.proceed(newRequest)
                 }
-                return response
             }
         }
 
