@@ -63,204 +63,170 @@ val iPBAndroidAPIModule = module {
 
     single<SCRMRepository> {
         val networkService: NetworkService = get()
-        var counter = 0
         BaseSCRMRepository(
             get(),
             networkService.createService(
                 apiClass = SCRMService::class.java,
-                url = { SCRM_LEGACY_URL.getOrNull(counter) },
-                invalidateUrl = { counter++ }
+                urls = SCRM_LEGACY_URL
             )
         )
     }
 
     single<SuggestionRepository> {
         val networkService: NetworkService = get()
-        var counter = 0
         BaseSuggestionRepository(
             get(),
             networkService.createService(
                 apiClass = SuggestionService::class.java,
-                url = { SUGGESTION_URL.getOrNull(counter) },
-                invalidateUrl = { counter++ }
+                urls = SUGGESTION_URL
             )
         )
     }
 
     single<IPBMediaDataRepository> {
         val networkService: NetworkService = get()
-        var counter = 0
         BaseIPBMediaDataRepository(
             get(),
             networkService.createService(
                 apiClass = IPBMediaDataService::class.java,
-                url = { MEDIA_DATA_URL.getOrNull(counter) },
-                invalidateUrl = { counter++ }
+                urls = MEDIA_DATA_URL
             )
         )
     }
 
     single<ChecklistRepository> {
         val networkService: NetworkService = get()
-        var counter = 0
         ChecklistRepository.Base(
             get(),
             networkService.createService(
                 apiClass = ChecklistService::class.java,
-                url = { CHECKLIST_URL.getOrNull(counter) },
-                invalidateUrl = { counter++ }
+                urls = CHECKLIST_URL
             )
         )
     }
 
     single<ProductRepository> {
         val networkService: NetworkService = get()
-        var counter = 0
         ProductRepository.Base(
             get(),
             networkService.createService(
                 apiClass = ProductService::class.java,
-                url = { PRODUCT_URL.getOrNull(counter) },
-                invalidateUrl = { counter++ }
+                urls = PRODUCT_URL
             )
         )
     }
 
     single<ComPlaceRepository> {
         val networkService: NetworkService = get()
-        var counter = 0
         ComPlaceRepository.Base(
             get(),
             networkService.createService(
                 apiClass = ComPlaceService::class.java,
-                url = { COM_PLACE_URL.getOrNull(counter) },
-                invalidateUrl = { counter++ }
+                urls = COM_PLACE_URL
             )
         )
     }
 
     single<DocumentsRepository> {
         val networkService: NetworkService = get()
-        var counter = 0
-        DocumentsRepository            .Base(
+        DocumentsRepository.Base(
             get(),
             networkService.createService(
                 apiClass = DocumentsService::class.java,
-                url = { DOCS_URL.getOrNull(counter) },
-                invalidateUrl = { counter++ }
+                urls = DOCS_URL
             )
         )
     }
 
     single<CatalogRepository> {
         val networkService: NetworkService = get()
-        var counter = 0
         CatalogRepository.Base(
             get(),
             networkService.createService(
                 apiClass = CatalogService::class.java,
-                url = { CATALOG_URL.getOrNull(counter) },
-                invalidateUrl = { counter++ }
+                urls = CATALOG_URL
             )
         )
     }
 
     single {
         val networkService: NetworkService = get()
-        var counter = 0
         networkService.createService(
             apiClass = CartService::class.java,
-            url = { CART_URL.getOrNull(counter) },
-            invalidateUrl = { counter++ }
+            urls = CART_URL
         )
     }
 
     single<BalanceRepository> {
         val networkService: NetworkService = get()
-        var counter = 0
         BalanceRepository.Base(
             get(),
             networkService.createService(
                 apiClass = BalanceService::class.java,
-                url = { BALANCE_URL.getOrNull(counter) },
-                invalidateUrl = { counter++ }
+                urls = BALANCE_URL
             )
         )
     }
 
     single {
         val networkService: NetworkService = get()
-        var counter = 0
         networkService.createService(
             apiClass = MessengerService::class.java,
-            url = { MESSENGER_URL.getOrNull(counter) },
-            invalidateUrl = { counter++ }
+            urls = MESSENGER_URL
         )
     }
 
     single<PaymentDataRepository> {
         val networkService: NetworkService = get()
-        var counter = 0
         PaymentDataRepository.Base(
             get(),
             networkService.createService(
                 apiClass = PaymentDataService::class.java,
-                url = { PAYMENT_DATA_URL.getOrNull(counter) },
-                invalidateUrl = { counter++ }
+                urls = PAYMENT_DATA_URL
             )
         )
     }
 
     single<PaymentRepository> {
         val networkService: NetworkService = get()
-        var counter = 0
         PaymentRepository.Base(
             get(),
             networkService.createService(
                 apiClass = PaymentService::class.java,
-                url = { PAYMENT_URL.getOrNull(counter) },
-                invalidateUrl = { counter++ }
+                urls = PAYMENT_URL
             )
         )
     }
 
     single {
         val networkService: NetworkService = get()
-        var counter = 0
         networkService.createService(
             apiClass = ScrmService::class.java,
-            url = { SCRM_URL.getOrNull(counter) },
-            invalidateUrl = { counter++ }
+            urls = SCRM_URL
         )
     }
 
     single {
         val networkService: NetworkService = get()
-        var counter = 0
         networkService.createService(
             apiClass = AuthService::class.java,
-            url = { AUTH_URL.getOrNull(counter) },
-            invalidateUrl = { counter++ }
+            urls = AUTH_URL
         )
     }
 
     single {
         val networkService: NetworkService = get()
-        var counter = 0
         networkService.createService(
             apiClass = ImhService::class.java,
-            url = { IMH_URL.getOrNull(counter) },
-            invalidateUrl = { counter++ }
+            urls = IMH_URL
         )
     }
 
     single {
         val networkService: NetworkService = get()
-        var counter = 0
         networkService.createService(
             apiClass = WorkWatchService::class.java,
-            url = { WORK_WATCH_URL.getOrNull(counter) },
-            invalidateUrl = { counter++ }
+            urls = WORK_WATCH_URL
         )
     }
 }
