@@ -14,7 +14,6 @@ import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.PRODUCT_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.SCRM_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.WORK_WATCH_URL
 import com.progressterra.ipbandroidapi.api.URL.CHECKLIST_URL
-import com.progressterra.ipbandroidapi.api.URL.COM_PLACE_URL
 import com.progressterra.ipbandroidapi.api.URL.SCRM_LEGACY_URL
 import com.progressterra.ipbandroidapi.api.URL.SUGGESTION_URL
 import com.progressterra.ipbandroidapi.api.auth.AuthService
@@ -24,8 +23,6 @@ import com.progressterra.ipbandroidapi.api.cart.CartService
 import com.progressterra.ipbandroidapi.api.catalog.CatalogRepository
 import com.progressterra.ipbandroidapi.api.catalog.CatalogService
 import com.progressterra.ipbandroidapi.api.checklist.ChecklistService
-import com.progressterra.ipbandroidapi.api.complace.ComPlaceRepository
-import com.progressterra.ipbandroidapi.api.complace.ComPlaceService
 import com.progressterra.ipbandroidapi.api.documents.DocumentsRepository
 import com.progressterra.ipbandroidapi.api.documents.DocumentsService
 import com.progressterra.ipbandroidapi.api.iamhere.ImhService
@@ -93,14 +90,11 @@ val iPBAndroidAPIModule = module {
         )
     }
 
-    single<ChecklistRepository> {
+    single<ChecklistService> {
         val networkService: NetworkService = get()
-        ChecklistRepository.Base(
-            get(),
-            networkService.createService(
-                apiClass = ChecklistService::class.java,
-                urls = CHECKLIST_URL
-            )
+        networkService.createService(
+            apiClass = ChecklistService::class.java,
+            urls = CHECKLIST_URL
         )
     }
 
@@ -111,17 +105,6 @@ val iPBAndroidAPIModule = module {
             networkService.createService(
                 apiClass = ProductService::class.java,
                 urls = PRODUCT_URL
-            )
-        )
-    }
-
-    single<ComPlaceRepository> {
-        val networkService: NetworkService = get()
-        ComPlaceRepository.Base(
-            get(),
-            networkService.createService(
-                apiClass = ComPlaceService::class.java,
-                urls = COM_PLACE_URL
             )
         )
     }
