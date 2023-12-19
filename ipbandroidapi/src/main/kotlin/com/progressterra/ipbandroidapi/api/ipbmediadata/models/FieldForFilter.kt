@@ -1,8 +1,17 @@
-package com.progressterra.ipbandroidapi.api.ipbmediadata.model
+package com.progressterra.ipbandroidapi.api.ipbmediadata.models
 
 import com.google.gson.annotations.SerializedName
 
-data class FieldForFilter(
+/**
+ * 
+ *
+ * @param fieldName 
+ * @param listValue 
+ * @param comparison 
+ */
+
+
+data class FieldForFilter (
 
     @SerializedName("fieldName")
     val fieldName: String? = null,
@@ -11,5 +20,7 @@ data class FieldForFilter(
     val listValue: List<String>? = null,
 
     @SerializedName("comparison")
-    val comparison: String? = null
+    val comparison: TypeComparison? = null
+
 )
+

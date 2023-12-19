@@ -1,14 +1,25 @@
-package com.progressterra.ipbandroidapi.api.ipbmediadata.model
+package com.progressterra.ipbandroidapi.api.ipbmediadata.models
 
 import com.google.gson.annotations.SerializedName
 
-data class InfoImage(
+/**
+ * 
+ *
+ * @param url 
+ * @param sizeType 
+ * @param width 
+ * @param height 
+ * @param propertySize 
+ */
+
+
+data class InfoImage (
 
     @SerializedName("url")
     val url: String? = null,
 
     @SerializedName("sizeType")
-    val sizeType: String? = null,
+    val sizeType: TypeSize? = null,
 
     @SerializedName("width")
     val width: Int? = null,
@@ -18,4 +29,6 @@ data class InfoImage(
 
     @SerializedName("size")
     val propertySize: Long? = null
+
 )
+

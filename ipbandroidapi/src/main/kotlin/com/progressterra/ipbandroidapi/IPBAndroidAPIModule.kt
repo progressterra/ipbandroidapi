@@ -25,8 +25,6 @@ import com.progressterra.ipbandroidapi.api.checklist.ChecklistService
 import com.progressterra.ipbandroidapi.api.documents.DocumentsRepository
 import com.progressterra.ipbandroidapi.api.documents.DocumentsService
 import com.progressterra.ipbandroidapi.api.iamhere.ImhService
-import com.progressterra.ipbandroidapi.api.ipbmediadata.BaseIPBMediaDataRepository
-import com.progressterra.ipbandroidapi.api.ipbmediadata.IPBMediaDataRepository
 import com.progressterra.ipbandroidapi.api.ipbmediadata.IPBMediaDataService
 import com.progressterra.ipbandroidapi.api.messenger.MessengerService
 import com.progressterra.ipbandroidapi.api.payment.PaymentRepository
@@ -64,14 +62,11 @@ val iPBAndroidAPIModule = module {
         )
     }
 
-    single<IPBMediaDataRepository> {
+    single<IPBMediaDataService> {
         val networkService: NetworkService = get()
-        BaseIPBMediaDataRepository(
-            get(),
-            networkService.createService(
-                apiClass = IPBMediaDataService::class.java,
-                urls = MEDIA_DATA_URL
-            )
+        networkService.createService(
+            apiClass = IPBMediaDataService::class.java,
+            urls = MEDIA_DATA_URL
         )
     }
 

@@ -1,8 +1,19 @@
-package com.progressterra.ipbandroidapi.api.ipbmediadata.model
+package com.progressterra.ipbandroidapi.api.ipbmediadata.models
 
 import com.google.gson.annotations.SerializedName
 
-data class FilterAndSort(
+/**
+ * 
+ *
+ * @param listFields 
+ * @param sort 
+ * @param searchData 
+ * @param skip 
+ * @param take 
+ */
+
+
+data class FilterAndSort (
 
     @SerializedName("listFields")
     val listFields: List<FieldForFilter>? = null,
@@ -18,4 +29,6 @@ data class FilterAndSort(
 
     @SerializedName("take")
     val take: Int? = null
+
 )
+

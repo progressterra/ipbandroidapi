@@ -1,11 +1,24 @@
-package com.progressterra.ipbandroidapi.api.ipbmediadata.model
+package com.progressterra.ipbandroidapi.api.ipbmediadata.models
 
 import com.google.gson.annotations.SerializedName
+
+/**
+ * 
+ *
+ * @param status 
+ * @param message 
+ * @param messageDev 
+ * @param codeResult 
+ * @param duration 
+ * @param idLog 
+ * @param xRequestId 
+ */
+
 
 data class ResultOperation (
 
     @SerializedName("status")
-    val status: String? = null,
+    val status: StatusResult? = null,
 
     @SerializedName("message")
     val message: String? = null,
@@ -24,4 +37,6 @@ data class ResultOperation (
 
     @SerializedName("x-request-id")
     val xRequestId: String? = null
+
 )
+

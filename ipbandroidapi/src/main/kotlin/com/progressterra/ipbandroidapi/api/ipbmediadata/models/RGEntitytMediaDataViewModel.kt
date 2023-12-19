@@ -1,8 +1,32 @@
-package com.progressterra.ipbandroidapi.api.ipbmediadata.model
+package com.progressterra.ipbandroidapi.api.ipbmediadata.models
 
 import com.google.gson.annotations.SerializedName
 
-data class RGEntitytMediaDataViewModel(
+/**
+ * 
+ *
+ * @param idEntity Идентфикатор сущности к которой мы добавляем данные, может быть клиентом, организацией, магазином, продуктом
+ * @param entityTypeName Имя типа сущности для которой добавляем данные. Как они идут в IPB
+ * @param privateForClientID Если данный параметр установлен в идентификатор клиента, то данные доступны только данному клиенту. Данные также доступны бизнес пользователям организации, а также специалистам платформы
+ * @param urlData Ссылка на html документ или ссылка на файл
+ * @param stringData Используется для StaticData
+ * @param dataJSON 
+ * @param alias Псевдоним данных. Может использоваться как заголок для данных
+ * @param previewText Используется чтобы рассказать о данных
+ * @param order Порядок вывода файла в списке
+ * @param tag Tag, который позволяет сортировать данные для конкртеной сущности
+ * @param contentType 
+ * @param propertySize 
+ * @param idUnique Уникальный идентификатор
+ * @param idEnterprise Идентификатор организации, которой принадлежит данная запись
+ * @param dateAdded Дата добавления записи
+ * @param dateUpdated Дата обновления записи
+ * @param dateSoftRemoved Если дата установлена, то сущность помечена на удаление. Физически данные не удаляются  Функции Delete лишь помечают сущность на удаление устанавливая дату вызова метода
+ * @param listInfoImage 
+ */
+
+
+data class RGEntitytMediaDataViewModel (
 
     /* Идентфикатор сущности к которой мы добавляем данные, может быть клиентом, организацией, магазином, продуктом */
     @SerializedName("idEntity")
@@ -44,7 +68,7 @@ data class RGEntitytMediaDataViewModel(
     val tag: Int? = null,
 
     @SerializedName("contentType")
-    val contentType: String? = null,
+    val contentType: TypeContent? = null,
 
     @SerializedName("size")
     val propertySize: Long? = null,
@@ -71,4 +95,6 @@ data class RGEntitytMediaDataViewModel(
 
     @SerializedName("listInfoImage")
     val listInfoImage: ListInfoImage? = null
+
 )
+

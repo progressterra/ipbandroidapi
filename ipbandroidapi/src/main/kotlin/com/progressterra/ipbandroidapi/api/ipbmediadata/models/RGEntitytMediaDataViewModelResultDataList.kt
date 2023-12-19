@@ -1,8 +1,17 @@
-package com.progressterra.ipbandroidapi.api.ipbmediadata.model
+package com.progressterra.ipbandroidapi.api.ipbmediadata.models
 
 import com.google.gson.annotations.SerializedName
 
-data class RGEntitytMediaDataViewModelResultDataList(
+/**
+ * 
+ *
+ * @param result 
+ * @param dataList 
+ * @param totalNumberRecords 
+ */
+
+
+data class RGEntitytMediaDataViewModelResultDataList (
 
     @SerializedName("result")
     val result: ResultOperation? = null,
@@ -14,3 +23,4 @@ data class RGEntitytMediaDataViewModelResultDataList(
     val totalNumberRecords: Int? = null
 
 )
+

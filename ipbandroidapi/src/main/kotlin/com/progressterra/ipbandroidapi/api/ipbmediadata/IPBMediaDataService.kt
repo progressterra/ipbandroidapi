@@ -1,14 +1,22 @@
 package com.progressterra.ipbandroidapi.api.ipbmediadata
 
-import com.progressterra.ipbandroidapi.api.checklist.model.EmptyResultOperationResultData
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.FilterAndSort
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.RGEntitytMediaDataViewModelResultData
-import com.progressterra.ipbandroidapi.api.ipbmediadata.model.RGEntitytMediaDataViewModelResultDataList
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
-import retrofit2.http.*
-
-//TODO после миграции хассп удалить
+import com.progressterra.ipbandroidapi.api.ipbmediadata.models.EmptyResultOperationResultData
+import com.progressterra.ipbandroidapi.api.ipbmediadata.models.FilterAndSort
+import com.progressterra.ipbandroidapi.api.ipbmediadata.models.RGEntitytMediaDataViewModelResultData
+import com.progressterra.ipbandroidapi.api.ipbmediadata.models.RGEntitytMediaDataViewModelResultDataList
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.Part
+import retrofit2.http.Path
+import retrofit2.http.Query
+import retrofit2.http.Streaming
+import retrofit2.http.Url
 
 /**
  * [Docs](http://51.250.54.134:7089/swagger/index.html)
