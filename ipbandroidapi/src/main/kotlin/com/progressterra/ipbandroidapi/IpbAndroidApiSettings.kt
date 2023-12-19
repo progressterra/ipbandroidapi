@@ -14,6 +14,10 @@ object IpbAndroidApiSettings {
 
     var CART_URL = emptyList<String>()
 
+    var CHECKLIST_URL = emptyList<String>()
+
+    var SUGGESTION_URL = emptyList<String>()
+
     var BALANCE_URL = emptyList<String>()
 
     var MESSENGER_URL = emptyList<String>()

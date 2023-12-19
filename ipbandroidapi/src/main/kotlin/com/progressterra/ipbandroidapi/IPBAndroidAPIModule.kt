@@ -4,6 +4,7 @@ import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.AUTH_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.BALANCE_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.CART_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.CATALOG_URL
+import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.CHECKLIST_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.DOCS_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.IMH_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.MEDIA_DATA_URL
@@ -12,10 +13,8 @@ import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.PAYMENT_DATA_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.PAYMENT_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.PRODUCT_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.SCRM_URL
+import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.SUGGESTION_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.WORK_WATCH_URL
-import com.progressterra.ipbandroidapi.api.URL.CHECKLIST_URL
-import com.progressterra.ipbandroidapi.api.URL.SCRM_LEGACY_URL
-import com.progressterra.ipbandroidapi.api.URL.SUGGESTION_URL
 import com.progressterra.ipbandroidapi.api.auth.AuthService
 import com.progressterra.ipbandroidapi.api.balance.BalanceRepository
 import com.progressterra.ipbandroidapi.api.balance.BalanceService
@@ -29,9 +28,6 @@ import com.progressterra.ipbandroidapi.api.iamhere.ImhService
 import com.progressterra.ipbandroidapi.api.ipbmediadata.BaseIPBMediaDataRepository
 import com.progressterra.ipbandroidapi.api.ipbmediadata.IPBMediaDataRepository
 import com.progressterra.ipbandroidapi.api.ipbmediadata.IPBMediaDataService
-import com.progressterra.ipbandroidapi.api.legacyscrm.BaseSCRMRepository
-import com.progressterra.ipbandroidapi.api.legacyscrm.SCRMRepository
-import com.progressterra.ipbandroidapi.api.legacyscrm.SCRMService
 import com.progressterra.ipbandroidapi.api.messenger.MessengerService
 import com.progressterra.ipbandroidapi.api.payment.PaymentRepository
 import com.progressterra.ipbandroidapi.api.payment.PaymentService
@@ -56,17 +52,6 @@ val iPBAndroidAPIModule = module {
     }
 
     single<NetworkService> { NetworkService.Base() }
-
-    single<SCRMRepository> {
-        val networkService: NetworkService = get()
-        BaseSCRMRepository(
-            get(),
-            networkService.createService(
-                apiClass = SCRMService::class.java,
-                urls = SCRM_LEGACY_URL
-            )
-        )
-    }
 
     single<SuggestionRepository> {
         val networkService: NetworkService = get()
