@@ -23,7 +23,6 @@ import com.progressterra.ipbandroidapi.api.balance.BalanceService
 import com.progressterra.ipbandroidapi.api.cart.CartService
 import com.progressterra.ipbandroidapi.api.catalog.CatalogRepository
 import com.progressterra.ipbandroidapi.api.catalog.CatalogService
-import com.progressterra.ipbandroidapi.api.checklist.ChecklistRepository
 import com.progressterra.ipbandroidapi.api.checklist.ChecklistService
 import com.progressterra.ipbandroidapi.api.complace.ComPlaceRepository
 import com.progressterra.ipbandroidapi.api.complace.ComPlaceService

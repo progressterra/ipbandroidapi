@@ -1,7 +1,25 @@
 package com.progressterra.ipbandroidapi.api.checklist
 
-import com.progressterra.ipbandroidapi.api.checklist.model.*
-import retrofit2.http.*
+import com.progressterra.ipbandroidapi.api.checklist.models.ComPlaceWithDataResultDataList
+import com.progressterra.ipbandroidapi.api.checklist.models.DHCheckPerformedEntityCreate
+import com.progressterra.ipbandroidapi.api.checklist.models.DHCheckPerformedFullDataViewModelResultData
+import com.progressterra.ipbandroidapi.api.checklist.models.DHCheckPerformedFullDataViewModelResultDataList
+import com.progressterra.ipbandroidapi.api.checklist.models.DRAnswerChekListItemEntity
+import com.progressterra.ipbandroidapi.api.checklist.models.DRCheckListItemForDHPerformedViewModelResultData
+import com.progressterra.ipbandroidapi.api.checklist.models.DRCheckListItemForDHPerformedViewModelResultDataList
+import com.progressterra.ipbandroidapi.api.checklist.models.DRCheckListItemViewModelResultDataList
+import com.progressterra.ipbandroidapi.api.checklist.models.EmptyResultOperationResultData
+import com.progressterra.ipbandroidapi.api.checklist.models.FilterAndSort
+import com.progressterra.ipbandroidapi.api.checklist.models.FinalCommentsInput
+import com.progressterra.ipbandroidapi.api.checklist.models.RFCheckResultDataList
+import com.progressterra.ipbandroidapi.api.checklist.models.RFCheckViewModelResultDataList
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
+
 
 /**
  * [Docs](http://84.201.188.117:5105/swagger/index.html)
@@ -21,18 +39,6 @@ interface ChecklistService {
         @Body request: DRAnswerChekListItemEntity
     ): DRCheckListItemForDHPerformedViewModelResultData
 
-    @POST("/rfcheck")
-    suspend fun createChecklist(
-        @Header("AccessToken") accessToken: String,
-        @Body request: RFCheckEntity
-    ): RFCheckResultData
-
-    @POST("/rfcheck/list")
-    suspend fun checklists(
-        @Header("AccessToken") accessToken: String,
-        @Body request: FilterAndSort
-    ): RFCheckResultDataList
-
     @POST("/rfcheck/complace/{idRFComPlace}/list")
     suspend fun checklistsForPlace(
         @Header("AccessToken") accessToken: String,
@@ -45,7 +51,7 @@ interface ChecklistService {
         @Header("AccessToken") accessToken: String,
         @Path("idRFCheck") idRFCheck: String,
         @Body request: FilterAndSort
-    ) : DRCheckListItemViewModelResultDataList
+    ): DRCheckListItemViewModelResultDataList
 
     @GET("/place/list")
     suspend fun availableChecklistsAndDocs(@Header("AccessToken") accessToken: String): ComPlaceWithDataResultDataList
@@ -63,17 +69,11 @@ interface ChecklistService {
         @Body request: FilterAndSort
     ): DHCheckPerformedFullDataViewModelResultDataList
 
-    @POST("/place/rgcomplacerfcheck")
-    suspend fun addChecklistToPlace(
-        @Header("AccessToken") accessToken: String,
-        @Body request: RGComPlaceRFCheckEntity
-    ): EmptyResultOperationResultData
-
     @POST("/dhcheckperformed/list")
     suspend fun allDocuments(
         @Header("AccessToken") accessToken: String,
         @Body request: FilterAndSort
-    ) : DHCheckPerformedFullDataViewModelResultDataList
+    ): DHCheckPerformedFullDataViewModelResultDataList
 
     @POST("/dhcheckperformed")
     suspend fun createDoc(
@@ -86,12 +86,6 @@ interface ChecklistService {
         @Header("AccessToken") accessToken: String,
         @Query("idRFComPlace") placeId: String,
         @Query("idRFCheck") checklistId: String
-    ): DHCheckPerformedFullDataViewModelResultData
-
-    @POST("/dhcheckperformed/start/{idDH}")
-    suspend fun startCheck(
-        @Header("AccessToken") accessToken: String,
-        @Path("idDH") idDH: String
     ): DHCheckPerformedFullDataViewModelResultData
 
     @POST("/dhcheckperformed/finish/{idDH}")
