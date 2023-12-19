@@ -1,10 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-kapt")
-    id("kotlin-parcelize")
     id("maven-publish")
-    id("org.jetbrains.kotlin.android")
 }
 
 android {
