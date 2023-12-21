@@ -26,11 +26,10 @@ import retrofit2.http.Query
  */
 interface ChecklistService {
 
-    @POST("/dhcheckperformed/{idDH}/send/{email}")
+    @POST("/dhcheckperformed/{idDH}/report")
     suspend fun sendOnEmail(
         @Header("AccessToken") accessToken: String,
         @Path("idDH") idDH: String,
-        @Path("email") email: String
     ): EmptyResultOperationResultData
 
     @POST("/answerchecklistitem")

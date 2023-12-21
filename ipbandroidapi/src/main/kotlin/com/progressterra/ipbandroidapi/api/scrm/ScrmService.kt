@@ -3,9 +3,11 @@ package com.progressterra.ipbandroidapi.api.scrm
 import com.progressterra.ipbandroidapi.api.scrm.models.ClientsEntity
 import com.progressterra.ipbandroidapi.api.scrm.models.ClientsViewModelResultData
 import com.progressterra.ipbandroidapi.api.scrm.models.FilterAndSort
+import com.progressterra.ipbandroidapi.api.scrm.models.IncomeDataChannel
 import com.progressterra.ipbandroidapi.api.scrm.models.RGAddressEntity
 import com.progressterra.ipbandroidapi.api.scrm.models.RGAddressResultDataList
 import com.progressterra.ipbandroidapi.api.scrm.models.RGAddressViewModelResultData
+import com.progressterra.ipbandroidapi.api.scrm.models.RGClientChannelResultData
 import com.progressterra.ipbandroidapi.api.scrm.models.RGDeviceTokenEntity
 import com.progressterra.ipbandroidapi.api.scrm.models.RGDeviceTokenViewModelResultData
 import retrofit2.http.Body
@@ -51,6 +53,12 @@ interface ScrmService {
     suspend fun getClient(
         @Header("AccessToken") token: String
     ): ClientsViewModelResultData
+
+    @POST("/clientarea/email")
+    suspend fun postClientEmail(
+        @Header("AccessToken") token: String,
+        @Body body: IncomeDataChannel
+    ): RGClientChannelResultData
 
     @POST("/devicetoken")
     suspend fun setDeviceToken(
