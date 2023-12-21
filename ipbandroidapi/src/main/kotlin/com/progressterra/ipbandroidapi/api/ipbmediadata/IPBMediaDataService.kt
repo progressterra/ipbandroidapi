@@ -21,7 +21,7 @@ import retrofit2.http.Url
 /**
  * [Docs](http://51.250.54.134:7089/swagger/index.html)
  */
-internal interface IPBMediaDataService {
+interface IPBMediaDataService {
 
     @Multipart
     @POST("/mediadata/client")
