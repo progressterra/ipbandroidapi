@@ -1,5 +1,6 @@
 package com.progressterra.ipbandroidapi
 
+import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.APPLICATION_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.AUTH_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.BALANCE_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.CART_URL
@@ -15,6 +16,7 @@ import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.PRODUCT_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.SCRM_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.SUGGESTION_URL
 import com.progressterra.ipbandroidapi.IpbAndroidApiSettings.WORK_WATCH_URL
+import com.progressterra.ipbandroidapi.api.application.ApplicationService
 import com.progressterra.ipbandroidapi.api.auth.AuthService
 import com.progressterra.ipbandroidapi.api.balance.BalanceRepository
 import com.progressterra.ipbandroidapi.api.balance.BalanceService
@@ -189,6 +191,14 @@ val iPBAndroidAPIModule = module {
         networkService.createService(
             apiClass = WorkWatchService::class.java,
             urls = WORK_WATCH_URL
+        )
+    }
+
+    single {
+        val networkService: NetworkService = get()
+        networkService.createService(
+            apiClass = ApplicationService::class.java,
+            urls = APPLICATION_URL
         )
     }
 }

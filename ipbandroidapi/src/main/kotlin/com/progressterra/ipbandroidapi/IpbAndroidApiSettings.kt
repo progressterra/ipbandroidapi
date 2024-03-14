@@ -35,4 +35,6 @@ object IpbAndroidApiSettings {
     var IMH_URL = emptyList<String>()
 
     var WORK_WATCH_URL = emptyList<String>()
+
+    var APPLICATION_URL = emptyList<String>()
 }
