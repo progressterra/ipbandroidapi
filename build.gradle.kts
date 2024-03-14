@@ -6,14 +6,14 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:8.2.0")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.21")
+        classpath("com.android.tools.build:gradle:8.2.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.23")
     }
 }
 
 allprojects {
     group = "com.progressterra.ipbandroidapi"
-    version = "1.1.16"
+    version = "1.1.17"
     repositories {
         google()
         mavenCentral()
