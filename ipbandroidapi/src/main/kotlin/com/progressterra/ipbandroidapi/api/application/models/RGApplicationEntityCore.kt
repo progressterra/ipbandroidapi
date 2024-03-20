@@ -37,7 +37,7 @@ data class RGApplicationEntityCore (
 
     /* Идентификатор продукта, который показываем */
     @SerializedName("idProduct")
-    val idProduct: java.util.UUID? = null,
+    val idProduct: String? = null,
 
     /* Имя клиента ОБЯЗАТЕЛЬНОЕ ПОЛЕ Может быть пустым */
     @SerializedName("nameClient")

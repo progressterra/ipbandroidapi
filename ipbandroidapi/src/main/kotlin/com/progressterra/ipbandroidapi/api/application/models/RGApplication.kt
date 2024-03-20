@@ -44,7 +44,7 @@ data class RGApplication (
 
     /* Идентификатор продукта, который показываем */
     @SerializedName("idProduct")
-    val idProduct: java.util.UUID? = null,
+    val idProduct: String? = null,
 
     /* Имя клиента ОБЯЗАТЕЛЬНОЕ ПОЛЕ Может быть пустым */
     @SerializedName("nameClient")
@@ -80,31 +80,31 @@ data class RGApplication (
 
     /* Идентификатор клиента (может быть установлен позже после регистрации клиента в системе) */
     @SerializedName("idClient")
-    val idClient: java.util.UUID? = null,
+    val idClient: String? = null,
 
     /* Идентификатор заказа, который создан на основании данной заявки */
     @SerializedName("idOrder")
-    val idOrder: java.util.UUID? = null,
+    val idOrder: String? = null,
 
     /* Уникальный идентификатор */
     @SerializedName("idUnique")
-    val idUnique: java.util.UUID? = null,
+    val idUnique: String? = null,
 
     /* Идентификатор организации, которой принадлежит данная запись */
     @SerializedName("idEnterprise")
-    val idEnterprise: java.util.UUID? = null,
+    val idEnterprise: String? = null,
 
     /* Дата добавления записи */
     @SerializedName("dateAdded")
-    val dateAdded: java.time.OffsetDateTime? = null,
+    val dateAdded: String? = null,
 
     /* Дата обновления записи */
     @SerializedName("dateUpdated")
-    val dateUpdated: java.time.OffsetDateTime? = null,
+    val dateUpdated: String? = null,
 
     /* Если дата установлена, то сущность помечена на удаление. Физически данные не удаляются  Функции Delete лишь помечают сущность на удаление устанавливая дату вызова метода */
     @SerializedName("dateSoftRemoved")
-    val dateSoftRemoved: java.time.OffsetDateTime? = null
+    val dateSoftRemoved: String? = null
 
 )
 
